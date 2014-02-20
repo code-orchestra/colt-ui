@@ -1,28 +1,39 @@
+<!DOCTYPE html>
 <html>
-<body>
-<style>
-#holder { border: 10px dashed #ccc; width: 300px; height: 300px; margin: 20px auto;}
-#holder.hover { border: 10px dashed #333; }
-</style>
-<div id="holder"></div>
 <script>
-require('nw.gui').Window.get().showDevTools();
-// prevent default behavior from changing page on dropped file
-window.ondragover = function(e) { e.preventDefault(); return false };
-window.ondrop = function(e) { e.preventDefault(); return false };
 
-var holder = document.getElementById('holder');
-holder.ondragover = function () { this.className = 'hover'; return false; };
-holder.ondragend = function () { this.className = ''; return false; };
-holder.ondrop = function (e) {
-  e.preventDefault();
-  this.className = '';
+var gui = require('nw.gui');
+var win = gui.Window.get();
 
-  for (var i = 0; i < e.dataTransfer.files.length; ++i) {
-    console.log(e.dataTransfer.files[i].path);
-  }
-  return false;
-};
+// require('nw.gui').Window.get().showDevTools();
+
+console.log(this);
+
+//location.href = "blabla.html"
+
+if(location.href != 'app://10.0.1.8:9092/index.html'){
+
+	gui.Window.open('app://10.0.1.8:9092/index.html', {
+		"width": 600,
+    	"height": 800
+	});
+}else{
+	equire('nw.gui').Window.get().showDevTools();
+}
+
 </script>
-</body>
+
+  <head></head>
+  <body>
+  	INDEX
+    <script>
+    // var markdown = require('markdown').markdown;
+    // document.write(markdown.toHTML("Hello **World**!"));
+
+    document.write("location: " + location.href);
+
+    this;
+    gui
+    </script>
+  </body>
 </html>
