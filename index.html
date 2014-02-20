@@ -1,0 +1,28 @@
+<html>
+<body>
+<style>
+#holder { border: 10px dashed #ccc; width: 300px; height: 300px; margin: 20px auto;}
+#holder.hover { border: 10px dashed #333; }
+</style>
+<div id="holder"></div>
+<script>
+require('nw.gui').Window.get().showDevTools();
+// prevent default behavior from changing page on dropped file
+window.ondragover = function(e) { e.preventDefault(); return false };
+window.ondrop = function(e) { e.preventDefault(); return false };
+
+var holder = document.getElementById('holder');
+holder.ondragover = function () { this.className = 'hover'; return false; };
+holder.ondragend = function () { this.className = ''; return false; };
+holder.ondrop = function (e) {
+  e.preventDefault();
+  this.className = '';
+
+  for (var i = 0; i < e.dataTransfer.files.length; ++i) {
+    console.log(e.dataTransfer.files[i].path);
+  }
+  return false;
+};
+</script>
+</body>
+</html>

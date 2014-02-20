@@ -1,0 +1,10 @@
+{
+  "name": "hello",
+  //"main": "index.html",
+  "main": "app://10.0.1.8:9092/index.html",
+  "window": {
+    "toolbar": false,
+    "width": 600,
+    "height": 800
+  }
+}
