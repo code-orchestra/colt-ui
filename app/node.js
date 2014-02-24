@@ -34,7 +34,6 @@ if(require != undefined){
 	menu.append(new gui.MenuItem({ type: 'checkbox', label: 'box1' }));
 	tray.menu = menu;
 
-
 	var fs = require('fs');
 	var Q = require('q');
 	var xml2js = require('xml2js');
