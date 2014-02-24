@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html>
+
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/styles.css">
+<script src="app/node.js"></script>
+
 <script>
-
-var gui = require('nw.gui');
-var win = gui.Window.get();
-
-// require('nw.gui').Window.get().showDevTools();
-
-console.log(this);
-
-//location.href = "blabla.html"
-
-if(location.href != 'app://10.0.1.8:9092/index.html'){
-
-	gui.Window.open('app://10.0.1.8:9092/index.html', {
-		"width": 600,
-    	"height": 800
-	});
-}else{
-	equire('nw.gui').Window.get().showDevTools();
-}
 
 </script>
 
-  <head></head>
-  <body>
-  	INDEX
-    <script>
-    // var markdown = require('markdown').markdown;
-    // document.write(markdown.toHTML("Hello **World**!"));
+<head></head>
+<body ng-app="COLT">
+	<script src="lib/jquery.js"></script>
+	<script src="lib/angular.js"></script>
+	<script src="app/app.js"></script>
+	
 
-    document.write("location: " + location.href);
+	<div id="leftBar">
+		<div class="barTabs">tabs</div>
+		<div class="barBottom">bottom</div>
+	</div>
+	<div class="page-info">title</div>
+	<div id="content">
+		<div class="settings">
+			
+			<form>
+				<ul>
+					<li><label for="mainClass">Main Document:</label></li>
+					<li><input name="mainClass" type="text"><button>Browse</button></li>
 
-    this;
-    gui
-    </script>
-  </body>
+					<li><label for="liveCodePatttern">Live Coding Pattern:</label></li>
+					<li><input name="liveCodePatttern" type="text"><button>Browse</button></li>
+					
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+
+					<li>Advanced: <button>Save & Run</button></li>
+					
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+
+					<li><input type="checkbox"><label for="main">Use Custom Output:</label></li>
+					<li><input name="customOutput" type="text"><button>Browse</button></li>
+
+					<li><label for="main">Main Document:</label></li>
+					<li><input name="main" type="text"><button>Browse</button></li>
+
+				</ul>
+			</form>
+
+		</div>
+	</div>
+	<div class="navigation-bar">navigation</div>
+	
+</body>
 </html>

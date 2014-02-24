@@ -1,0 +1,91 @@
+<xml projectName="test-flexbox" projectPort="9091" projectType="JS">
+  <paths>
+    <sources-set>**/*.js, **/*.htm*, -lib/*.js, -java/, -bower_components/</sources-set>
+    <excludes-set>out/**, .git/**, .*/**, **/*bak___</excludes-set>
+    <reloads-set>**/*.htm*, **/*.css, **/*.png</reloads-set>
+  </paths>
+  <build>
+    <main-document>/Volumes/Archive/Projects/colt-ui/test-flexbox.html</main-document>
+    <use-custom-output-path>false</use-custom-output-path>
+    <out-path />
+    <precompile>
+      <is-new>true</is-new>
+      <type-script>false</type-script>
+      <use-less>false</use-less>
+      <use-sass>false</use-sass>
+      <coffee-script>false</coffee-script>
+    </precompile>
+    <offline-cms>
+      <integrate-mercury>false</integrate-mercury>
+      <run-mercury>true</run-mercury>
+    </offline-cms>
+    <security>
+      <use-inspectable>true</use-inspectable>
+      <can-edit />
+      <can-view>*</can-view>
+    </security>
+    <use-real-time-transformation>true</use-real-time-transformation>
+  </build>
+  <live>
+    <settings>
+      <clear-log>false</clear-log>
+      <disconnect>true</disconnect>
+    </settings>
+    <launch>
+      <launcher>DEFAULT</launcher>
+      <browser-path />
+      <nodejs-path />
+      <console-value />
+    </launch>
+    <live>
+      <paused>false</paused>
+      <max-loop>10000</max-loop>
+      <live-html-edit>true</live-html-edit>
+      <disable-in-minified>true</disable-in-minified>
+      <enable-debugger>false</enable-debugger>
+    </live>
+  </live>
+  <production-build>
+    <output-path />
+    <files-paths />
+    <require-js>
+      <used>false</used>
+      <build-profile />
+    </require-js>
+    <combing-files>
+      <used>false</used>
+    </combing-files>
+    <gZip>
+      <used>false</used>
+      <files-paths />
+    </gZip>
+    <jsdoc>
+      <used>false</used>
+      <files-paths />
+      <output-path />
+    </jsdoc>
+    <jshint>
+      <used>false</used>
+      <files-paths />
+    </jshint>
+    <minimizing-scripts>
+      <used>false</used>
+      <warning-level />
+    </minimizing-scripts>
+    <props2js>
+      <used>false</used>
+      <property-file />
+      <type-value />
+    </props2js>
+    <s3>
+      <used>false</used>
+      <access-key />
+      <secret-key />
+      <bucket-value />
+      <use-config>false</use-config>
+      <config-file />
+      <gzip-enabled>false</gzip-enabled>
+      <encryption-enabled>false</encryption-enabled>
+    </s3>
+  </production-build>
+</xml>
