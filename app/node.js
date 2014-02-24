@@ -1,6 +1,6 @@
 //zip -r ../tmp/myApp.nw *
 
-if(require){
+if(require != undefined){
 	var gui = require('nw.gui'); 
 	var win = gui.Window.get(); win.showDevTools();
 
@@ -35,13 +35,11 @@ if(require){
 	tray.menu = menu;
 
 
-	var fs = require('fs'),
-	var Q = require('q'),
-	xml2js = require('xml2js');
-
+	var fs = require('fs');
+	var Q = require('q');
+	var xml2js = require('xml2js');
 
 	var nodeApp = {
-
 		loadProject : function(filePath){
 			var d = Q.defer();
 			var parser = new xml2js.Parser();
@@ -50,14 +48,14 @@ if(require){
 					d.reject(err);
 				}else{
 					parser.parseString(data, function (err, result) {
-						done.resolve(data);
+						d.resolve(result);
 					});	
 				}
 				
 			});
 
 			return d.promise;
-		}
+		},
 
 		saveProject : function (filePath, data){
 			var d = Q.defer();
@@ -68,7 +66,7 @@ if(require){
 				if(err) {
 					d.reject(err);
 				} else {
-					done.resolve();
+					d.resolve();
 				}
 			}); 
 
@@ -77,6 +75,7 @@ if(require){
 	}
 
 	nodeApp.loadProject("./test-project.colt").then(function(data) {
+		console.log("PROJECT:");
 		console.log(data);
 	});
 }
