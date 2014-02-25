@@ -8,7 +8,7 @@ app.run(function($rootScope, $http) {
 	});
 });
 
-app.controller("SettingsCtrl", function($scope, $controller) {
+app.controller("SettingsCtrl", function($scope) {
 	
 	
 });
