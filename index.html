@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html>
 
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/styles.css">
 
-<script>
+<head>
+	
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/colt-java-fx.css">
 
-</script>
+	<script>
 
-<head></head>
-<body ng-app="COLT">
+	</script>
+
+</head>
+<body ng-app="COLT" ng-controller="SettingsCtrl">
 	<script src="lib/jquery.js"></script>
 	<script src="lib/angular.js"></script>
-	<script src="app/app.js"></script>
-	
+	<script src="app/app.js"></script>	
 
 	<div id="leftBar">
-		<div class="barTabs">tabs</div>
+		<ul class="barTabs">
+			<li><button class="btn-run"></button></li>
+			<li><button class="btn-run"></button></li>
+			<li><button class="btn-run"></button></li>
+		</ul>
 		<div class="barBottom">bottom</div>
 	</div>
-	<div class="page-info">title</div>
+	<div class="page-info title-bar">{{model.$.projectName}}</div>
 	<div id="content">
-		<div class="settings">
+		<div class="settings" >
 			
 			<form>
 				<ul>
 					<li><label for="mainClass">Main Document:</label></li>
-					<li><input name="mainClass" type="text"><button>Browse</button></li>
+					<li><input name="mainClass" type="text">{{}}<button>Browse</button></li>
 
 					<li><label for="liveCodePatttern">Live Coding Pattern:</label></li>
 					<li><input name="liveCodePatttern" type="text"><button>Browse</button></li>
@@ -44,12 +51,13 @@
 
 					<li><label for="main">Main Document:</label></li>
 					<li><input name="main" type="text"><button>Browse</button></li>
-
+					
 				</ul>
 			</form>
 
 		</div>
 	</div>
+
 	<div class="navigation-bar">navigation</div>
 	<script src="app/node.js"></script>
 </body>

@@ -1,5 +1,14 @@
+
 var app = angular.module("COLT", []);
 
-app.controller("SettingsCtrl", function($scope) {
+app.run(function($rootScope, $http) {
+	$http.get('data.json')
+	.then(function(res) {
+		$rootScope.model = res.data.xml;
+	});
+});
 
+app.controller("SettingsCtrl", function($scope, $controller) {
+	
+	
 });

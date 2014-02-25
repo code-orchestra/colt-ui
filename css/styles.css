@@ -27,6 +27,7 @@ body{
 	background-color: #f4f4f4;
 	overflow: auto;
 	padding: 10px;
+     font: 13px 'Arial';
 }
 
 .barTabs{

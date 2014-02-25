@@ -1,5 +1,7 @@
 //zip -r ../tmp/myApp.nw *
 
+var nodeApp;
+
 if(require != undefined){
 	var gui = require('nw.gui'); 
 	var win = gui.Window.get(); win.showDevTools();
@@ -29,16 +31,16 @@ if(require != undefined){
 		this.close(true);
 	});
 
-	var tray = new gui.Tray({ title: '', icon: './icons/colt_32.png' });
-	var menu = new gui.Menu();
-	menu.append(new gui.MenuItem({ type: 'checkbox', label: 'box1' }));
-	tray.menu = menu;
+	// var tray = new gui.Tray({ title: '', icon: './icons/colt_32.png' });
+	// var menu = new gui.Menu();
+	// menu.append(new gui.MenuItem({ type: 'checkbox', label: 'box1' }));
+	// tray.menu = menu;
 
 	var fs = require('fs');
 	var Q = require('q');
 	var xml2js = require('xml2js');
 
-	var nodeApp = {
+	nodeApp = {
 		loadProject : function(filePath){
 			var d = Q.defer();
 			var parser = new xml2js.Parser();
@@ -75,6 +77,10 @@ if(require != undefined){
 
 	nodeApp.loadProject("./test-project.colt").then(function(data) {
 		console.log("PROJECT:");
-		console.log(data);
+		console.log(JSON.stringify(data));
+
+
+		
+			
 	});
 }
