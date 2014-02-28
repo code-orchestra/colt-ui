@@ -29,9 +29,26 @@ body{
 	right: 0;
 	bottom: 40px;
 	background-color: #f4f4f4;
+	/*background-color: #000;*/
 	overflow: auto;
-	padding: 10px;
+
 }
+
+.black{
+	background-color: #000;
+}
+
+label{
+	font-weight : normal;
+}
+
+hr{
+	height: 1px;
+	background-color: #c9ccd0;
+	color: #c9ccd0;
+	border: 0;
+}
+
 
 .barTabs{
 	position: fixed;	

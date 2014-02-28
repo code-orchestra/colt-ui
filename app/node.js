@@ -2,7 +2,7 @@
 
 var nodeApp;
 
-if(require != undefined){
+if(this['require'] != undefined){
 	var gui = require('nw.gui'); 
 	var win = gui.Window.get(); win.showDevTools();
 

@@ -6,10 +6,10 @@
 <head>
 	
 	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/styles.css">
 
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/bootstrap-theme.css">
+	<link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body ng-app="COLT" ng-controller="SettingsCtrl">
@@ -29,12 +29,47 @@
 	</div>
 	<div class="page-info title-bar">{{model._projectName}}</div>
 	<div id="content">
-		<div class="settings container">
+		<div class="container">
 			<form class="col-xs-12">
-				<browse-path path="model.build['main-document']"></browse-path>
-				<fileset paths="model.paths['sources-set']"></fileset>
+				<browse-path label="Main Document:" path="model.build['main-document']"></browse-path>
+				<fileset label="Live Coding Pattern:" paths="model.paths['sources-set']"></fileset>
 			</form>
-		</div>
+			
+			<div class="col-xs-12">
+				<div class="row">
+					<h4 class="pull-left">Advanced</h4>
+					<button type="button" class="btn btn-default btn-add pull-right">Save & Run</button>
+				</div>
+			</div>
+
+			<br>
+
+			<form class="col-xs-12">
+				<browse-path path="model.build['out-path']" disabled="!model.build['use-custom-output-path']"><input type="checkbox" ng-model="model.build['use-custom-output-path']"><label>&nbsp;Use Custom Output:</label></browse-path>
+				
+				<browse-path-checkbox label="Use Custom Output2:" checked="model.build['use-custom-output-path']" path="model.build['out-path']"></browse-path-checkbox>
+				
+				<div class="row">
+					<hr>
+					<h4>Lancher</h4>
+					<br>					
+				</div>
+
+				<div class="form-group row">
+					<input type="radio"><label>Use system default browser</label>
+				</div>
+
+				
+				<browse-path-radio label="Use" selected="" path=""></browse-path-radio>
+			</div>
+		</form>
+
+		
+
+
+
+
+
 	</div>
 
 	<div class="navigation-bar">navigation</div>
