@@ -15,7 +15,7 @@ if(require != undefined){
 
 	java.on('close', function (code, signal) {
 		console.log('child process terminated due to receipt of signal ' + signal);
-		win.close(true);
+		//win.close(true);
 	});
 
 	java.stdout.on('data', function (message) {
@@ -38,30 +38,27 @@ if(require != undefined){
 
 	var fs = require('fs');
 	var Q = require('q');
-	var xml2js = require('xml2js');
+	var x2js = new X2JS();
 
 	nodeApp = {
 		loadProject : function(filePath){
 			var d = Q.defer();
-			var parser = new xml2js.Parser();
 			fs.readFile(filePath, function(err, data) {
 				if(err){
 					d.reject(err);
 				}else{
-					parser.parseString(data, function (err, result) {
-						d.resolve(result);
-					});	
+
+					var json = x2js.xml_str2json( data );
+					d.resolve(json);
 				}
 				
 			});
-
 			return d.promise;
 		},
 
 		saveProject : function (filePath, data){
 			var d = Q.defer();
-			var builder = new xml2js.Builder();
-			var xml = builder.buildObject(data);
+			var xml = xml2js.json2xml(data);
 
 			fs.writeFile(filePath, xml, function(err) {
 				if(err) {
@@ -70,17 +67,12 @@ if(require != undefined){
 					d.resolve();
 				}
 			}); 
-
 			return d.promise;
 		}
 	}
 
 	nodeApp.loadProject("./test-project.colt").then(function(data) {
 		console.log("PROJECT:");
-		console.log(JSON.stringify(data));
-
-
-		
-			
+		console.log(data);			
 	});
 }

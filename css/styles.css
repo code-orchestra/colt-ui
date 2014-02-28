@@ -6,6 +6,10 @@ body{
 	max-height: 100%; 
 	position: fixed;
 	overflow: hidden;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 #leftBar{
@@ -27,7 +31,6 @@ body{
 	background-color: #f4f4f4;
 	overflow: auto;
 	padding: 10px;
-     font: 13px 'Arial';
 }
 
 .barTabs{
@@ -61,3 +64,58 @@ body{
 	height: 40px;
 	background-color: #f4f4f4;
 }
+
+
+/*Left Tabs*/
+
+.btn-run {
+    background: #484a4d;
+    background-image: url('../images/btns/run.png');
+    width: 60px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: 60px, 40px;
+}
+
+.btn-run:hover {
+    background-image: url('../images/btns/run-hover.png');
+}
+
+.btn-build {
+	background: #484a4d;
+    background-image: url('../images/btns/build.png');
+    width: 60px;
+    height: 40px;
+    width: 60px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: 60px, 40px;
+}
+
+.btn-build:hover, .btn-build:hover {
+    background-image: url('../images/btns/build-hover.png');
+}
+
+.btn-build:active, .btn-build:selected {
+    background-image: url('../images/btns/build-down.png');
+}
+
+.btn-settings {
+    background: #484a4d;
+    background-image: url('../images/btns/settings.png');
+    width: 60px;
+    height: 40px;
+    width: 60px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: 60px, 40px;
+}
+
+.btn-settings:hover, .btn-settings:hover {
+    background-image: url('../images/btns/settings-hover.png');
+}
+
+.btn-settings:active, .btn-settings:selected {
+    background-image: url('../images/btns/settings-down.png');
+}
+

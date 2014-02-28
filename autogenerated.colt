@@ -6,8 +6,8 @@
   </paths>
   <build>
     <main-document>/Volumes/Archive/Projects/colt-ui/index.html</main-document>
-    <use-custom-output-path>false</use-custom-output-path>
-    <out-path />
+    <use-custom-output-path>true</use-custom-output-path>
+    <out-path>/Volumes/Archive/Projects/tmp/out</out-path>
     <precompile>
       <is-new>true</is-new>
       <type-script>false</type-script>
@@ -32,7 +32,7 @@
       <disconnect>true</disconnect>
     </settings>
     <launch>
-      <launcher>DEFAULT</launcher>
+      <launcher>NODE_WEBKIT</launcher>
       <browser-path />
       <nodejs-path />
       <console-value />

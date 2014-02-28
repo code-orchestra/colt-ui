@@ -2,63 +2,64 @@
 <html>
 
 
+
 <head>
 	
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="css/colt-java-fx.css">
 
-	<script>
-
-	</script>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.css">
 
 </head>
 <body ng-app="COLT" ng-controller="SettingsCtrl">
 	<script src="lib/jquery.js"></script>
+	<script src="lib/xml2json.js"></script>
 	<script src="lib/angular.js"></script>
-	<script src="app/app.js"></script>	
+	<script src="app/directives.js"></script>		
+	<script src="app/app.js"></script>		
 
 	<div id="leftBar">
 		<ul class="barTabs">
-			<li><button class="btn-run"></button></li>
-			<li><button class="btn-run"></button></li>
-			<li><button class="btn-run"></button></li>
+			<li><div class="btn-run"></div></li>
+			<li><div class="btn-build"></div></li>
+			<li><div class="btn-settings"></div></li>
 		</ul>
 		<div class="barBottom">bottom</div>
 	</div>
-	<div class="page-info title-bar">{{model.$.projectName}}</div>
+	<div class="page-info title-bar">{{model._projectName}}</div>
 	<div id="content">
-		<div class="settings" >
-			
-			<form>
-				<ul>
-					<li><label for="mainClass">Main Document:</label></li>
-					<li><input name="mainClass" type="text">{{}}<button>Browse</button></li>
-
-					<li><label for="liveCodePatttern">Live Coding Pattern:</label></li>
-					<li><input name="liveCodePatttern" type="text"><button>Browse</button></li>
-					
-					<li>&nbsp;</li>
-					<li>&nbsp;</li>
-
-					<li>Advanced: <button>Save & Run</button></li>
-					
-					<li>&nbsp;</li>
-					<li>&nbsp;</li>
-
-					<li><input type="checkbox"><label for="main">Use Custom Output:</label></li>
-					<li><input name="customOutput" type="text"><button>Browse</button></li>
-
-					<li><label for="main">Main Document:</label></li>
-					<li><input name="main" type="text"><button>Browse</button></li>
-					
-				</ul>
+		<div class="settings container">
+			<form class="col-xs-12">
+				<browse-path path="model.build['main-document']"></browse-path>
+				<fileset paths="model.paths['sources-set']"></fileset>
 			</form>
-
 		</div>
 	</div>
 
 	<div class="navigation-bar">navigation</div>
+
 	<script src="app/node.js"></script>
-</body>
-</html>
+	<script>
+		// // Create an empty menu
+		// var menu = new gui.Menu();
+
+		// // Add some items
+		// menu.append(new gui.MenuItem({ label: 'Item A' }));
+		// menu.append(new gui.MenuItem({ label: 'Item B' }));
+		// menu.append(new gui.MenuItem({ type: 'separator' }));
+		// menu.append(new gui.MenuItem({ label: 'Item C' }));
+
+		// // Remove one item
+		// menu.removeAt(1);
+
+		// // Popup as context menu
+		// menu.popup(10, 10);
+
+		// // Iterate menu's items
+		// for (var i = 0; i < menu.items.length; ++i) {
+		// 	console.log(menu.items[i]);
+		// }
+		// </script>
+	</body>
+	</html>
