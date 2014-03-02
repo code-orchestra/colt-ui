@@ -30,7 +30,8 @@ body{
 	bottom: 40px;
 	background-color: #f4f4f4;
 	/*background-color: #000;*/
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 
 }
 

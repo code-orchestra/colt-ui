@@ -14,6 +14,20 @@ app.run(function($rootScope, $http) {
 	.then(function(res) {
 		var model = $rootScope.model = res.data.xml;
 		model.build['use-custom-output-path'] = model.build['use-custom-output-path'] === "true";
+		model.live.live['live-html-edit'] = model.live.live['live-html-edit'] === "true";
+		model.live.live.paused = model.live.live.paused === "true";
+		model.live.live['disable-in-minified'] = model.live.live['disable-in-minified'] === "true";
+		model.live.live['enable-debuger'] = model.live.live['enable-debuger'] === "true";
+		model.build['use-real-time-transformation'] = model.build['use-real-time-transformation'] === "true";
+		model.build.precompile['coffee-script'] = model.build.precompile['coffee-script'] === "true";
+		model.build.precompile['type-script'] = model.build.precompile['type-script'] === "true";
+		model.build.precompile['use-less'] = model.build.precompile['use-less'] === "true";
+		model.build.precompile['use-sass'] = model.build.precompile['use-sass'] === "true";
+		model.build['offline-cms']['integrate-mercury'] = model.build['offline-cms']['integrate-mercury'] === "true";
+		model.build['offline-cms']['run-mercury'] = model.build['offline-cms']['run-mercury'] === "true";
+		model.build.security['use-inspectable'] = model.build.security['use-inspectable'] === "true";
+		model.live.settings['disconnect'] = model.live.settings['disconnect'] === "true";
+		model.live.settings['clear-log'] = model.live.settings['clear-log'] === "true";
 		console.log(model);
 	});
 });

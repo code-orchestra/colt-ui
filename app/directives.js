@@ -2,7 +2,7 @@
 
 angular.module('colt.directives', [])
 
-.directive('browsePath', function($parse, $timeout) {
+.directive('browsePath', function() {
 
   return {
     restrict: 'E',
@@ -26,7 +26,30 @@ angular.module('colt.directives', [])
 
 })
 
-.directive('fileset', function($parse, $timeout) {
+.directive('copyValue', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+     label: "@",
+     value: "=",
+     disabled: "=",
+   },
+   transclude: true,
+   template: 
+   '<div class="form-group row">'+
+   '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
+   '  <div class="input-group input-group-sm">'+
+   '    <input type="text" class="form-control" ng-model="value" ng-disabled="disabled">'+
+   '    <span class="input-group-btn"><button type="button" ' +
+   '    class="btn btn-default btn-add" ng-disabled="disabled">Copy</button></span>'+
+   '  </div>'+
+   '</div>'
+ };
+
+})
+
+.directive('fileset', function() {
 
   return {
     restrict: 'E',
@@ -48,7 +71,7 @@ angular.module('colt.directives', [])
 
 })
 
-.directive('browsePathCheckbox', function($parse, $timeout) {
+.directive('browsePathCheckbox', function() {
 
   return {
     restrict: 'E',
@@ -56,11 +79,6 @@ angular.module('colt.directives', [])
       label: "@",
       path: "=",
       checked: "=",
-    },
-    controller : function() {
-      this.log = function(m) {
-        console.log(m)
-      }
     },
     template: 
     '<div class="form-group row">'+
@@ -75,26 +93,116 @@ angular.module('colt.directives', [])
 })
 
 
-.directive('browsePathRadio', function($parse, $timeout) {
+.directive('browsePathRadio', function() {
 
   return {
     restrict: 'E',
     scope: {
       label: "@",
       paths: "=",
-      selected: "=",
-    },
-    link: function(scope) {
-      scope.selected2 = false;
+      currentValue: "=",
+      expectedValue: "@"
     },
     template: 
     '<div class="form-group row">'+
-    '  <input type="radio" ng-model="checked"">&nbsp;<label>{{label}}</label>'+
+    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
     '  <div class="input-group input-group-sm">'+
-    '    <input type="text" class="form-control" ng-model="path" ng-disabled="!checked">'+
+    '    <input type="text" class="form-control" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
     '    <span class="input-group-btn"><button type="button" ' +
     '    class="btn btn-default btn-add" ng-disabled="!checked">Browse</button></span>'+
     '  </div>'+
+    '</div>'
+  };
+
+})
+
+.directive('inputRadio', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+      label: "@",
+      paths: "=",
+      currentValue: "=",
+      expectedValue: "@"
+    },
+    template: 
+    '<div class="form-group row">'+
+    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
+    '  <input type="text" class="form-control input-sm" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
+    '</div>'
+  };
+
+})
+
+.directive('formPartHeader', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+      label: "@"
+    },
+    template: 
+    '<div class="row">'+
+    '  <hr>'+
+    '  <h4>{{label}}</h4>'+
+    '  <br>'+
+    '</div>'
+  };
+
+})
+
+.directive('radio', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+      label: "@",
+      currentValue: "=",
+      expectedValue: "@"
+    },
+    template: 
+    '<div class="form-group row">'+
+    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
+    '</div>'
+  };
+
+})
+
+.directive('checkbox', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+      label: "@",
+      checked: "=",
+      enabled: "="
+    },
+    compile : function(element, attrs) {
+      if(attrs.enabled === undefined){
+        attrs.enabled = "true";
+      }
+    },
+    template: 
+    '<div class="form-group row">'+
+    '  <input type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label>{{label}}</label>'+
+    '</div>'
+  };
+
+})
+
+.directive('value', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+      label: "@",
+      value: "="
+    },
+    template: 
+    '<div class="form-group row">'+
+    '  <label>{{label}}</label>'+
+    '  <input type="text" class="form-control input-sm" ng-model="value">'+
     '</div>'
   };
 
