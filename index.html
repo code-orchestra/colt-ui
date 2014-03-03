@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="css/styles.css">
 
 </head>
-<body ng-app="COLT">
+<body ng-app="COLT" ng-controller="AppCtrl">
 	<script src="lib/jquery.js"></script>
 	<script src="lib/xml2json.js"></script>
 	<script src="lib/angular.js"></script>
@@ -27,7 +27,7 @@
 		</ul>
 		<div class="barBottom">bottom</div>
 	</div>
-	<div class="page-info title-bar">{{model._projectName + "/" + pageTitle}}</div>
+	<div class="page-info title-bar">{{model._projectName + "/" + pageName}}</div>
 	<div ui-view id="content"></div>
 	<div class="navigation-bar">navigation</div>
 
