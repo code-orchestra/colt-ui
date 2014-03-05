@@ -84,6 +84,11 @@ angular.module('colt.directives', [])
       checked: "=",
       placeholder: "@"
     },
+    compile : function(element, attrs) {
+      var id = "input" + Math.floor(Math.random() * 10000);
+      $(element).find("input[type='checkbox']").attr("id", id);
+      $(element).find("label").attr("for", id);
+    },
     template: 
     '<div class="form-group row">'+
     '  <input type="checkbox" ng-model="checked"">&nbsp;<label>{{label}}</label>'+
@@ -108,6 +113,11 @@ angular.module('colt.directives', [])
       expectedValue: "@",
       placeholder: "@"
     },
+    compile : function(element, attrs) {
+      var id = "input" + Math.floor(Math.random() * 10000);
+      $(element).find("input[type='radio']").attr("id", id);
+      $(element).find("label").attr("for", id);
+    },
     template: 
     '<div class="form-group row">'+
     '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
@@ -131,6 +141,11 @@ angular.module('colt.directives', [])
       currentValue: "=",
       expectedValue: "@",
       placeholder: "@"
+    },
+    compile : function(element, attrs) {
+      var id = "input" + Math.floor(Math.random() * 10000);
+      $(element).find("input[type='radio']").attr("id", id);
+      $(element).find("label").attr("for", id);
     },
     template: 
     '<div class="form-group row">'+
@@ -167,6 +182,11 @@ angular.module('colt.directives', [])
       currentValue: "=",
       expectedValue: "@"
     },
+    compile : function(element, attrs) {
+      var id = "input" + Math.floor(Math.random() * 10000);
+      $(element).find("input[type='radio']").attr("id", id);
+      $(element).find("label").attr("for", id);
+    },
     template: 
     '<div class="form-group row">'+
     '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
@@ -188,10 +208,13 @@ angular.module('colt.directives', [])
       if(attrs.enabled === undefined){
         attrs.enabled = "true";
       }
+      var id = "input" + Math.floor(Math.random() * 10000);
+      $(element).find("input").attr("id", id);
+      $(element).find("label").attr("for", id);
     },
     template: 
     '<div class="form-group row">'+
-    '  <input type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label>{{label}}</label>'+
+    '  <input id="j123" type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label for="j123">{{label}}</label>'+
     '</div>'
   };
 

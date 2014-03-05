@@ -82,7 +82,6 @@ hr{
 	/*background-color: #ccc;*/
 }
 
-
 .navigation-bar{
 	position: fixed;
 	bottom: 0;
@@ -96,12 +95,12 @@ hr{
 }
 
 .logFilterButton{
-	padding: 0px 10px 0px 0px;
 	display: inline;
 	font-size: 13px;
 	border-radius: 8px;
     color: #83868a;
-    padding: 1px 6px 0 6px;
+    /*background-color: #dbdee2;*/
+    padding: 2px 5px 2px 8px;
 }
 
 .logFilterButton:hover, .logFilterButton.selected{
@@ -109,7 +108,7 @@ hr{
 	cursor: default;
 }
 
-/*button live*/
+/* Button Live */
 
 .btn-live {
     background-image: url('../images/btns/live.png');
@@ -147,8 +146,7 @@ hr{
     opacity: 1;
 }
 
-
-/*Left Tabs*/
+/* Left Tabs */
 
 .btn-run {
 	background: #484a4d;
@@ -158,8 +156,6 @@ hr{
 	background-repeat: no-repeat;
 	background-size: 60px, 40px;
 }
-
-
 
 .btn-run:hover {
 	background-image: url('../images/btns/run-hover.png');
@@ -179,7 +175,6 @@ hr{
 .btn-build:hover, .btn-build:hover {
 	background-image: url('../images/btns/build-hover.png');
 }
-
 
 .btn-settings {
 	background: #484a4d;

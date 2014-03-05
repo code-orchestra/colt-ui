@@ -33,12 +33,11 @@
 	<div ui-view id="content"></div>
 	<div class="navigation-bar">
 		<div class="logFilterButton" ng-show="pageIndex==2">All</div>
-		<div class="logFilterButton" ng-show="pageIndex==2">Errors(0)</div>
-		<div class="logFilterButton" ng-show="pageIndex==2">Warnings(0)</div>
-		<div class="logFilterButton" ng-show="pageIndex==2">Info(33)</div>
-		<div class="logFilterButton" ng-show="pageIndex==2">Live(45)</div>
+		<div class="logFilterButton" ng-show="pageIndex==2">Errors({{filter.errorsCount}})</div>
+		<div class="logFilterButton" ng-show="pageIndex==2">Warnings({{filter.warningCount}})</div>
+		<div class="logFilterButton" ng-show="pageIndex==2">Info({{filter.infoCount}})</div>
+		<div class="logFilterButton" ng-show="pageIndex==2">Live({{filter.liveCount}})</div>
 		<div class="btn-live"></div>
 	</div>
-
 </body>
 </html>

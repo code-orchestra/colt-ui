@@ -34,6 +34,13 @@ app.run(function($rootScope, $http) {
 		model.live.settings['clear-log'] = model.live.settings['clear-log'] === "true";
 		console.log(model);
 	});
+
+	$rootScope.filter = {};
+	$rootScope.filter.errorsCount = 0;
+	$rootScope.filter.errorsCount = 0;
+	$rootScope.filter.warningCount = 0;
+	$rootScope.filter.infoCount = 0;
+	$rootScope.filter.liveCount = 0;
 });
 
 app.config(function($stateProvider, $urlRouterProvider) {
