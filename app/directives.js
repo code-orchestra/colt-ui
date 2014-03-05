@@ -10,14 +10,15 @@ angular.module('colt.directives', [])
      label: "@",
      path: "=",
      disabled: "=",
-     checkbox: "="
+     checkbox: "=",
+     placeholder: "@"
    },
    transclude: true,
    template: 
    '<div class="form-group row">'+
    '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label>'+
    '  <div class="input-group input-group-sm">'+
-   '    <input type="text" class="form-control" ng-model="path" ng-disabled="disabled">'+
+   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="disabled">'+
    '    <span class="input-group-btn"><button type="button" ' +
    '    class="btn btn-default btn-add" ng-disabled="disabled">Browse</button></span>'+
    '  </div>'+
@@ -34,13 +35,14 @@ angular.module('colt.directives', [])
      label: "@",
      value: "=",
      disabled: "=",
+     placeholder: "@"
    },
    transclude: true,
    template: 
    '<div class="form-group row">'+
    '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
    '  <div class="input-group input-group-sm">'+
-   '    <input type="text" class="form-control" ng-model="value" ng-disabled="disabled">'+
+   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="value" ng-disabled="disabled">'+
    '    <span class="input-group-btn"><button type="button" ' +
    '    class="btn btn-default btn-add" ng-disabled="disabled">Copy</button></span>'+
    '  </div>'+
@@ -56,14 +58,15 @@ angular.module('colt.directives', [])
     scope: {
       label: "@",
       paths: "=",
-      disabled: "="
+      disabled: "=",
+      placeholder: "@"
     },
     transclude: true,
     template: 
     '<div class="form-group row">'+
     '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label>'+
     '  <div class="input-group input-group-sm">'+
-    '    <input type="text" class="form-control" ng-model="paths">'+
+    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="paths">'+
     '    <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span>'+
     '  </div>'+
     '</div>'
@@ -79,12 +82,13 @@ angular.module('colt.directives', [])
       label: "@",
       path: "=",
       checked: "=",
+      placeholder: "@"
     },
     template: 
     '<div class="form-group row">'+
     '  <input type="checkbox" ng-model="checked"">&nbsp;<label>{{label}}</label>'+
     '  <div class="input-group input-group-sm">'+
-    '    <input type="text" class="form-control" ng-model="path" ng-disabled="!checked">'+
+    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="!checked">'+
     '    <span class="input-group-btn"><button type="button" ' +
     '    class="btn btn-default btn-add" ng-disabled="!checked">Browse</button></span>'+
     '  </div>'+
@@ -101,13 +105,14 @@ angular.module('colt.directives', [])
       label: "@",
       paths: "=",
       currentValue: "=",
-      expectedValue: "@"
+      expectedValue: "@",
+      placeholder: "@"
     },
     template: 
     '<div class="form-group row">'+
     '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
     '  <div class="input-group input-group-sm">'+
-    '    <input type="text" class="form-control" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
+    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
     '    <span class="input-group-btn"><button type="button" ' +
     '    class="btn btn-default btn-add" ng-disabled="!checked">Browse</button></span>'+
     '  </div>'+
@@ -124,12 +129,13 @@ angular.module('colt.directives', [])
       label: "@",
       paths: "=",
       currentValue: "=",
-      expectedValue: "@"
+      expectedValue: "@",
+      placeholder: "@"
     },
     template: 
     '<div class="form-group row">'+
     '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
-    '  <input type="text" class="form-control input-sm" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
+    '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
     '</div>'
   };
 
@@ -197,12 +203,13 @@ angular.module('colt.directives', [])
     restrict: 'E',
     scope: {
       label: "@",
-      value: "="
+      value: "=",
+      placeholder: "@"
     },
     template: 
     '<div class="form-group row">'+
     '  <label>{{label}}</label>'+
-    '  <input type="text" class="form-control input-sm" ng-model="value">'+
+    '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-model="value">'+
     '</div>'
   };
 

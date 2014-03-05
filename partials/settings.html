@@ -2,19 +2,17 @@
 	<div class="container" style="padding-top:10px">
 		<form class="col-xs-12">
 			<browse-path label="Main Document:" path="model.build['main-document']"></browse-path>
-			<fileset label="Live Coding Pattern:" paths="model.paths['sources-set']"></fileset>
+			<!-- <fileset label="Live Coding Pattern:" paths="model.paths['sources-set']"></fileset> -->
 			
-			<!-- Launcher -->
+			<!-- Project Type -->
 	
 			<form-part-header label="Launcher"></form-part-header>
 	
-			<radio label="Use system default browser" current-value="model.live.launch.launcher" expected-value="DEFAULT"></radio>
-			
-			<browse-path-radio id="radio" label="Use" current-value="model.live.launch.launcher" expected-value="BROWSER" path=""></browse-path-radio>
+			<browse-path-radio id="radio" label="Browser" current-value="model.live.launch.launcher" expected-value="BROWSER" path="" placeholder="DEFAULT"></browse-path-radio>
 	
-			<browse-path-radio id="radio" label="Node.js" current-value="model.live.launch.launcher" expected-value="NODE_JS" path=""></browse-path-radio>
+			<browse-path-radio id="radio" label="Node.js" current-value="model.live.launch.launcher" expected-value="NODE_JS" path="" placeholder="$ node"></browse-path-radio>
 			
-			<browse-path-radio id="radio" label="Node WebKit" current-value="model.live.launch.launcher" expected-value="NODE_WEBKIT" path=""></browse-path-radio>
+			<browse-path-radio id="radio" label="Node WebKit" current-value="model.live.launch.launcher" expected-value="NODE_WEBKIT" path="" placeholder="DEFAULT"></browse-path-radio>
 	
 			<input-radio id="radio" label="Console" current-value="model.live.launch.launcher" expected-value="CONSOLE" path=""></input-radio>
 	
@@ -26,7 +24,7 @@
 	
 			<browse-path-checkbox label="Use Custom Output:" checked="model.build['use-custom-output-path']" path="model.build['out-path']"></browse-path-checkbox>		
 	
-			<fileset label="Live Reload Pattern:" paths="model.paths['reloads-set']"></fileset>
+			<!-- <fileset label="Live Reload Pattern:" paths="model.paths['reloads-set']"></fileset> -->
 	
 			<fileset label="Exclude Pattern:" paths="model.paths['excludes-set']"></fileset>
 	
@@ -39,6 +37,8 @@
 			<checkbox checked="model.live.live['disable-in-minified']" label="Disable livecoding in minified scripts"></checkbox>
 	
 			<checkbox checked="!model.live.live['enable-debuger']" label="Catch Runtime Exceptions (uncheck for debugging)"></checkbox>
+
+			<checkbox checked="model.live.live['simple-reload']" label="Simple Reload Mode (Live Reload)"></checkbox>
 	
 			<!-- <checkbox checked="model.build['use-real-time-transformation']" label="Use realtime transformation"></checkbox> -->
 	

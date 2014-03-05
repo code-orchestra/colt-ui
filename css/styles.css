@@ -32,6 +32,16 @@ body{
 	/*background-color: #000;*/
 }
 
+.page-info{
+	position: fixed;
+	left: 60px;	
+	right: 0px;
+	height: 40px;
+	background-color: #fff;
+	border-bottom:1px solid #e1e4e8;
+	padding: 10px;
+}
+
 .scrolled {
 	height: 100%;
 	width: 100%;
@@ -70,14 +80,7 @@ hr{
 	/*background-color: #ccc;*/
 }
 
-.page-info{
-	position: fixed;
-	left: 60px;	
-	right: 0px;
-	height: 40px;
-	background-color: #f4f4f4;
-	border-bottom:1px solid #e1e4e8;
-}
+
 
 .navigation-bar{
 	position: fixed;

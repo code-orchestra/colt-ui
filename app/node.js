@@ -31,10 +31,10 @@ if(this['require'] != undefined){
 		this.close(true);
 	});
 
-	// var tray = new gui.Tray({ title: '', icon: './icons/colt_32.png' });
-	// var menu = new gui.Menu();
-	// menu.append(new gui.MenuItem({ type: 'checkbox', label: 'box1' }));
-	// tray.menu = menu;
+	var tray = new gui.Tray({ title: '', icon: './icons/colt_32.png' });
+	var menu = new gui.Menu();
+	menu.append(new gui.MenuItem({ type: 'checkbox', label: 'box1' }));
+	tray.menu = menu;
 
 	var fs = require('fs');
 	var Q = require('q');
@@ -47,7 +47,6 @@ if(this['require'] != undefined){
 				if(err){
 					d.reject(err);
 				}else{
-
 					var json = x2js.xml_str2json( data );
 					d.resolve(json);
 				}
