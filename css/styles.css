@@ -72,6 +72,8 @@ hr{
 	width: 60px;
 }
 
+/* Bottom Bar */
+
 .barBottom{
 	position: fixed;
 	bottom: 0;
@@ -81,7 +83,6 @@ hr{
 }
 
 
-
 .navigation-bar{
 	position: fixed;
 	bottom: 0;
@@ -89,6 +90,61 @@ hr{
 	right: 0;
 	height: 40px;
 	background-color: #f4f4f4;
+	padding-left: 17px;
+	padding-top: 10px;
+	border-top:1px solid #e1e4e8;
+}
+
+.logFilterButton{
+	padding: 0px 10px 0px 0px;
+	display: inline;
+	font-size: 13px;
+	border-radius: 8px;
+    color: #83868a;
+    padding: 1px 6px 0 6px;
+}
+
+.logFilterButton:hover, .logFilterButton.selected{
+	background-color: #dbdee2;
+	cursor: default;
+}
+
+/*button live*/
+
+.btn-live {
+    background-image: url('../images/btns/live.png');
+    background-repeat: no-repeat;
+    background-size: 32px, 31px;
+    position: fixed;
+    height: 32px;
+    width: 31px;
+    bottom: 3px;
+    right: 5px;
+}
+
+.btn-live:hover {
+    background-image: url('../images/btns/live-hover.png');
+}
+
+.btn-live:active {
+    background-image: url('../images/btns/live-down.png');
+}
+
+.btn-live.selected {
+    background-image: url('../images/btns/live-selected.png');
+}
+
+.btn-live.selected:hover {
+    background-image: url('../images/btns/live-selected-hover.png');
+}
+
+.btn-live.selected:active {
+    background-image: url('../images/btns/live-selected-down.png');
+}
+
+.btn-live:disabled {
+    background-image: url('../images/btns/live-switching.png');
+    opacity: 1;
 }
 
 
@@ -102,6 +158,8 @@ hr{
 	background-repeat: no-repeat;
 	background-size: 60px, 40px;
 }
+
+
 
 .btn-run:hover {
 	background-image: url('../images/btns/run-hover.png');
@@ -122,9 +180,6 @@ hr{
 	background-image: url('../images/btns/build-hover.png');
 }
 
-.btn-build:active, .btn-build:selected {
-	background-image: url('../images/btns/build-down.png');
-}
 
 .btn-settings {
 	background: #484a4d;
@@ -138,10 +193,27 @@ hr{
 }
 
 .btn-settings:hover, .btn-settings:hover {
-	background-image: url('../images/btns/settings-hover.png');
+	background-image: url('../images/btns/settings-hover.png');;
 }
 
-.btn-settings:active, .btn-settings:selected {
+.btn-run.tabSelected {
+	background-image: url('../images/btns/run-down.png');
+	background-color: #37393B;
+	border-top:1px solid #2D2F31;
+	border-bottom:1px solid #535657;
+}
+
+.btn-build.tabSelected {
+	background-image: url('../images/btns/build-down.png');
+	background-color: #37393B;
+	border-top:1px solid #2D2F31;
+	border-bottom:1px solid #535657;
+}
+
+.btn-settings.tabSelected {
 	background-image: url('../images/btns/settings-down.png');
+	background-color: #37393B;
+	border-top:1px solid #2D2F31;
+	border-bottom:1px solid #535657;
 }
 

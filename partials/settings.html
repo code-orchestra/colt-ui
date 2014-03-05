@@ -28,13 +28,13 @@
 	
 			<fileset label="Exclude Pattern:" paths="model.paths['excludes-set']"></fileset>
 	
+			<checkbox checked="model.live.live['disable-in-minified']" label="Disable livecoding in minified scripts"></checkbox>
+
 			<!-- <checkbox checked="model.live.live['live-html-edit']" label="Live HTML edit where possible"></checkbox> -->
 			
 			<!-- <checkbox checked="model.live.live.paused" label="Start session paused"></checkbox> -->
 	
 			<value value="model.live.live['max-loop']" label="Max Loop Iterations:"></value>
-	
-			<checkbox checked="model.live.live['disable-in-minified']" label="Disable livecoding in minified scripts"></checkbox>
 	
 			<checkbox checked="!model.live.live['enable-debuger']" label="Catch Runtime Exceptions (uncheck for debugging)"></checkbox>
 
