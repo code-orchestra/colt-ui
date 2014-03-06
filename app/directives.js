@@ -16,15 +16,10 @@ angular.module('colt.directives', [])
    link: function (scope, element, attrs) {
     var fileInput = $(element).find("input:file");
     var button = $(element).find("button");
-    console.log("button: " + button.size())
-    console.log("file: " + fileInput.size())
-    console.log(fileInput);
     button.click(function() {
-      console.log("button click");
       fileInput.click();
     });
-    fileInput.change(function (changeEvent) {
-      console.log("file changed: " + $(fileInput).val())
+    fileInput.change(function (e) {
       scope.$apply(function () {
         scope.path = $(fileInput).val();
       });
@@ -45,26 +40,82 @@ angular.module('colt.directives', [])
 
 })
 
-.directive('copyValue', function() {
+.directive('browsePathCheckbox', function() {
 
   return {
     restrict: 'E',
     scope: {
-     label: "@",
-     value: "=",
-     disabled: "=",
-     placeholder: "@"
-   },
-   template: 
-   '<div class="form-group row">'+
-   '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
-   '  <div class="input-group input-group-sm">'+
-   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="value" ng-disabled="disabled">'+
-   '    <span class="input-group-btn"><button type="button" ' +
-   '    class="btn btn-default btn-add" ng-disabled="disabled">Copy</button></span>'+
-   '  </div>'+
-   '</div>'
- };
+      label: "@",
+      path: "=",
+      checked: "=",
+      placeholder: "@"
+    },
+    link: function (scope, element, attrs) {
+      var fileInput = $(element).find("input:file");
+      var button = $(element).find("button");
+      button.click(function() {
+        fileInput.click();
+      });
+      fileInput.change(function (e) {
+        scope.$apply(function () {
+          scope.path = $(fileInput).val();
+        });
+      });
+      var id = "input" + Math.floor(Math.random() * 10000);
+      $(element).find("input:checkbox").attr("id", id);
+      $(element).find("label").attr("for", id);
+    },
+    template: 
+    '<div class="form-group row">'+
+    '  <input type="checkbox" ng-model="checked"">&nbsp;<label>{{label}}</label>'+
+    '  <div class="input-group input-group-sm">'+
+    '    <input type="file" class="hidden" ng-model="path">'+
+    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="!checked">'+
+    '    <span class="input-group-btn"><button type="button" ' +
+    '    class="btn btn-default btn-add" ng-disabled="!checked">Browse</button></span>'+
+    '  </div>'+
+    '</div>'
+  };
+})
+
+.directive('browsePathRadio', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+      label: "@",
+      paths: "=",
+      currentValue: "=",
+      expectedValue: "@",
+      placeholder: "@"
+    },
+    link: function (scope, element, attrs) {
+      var fileInput = $(element).find("input:file");
+      var button = $(element).find("button");
+      button.click(function() {
+        fileInput.click();
+      });
+      fileInput.change(function (e) {
+        scope.$apply(function () {
+          scope.path = $(fileInput).val();
+        });
+      });
+
+      var id = "input" + Math.floor(Math.random() * 10000);
+      $(element).find("input:radio").attr("id", id);
+      $(element).find("label").attr("for", id);
+    },
+    template: 
+    '<div class="form-group row">'+
+    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
+    '  <div class="input-group input-group-sm">'+
+    '    <input type="file" class="hidden" ng-model="path">'+
+    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
+    '    <span class="input-group-btn"><button type="button" ' +
+    '    class="btn btn-default btn-add" ng-disabled="currentValue!=expectedValue">Browse</button></span>'+
+    '  </div>'+
+    '</div>'
+  };
 
 })
 
@@ -90,60 +141,27 @@ angular.module('colt.directives', [])
 
 })
 
-.directive('browsePathCheckbox', function() {
+
+.directive('copyValue', function() {
 
   return {
     restrict: 'E',
     scope: {
-      label: "@",
-      path: "=",
-      checked: "=",
-      placeholder: "@"
-    },
-    compile : function(element, attrs) {
-      var id = "input" + Math.floor(Math.random() * 10000);
-      $(element).find("input:checkbox").attr("id", id);
-      $(element).find("label").attr("for", id);
-    },
-    template: 
-    '<div class="form-group row">'+
-    '  <input type="checkbox" ng-model="checked"">&nbsp;<label>{{label}}</label>'+
-    '  <div class="input-group input-group-sm">'+
-    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="!checked">'+
-    '    <span class="input-group-btn"><button type="button" ' +
-    '    class="btn btn-default btn-add" ng-disabled="!checked">Browse</button></span>'+
-    '  </div>'+
-    '</div>'
-  };
-})
-
-
-.directive('browsePathRadio', function() {
-
-  return {
-    restrict: 'E',
-    scope: {
-      label: "@",
-      paths: "=",
-      currentValue: "=",
-      expectedValue: "@",
-      placeholder: "@"
-    },
-    compile : function(element, attrs) {
-      var id = "input" + Math.floor(Math.random() * 10000);
-      $(element).find("input:radio").attr("id", id);
-      $(element).find("label").attr("for", id);
-    },
-    template: 
-    '<div class="form-group row">'+
-    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
-    '  <div class="input-group input-group-sm">'+
-    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
-    '    <span class="input-group-btn"><button type="button" ' +
-    '    class="btn btn-default btn-add" ng-disabled="!checked">Browse</button></span>'+
-    '  </div>'+
-    '</div>'
-  };
+     label: "@",
+     value: "=",
+     disabled: "=",
+     placeholder: "@"
+   },
+   template: 
+   '<div class="form-group row">'+
+   '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
+   '  <div class="input-group input-group-sm">'+
+   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="value" ng-disabled="disabled">'+
+   '    <span class="input-group-btn"><button type="button" ' +
+   '    class="btn btn-default btn-add" ng-disabled="disabled">Copy</button></span>'+
+   '  </div>'+
+   '</div>'
+ };
 
 })
 
