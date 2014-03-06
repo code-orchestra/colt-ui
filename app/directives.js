@@ -32,7 +32,7 @@ angular.module('colt.directives', [])
   '  <div class="input-group input-group-sm">'+
   '    <input type="file" class="hidden" ng-model="path">'+
   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="disabled">'+
-  '    <span class="input-group-btn"><button type="button" ' +
+  '    <span class="input-group-btn"><button type="button" '+
   '    class="btn btn-default btn-add" ng-disabled="disabled">Browse</button></span>'+
   '  </div>'+
   '</div>'

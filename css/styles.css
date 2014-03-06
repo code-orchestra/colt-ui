@@ -212,3 +212,21 @@ hr{
 	border-bottom:1px solid #535657;
 }
 
+/* Log Grid */
+
+.gridStyle {
+	display: block;
+	height: 100%;
+    border: 1px solid rgb(212,212,212);
+    /*background-color: red;*/
+}
+
+/* Log Visualizer */
+
+.log-visualizer { 
+	background-color: #f7f8fa; 
+	display: block;
+	height: 123px; 
+	overflow: hidden; 
+}
+.log-visualizer > canvas { display: block; }

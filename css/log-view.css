@@ -1,0 +1,177 @@
+HTML {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+HTML, BODY {
+    min-height: 100%;
+}
+
+BODY {
+    background: #f7f8fa;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+}
+
+BODY, BUTTON, INPUT, LABEL, SELECT, TEXTAREA {
+    color: #515458;
+    font: 81.3% / 1.385 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'DejaVu Sans', 'Bitstream Vera Sans', 'Liberation Sans', Arial, sans-serif;
+}
+
+:focus {
+    outline: none;
+}
+
+A:focus {
+    outline: thin dotted #CCCFD3;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+A:hover, A:active {
+    outline: 0;
+}
+
+A {
+    color: #06c;
+    text-decoration: none;
+}
+
+A:visited {
+    color: #606;
+}
+
+A:hover {
+    color: #003d7a;
+    text-decoration: underline;
+}
+
+A:link {
+    -webkit-tap-highlight-color: transparent;
+}
+
+B, STRONG {
+    font: bold;
+}
+
+::-moz-selection {
+    background: #06c;
+    color: #FFF;
+    text-shadow: none;
+}
+
+::selection {
+    background: #06c;
+    color: #FFF;
+    text-shadow: none;
+}
+
+.log {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 18px;
+}
+
+.log LI {
+    cursor: pointer;
+    padding: 0.3076923076923077em 155px 0.38461538461538464em 37px;
+    position: relative;
+}
+
+.log LI.visible:nth-child(odd) {
+    background-color: #ebeef2;
+}
+
+.log LI.selected {
+    background-color: #deeeff;
+    border: 1px solid #bfd9f2;
+    border-width: 1px 0 1px 0;
+    padding-top: 0.23076923076923078em;
+    padding-bottom: 0.3076923076923077em;
+}
+
+.log LI.selected P {
+    max-height: none;
+}
+
+.log .error, .log .info, .log .warning {
+    background-position: 10px 0.46153846153846156em;
+    background-repeat: no-repeat;
+    -webkit-background-size: 16px 16px;
+    -moz-background-size: 16px 16px;
+    -o-background-size: 16px 16px;
+    background-size: 16px 16px;
+}
+
+.log .selected.error, .log .selected.info, .log .selected.warning {
+    background-position: 10px 0.38461538461538464em;
+}
+
+.log .error {
+    background-image: url('error.png');
+}
+
+.log .info {
+    background-image: url('info.png');
+}
+
+.log .warning {
+    background-image: url('warning.png');
+}
+
+.log P {
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    margin: 0;
+}
+
+.log A {
+    font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;
+    display: block;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    top: 0.38461538461538464em;
+    right: 15px;
+    height: 1.3846153846153846em;
+    width: 21ch;
+}
+
+.log .selected A {
+    top: 0.3076923076923077em;
+}
+
+@media only screen and (max-width: 400px) {
+
+    .log LI { padding-right: 15px; }
+    .log A { display: none; }
+
+}
+
+@media print,
+(-o-min-device-pixel-ratio: 5/4),
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {
+    UL:before {
+        background-image: url(icons-x2.png);
+        -webkit-background-size: 48px 48px;
+        background-size: 48px 48px; }
+
+    .log .error, .log .info, .log .warning {
+        -webkit-background-size: 48px 48px;
+        background-size: 16px 16px; }
+
+    .log .error {
+        background-image: url('error-x2.png'); }
+
+    .log .info {
+        background-image: url('info-x2.png'); }
+
+    .log .warning {
+        background-image: url('warning-x2.png'); }
+}

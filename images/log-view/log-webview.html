@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en" class="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colt Log</title>
+    <!--<script>if(location.href != 'http://10.0.1.6:9091/log/html/log-webview.html'){location.href = 'http://10.0.1.6:9091/log/html/log-webview.html'}</script>-->
+
+    <script>
+        window.onerror = function myErrorFunction(message, url, linenumber) {
+            alert("------------------------------------")
+            alert("js error (message): " + message)
+            alert("js error (url): " + url)
+            alert("js error (line number): " + linenumber)
+            alert("------------------------------------")
+        }
+    </script>
+    <link rel="stylesheet" href="log-view.css" type="text/css"/>
+    <link rel="stylesheet" href="../../shared/tipsy.css" type="text/css"/>
+    <script src="../../shared/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../shared/trunk8.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../shared/jquery-resize.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../shared/jquery.tipsy.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../shared/jquery.scroll-to.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<ul class="log" id="logContainer"></ul>
+
+<script>
+//@code-update
+function live(){
+    console.log("live update");
+}
+
+$(document).ready(function () {
+    $('.log').resize(function () {
+        if (window.app)app.resize($('body').height())
+    })
+
+    $(document).scroll(function () {
+        updateDotdotdot()
+    })
+
+    $(document).keydown(function (e) {
+        var up = e.keyCode == 38
+        var down = e.keyCode == 40
+        if (up || down) {
+            var selected = $(".selected")
+            var newSelection
+
+            if (selected.length) {
+                if (up) {
+                    newSelection = $(selected).prev()
+                } else {
+                    newSelection = $(selected).next()
+                }
+            } else {
+                var inScrollView = $('.log li').filter(scrollViewFilter)
+                if (up) {
+                    newSelection = inScrollView.first()
+                } else {
+                    newSelection = inScrollView.last()
+                }
+            }
+            if (newSelection.length) {
+                selectLogElement(newSelection)
+                $(window).scrollTo(newSelection, {duration:50})
+            }
+        }
+    })
+
+    setInterval(function(){
+        alert("command:flush")
+    }, 200)
+
+    $(document).keydown(function (e) {
+        if(e.keyCode == 116 /*F5*/){
+//            location.reload();
+            test();
+            test();
+            test();
+            test();
+            test();
+            test();
+            test();
+        }
+    });
+
+    alert("command:ready")
+
+})
+
+var forUpdateDot = []
+var doLaterInterval = -1
+
+function updateDotdotdot() {
+
+    clearInterval(doLaterInterval)
+    doLaterInterval = setInterval(function () {
+        clearInterval(doLaterInterval)
+
+//        var c  = new Date().getTime()
+//        var size = forUpdateDot.length;
+
+        if (forUpdateDot.length) {
+            var needUpdate = []
+            var nextUpdate = []
+
+
+            var docViewTop = $(window).scrollTop()
+            var docViewBottom = docViewTop + $(window).height()
+
+            $.each(forUpdateDot, function () {
+                if (!this.parent || _isElementInScroll(this, docViewTop, docViewBottom)) {
+                    if (!this.hasClass("selected") && this.hasClass("visible")) {
+                        needUpdate.push(this)
+                    }
+                } else {
+                    nextUpdate.push(this)
+                }
+            })
+
+            var i = 0;
+            while(nextUpdate.length && needUpdate.length < 50){
+                needUpdate.push(nextUpdate.shift())
+            }
+
+            forUpdateDot = nextUpdate
+
+            $.each(needUpdate, function () {
+                this.children('p').trunk8('update')
+            })
+//            alert("before/after: " + size + "/" + forUpdateDot.length + "/" + needUpdate.length + "/" + (new Date().getTime() - c))
+        }
+
+    }, 1)
+}
+
+function applicationResize() {
+    forUpdateDot = []
+    $('.log li').each(function(){
+        forUpdateDot.push($(this))
+    })
+    updateDotdotdot()
+}
+
+function scrollViewFilter(){
+    return isElementInScroll(this)
+}
+
+function isElementInScroll(elem) {
+    var docViewTop = $(window).scrollTop()
+    var docViewBottom = docViewTop + $(window).height()
+    return _isElementInScroll($(elem), docViewTop, docViewBottom)
+}
+
+function _isElementInScroll(elem, docViewTop, docViewBottom) {
+    if(elem.size() != 1)return false
+    var offset = elem.offset()
+    if(!offset)return false
+    var elemTop = offset.top
+    var elemBottom = elemTop + elem.height()
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop))
+}
+
+function test() {
+    addLogMessage({message: 'mojito-dispatcher: Dispatcher created', level: "warning", source: "http://s7.addthis.com/js/250/addthis_widget.js"})
+    addLogMessage({message: 'mojito-dispatcher: Dispatcher paused', level: "error", source: "http://s7.addthis.com/js/250/addthis_widget.js"})
+    addLogMessage({message: 'mojito-client: Executing "@TodoMojit/getAll" on the client', level: "", source: ""})
+    addLogMessage({message: 'Get http://localhost:8666/static/T 200 OK 56ms consectetur adipisicing elit. Aliquam', level: "", source: ""})
+    addLogMessage({message: 'mojito-client: Attached 0 event delegates sequi nisi necessitatibus expedita suscipit eius fugiat recusandae beatae aut.', level: "", source: ""})
+    addLogMessage({message: 'mojito-client: Mojito Client State: active. Velit, veritatis suscipit saepe expedita iusto officiis odit nesciunt esse sapiente.', level: "", source: ""})
+    addLogMessage({message: 'Uncaught ReferenceError: Ajax is not defined [VM] dashboard (56):1 (anonymous function) [VM] dashboard (58):1 jQuery.globalEval (anonymous function) e.extend.each f.fn.extend.domManip<br> f.fn.extend.append<br> MissingE.utilities.ajaxEvents.run<br> MissingE.utilities.ajaxEvents.init<br> (anonymous function)<br> (anonymous function)', level: "error", source: "mySource.js"})
+    addLogMessage({message: 'mojito-client: Mojito Client State: active. Velit, veritatis suscipit saepe expedita iusto officiis odit nesciunt esse sapiente.', level: "info", source: ""})
+    addLogMessage({message: 'mojito-client: Mojito Client State: active. Velit, veritatis suscipit saepe expedita iusto officiis odit nesciunt esse sapiente.', level: "info", source: ""})
+}
+
+function parseLogMessageObject(messageData) {
+    if (messageData.message)return messageData
+    var message = messageData.getMessage()
+    var level = messageData.getLevel()
+    var source = messageData.getSource()
+    var isSyntaxError = (level.name() == "SYNTAX")
+
+    switch (level.name()) {
+        case "FATAL":
+        case "ERROR":
+        case "SYNTAX":
+            level = "error"
+            break
+        case "WARN":
+            level = "warning"
+            break
+        case "INFO":
+            level = "info"
+            break
+        default :
+            level = ""
+    }
+
+    return {
+        message: message,
+        level: level,
+        source: source,
+        syntax: isSyntaxError
+    }
+}
+
+function addLogMessages(messages) {
+    var maxScrolled = isMaxScroll()
+    var newMessages = []
+    for (var i = 0; i < messages.size(); i++) {
+        newMessages.push(messages.get(i))
+        if(newMessages.length > maxMessagesCount){
+            newMessages.shift()
+        }
+    }
+    for (var k = 0; k < newMessages.length; k++) {
+        addLogMessage(newMessages[k])
+    }
+    if (maxScrolled) {
+        $(document).scrollTop(maxScrollTop())
+    }
+}
+
+function removeFirst() {
+    $(".log li:first-child").remove()
+    messageCount--
+}
+
+var messageCount = 0
+var maxMessagesCount = 100
+var lastMesageSyntaxError;
+
+function addLogMessage(data) {
+
+    if(lastMesageSyntaxError){
+        lastMesageSyntaxError.remove()
+        lastMesageSyntaxError = null
+    }
+
+    var messageData = parseLogMessageObject(data)
+
+    var isJavaMessage = messageData != data
+
+    var message = messageData.message
+    var level = messageData.level
+    var source = messageData.source
+
+    var style = ""
+    if (["warning", "info", "error"].indexOf(level) != -1) {
+        style = ' class="visible ' + level + '"'
+    }
+
+    var logItem = $('<li' + style + '><p></p>' +
+            '<a href="javascript:openTarget(\'' + source + '\')" title="' + source + '">' + source + '</a></li>')
+
+    logItem.data("message", data)
+    logItem.children("p").text(message)
+
+    if (isJavaMessage) {
+        updateVisible(logItem)
+    }
+
+    logItem.children('a').each(function () {
+        var str = $(this).text()
+        if (str.length > 13) {
+            str = str.replace('http://', '')
+            str = '~' + str.substr(str.length - 12, str.length)
+            $(this).html(str)
+        }
+        $(this).tipsy({gravity: 'e', delayIn: 120, offset: 12})
+    })
+
+    logItem.children("p").click(function () {
+        if (window.getSelection().toString().length)return
+        selectLogElement($(this).parent("li"));
+    }).bind({
+        copy : function(){
+            if(window.app){
+                window.app.setClipboard(message)
+            }
+        }
+    })
+
+    if(messageData.syntax){
+        lastMesageSyntaxError = logItem;
+    }
+
+    $(".log").append(logItem)
+
+    if(messageCount++ > maxMessagesCount){
+        removeFirst()
+    }
+    dotdotdot(logItem)
+}
+
+//@live-update
+function codeUpdate(){
+    clear()
+
+}
+
+function selectLogElement(el) {
+    var parent = $(el)
+    var selected = $('.selected')
+
+    if (parent.is(selected)) {
+        $(parent).removeClass('selected')
+        dotdotdot(parent)
+    } else {
+        $(selected).removeClass('selected')
+        $(parent).addClass('selected')
+        $(parent).children('p').trunk8('revert')
+        dotdotdot(selected)
+    }
+}
+
+function dotdotdot(item) {
+    var $item = $(item)
+    $item.children('p').trunk8({ lines: 2 })
+    forUpdateDot.push($item)
+    updateDotdotdot()
+}
+
+function clear() {
+    $(".log li").remove()
+    messageCount = 0
+}
+
+function openTarget(m) {
+    console.log(m)
+}
+
+function logHeight() {
+    return $(".log").height()
+}
+
+function updateVisible(element) {
+    var $this = $(element);
+    var hidden = $this.css("display") == "none";
+    var updated
+    if ($this.data("message").getVisible()) {
+        if (hidden) {
+            $this.show()
+            $this.addClass("visible")
+            dotdotdot($this)
+            updated = true
+        }
+    } else {
+        if (!hidden) {
+            $this.hide()
+            $this.removeClass("visible")
+            updated = true
+        }
+    }
+    return updated
+}
+var filterInterval
+function filter() {
+    clearInterval(filterInterval)
+    filterInterval = setInterval(function(){
+        var updated
+        $(".log li").each(function () {
+            if (updateVisible(this)) {
+                updated = true
+            }
+        })
+        if (updated) {
+            $(document).scrollTop(maxScrollTop())
+        }
+    })
+}
+
+function maxScrollTop() {
+    return $(document).height() - $(window).height()
+}
+
+function isMaxScroll() {
+    return $(document).scrollTop() == maxScrollTop()
+}
+
+</script>
+</body>
+</html>
