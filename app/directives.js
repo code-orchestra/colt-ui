@@ -13,17 +13,35 @@ angular.module('colt.directives', [])
      checkbox: "=",
      placeholder: "@"
    },
-   transclude: true,
-   template: 
-   '<div class="form-group row">'+
-   '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label>'+
-   '  <div class="input-group input-group-sm">'+
-   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="disabled">'+
-   '    <span class="input-group-btn"><button type="button" ' +
-   '    class="btn btn-default btn-add" ng-disabled="disabled">Browse</button></span>'+
-   '  </div>'+
-   '</div>'
- };
+   link: function (scope, element, attrs) {
+    var fileInput = $(element).find("input:file");
+    var button = $(element).find("button");
+    console.log("button: " + button.size())
+    console.log("file: " + fileInput.size())
+    console.log(fileInput);
+    button.click(function() {
+      console.log("button click");
+      fileInput.click();
+    });
+    fileInput.change(function (changeEvent) {
+      console.log("file changed: " + $(fileInput).val())
+      scope.$apply(function () {
+        scope.path = $(fileInput).val();
+      });
+    });
+  },
+  transclude: true,
+  template: 
+  '<div class="form-group row">'+
+  '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label>'+
+  '  <div class="input-group input-group-sm">'+
+  '    <input type="file" class="hidden" ng-model="path">'+
+  '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="disabled">'+
+  '    <span class="input-group-btn"><button type="button" ' +
+  '    class="btn btn-default btn-add" ng-disabled="disabled">Browse</button></span>'+
+  '  </div>'+
+  '</div>'
+};
 
 })
 
@@ -37,7 +55,6 @@ angular.module('colt.directives', [])
      disabled: "=",
      placeholder: "@"
    },
-   transclude: true,
    template: 
    '<div class="form-group row">'+
    '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
@@ -61,10 +78,9 @@ angular.module('colt.directives', [])
       disabled: "=",
       placeholder: "@"
     },
-    transclude: true,
     template: 
     '<div class="form-group row">'+
-    '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label>'+
+    '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
     '  <div class="input-group input-group-sm">'+
     '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="paths">'+
     '    <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span>'+
@@ -86,7 +102,7 @@ angular.module('colt.directives', [])
     },
     compile : function(element, attrs) {
       var id = "input" + Math.floor(Math.random() * 10000);
-      $(element).find("input[type='checkbox']").attr("id", id);
+      $(element).find("input:checkbox").attr("id", id);
       $(element).find("label").attr("for", id);
     },
     template: 
@@ -115,7 +131,7 @@ angular.module('colt.directives', [])
     },
     compile : function(element, attrs) {
       var id = "input" + Math.floor(Math.random() * 10000);
-      $(element).find("input[type='radio']").attr("id", id);
+      $(element).find("input:radio").attr("id", id);
       $(element).find("label").attr("for", id);
     },
     template: 
@@ -144,7 +160,7 @@ angular.module('colt.directives', [])
     },
     compile : function(element, attrs) {
       var id = "input" + Math.floor(Math.random() * 10000);
-      $(element).find("input[type='radio']").attr("id", id);
+      $(element).find("input:radio").attr("id", id);
       $(element).find("label").attr("for", id);
     },
     template: 
@@ -184,7 +200,7 @@ angular.module('colt.directives', [])
     },
     compile : function(element, attrs) {
       var id = "input" + Math.floor(Math.random() * 10000);
-      $(element).find("input[type='radio']").attr("id", id);
+      $(element).find("input:radio").attr("id", id);
       $(element).find("label").attr("for", id);
     },
     template: 
@@ -214,7 +230,7 @@ angular.module('colt.directives', [])
     },
     template: 
     '<div class="form-group row">'+
-    '  <input id="j123" type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label for="j123">{{label}}</label>'+
+    '  <input type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label>{{label}}</label>'+
     '</div>'
   };
 

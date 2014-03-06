@@ -1,6 +1,12 @@
 
 var app = angular.module("COLT", ['colt.directives', 'ui.router']);
 
+app.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+]);
+
 app.run(function($rootScope, $http) {
 
 	$rootScope.$on('$stateChangeStart', function(event, toState){ 
