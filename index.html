@@ -16,7 +16,9 @@
 	<script src="lib/angular.js"></script>
 	<script src="lib/angular-ui-router.js"></script>
 	<script src="lib/ng-grid-2.0.7.js"></script>
-	<script src="app/directives.js"></script>		
+	<script src="app/log-view-directive.js"></script>		
+	<script src="app/log-visualizer-directive.js"></script>		
+	<script src="app/directives.js"></script>	
 	<script src="app/app.js"></script>
 	<script src="app/node.js"></script>	
 
@@ -33,11 +35,11 @@
 	</div>
 	<div ui-view id="content"></div>
 	<div class="navigation-bar">
-		<div class="logFilterButton" ng-show="pageIndex==2">All</div>
-		<div class="logFilterButton" ng-show="pageIndex==2">Errors({{filter.errorsCount}})</div>
-		<div class="logFilterButton" ng-show="pageIndex==2">Warnings({{filter.warningCount}})</div>
-		<div class="logFilterButton" ng-show="pageIndex==2">Info({{filter.infoCount}})</div>
-		<div class="logFilterButton" ng-show="pageIndex==2">Live({{filter.liveCount}})</div>
+		<div class="logFilterButton" ng-click="selectLogFilter('all')" ng-show="pageIndex==2">All</div>
+		<div class="logFilterButton" ng-click="selectLogFilter('errors')" ng-show="pageIndex==2">Errors({{filter.errorsCount}})</div>
+		<div class="logFilterButton" ng-click="selectLogFilter('warnings')" ng-show="pageIndex==2">Warnings({{filter.warningCount}})</div>
+		<div class="logFilterButton" ng-click="selectLogFilter('info')" ng-show="pageIndex==2">Info({{filter.infoCount}})</div>
+		<div class="logFilterButton" ng-click="selectLogFilter('')" ng-show="pageIndex==2">Live({{filter.liveCount}})</div>
 		<div class="btn-live"></div>
 	</div>
 </body>

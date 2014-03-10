@@ -98,9 +98,9 @@ hr{
 	display: inline;
 	font-size: 13px;
 	border-radius: 8px;
-    color: #83868a;
-    /*background-color: #dbdee2;*/
-    padding: 2px 5px 2px 8px;
+	color: #83868a;
+	/*background-color: #dbdee2;*/
+	padding: 2px 5px 2px 8px;
 }
 
 .logFilterButton:hover, .logFilterButton.selected{
@@ -111,39 +111,39 @@ hr{
 /* Button Live */
 
 .btn-live {
-    background-image: url('../images/btns/live.png');
-    background-repeat: no-repeat;
-    background-size: 32px, 31px;
-    position: fixed;
-    height: 32px;
-    width: 31px;
-    bottom: 3px;
-    right: 5px;
+	background-image: url('../images/btns/live.png');
+	background-repeat: no-repeat;
+	background-size: 32px, 31px;
+	position: fixed;
+	height: 32px;
+	width: 31px;
+	bottom: 3px;
+	right: 5px;
 }
 
 .btn-live:hover {
-    background-image: url('../images/btns/live-hover.png');
+	background-image: url('../images/btns/live-hover.png');
 }
 
 .btn-live:active {
-    background-image: url('../images/btns/live-down.png');
+	background-image: url('../images/btns/live-down.png');
 }
 
 .btn-live.selected {
-    background-image: url('../images/btns/live-selected.png');
+	background-image: url('../images/btns/live-selected.png');
 }
 
 .btn-live.selected:hover {
-    background-image: url('../images/btns/live-selected-hover.png');
+	background-image: url('../images/btns/live-selected-hover.png');
 }
 
 .btn-live.selected:active {
-    background-image: url('../images/btns/live-selected-down.png');
+	background-image: url('../images/btns/live-selected-down.png');
 }
 
 .btn-live:disabled {
-    background-image: url('../images/btns/live-switching.png');
-    opacity: 1;
+	background-image: url('../images/btns/live-switching.png');
+	opacity: 1;
 }
 
 /* Left Tabs */
@@ -214,12 +214,139 @@ hr{
 
 /* Log Grid */
 
-.gridStyle {
+.logContainer {
 	display: block;
 	height: 100%;
-    border: 1px solid rgb(212,212,212);
-    /*background-color: red;*/
+	border: 1px solid rgb(212,212,212);
+	/*background-color: red;*/
+
+	background-color: #f7f8fa;
+
+	color: #515458;
+
+	-webkit-touch-callout: text;
+	-webkit-user-select: text;
+	user-select: text;
+
+	overflow-y: auto;
+	overflow-x: hidden;
 }
+
+.logContainer a:focus {
+    outline: none;
+}
+
+.logContainer a:hover, a:active {
+    outline: 0;
+}
+
+.logContainer A {
+    color: #06c;
+    text-decoration: none;
+}
+
+.logContainer a:visited {
+    color: #606;
+}
+
+.logContainer a:hover {
+    color: #003d7a;
+    text-decoration: underline;
+}
+
+.logContainer a:link {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.logContainer ::selection {
+    background: #06c;
+    color: #FFF;
+    text-shadow: none;
+}
+
+.log {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.log li {
+    cursor: pointer;
+    padding: 0.3076923076923077em 155px 0.38461538461538464em 37px;
+    position: relative;
+}
+
+.log li2:nth-child(odd) {
+    background-color: #ebeef2;
+}
+
+.log .odd {
+    background-color: #ebeef2;
+}
+
+.log li.selected {
+    background-color: #deeeff;
+    border: 1px solid #bfd9f2;
+    border-width: 1px 0 1px 0;
+    padding-top: 0.23076923076923078em;
+    padding-bottom: 0.3076923076923077em;
+}
+
+.log li.selected p {
+    max-height: none;
+}
+
+.log .error, .log .info, .log .warning {
+    background-position: 10px 0.46153846153846156em;
+    background-repeat: no-repeat;
+    -webkit-background-size: 16px 16px;
+    -moz-background-size: 16px 16px;
+    -o-background-size: 16px 16px;
+    background-size: 16px 16px;
+}
+
+.log .selected.error, .log .selected.info, .log .selected.warning {
+    background-position: 10px 0.38461538461538464em;
+}
+
+.log .error {
+    background-image: url('error.png');
+}
+
+.log .info {
+    background-image: url('info.png');
+}
+
+.log .warning {
+    background-image: url('warning.png');
+}
+
+.log p {
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    margin: 0;
+    overflow: hidden;
+    max-height: 3em;
+}
+
+.log a {
+    font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;
+    display: block;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    top: 0.38461538461538464em;
+    right: 15px;
+    height: 1.3846153846153846em;
+    width: 21ch;
+}
+
+.log .selected A {
+    top: 0.3076923076923077em;
+}
+
 
 /* Log Visualizer */
 
