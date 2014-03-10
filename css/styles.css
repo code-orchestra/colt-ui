@@ -310,15 +310,15 @@ hr{
 }
 
 .log .error {
-    background-image: url('error.png');
+    background-image: url('../images/log-view/error.png');
 }
 
 .log .info {
-    background-image: url('info.png');
+    background-image: url('../images/log-view/info.png');
 }
 
 .log .warning {
-    background-image: url('warning.png');
+    background-image: url('../images/log-view/warning.png');
 }
 
 .log p {
