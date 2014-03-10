@@ -216,17 +216,15 @@ hr{
 
 .logContainer {
 	display: block;
-	height: 100%;
-	border: 1px solid rgb(212,212,212);
+	position: fixed;
+	top: 123px;
+	bottom: 40px;
+	/*border-top: 1px solid rgb(212,212,212);*/
 	/*background-color: red;*/
 
 	background-color: #f7f8fa;
 
 	color: #515458;
-
-	-webkit-touch-callout: text;
-	-webkit-user-select: text;
-	user-select: text;
 
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -240,7 +238,7 @@ hr{
     outline: 0;
 }
 
-.logContainer A {
+.logContainer a {
     color: #06c;
     text-decoration: none;
 }
@@ -327,6 +325,11 @@ hr{
     hyphens: auto;
     margin: 0;
     overflow: hidden;
+
+    -webkit-touch-callout: text;
+	-webkit-user-select: text;
+	user-select: text;
+
     max-height: 3em;
 }
 

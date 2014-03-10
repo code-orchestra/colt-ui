@@ -6,9 +6,6 @@ angular.module('log.view.directive', [])
 
   return {
     restrict: 'E',
-    scope : {
-      messages: "="
-    },
     controller: function($scope, $element) {
      var selected;
 
@@ -23,9 +20,10 @@ angular.module('log.view.directive', [])
       }
     };
   },
+  replace: true,
   template:
   '<div class="logContainer">'+
-  '  <ul class="log" ng-repeat="message in messages | limitTo:200" scroll-if>'+
+  '  <ul class="log" ng-repeat="message in logMessages | limitTo:200 | filter:{level:logFilter}" scroll-if>'+
   '    <li ng-click="toggleOpen($event)" ng-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARN\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}" scroll-item><p>{{message.message}}</p>'+
   '      <a nc-click="openTarget(message.source)" title="{{message.source}}">{{message.source}}</a>'+
   '    </li>'+
