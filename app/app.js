@@ -114,7 +114,7 @@ app.controller("AppCtrl", function($scope) {
 
 		java.stdout.on('data', function (message) {
 			try{
-				message = message + "";
+				message = (message + "").replace(/(\r\n|\n|\r)/gm,"");
 				if(message.length > 6){
 					console.log(message);
 					var header = message.substr(0, 6);
