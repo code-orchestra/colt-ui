@@ -24,7 +24,7 @@ angular.module('log.view.directive', [])
   template:
   '<div class="logContainer">'+
   '  <ul class="log" ng-repeat="message in logMessages | limitTo:200 | filter:{level:logFilter}" scroll-if>'+
-  '    <li ng-click="toggleOpen($event)" ng-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARN\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}" scroll-item><p>{{message.message}}</p>'+
+  '    <li ng-click="toggleOpen($event)" ng-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARNING\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}" scroll-item><p>{{message.message}}</p>'+
   '      <a nc-click="openTarget(message.source)" title="{{message.source}}">{{message.source}}</a>'+
   '    </li>'+
   '  </ul>'+
@@ -40,7 +40,13 @@ angular.module('log.view.directive', [])
       if (scope.$last){
         scope.$emit("Finished");
       }
-    }
+    },
+    controller: function($scope){
+      $scope.$on("log", function(message) {
+          console.log("log: " + message);
+          // autoscroll
+      })
+    },
   }
 })
 
