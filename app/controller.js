@@ -29,8 +29,6 @@ app.controller("AppCtrl", function($scope, nodeApp) {
 
 	$scope.startSession = function() {
 		if(!$scope.sessionStateSwitching){
-			$scope.sessionStateSwitching = true;
-			$scope.sessionInProgress = false;
 			if($scope.sessionInProgress){
 				console.log("stop session");
 				$scope.sendToJava("stopSession");
@@ -38,6 +36,8 @@ app.controller("AppCtrl", function($scope, nodeApp) {
 				console.log("start session");
 				$scope.sendToJava("runSession");
 			}
+			$scope.sessionStateSwitching = true;
+			$scope.sessionInProgress = false;
 		}
 	};
 
