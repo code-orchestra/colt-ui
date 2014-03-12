@@ -7,6 +7,10 @@ app.service("nodeApp", function() {
 			$scope.saveProject = function() {};
 			$scope.sendToJava = function() {};
 			$scope.openPopup = function() {};
+
+			for (var i = 0; i <= 50; i++) {
+				$scope.log("WARNING", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, saepe dolore esse voluptatem sunt voluptate? Voluptas, aliquid, obcaecati odit dignissimos excepturi repudiandae assumenda quod nemo aliquam porro reiciendis enim odio doloribus magnam incidunt quas dolorem. Sequi, perspiciatis, quis ex quaerat commodi itaque nisi id odit quod distinctio similique ab quia blanditiis qui fuga quae dicta iste veniam beatae natus repellat aspernatur voluptatem laborum magnam esse fugit officiis amet maiores quibusdam quasi sint corporis dignissimos sit aliquid iure maxime ducimus unde voluptate consectetur minima error voluptatum nam accusamus enim debitis deleniti in consequatur voluptatibus temporibus eveniet! Est, reprehenderit, vero, quam ut nihil temporibus illum accusantium impedit inventore fugiat suscipit adipisci odit excepturi consequuntur assumenda omnis et provident? Quos error similique eligendi. Officiis, explicabo vero eaque rem officia illum magni exercitationem quibusdam unde commodi. Tempora, ipsa, commodi, possimus, quaerat alias iure modi quis neque voluptate aliquam architecto excepturi cupiditate illum repellendus deleniti velit libero. Dignissimos, ratione, delectus, quis minus cupiditate atque saepe tempore ad excepturi praesentium suscipit vitae repellat accusantium odit tempora ab doloribus. Quis, modi, alias, nesciunt eius tenetur doloribus sit mollitia rerum id delectus esse assumenda voluptatum minus dolores quasi dolor corporis saepe quam eaque aspernatur nostrum reiciendis accusamus neque ea illum explicabo ab cupiditate fugit architecto iure nobis nemo rem ad sequi perspiciatis consequuntur laborum! Eveniet, magni, neque qui veritatis error voluptates odio molestiae maxime ex fugiat doloribus vitae blanditiis inventore quisquam nostrum sint dolor at dicta ipsum atque dolore nisi excepturi numquam temporibus ducimus rem velit aspernatur repellat laudantium repudiandae officiis nemo expedita corporis. Mollitia, debitis, sapiente, praesentium dolores tenetur veritatis libero inventore perspiciatis quos quasi veniam culpa rem architecto ab cupiditate eum tempore consequatur nesciunt ipsam qui dolorum soluta ad! Mollitia, distinctio, deserunt, corporis dolorem dolores laudantium ipsam error reiciendis laborum aut dolor est ut vero eos fugit deleniti libero illo cumque recusandae nobis quidem optio enim quam adipisci earum veritatis consectetur suscipit! In, et, facere minima laboriosam eos illo error molestiae veritatis repellendus magnam quasi suscipit harum cum veniam cupiditate eaque nihil assumenda eligendi cumque dolore perspiciatis fugiat adipisci hic enim iste accusantium aperiam odio consequuntur doloremque culpa incidunt quia beatae recusandae ullam quidem nostrum autem aliquam iure ipsa minus voluptas quo voluptatem dicta reprehenderit temporibus quis? Adipisci, fuga, laboriosam voluptatem molestias harum earum vitae architecto sequi quasi at unde est nam repellat ut mollitia officia assumenda. Vel, quos, corporis minima earum assumenda obcaecati sunt quasi.", "index.html");
+			};
 		}else{
 			var gui = require('nw.gui'); 
 			var win = gui.Window.get(); win.showDevTools();
@@ -46,11 +50,11 @@ app.service("nodeApp", function() {
 					if(message.length > 6){
 						console.log(message);
 						var header = message.substr(0, 6);
-						console.log("--------------" + header + "|")
 						if(header == "-json:"){
 							try{
 								var messageText = message.substr(6);
 								var json = JSON.parse(messageText);
+								console.log(json);
 							}catch(e){
 								console.log("error parse json: |" + messageText + "|");
 								return;
@@ -59,8 +63,10 @@ app.service("nodeApp", function() {
 								$scope.logMessages.push(json);
 								$scope.updateFilters();
 							}else if(json.type == "runSession"){
+								console.log("RUN==true")
 								$scope.sessionInProgress = true;
 							}else if(json.type == "stopSession"){
+								console.log("RUN==false")
 								$scope.sessionInProgress = false;
 							}else if(json.type == "exec"){
 								var exec = require('child_process').exec;
@@ -74,11 +80,11 @@ app.service("nodeApp", function() {
 								});
 							}
 							$scope.$emit(json.type, json);
-						}else if(message == "ping") {
-					     	$scope.sendToJava("pong")
-					    }
+						}
 
-					}
+					}else if(message == "ping") {
+				     	$scope.sendToJava("pong")
+				    }
 
 				}catch(e1){
 					console.log("!!!!! " + e1)
