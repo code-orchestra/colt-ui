@@ -46,7 +46,6 @@ app.service("nodeApp", function() {
 			java.stdout.on('data', function (message) {
 				try{
 					message = trimMessage(message);
-
 					if(message.length > 6){
 						console.log(message);
 						var header = message.substr(0, 6);
@@ -92,7 +91,7 @@ app.service("nodeApp", function() {
 			});
 
 			java.stderr.on('data', function (message) {
-				console.log('stderr: '+ message);
+				// console.log('stderr: '+ message);
 				$scope.log("ERROR", trimMessage(message));
 			});
 
