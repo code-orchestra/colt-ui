@@ -44,4 +44,5 @@ app.controller("AppCtrl", function($scope, nodeApp) {
 		return nodeApp.openPopup(html, callback);
 	};
 
+	nodeApp.buildNode($scope);
 })
