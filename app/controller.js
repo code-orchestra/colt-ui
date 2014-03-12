@@ -25,8 +25,10 @@ app.controller("AppCtrl", function($scope, nodeApp) {
 	}
 
 	$scope.sessionInProgress = false;
+	$scope.sessionStateSwitching = false;
+
 	$scope.startSession = function() {
-		if($scope.session.sessionInProgress){
+		if($scope.sessionInProgress){
 			console.log("stop session");
 			$scope.sendToJava("stopSession");
 		}else{

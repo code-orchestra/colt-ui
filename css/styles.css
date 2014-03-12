@@ -109,6 +109,7 @@ hr{
 	color: #83868a;
 	/*background-color: #dbdee2;*/
 	padding: 2px 5px 2px 5px;
+	margin: 0px 2px 2px 0px;
 }
 
 .logFilterButton:hover, .logFilterButton.selected{
@@ -147,6 +148,10 @@ hr{
 
 .btn-live.selected:active {
 	background-image: url('../images/btns/live-selected-down.png');
+}
+
+.btn-live.switching {
+	background-image: url('../images/btns/live-selected-switching.png');
 }
 
 .btn-live:disabled {
