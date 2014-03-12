@@ -40,8 +40,8 @@ app.controller("AppCtrl", function($scope, nodeApp) {
 		}
 	};
 
-	$scope.openPopup = function(html, options, callback) {
-		var win = window.showModalDialog(html, options);
+	$scope.openPopup = function(html, callback) {
+		return nodeApp.openPopup(html, callback);
 	};
 
 })

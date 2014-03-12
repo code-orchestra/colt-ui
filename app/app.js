@@ -76,4 +76,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		pageIndex: 2
 	});
 })
-

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('log.visualizer.directives', [])
+angular.module('log.visualizer.directive', [])
 
 .directive('logVisualizer', function() {
 
