@@ -100,10 +100,10 @@ app.controller("AppCtrl", function($scope) {
 	$scope.startSession = function() {
 		if($scope.session.sessionInProgress){
 			console.log("stop session");
-			nodeApp.java.send("runSession");
+			nodeApp.java.send("stopSession");
 		}else{
 			console.log("start session");
-			nodeApp.java.send("stopSession");
+			nodeApp.java.send("runSession");
 		}
 	};
 
