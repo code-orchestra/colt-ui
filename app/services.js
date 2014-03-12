@@ -64,8 +64,10 @@ app.service("nodeApp", function() {
 								$scope.updateFilters();
 							}else if(json.type == "runSession"){
 								$scope.sessionInProgress = true;
+								$scope.sessionStateSwitching = false;
 							}else if(json.type == "stopSession"){
 								$scope.sessionInProgress = false;
+								$scope.sessionStateSwitching = false;
 							}else if(json.type == "exec"){
 								var exec = require('child_process').exec;
 							    var child = exec(json.exec,

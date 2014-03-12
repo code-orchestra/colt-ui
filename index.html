@@ -41,7 +41,7 @@
 		<div class="logFilterButton" ng-class="{selected:logFilter=='WARNING'}" ng-click="selectLogFilter('WARNING')" ng-show="pageIndex==2">Warnings({{filter.warningCount}})</div>
 		<div class="logFilterButton" ng-class="{selected:logFilter=='INFO'}" ng-click="selectLogFilter('INFO')" ng-show="pageIndex==2">Info({{filter.infoCount}})</div>
 		<div class="logFilterButton" ng-class="{selected:logFilter=='LIVE'}" ng-click="selectLogFilter('LIVE')" ng-show="pageIndex==2">Live({{filter.liveCount}})</div>
-		<div class="btn-live" ng-class="{selected:sessionInProgress}" ng-click="startSession()"></div>
+		<div class="btn-live" ng-class="{disabled:sessionStateSwitching,selected:sessionInProgress}" ng-click="startSession()"></div>
 	</div>
 
 	<script type="text/javascript">

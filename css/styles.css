@@ -150,11 +150,7 @@ hr{
 	background-image: url('../images/btns/live-selected-down.png');
 }
 
-.btn-live.switching {
-	background-image: url('../images/btns/live-selected-switching.png');
-}
-
-.btn-live:disabled {
+.btn-live.disabled {
 	background-image: url('../images/btns/live-switching.png');
 	opacity: 1;
 }
