@@ -1,5 +1,6 @@
 {
   "name": "hello",
+  "version": "2.0.0",
   "main": "index.html",
   "window": {
   	"title" : "COLT 2.0",
