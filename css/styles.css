@@ -225,13 +225,16 @@ hr{
 .logContainer {
 	display: block;
 	position: fixed;
+
 	top: 123px;
 	bottom: 40px;
+	left: 60px;
+	right: 0;
+
 	/*border-top: 1px solid rgb(212,212,212);*/
 	/*background-color: red;*/
 
 	background-color: #f7f8fa;
-
 	color: #515458;
 
 	overflow-y: auto;
@@ -280,10 +283,6 @@ hr{
     cursor: pointer;
     padding: 0.3076923076923077em 155px 0.38461538461538464em 37px;
     position: relative;
-}
-
-.log li2:nth-child(odd) {
-    background-color: #ebeef2;
 }
 
 .log .odd {
@@ -338,6 +337,7 @@ hr{
 	-webkit-user-select: text;
 	user-select: text;
 
+    min-height: 1em;
     max-height: 3em;
 }
 

@@ -3,7 +3,7 @@
 var app = angular.module("COLT", [
 	'colt.directives', 
 	'log.view.directive',
-	'log.visualizer.directives', 
+	'log.visualizer.directive', 
 	'ui.router', 
 	'ngGrid'
 	]);
@@ -76,9 +76,9 @@ app.controller("AppCtrl", function($scope) {
 	
 	$scope.logMessages = [];
 	$scope.log = function(level, message, source) {
-		var message = {level:level, message: message, source: source || "COLT"};
-		$scope.logMessages.push(message);
-		$scope.$emit("log", message);
+		var m = {level:level, message: message, source: source || "COLT"};
+		$scope.logMessages.push(m);
+		$scope.$emit("log", m);
 	};
 
 	for (var i = 0; i <= 50; i++) {
@@ -136,16 +136,16 @@ app.controller("AppCtrl", function($scope) {
 
 		java.stdout.on('data', function (message) {
 			try{
-				message = (message + "");
-				message = message.replace(/(\n|\r)+$/, "")
-				message = message.replace(/\\n/g, "\\n")
-                                      .replace(/\\'/g, "\\'")
-                                      .replace(/\\"/g, '\\"')
-                                      .replace(/\\&/g, "\\&")
-                                      .replace(/\\r/g, "\\r")
-                                      .replace(/\\t/g, "\\t")
-                                      .replace(/\\b/g, "\\b")
-                                      .replace(/\\f/g, "\\f");
+				message =  (message + "");
+				message =  message.replace(/(\n|\r)+$/, "")
+				message =  message.replace(/\\n/g, "\\n")
+                                  .replace(/\\'/g, "\\'")
+                                  .replace(/\\"/g, '\\"')
+                                  .replace(/\\&/g, "\\&")
+                                  .replace(/\\r/g, "\\r")
+                                  .replace(/\\t/g, "\\t")
+                                  .replace(/\\b/g, "\\b")
+                                  .replace(/\\f/g, "\\f");
 
 				if(message.length > 6){
 					console.log(message);
