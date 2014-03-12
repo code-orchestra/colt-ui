@@ -108,7 +108,7 @@ hr{
 	border-radius: 8px;
 	color: #83868a;
 	/*background-color: #dbdee2;*/
-	padding: 2px 5px 2px 8px;
+	padding: 2px 5px 2px 5px;
 }
 
 .logFilterButton:hover, .logFilterButton.selected{
