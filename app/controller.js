@@ -24,7 +24,6 @@ app.controller("AppCtrl", function($scope, nodeApp) {
 		$scope.logFilter = filter;
 	}
 
-	$scope.session = {};
 	$scope.sessionInProgress = false;
 	$scope.startSession = function() {
 		if($scope.session.sessionInProgress){
@@ -34,10 +33,6 @@ app.controller("AppCtrl", function($scope, nodeApp) {
 			console.log("start session");
 			$scope.sendToJava("runSession");
 		}
-	};
-
-	$scope.openPopup = function(html, callback) {
-		return nodeApp.openPopup(html, callback);
 	};
 
 	nodeApp.buildNode($scope);
