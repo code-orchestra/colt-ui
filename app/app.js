@@ -95,6 +95,18 @@ app.controller("AppCtrl", function($scope) {
 		$scope.logFilter = filter;
 	}
 
+	$scope.session = {};
+	$scope.sessionInProgress = false;
+	$scope.startSession = function() {
+		if($scope.session.sessionInProgress){
+			console.log("stop session");
+			nodeApp.java.send("runSession");
+		}else{
+			console.log("start session");
+			nodeApp.java.send("stopSession");
+		}
+	};
+
 	// node-webkit
 
 	var nodeApp;
@@ -142,6 +154,10 @@ app.controller("AppCtrl", function($scope) {
 						if(body.type == "log"){
 							$scope.logMessages.push(body);
 							$scope.updateFilters();
+						}else if(body.type == "runSession"){
+							$scope.sessionInProgress = true;
+						}else if(body.type == "stopSession"){
+							$scope.sessionInProgress = false;
 						}
 						$scope.$emit(body.type, body);
 					}
@@ -197,7 +213,8 @@ app.controller("AppCtrl", function($scope) {
 					}
 				}); 
 				return d.promise;
-			}
+			},
+			java:java
 		}
 
 		nodeApp.loadProject("./test-project.colt").then(function(data) {

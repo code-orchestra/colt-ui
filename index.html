@@ -20,8 +20,7 @@
 	<script src="app/log-visualizer-directive.js"></script>		
 	<script src="app/directives.js"></script>	
 	<script src="app/app.js"></script>
-	<script src="app/node.js"></script>	
-
+	
 	<div id="leftBar">
 		<ul class="barTabs">
 			<li><div class="btn-run" ng-class="{tabSelected:(pageIndex==2)}" ui-sref="log"></div></li>
@@ -40,7 +39,7 @@
 		<div class="logFilterButton" ng-click="selectLogFilter('WARNING')" ng-show="pageIndex==2">Warnings({{filter.warningCount}})</div>
 		<div class="logFilterButton" ng-click="selectLogFilter('INFO')" ng-show="pageIndex==2">Info({{filter.infoCount}})</div>
 		<div class="logFilterButton" ng-click="selectLogFilter('LIVE')" ng-show="pageIndex==2">Live({{filter.liveCount}})</div>
-		<div class="btn-live"></div>
+		<div class="btn-live" ng-class="{selected:session.sessionInProgress}" ng-click="startSession()"></div>
 	</div>
 
 	<script type="text/javascript">
