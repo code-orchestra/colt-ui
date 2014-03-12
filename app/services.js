@@ -24,9 +24,8 @@ app.service("nodeApp", function() {
 				//win.close(true);
 			});
 
-			java.stdout.on('data', function (message) {
-				try{
-					message =  (message + "");
+			var trimMessage = function(message) {
+				message =  (message + "");
 					message =  message.replace(/(\n|\r)+$/, "")
 					message =  message.replace(/\\n/g, "\\n")
 		                              .replace(/\\'/g, "\\'")
@@ -35,7 +34,14 @@ app.service("nodeApp", function() {
 		                              .replace(/\\r/g, "\\r")
 		                              .replace(/\\t/g, "\\t")
 		                              .replace(/\\b/g, "\\b")
-		                              .replace(/\\f/g, "\\f");
+		                              .replace(/\\f/g, "\\f")
+
+		            return message;
+			};
+
+			java.stdout.on('data', function (message) {
+				try{
+					message = trimMessage(message);
 
 					if(message.length > 6){
 						console.log(message);
@@ -66,11 +72,11 @@ app.service("nodeApp", function() {
 								      $scope.log("ERROR", 'exec error: ' + error);
 								    }
 								});
-							}else if(message == "ping") {
-						     	$scope.sendToJava("pong")
-						    }
+							}
 							$scope.$emit(json.type, json);
-						}
+						}else if(message == "ping") {
+					     	$scope.sendToJava("pong")
+					    }
 
 					}
 
@@ -81,6 +87,7 @@ app.service("nodeApp", function() {
 
 			java.stderr.on('data', function (message) {
 				console.log('stderr: '+ message);
+				$scope.log("ERROR", trimMessage(message));
 			});
 
 			win.on('close', function() {
