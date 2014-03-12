@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory("nodeApp", function($scope) {
 	if(!top['require'])return {
 		loadProject : function() {},

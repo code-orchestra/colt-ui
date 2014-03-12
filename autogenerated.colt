@@ -32,7 +32,7 @@
       <disconnect>true</disconnect>
     </settings>
     <launch>
-      <launcher>BROWSER</launcher>
+      <launcher>NODE_WEBKIT</launcher>
       <browser-path />
       <nodejs-path />
       <console-value />
