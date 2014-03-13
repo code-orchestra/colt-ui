@@ -28,16 +28,17 @@ app.service("nodeApp", function() {
 
 			var trimMessage = function(message) {
 				message =  (message + "");
-					message =  message.replace(/(\n|\r)+$/, "")
-					message =  message.replace(/\\n/g, "\\n")
-		                              .replace(/\\'/g, "\\'")
-		                              .replace(/\\"/g, '\\"')
-		                              .replace(/\\&/g, "\\&")
-		                              .replace(/\\r/g, "\\r")
-		                              .replace(/\\t/g, "\\t")
-		                              .replace(/\\b/g, "\\b")
-		                              .replace(/\\f/g, "\\f")
-		            return message;
+				message =  message.replace(/^\[fileScanner\]\s+/, "");
+				message =  message.replace(/(\n|\r)+$/, "")
+				message =  message.replace(/\\n/g, "\\n")
+	                              .replace(/\\'/g, "\\'")
+	                              .replace(/\\"/g, '\\"')
+	                              .replace(/\\&/g, "\\&")
+	                              .replace(/\\r/g, "\\r")
+	                              .replace(/\\t/g, "\\t")
+	                              .replace(/\\b/g, "\\b")
+	                              .replace(/\\f/g, "\\f")
+	            return message;
 			};
 
 			java.stdout.on('data', function (message) {
@@ -47,37 +48,42 @@ app.service("nodeApp", function() {
 						console.log(message);
 						var header = message.substr(0, 6);
 						if(header == "-json:"){
-							try{
-								var messageText = message.substr(6);
-								var json = JSON.parse(messageText);
-							}catch(e){
-								console.error("error parse json: |" + messageText + "|", e);
-								return;
-							}
-							$scope.$apply(function() {
-								if(json.type == "log"){
-									$scope.logMessages.push(json);
-									$scope.updateFilters();
-								}else if(json.type == "runSession"){
-									$scope.sessionInProgress = true;
-									$scope.sessionStateSwitching = false;
-									console.log("$scope.sessionInProgress", $scope.sessionInProgress);
-								}else if(json.type == "stopSession"){
-									$scope.sessionInProgress = false;
-									$scope.sessionStateSwitching = false;
-									console.log("$scope.sessionInProgress", $scope.sessionInProgress);
-								}else if(json.type == "exec"){
-									var exec = require('child_process').exec;
-								    var child = exec(json.exec,
-									  function (error, stdout, stderr) {
-									    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
-									    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
-									    if (error !== null) {
-									      $scope.log("ERROR", 'exec error: ' + error);
-									    }
-									});
+							message.split("-json:").every(function(messageText) {
+								if(messageText){
+									try{
+										var json = JSON.parse(messageText);
+
+										$scope.$apply(function() {
+											if(json.type == "log"){
+												$scope.logMessages.push(json);
+												$scope.updateFilters();
+											}else if(json.type == "runSession"){
+												$scope.sessionInProgress = true;
+												$scope.sessionStateSwitching = false;
+												console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+											}else if(json.type == "stopSession"){
+												$scope.sessionInProgress = false;
+												$scope.sessionStateSwitching = false;
+												console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+											}else if(json.type == "exec"){
+												var exec = require('child_process').exec;
+											    var child = exec(json.exec,
+												  function (error, stdout, stderr) {
+												    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
+												    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
+												    if (error !== null) {
+												      $scope.log("ERROR", 'exec error: ' + error);
+												    }
+												});
+											}
+											$scope.$emit(json.type, json);
+										});
+
+									}catch(e){
+										console.error("error parse json: |" + messageText + "|", e);
+										return;
+									}
 								}
-								$scope.$emit(json.type, json);
 							});
 						}
 
