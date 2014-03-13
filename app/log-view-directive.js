@@ -18,21 +18,27 @@ angular.module('log.view.directive', [])
         newSelected.addClass("selected");
         selected = newSelected;
       }
-    };
+    }
+  },
+  link : function(scope, element, attrs) {
+    var sourceLink = $(element).find('a');
+    var source = sourceLink.text();
+    source = (source.length < 5)?source:(source.substr(0, 3)+'...')
+    sourceLink.text(source);
   },
   replace: true,
   template:
   '<div class="logContainer">'+
   '  <ul class="log" scroll-if>'+
   '    <li ng-repeat="message in logMessages | limitTo:200 | filter:{level:logFilter}" '+
-  '      ng-click="toggleOpen($event)" '+
-  '      ng-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARNING\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}" scroll-item>'+
+  '      ng-click="toggleOpen($event)" scroll-item '+
+  '      ng-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARNING\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}">'+
   '      <p>{{message.message}}</p>'+
   '      <a nc-click="openTarget(message.source)" title="{{message.source}}">{{message.source}}</a>'+
   '    </li>'+
   '  </ul>'+
   '</div>'
-};
+} 
 
 })
 
@@ -46,9 +52,9 @@ angular.module('log.view.directive', [])
     },
     controller: function($scope){
       $scope.$on("log", function(message) {
-          console.log("log: " + message);
+        console.log("autoscroll event");
           // autoscroll
-      })
+        })
     },
   }
 })
