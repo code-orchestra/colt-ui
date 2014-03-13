@@ -4,11 +4,11 @@ app.controller("AppCtrl", function($scope, nodeApp) {
 	
 	$scope.logMessages = [];
 	$scope.log = function(level, message, source) {
-		$scope.$apply(function() {
-			var m = {level:level, message: message, source: source || "COLT"};
-			$scope.logMessages.push(m);
-			$scope.$emit("log", m);
-		});
+		// $scope.$apply(function() {
+		var m = {level:level, message: message, source: source || "COLT"};
+		$scope.logMessages.push(m);
+		$scope.$emit("log", m);
+		// });
 	};
 
 	$scope.updateFilters = function() {

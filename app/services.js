@@ -41,56 +41,65 @@ app.service("nodeApp", function() {
 	            return message;
 			};
 
-			java.stdout.on('data', function (message) {
+			var isPing = function(text) {
+				var pingRegexp = /ping/g;
+				return pingRegexp.exec(text) != null;
+			}
+
+			java.stdout.on('data', function (text) {
+				text = (text+"");
 				try{
-					message = trimMessage(message);
-					if(message.length > 6){
-						console.log(message);
-						var header = message.substr(0, 6);
-						if(header == "-json:"){
-							message.split("-json:").every(function(messageText) {
-								if(messageText){
-									try{
-										var json = JSON.parse(messageText);
+					// console.log(text);
+					var regexp = /-json:(.+?)\/json/g;
+					var match = regexp.exec(text);
 
-										$scope.$apply(function() {
-											if(json.type == "log"){
-												$scope.logMessages.push(json);
-												$scope.updateFilters();
-											}else if(json.type == "runSession"){
-												$scope.sessionInProgress = true;
-												$scope.sessionStateSwitching = false;
-												console.log("$scope.sessionInProgress", $scope.sessionInProgress);
-											}else if(json.type == "stopSession"){
-												$scope.sessionInProgress = false;
-												$scope.sessionStateSwitching = false;
-												console.log("$scope.sessionInProgress", $scope.sessionInProgress);
-											}else if(json.type == "exec"){
-												var exec = require('child_process').exec;
-											    var child = exec(json.exec,
-												  function (error, stdout, stderr) {
-												    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
-												    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
-												    if (error !== null) {
-												      $scope.log("ERROR", 'exec error: ' + error);
-												    }
-												});
-											}
-											$scope.$emit(json.type, json);
+					if(match){
+						while(match) {
+							var messageText = match[1];
+							match = regexp.exec(text)
+							// console.log("match: " + match);
+							// console.log("message text", messageText);
+							try{
+								var json = JSON.parse(trimMessage(messageText));
+								$scope.$apply(function() {
+									if(json.type == "log"){
+										$scope.logMessages.push(json);
+										$scope.updateFilters();
+									}else if(json.type == "runSession"){
+										$scope.sessionInProgress = true;
+										$scope.sessionStateSwitching = false;
+										console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+									}else if(json.type == "stopSession"){
+										$scope.sessionInProgress = false;
+										$scope.sessionStateSwitching = false;
+										console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+									}else if(json.type == "exec"){
+										var exec = require('child_process').exec;
+									    var child = exec(json.exec,
+										  function (error, stdout, stderr) {
+										    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
+										    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
+										    if (error !== null) {
+										      $scope.log("ERROR", 'exec error: ' + error);
+										    }
 										});
-
-									}catch(e){
-										console.error("error parse json: |" + messageText + "|", e);
-										return;
 									}
-								}
-							});
+									$scope.$emit(json.type, json);
+								});
+
+							}catch(e){
+								console.error("error parse json: |" + messageText + "|", e);
+								return;
+							}
+							
 						}
-
-					}else if(message == "ping") {
-				     	$scope.sendToJava("pong")
+					}else if(!isPing(text)){
+						console.log("stdout:", text);
+					}
+					
+					if(isPing(text)){
+				    	$scope.sendToJava("pong");
 				    }
-
 				}catch(e){
 					console.error("!!!!! ", e)
 				}
