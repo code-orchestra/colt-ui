@@ -15,7 +15,7 @@ app.service("nodeApp", function() {
 			var gui = require('nw.gui'); 
 			var win = gui.Window.get(); win.showDevTools();
 
-			console.log("args: " + gui.App.argv);
+			console.log("app args:", gui.App.argv);
 
 			var startup = new Date().getTime();
 			var spawn = require('child_process').spawn,
@@ -49,7 +49,6 @@ app.service("nodeApp", function() {
 			java.stdout.on('data', function (text) {
 				text = (text+"");
 				try{
-					// console.log(text);
 					var regexp = /-json:(.+?)\/json/g;
 					var match = regexp.exec(text);
 
