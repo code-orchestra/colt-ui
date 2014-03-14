@@ -45,7 +45,7 @@ angular.module('log.view.directive', [])
   '      ng-click="toggleOpen($event)" scroll-item '+
   '      bo-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARNING\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}">'+
   '      <p bo-text="message.message"></p>'+
-  '      <a ng-click="openTarget(message.source)" bo-title="message.source" bo-text="message.source"></a>'+
+  '      <a ng-click="openTarget(message.source)" bo-title="message.source" bo-text="((message.source.length < 113)?message.source:(message.source.substr(0, 3)+\'...\'))"></a>'+
   '    </li>'+
   '  </ul>'+
   '</div>'

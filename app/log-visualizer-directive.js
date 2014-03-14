@@ -20,12 +20,11 @@ angular.module('log.visualizer.directive', [])
     };
   }
 
-  var addLogMessages = function (levels) {
+  var addLogMessage = function (newMessage) {
         // unless we quantize time, animation will have beats
         var t = ((Date.now() / msPerColumn) | 0) * msPerColumn;
         var m = { counts: [0, 0, 0, 0], time: t };
-        for (var i = 0, n = levels.size(); i < n; i++) {
-          switch (levels.get(i).name()) {
+        switch (newMessage.level) {
             case "FATAL":
             case "ERROR":
             m.counts[0]++; break;
@@ -35,7 +34,6 @@ angular.module('log.visualizer.directive', [])
             m.counts[2]++; break;
             case "LIVE":
             m.counts[3]++; break;
-          }
         }
         messages.unshift(m);
         if (messages.length > 5000) messages.pop();
@@ -133,17 +131,19 @@ angular.module('log.visualizer.directive', [])
   return {
     restrict: 'E',
     replace: true,
+
     template:
     '<div class="log-visualizer">'+
     '    <canvas id="canvas"></canvas>'+
     '</div>',
     link: function($scope, $element, attrs) {
+      $scope.$on("logMessage", function(e) {
+        console.log("log-message");
+        addLogMessage($scope.logMessages[$scope.logMessages.length-1]);
+      });
       context = $element.find("canvas").get(0).getContext("2d");
       resizeCanvas();
       setInterval(draw, 345);
-      $scope.$on("logMessage", function(message) {
-        console.log("log: ", message);
-      });
     }
   }
 })

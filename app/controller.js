@@ -6,7 +6,7 @@ app.controller("AppCtrl", function($scope, nodeApp, $rootScope) {
 	$scope.log = function(level, message, source) {
 		var m = {level:level, message: message, source: source || "COLT"};
 		$scope.logMessages.push(m);
-		$scope.$broadcast("log", m);
+		$scope.$broadcast("logMessage", m);
 	};
 
 	$scope.updateFilters = function() {
