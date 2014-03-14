@@ -22,7 +22,7 @@ angular.module('log.view.directive', [])
   },
   link : function(scope, element, attrs) {
     var sourceLink = element.find('a');
-    // var source = sourceLink.text();
+    var source = sourceLink.text();
     // source = (source.length < 13)?source:(source.substr(0, 10)+'...')
     sourceLink.text(source);
   },
