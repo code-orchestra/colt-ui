@@ -1,22 +1,20 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp) {
+app.controller("AppCtrl", function($scope, nodeApp, $rootScope) {
 	
 	$scope.logMessages = [];
 	$scope.log = function(level, message, source) {
-		// $scope.$apply(function() {
 		var m = {level:level, message: message, source: source || "COLT"};
 		$scope.logMessages.push(m);
-		$scope.$emit("log", m);
-		// });
+		$scope.$broadcast("log", m);
 	};
 
 	$scope.updateFilters = function() {
-			var messages = $scope.logMessages;
-			$scope.filter.errorsCount = messages.filter(function(e) {return e.level=="ERROR"}).length;
-			$scope.filter.warningCount = messages.filter(function(e) {return e.level=="WARNING"}).length;
-			$scope.filter.infoCount = messages.filter(function(e) {return e.level=="INFO"}).length;
-			$scope.filter.liveCount = messages.filter(function(e) {return e.level=="LIVE"}).length;
+		var messages = $scope.logMessages;
+		$scope.filter.errorsCount = messages.filter(function(e) {return e.level=="ERROR"}).length;
+		$scope.filter.warningCount = messages.filter(function(e) {return e.level=="WARNING"}).length;
+		$scope.filter.infoCount = messages.filter(function(e) {return e.level=="INFO"}).length;
+		$scope.filter.liveCount = messages.filter(function(e) {return e.level=="LIVE"}).length;
 	};
 
 	$scope.filter = {};

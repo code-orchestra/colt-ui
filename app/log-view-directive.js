@@ -21,9 +21,9 @@ angular.module('log.view.directive', [])
     }
   },
   link : function(scope, element, attrs) {
-    var sourceLink = $(element).find('a');
-    var source = sourceLink.text();
-    source = (source.length < 13)?source:(source.substr(0, 10)+'...')
+    var sourceLink = element.find('a');
+    // var source = sourceLink.text();
+    // source = (source.length < 13)?source:(source.substr(0, 10)+'...')
     sourceLink.text(source);
   },
   replace: true,
@@ -49,8 +49,7 @@ angular.module('log.view.directive', [])
   '    </li>'+
   '  </ul>'+
   '</div>'
-} 
-
+  } 
 })
 
 .directive('scrollItem', function(){
@@ -62,7 +61,7 @@ angular.module('log.view.directive', [])
       }
     },
     controller: function($scope){
-      $scope.$on("log", function(message) {
+      $scope.$on("logMessage", function(message) {
         console.log("autoscroll event");
           // autoscroll
         })
@@ -76,7 +75,6 @@ angular.module('log.view.directive', [])
     link: function(scope, element, attributes) {
       scope.$on("Finished",function(){
         var chat_height = element.outerHeight();
-        console.log("chat_height: " + chat_height);
         element.scrollTop(chat_height); 
       });
     }
