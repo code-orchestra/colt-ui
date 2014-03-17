@@ -33,7 +33,7 @@ angular.module('log.visualizer.directive', [])
             case "FATAL":
             case "ERROR":
             m.counts[0]++; break;
-            case "WARN":
+            case "WARNING":
             m.counts[1]++; break;
             case "INFO":
             m.counts[2]++; break;
