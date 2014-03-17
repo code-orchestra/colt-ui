@@ -84,7 +84,6 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 			initValues(['build'],['use-custom-output-path','use-real-time-transformation'],false);
 			initValues(['build','offline-cms'],['integrate-mercury','run-mercury'],false);
 			initValues(['build','security'],['use-inspectable'],false);
-			initValues(['build','security'],['use-inspectable'],false);
 			initValues(['build','precompile'],['coffee-script','type-script','use-less','use-sass'],false);
 			initValues(['live','live'],['paused','live-html-edit','disable-in-minified','enable-debuger'],false);
 			initValues(['live','settings'],['disconnect','clear-log'],false);
