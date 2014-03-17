@@ -16,8 +16,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/welcomescreen");
 	$stateProvider
 		.state('welcome-screen', {
-			url: "/welcomescreen",
-			templateUrl: "popups/welcomescreen.html",
+			url: "/welcome-screen",
+			templateUrl: "popups/welcome-screen.html",
 			pageName: "Weblome Screen",
 			controller: "WelcomeController"
 		})

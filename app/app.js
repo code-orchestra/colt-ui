@@ -36,21 +36,31 @@ app.run(function($rootScope, $http, Analytics) {
 	})
 	.then(function(res) {
 		var model = $rootScope.model = res.data.xml;
-		model.build['use-custom-output-path'] = model.build['use-custom-output-path'] === "true";
-		model.live.live['live-html-edit'] = model.live.live['live-html-edit'] === "true";
-		model.live.live.paused = model.live.live.paused === "true";
-		model.live.live['disable-in-minified'] = model.live.live['disable-in-minified'] === "true";
-		model.live.live['enable-debuger'] = model.live.live['enable-debuger'] === "true";
-		model.build['use-real-time-transformation'] = model.build['use-real-time-transformation'] === "true";
-		model.build.precompile['coffee-script'] = model.build.precompile['coffee-script'] === "true";
-		model.build.precompile['type-script'] = model.build.precompile['type-script'] === "true";
-		model.build.precompile['use-less'] = model.build.precompile['use-less'] === "true";
-		model.build.precompile['use-sass'] = model.build.precompile['use-sass'] === "true";
-		model.build['offline-cms']['integrate-mercury'] = model.build['offline-cms']['integrate-mercury'] === "true";
-		model.build['offline-cms']['run-mercury'] = model.build['offline-cms']['run-mercury'] === "true";
-		model.build.security['use-inspectable'] = model.build.security['use-inspectable'] === "true";
-		model.live.settings['disconnect'] = model.live.settings['disconnect'] === "true";
-		model.live.settings['clear-log'] = model.live.settings['clear-log'] === "true";
+		var initValues = function(path, properties, value) {
+			var point = model;
+			for (var i = path.length - 1; i >= 0; i--) {
+				var step = path[i];
+				if(!point.hasOwnProperty(path)){
+					point[step] = {};
+				}
+				point = point[step];
+			};
+			for (var j = properties.length - 1; j >= 0; j--) {
+				var prop = properties[j];
+				if(!point.hasOwnProperty(prop)){
+					point[step] = value;
+				}
+			};
+		}
+
+		initValues(['build'],['use-custom-output-path','use-real-time-transformation'],false);
+		initValues(['build','offline-cms'],['integrate-mercury','run-mercury'],false);
+		initValues(['build','security'],['use-inspectable'],false);
+		initValues(['build','security'],['use-inspectable'],false);
+		initValues(['build','precompile'],['coffee-script','type-script','use-less','use-sass'],false);
+		initValues(['live','live'],['paused','live-html-edit','disable-in-minified','enable-debuger'],false);
+		initValues(['live','settings'],['disconnect','clear-log'],false);
+
 		console.log(model);
 	});
 
