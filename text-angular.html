@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Text Angular</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="lib/angular.js"></script>
+	<style type="text/css">
+		body{
+			display: block;
+			width: 100%;
+		}
+	</style>
+</head>
+<body ng-controller="MyContrl">
+	f222222
+	<div>
+		12232211111
+		122
+		<div>{{"hello111" model[0]}}</div>
+			
+		<ul>
+			<li ng-repeat="item in model">{{"|  fff" + item + '   |'}}</li>
+		</ul>
+
+
+	</div>
+
+	<script type="text/javascript">
+		function MyContrl ($scope) {
+			$scope.model = [1, 2, 3, 4];
+
+			
+		}
+	</script>
+</body>
+</html>
