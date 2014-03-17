@@ -151,8 +151,10 @@ angular.module('log.visualizer.directive', [])
       });
 
       $scope.$on("logMessage", function(event, data) {
+        if(stopped) start();
         addLogMessage(data);
       });
+      if (stopped && $scope.logMessages) start();
       addLogMessages($scope.logMessages);      
     }
   }
