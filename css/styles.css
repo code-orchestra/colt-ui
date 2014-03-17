@@ -201,7 +201,7 @@ hr{
 }
 
 .btn-settings:hover, .btn-settings:hover {
-	background-image: url('../images/btns/settings-hover.png');;
+	background-image: url('../images/btns/settings-hover.png');
 }
 
 .btn-run.tabSelected {

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, $rootScope) {
+app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 	
 	$scope.logMessages = [];
 	$scope.log = function(level, message, source) {
@@ -42,4 +42,61 @@ app.controller("AppCtrl", function($scope, nodeApp, $rootScope) {
 	};
 
 	nodeApp.buildNode($scope);
+
+	$scope.$on('$stateChangeSuccess', function(event, toState){ 
+		$scope.pageName = toState.pageName;
+		$scope.pageIndex = toState.pageIndex;
+		Analytics.trackPage(toState.url + ".html");
+	});
+
+	$scope.loadProject = function(projectPath) {
+		$http.get(projectPath,
+			{transformResponse:function(data) {
+				var x2js = new X2JS();
+				var json = x2js.xml_str2json( data );
+				return json;
+			}
+		})
+		.error(function(data, status) {
+			$scope.log("error load project: " + projectPath);
+			console.log("error load project: " + projectPath);
+		})
+		.success(function(res) {
+			console.log("success load project: " + projectPath, res);
+			var model = $scope.model = res.xml;
+			var initValues = function(path, properties, value) {
+				var point = model;
+				for (var i = path.length - 1; i >= 0; i--) {
+					var step = path[i];
+					if(!point.hasOwnProperty(path)){
+						point[step] = {};
+					}
+					point = point[step];
+				};
+				for (var j = properties.length - 1; j >= 0; j--) {
+					var prop = properties[j];
+					if(!point.hasOwnProperty(prop)){
+						point[step] = value;
+					}
+				};
+			}
+
+			initValues(['build'],['use-custom-output-path','use-real-time-transformation'],false);
+			initValues(['build','offline-cms'],['integrate-mercury','run-mercury'],false);
+			initValues(['build','security'],['use-inspectable'],false);
+			initValues(['build','security'],['use-inspectable'],false);
+			initValues(['build','precompile'],['coffee-script','type-script','use-less','use-sass'],false);
+			initValues(['live','live'],['paused','live-html-edit','disable-in-minified','enable-debuger'],false);
+			initValues(['live','settings'],['disconnect','clear-log'],false);
+
+			console.log(model);
+		});
+	}
+
+	var projectPath = $scope.getProjectPath();
+
+	if(projectPath){
+		console.log("load project: " + projectPath);
+		$scope.loadProject(projectPath);
+	}
 })
