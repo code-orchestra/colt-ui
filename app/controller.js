@@ -64,29 +64,32 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 		.success(function(res) {
 			console.log("success load project: " + projectPath, res);
 			var model = $scope.model = res.xml;
-			var initValues = function(path, properties, value) {
-				var point = model;
-				for (var i = path.length - 1; i >= 0; i--) {
+
+			var initValues = function(point, path, properties, value) {
+				for (var i = 0; i < path.length; i++) {
 					var step = path[i];
-					if(!point.hasOwnProperty(path)){
+					if(!point.hasOwnProperty(step)){
 						point[step] = {};
 					}
 					point = point[step];
 				};
-				for (var j = properties.length - 1; j >= 0; j--) {
+				for (var j = 0; j < properties.length; j++) {
 					var prop = properties[j];
 					if(!point.hasOwnProperty(prop)){
-						point[step] = value;
+						point[prop] = value;
 					}
 				};
 			}
 
-			initValues(['build'],['use-custom-output-path','use-real-time-transformation'],false);
-			initValues(['build','offline-cms'],['integrate-mercury','run-mercury'],false);
-			initValues(['build','security'],['use-inspectable'],false);
-			initValues(['build','precompile'],['coffee-script','type-script','use-less','use-sass'],false);
-			initValues(['live','live'],['paused','live-html-edit','disable-in-minified','enable-debuger'],false);
-			initValues(['live','settings'],['disconnect','clear-log'],false);
+			console.log("launcher: " + model.live.launch.launcher);
+
+			initValues(model,['build'],['use-custom-output-path','use-real-time-transformation'],false);
+			initValues(model,['build','offline-cms'],['integrate-mercury','run-mercury'],false);
+			initValues(model,['build','security'],['use-inspectable'],false);
+			initValues(model,['build','precompile'],['coffee-script','type-script','use-less','use-sass'],false);
+			initValues(model,['live','live'],['paused','live-html-edit','disable-in-minified','enable-debuger'],false);
+			initValues(model,['live','launch'],[]);
+			initValues(model,['live','settings'],['disconnect','clear-log'],false);
 
 			console.log(model);
 		});
