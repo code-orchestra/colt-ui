@@ -1,0 +1,157 @@
+<div class="popup">
+
+	<header role="banner">
+		<img src="images/welcome-screen/banner.png" alt="COLT: Code Orchestra Livecoding Tool" width="598" height="97">
+	</header>
+
+	<div role="main">
+
+		<div class="col col-first">
+			<ul class="m-new">
+				<!-- <li><a href="javascript:alert('new-as:0')">New ActionScript Project</a></li> -->
+				<li><a ng-click="newProject()">New Project</a></li>
+			</ul>
+
+			<ul class="m-open">
+				<li><a href="openProject()">Open</a></li>
+				<li><a ng-click="openDemoProjects()">Open Demo Project</a></li>
+				<li id="recent-projects" class="submenu-title">Open a Recent Project
+					<ul>
+						<li ng-repeat="project in rescentProjects"><a ng-click="openProject($index)">{{project.name}}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col col-last">
+			<ul class="m-help">
+				<li><a ng-click="openLink('https://github.com/code-orchestra/documentation/wiki/Keynote')"
+					target="_blank">Getting Started</a></li>
+				<li><a ng-click="openLink('https://github.com/code-orchestra/documentation/wiki/Features')"
+					target="_blank">Features</a></li>
+				<li><a ng-click="openLink('https://github.com/code-orchestra/documentation/wiki/Documentation')"
+					target="_blank">Documentation</a></li>
+				<li><a ng-click="openLink('https://github.com/code-orchestra/documentation/wiki/FAQ')"target="_blank">FAQ</a></li>
+			</ul>
+
+			<ul class="m-video">
+				<li><a ng-click="openLink('http://www.youtube.com/watch?v=ELGiZg46h8M&amp;hd=1')">Introduction</a>
+				</li>
+			</ul>
+		</div>
+
+</div>
+
+<style type="text/css">
+
+/* Local Styles */
+[role="banner"] {
+	border-bottom: 1px solid #fff;
+}
+
+[role="main"] {
+	border-bottom: 1px solid #e4e5e7;
+	-webkit-box-shadow: 0 1px 0 #fff;
+	box-shadow: 0 1px 0 #fff;
+	position: relative;
+	padding: 39px 39px 19px;
+}
+
+[role="main"]:before, [role="main"]:after {
+	content: '';
+	display: table;
+	line-height: 0;
+}
+
+[role="main"]:after {
+	clear: both;
+}
+
+.col {
+	width: 240px;
+}
+
+.col-first {
+	float: left;
+}
+
+.col-last {
+	float: right;
+}
+
+UL {
+	position: relative;
+	list-style-image: url(images/welcome-screen/b.gif);
+	list-style-position: outside;
+	margin: 0 0 20px;
+	padding: 0 0 0 43px;
+}
+
+.submenu-title {
+	list-style-image: none;
+	list-style-type: none;
+}
+
+UL:before {
+	background-image: url('images/welcome-screen/icons.png');
+	background-repeat: no-repeat;
+	content: '';
+	display: block;
+	position: absolute;
+	top: -2px;
+	left: 0;
+	height: 24px;
+	width: 24px;
+}
+
+UL UL:before {
+	display: none;
+}
+
+.m-new {
+	margin-bottom: 60px;
+}
+
+.m-new:before {
+	background-position: 0 0;
+}
+
+.m-open:before {
+	background-position: 0 -24px;
+}
+
+.m-help:before {
+	background-position: -24px 0;
+}
+
+.m-video:before {
+	background-position: -24px -24px;
+}
+
+.disabled {
+	opacity: .44;
+}
+
+@media print,
+(-o-min-device-pixel-ratio: 5/4),
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {
+	UL:before {
+		background-image: url(images/welcome-screen/icons-x2.png);
+		-webkit-background-size: 48px 48px;
+		background-size: 48px 48px;
+	}
+
+	[role="banner"] {
+		background: transparent url(images/welcome-screen/banner-x2.png) no-repeat;
+		-webkit-background-size: 100% 100%;
+		background-size: 100% 100%;
+	}
+
+	[role="banner"] IMG {
+		visibility: hidden;
+	}
+}
+</style>
+</div>
+
