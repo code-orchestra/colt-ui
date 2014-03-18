@@ -2,8 +2,6 @@
 
 app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 	
-	if($scope.model)return;
-
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
 			var step = path[i];
