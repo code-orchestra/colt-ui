@@ -2,6 +2,8 @@
 
 app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 	
+	if($scope.model)return;
+
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
 			var step = path[i];
@@ -86,8 +88,6 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 			for(var v in res.xml){
 				model[v] = res.xml[v];
 			}
-
-			console.log("launcher: " + model.live.launch.launcher);
 
 			initValues(model,['build'],['use-custom-output-path','use-real-time-transformation'],false);
 			initValues(model,['build','offline-cms'],['integrate-mercury','run-mercury'],false);
