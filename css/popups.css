@@ -1,0 +1,85 @@
+/*.ng-scope {
+	border: 1px solid red;
+}*/
+
+/*.ng-isolate-scope {
+	border: 1px solid blue;
+}*/
+
+.colt-recompiled{
+	border: 1px solid red;
+}
+
+.colt-html-update{
+	border: 1px solid #ccc;	
+}
+
+
+HTML {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+BODY {
+	background: #f7f8fa;
+	color: #515458;
+	font: 13px/20px Arial, 'Helvetica Neue', Helvetica, sans-serif;
+	text-align: left;
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+	max-width: 598px;
+
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+:focus {
+	outline: none;
+}
+
+A, A:visited {
+	color: #06c;
+	text-decoration: none;
+}
+
+A:focus {
+	outline: thin dotted #CCCFD3;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+
+A:hover, A:active {
+	outline: 0 none;
+}
+
+A:hover {
+	color: #003d7a;
+	text-decoration: underline;
+}
+
+A:link {
+	-webkit-tap-highlight-color: transparent;
+}
+
+B, STRONG {
+	font: bold;
+}
+
+IMG {
+	border: 0;
+	display: block;
+}
+
+::-moz-selection {
+	background: #06c;
+	color: #FFF;
+	text-shadow: none;
+}
+
+::selection {
+	background: #06c;
+	color: #FFF;
+	text-shadow: none;
+}
