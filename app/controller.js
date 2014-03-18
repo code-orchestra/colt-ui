@@ -2,7 +2,27 @@
 
 app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 	
+	var initValues = function(point, path, properties, value) {
+		for (var i = 0; i < path.length; i++) {
+			var step = path[i];
+			if(!point.hasOwnProperty(step)){
+				point[step] = {};
+			}
+			point = point[step];
+		};
+		for (var j = 0; j < properties.length; j++) {
+			var prop = properties[j];
+			if(!point.hasOwnProperty(prop)){
+				point[prop] = value;
+			}
+		};
+	}
+
+
+	$scope.model = {};
 	$scope.logMessages = [];
+	$scope.filter = {};
+
 	$scope.log = function(level, message, source) {
 		var m = {level:level, message: message, source: source || "COLT"};
 		$scope.logMessages.push(m);
@@ -17,7 +37,6 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 		$scope.filter.liveCount = messages.filter(function(e) {return e.level=="LIVE"}).length;
 	};
 
-	$scope.filter = {};
 	$scope.updateFilters();
 
 	$scope.selectLogFilter = function(filter) {
@@ -41,13 +60,13 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 		}
 	};
 
-	nodeApp.buildNode($scope);
-
 	$scope.$on('$stateChangeSuccess', function(event, toState){ 
 		$scope.pageName = toState.pageName;
 		$scope.pageIndex = toState.pageIndex;
 		Analytics.trackPage(toState.url + ".html");
 	});
+
+	nodeApp.buildNode($scope);
 
 	$scope.loadProject = function(projectPath) {
 		$http.get(projectPath,
@@ -63,22 +82,9 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 		})
 		.success(function(res) {
 			console.log("success load project: " + projectPath, res);
-			var model = $scope.model = res.xml;
-
-			var initValues = function(point, path, properties, value) {
-				for (var i = 0; i < path.length; i++) {
-					var step = path[i];
-					if(!point.hasOwnProperty(step)){
-						point[step] = {};
-					}
-					point = point[step];
-				};
-				for (var j = 0; j < properties.length; j++) {
-					var prop = properties[j];
-					if(!point.hasOwnProperty(prop)){
-						point[prop] = value;
-					}
-				};
+			var model = $scope.model;
+			for(var v in res.xml){
+				model[v] = res.xml[v];
 			}
 
 			console.log("launcher: " + model.live.launch.launcher);

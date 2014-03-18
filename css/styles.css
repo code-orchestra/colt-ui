@@ -1,11 +1,19 @@
 /*.ng-scope {
 	border: 1px solid red;
+}*/
+
+/*.ng-isolate-scope {
+	border: 1px solid blue;
+}*/
+
+
+.colt-recompiled{
+	border: 1px solid red;
 }
 
-.ng-isolate-scope {
-	border: 1px solid blue;
+.colt-html-update{
+	border: 1px solid #ccc;	
 }
-*/
 
 body{
 	margin: 0;
