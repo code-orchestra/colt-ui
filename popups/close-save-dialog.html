@@ -1,14 +1,15 @@
 <div class="lose-save dialog container" style="padding-top:10px">
 	<form class="col-xs-12">
 		<div class="form-group row">
-			<div class="dialog-image" ></div><div class="dialog-message"><h4>Save changes to COLT "Project" project before closing?</h4></div>
+			<img src="images/messages/warning-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			<div class="dialog-message pull-right"><h4>Save changes to COLT "Project" project before closing?</h4></div>
 		</div>
 		<div class="form-group row">
-			<button type="button" class="btn btn-default btn-add dialog-button ">Dont Save</button>
+			<button type="submit" ng-click="dontSave()" class="btn btn-default dialog-button">Don't Save</button>
 
 			<div class="pull-right">
-				<button type="button" class="btn btn-default btn-add btn-default dialog-button">Save</button>
-				<button type="button" class="btn btn-default btn-add dialog-button">Cancel</button>
+				<button type="submit" ng-click="save()" class="btn btn-primary dialog-button">Save</button>
+				<button type="submit" ng-click="cancel()" class="btn btn-default dialog-button">Cancel</button>
 			</div>
 		</div>
 		
@@ -16,7 +17,7 @@
 </div>
 
 <img class="image-screen" src="../images/dialogs-screens/s5.png" height=dialog"223" width="629">
-
+<div></div>
 <style type="text/css">
 	
 .close-save {
@@ -36,6 +37,14 @@
 	margin: 5px;
 }
 
-.dialog 
+.dialog-message {
+	font-weight: bold;
+	padding-top: 10px;
+	padding-right: 10px;
+}
+
+.dialog-image{
+	margin-left: 5px;
+}
 
 </style>

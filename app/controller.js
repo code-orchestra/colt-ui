@@ -105,4 +105,22 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 		console.log("load project: " + projectPath);
 		$scope.loadProject(projectPath);
 	}
+
+	$scope.testPopup = function() {
+		var win = $scope.openPopup('popups.html#/close-save-dialog', 550, 150, "Close COLT");
+		win.popup = {
+			cancel: function(){
+				console.log("cancel close", w);
+				win.close();
+			},
+			save: function(){
+				console.log("save project", w);
+				win.close();
+			},
+			dontSave: function(){
+				console.log("dont save");
+				win.close();
+			}
+		}
+	}
 })
