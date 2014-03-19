@@ -106,10 +106,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 		$scope.loadProject(projectPath);
 	}
 
-	//popups.html#/close-save-dialog
-	//popups.html#/purchase-dialog
-	//popups.html#/update-dialog
-	//popups.html#/welcome-screen
+	// popups.html#/close-save-dialog (in progress)
+	// popups.html#/purchase-dialog
+	// popups.html#/update-dialog
+	// popups.html#/welcome-screen (in progress)
 	$scope.testPopup = function() {
 		var win = $scope.openPopup('popups.html#/close-save-dialog', 550, 150, "Close COLT");
 		win.popup = {
