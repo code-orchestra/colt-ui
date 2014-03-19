@@ -1,4 +1,4 @@
-<div class="popup">
+<div class="welcome-screen">
 
 	<header role="banner">
 		<img src="images/welcome-screen/banner.png" alt="COLT: Code Orchestra Livecoding Tool" width="598" height="97">
@@ -79,7 +79,7 @@
 	float: right;
 }
 
-UL {
+.welcome-screen UL {
 	position: relative;
 	list-style-image: url(images/welcome-screen/b.gif);
 	list-style-position: outside;
@@ -87,12 +87,12 @@ UL {
 	padding: 0 0 0 43px;
 }
 
-.submenu-title {
+.welcome-screen .submenu-title {
 	list-style-image: none;
 	list-style-type: none;
 }
 
-UL:before {
+.welcome-screen UL:before {
 	background-image: url('images/welcome-screen/icons.png');
 	background-repeat: no-repeat;
 	content: '';
@@ -104,31 +104,31 @@ UL:before {
 	width: 24px;
 }
 
-UL UL:before {
+.welcome-screen UL UL:before {
 	display: none;
 }
 
-.m-new {
+.welcome-screen .m-new {
 	margin-bottom: 60px;
 }
 
-.m-new:before {
+.welcome-screen .m-new:before {
 	background-position: 0 0;
 }
 
-.m-open:before {
+.welcome-screen .m-open:before {
 	background-position: 0 -24px;
 }
 
-.m-help:before {
+.welcome-screen .m-help:before {
 	background-position: -24px 0;
 }
 
-.m-video:before {
+.welcome-screen .m-video:before {
 	background-position: -24px -24px;
 }
 
-.disabled {
+.welcome-screen .disabled {
 	opacity: .44;
 }
 
@@ -136,7 +136,7 @@ UL UL:before {
 (-o-min-device-pixel-ratio: 5/4),
 (-webkit-min-device-pixel-ratio: 1.25),
 (min-resolution: 120dpi) {
-	UL:before {
+	.welcome-screen UL:before {
 		background-image: url(images/welcome-screen/icons-x2.png);
 		-webkit-background-size: 48px 48px;
 		background-size: 48px 48px;
