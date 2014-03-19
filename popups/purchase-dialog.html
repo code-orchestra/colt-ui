@@ -1,0 +1,73 @@
+<div class="lose-save dialog container" style="padding-top:10px">
+	<form class="col-md-12">
+		<div class="form-group row">
+			<img src="images/ico-colt.png" height="48" width="48" class="dialog-image pull-left">
+			<div class="dialog-message pull-right">
+				<h4>Hello! Thanks for trying out COLT!</h4>
+				<p>This is an unregistered demo version, and although the demo is untimed,<br> a license must be purchased for continued use.<br>Would you like to purchase a license now?</p>
+			</div>
+		</div>
+		<div class="form-group row">
+			<button type="submit" ng-click="buy()" class="btn btn-default dialog-button ">Purchase</button>
+			<button type="submit" ng-click="demo()" class="btn btn-default dialog-button pull-right">Continue With Demo</button>
+		</div>
+		<p>Or enter a serial number</p>
+		<div class="input-group row">
+			<input type="file" class="hidden" ng-model="path">
+			<input type="text" placeholder="Serial Number" class="form-control" ng-model="serialNumber">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default btn-add ok-button" ng-disabled="!serialNumber" ng-click="enterSerialNumber()">OK</button>
+			</span>
+		</div>
+	</form>
+
+	<!-- <img class="image-screen" src="../images/dialogs-screens/s2.png" height=dialog"223" width="629"> -->
+	<div>
+
+		<style type="text/css">
+
+		.close-save {
+			background-color: red;
+			display: block;
+		}
+
+		.dialog{
+			padding: 17px, 30px, 30px, 30px;
+		}
+
+		.image-screen{
+			margin-top: 400px;
+		}
+
+		.dialog-button {
+			width: 48%;
+		}
+
+		.dialog-message {
+			padding-top: 10px;
+			padding-right: 10px;
+			width: 452px;
+		}
+
+		.dialog-message h4 {
+			font-weight: bold;
+		}
+
+		.dialog-message p {
+			margin-top: -8px;
+		}
+
+		.dialog-image{
+			margin-left: 5px;
+			margin-top: 16px;
+		}
+
+		.ok-button{
+			width: 70px;
+		}
+
+		</style>
+
+	</div>
+</div>
+

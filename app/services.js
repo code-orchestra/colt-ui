@@ -175,9 +175,10 @@ app.service("nodeApp", function() {
 				var windowObject = window.open(html, "popup", {resizable:false,width:width,height:height});
 				var modal = gui.Window.get(windowObject);
 				modal.hide();
+				modal.showDevTools();
 				modal.on('loaded', function() {
 					console.log("popup opened", win);
-					// win.hide();
+					win.hide();
 					modal.focus();
 					modal.title = title;
 					modal.resizeTo(width, height);

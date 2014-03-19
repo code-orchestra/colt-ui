@@ -50,7 +50,11 @@ app.run(function($rootScope, Analytics) {
 		if(window.hasOwnProperty("popup")){
 			if(window.popup.hasOwnProperty(command)){
 				window.popup[command](arg);
+			}else{
+				console.log("'" + command + "' command not found");
 			}
+		}else{
+			console.log("popup property not found");
 		}
 		// if(sessionStorage.hasOwnProperty("popup")){
 		// 	if(sessionStorage.popup.hasOwnProperty(command)){
@@ -93,11 +97,23 @@ app.controller("WelcomeController", function($scope, $rootScope, $window) {
 
 
 app.controller("PurchaseController", function($scope, $rootScope, $window) {
-	console.log("purchase colt dialog");	
+	console.log("purchase colt dialog");
+
+	$scope.serialNumber = '';
+
+	$scope.enterSerialNumber = function() {
+		$scope.callToOwnerWindow("enterSerialNumber", $scope.serialNumber);
+	}
+	$scope.buy = function() {
+		$scope.callToOwnerWindow("buy");
+	}
+	$scope.demo = function() {
+		$scope.callToOwnerWindow("demo");
+	}
 });
 
 app.controller("UpdateController", function($scope, $rootScope, $window) {
-	console.log("update colt dialog");	
+	console.log("update colt dialog");
 });
 
 app.controller("CloseSaveController", function($scope, $rootScope, $window) {

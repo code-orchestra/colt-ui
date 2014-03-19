@@ -111,6 +111,24 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 	// popups.html#/update-dialog
 	// popups.html#/welcome-screen (in progress)
 	$scope.testPopup = function() {
+		var win = $scope.openPopup('popups.html#/purchase-dialog', 555, 300, "Close COLT");
+		win.popup = {
+			enterSerialNumber: function(serial){
+				console.log("serial number", serial);
+				win.close();
+			},
+			buy: function(){
+				console.log("purchase COLT");
+				win.close();
+			},
+			demo: function(){
+				console.log("continue demo");
+				win.close();
+			}
+		}
+	}	
+
+	$scope.testPopup2 = function() {
 		var win = $scope.openPopup('popups.html#/close-save-dialog', 550, 150, "Close COLT");
 		win.popup = {
 			cancel: function(){
