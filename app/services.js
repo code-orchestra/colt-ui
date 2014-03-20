@@ -196,6 +196,15 @@ app.service("nodeApp", function($q) {
 			$scope.sendToJava = function(message) {
 				java.stdin.write(message + "\n");
 			};
+
+			var serviceDefers = {}
+			$scope.sendToJavaWithPromise = function(message, resolveType) {
+				var d = serviceDefers[resolveType] || $q.defer()
+				serviceDefers[resolveType] = d 
+				$scope.sendToJava(message)
+				return d.promise
+			}
+			
 			$scope.openPopup = function(html, width, height, title) {
 				var windowObject = window.open(html, "popup", {resizable:false,width:width,height:height});
 				var modal = gui.Window.get(windowObject);
