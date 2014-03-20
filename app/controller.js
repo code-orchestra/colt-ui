@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
+app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
@@ -110,6 +110,28 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http) {
 	// popups.html#/purchase-dialog
 	// popups.html#/update-dialog
 	// popups.html#/welcome-screen (in progress)
+	$scope.showSerialNumberDialog = function() {
+		var win = $scope.openPopup('popups.html#/purchase-dialog', 555, 300, "Close COLT");
+		var d = $q.defer();
+		win.popup = {
+			enterSerialNumber: function(serial){
+				console.log("serial number", serial);
+				d.resolve(serial);
+				win.close();
+			},
+			buy: function(){
+				console.log("purchase COLT");
+				d.notify("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
+			},
+			demo: function(){
+				console.log("continue demo");
+				d.reject();
+				win.close();
+			}
+		}
+		return d.promise
+	}
+
 	$scope.testPopup = function() {
 		var win = $scope.openPopup('popups.html#/purchase-dialog', 555, 300, "Close COLT");
 		win.popup = {

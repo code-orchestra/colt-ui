@@ -92,6 +92,32 @@ app.service("nodeApp", function($q) {
 										      $scope.log("ERROR", 'exec error: ' + error);
 										    }
 										});
+									}else if(json.type == "SerialNumber") {
+										switch(json.state){
+											case "show":
+												$scope.showSerialNumberDialog().then(
+													$scope.sendToJava,
+													function() {
+												    	$scope.sendToJava("continue");
+													},
+													function(update) {
+													    gui.Shell.openExternal(update);
+													}
+												)
+												break;
+											case "error":
+												json.message
+												break;
+											case "success":
+												json.message
+												break;
+											case "demoMessage":
+												json.message
+												break;
+											case "demoCount":
+												json.message
+												break;
+										}									
 									}
 									$scope.$emit(json.type, json);
 								});
