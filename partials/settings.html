@@ -6,13 +6,11 @@
 			<!-- <fileset label="Live Coding Pattern:" paths="model.paths['sources-set']"></fileset> -->
 
 			<!-- Project Type -->
-
 			<form-part-header label="Launcher"></form-part-header>
-
 			<browse-path-radio id="radio" label="Browser" current-value="model.live.launch.launcher" expected-value="BROWSER" path="" placeholder="DEFAULT"></browse-path-radio>
 
 			<browse-path-radio id="radio" label="node.js" current-value="model.live.launch.launcher" expected-value="NODE_JS" path="" placeholder="$ node"></browse-path-radio>
-
+			
 			<browse-path-radio id="radio" label="node-webkit" current-value="model.live.launch.launcher" expected-value="NODE_WEBKIT" path="" placeholder="DEFAULT"></browse-path-radio>
 
 			<input-radio id="radio" label="Console" current-value="model.live.launch.launcher" expected-value="CONSOLE" path=""></input-radio>
@@ -74,7 +72,6 @@
 			<!-- Live Session -->
 
 			<form-part-header label="Live Session"></form-part-header>
-
 			<checkbox checked="model.live.settings['disconnect']" label="Disconnect on ping timeout"></checkbox>
 
 			<checkbox checked="model.live.settings['clear-log']" label="Clear Messages Log on Session Start"></checkbox>
