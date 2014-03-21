@@ -106,16 +106,34 @@ app.service("nodeApp", function($q) {
 												)
 												break;
 											case "error":
-												json.message
+												$scope.popup.errorMessage = json.message
+												$scope.showSerialNumberDialog().then(
+													$scope.sendToJava,
+													function() {
+												    	$scope.sendToJava("continue");
+													},
+													function(update) {
+													    gui.Shell.openExternal(update);
+													}
+												)
 												break;
 											case "success":
-												json.message
+												$scope.showMessageDialog("app", json.message)
 												break;
 											case "demoMessage":
-												json.message
+												$scope.showMessage("info", json.message)
 												break;
 											case "demoCount":
-												json.message
+												$scope.popup.message = json.message
+												$scope.showSerialNumberDialog().then(
+													$scope.sendToJava,
+													function() {
+												    	$scope.sendToJava("continue");
+													},
+													function(update) {
+													    gui.Shell.openExternal(update);
+													}
+												)
 												break;
 										}									
 									}

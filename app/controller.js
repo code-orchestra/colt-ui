@@ -133,6 +133,13 @@ app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $
 		return d.promise
 	}
 
+	/*
+	* type - error, info, warning, app
+	*/
+	$scope.showMessageDialog = function(type, message) {
+		//todo: realize
+	}
+
 	$scope.showPurchaseDialog = function() {
 		var win = $scope.openPopup('popups.html#/purchase-dialog', "Close COLT");
 		win.popup = {
