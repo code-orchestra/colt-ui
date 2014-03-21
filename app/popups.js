@@ -79,6 +79,10 @@ app.run(function($rootScope, Analytics) {
 		// 	}
 		// }
 	}
+
+	if(window.popup){
+		$rootScope.popup = popup;
+	}
 });
 
 app.controller("WelcomeController", function($scope, $rootScope, $window) {
