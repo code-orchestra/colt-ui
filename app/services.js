@@ -136,6 +136,11 @@ app.service("nodeApp", function($q) {
 												)
 												break;
 										}									
+									}else if(json.type == "recentProjectsPaths") {
+										if (serviceDefers["recentProjectsPaths"] != null) {
+											serviceDefers["recentProjectsPaths"].resolve(json.array)
+											serviceDefers["recentProjectsPaths"] = null
+										};
 									}
 									$scope.$emit(json.type, json);
 								});

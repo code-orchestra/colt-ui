@@ -67,7 +67,10 @@ app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $
 	});
 
 	nodeApp.buildNode($scope);
-	appMenu.buildMenu($scope);
+	appMenu.buildMenu($scope, []);
+	$scope.sendToJavaWithPromise("getRecentProjectsPaths", "recentProjectsPaths").then(function (array) {
+		appMenu.buildMenu($scope, array);
+	});
 
 	$scope.loadProject = function(projectPath) {
 		$http.get(projectPath,

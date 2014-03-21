@@ -1,10 +1,10 @@
 'use strict';
 
-app.service("appMenu", function($q) {
-		this.buildMenu = function($scope) {
-			
-			var gui = require('nw.gui'); 
-			var win = gui.Window.get();
+app.service("appMenu", function($q) { 
+		var gui = require('nw.gui');
+		var win = gui.Window.get();
+		var self = this
+		this.buildMenu = function($scope, array) {
 
 			var menu  = new gui.Menu({ type: 'menubar' });
 			
@@ -25,14 +25,7 @@ app.service("appMenu", function($q) {
 			})); 
 			
 			var recentProjects = new gui.MenuItem({ label: 'Open Recent' });
-			var recentProjectsSubMenu = new gui.Menu();
-			recentProjectsSubMenu.append(new gui.MenuItem({
-				label: 'Clear List',
-				click: function () {
-					//todo: implement 
-				}
-			}));
-			recentProjects.submenu = recentProjectsSubMenu;
+			recentProjects.submenu = initRecentProjects($scope, array);
 			fileSubMenu.append(recentProjects);
 
 			fileSubMenu.append(new gui.MenuItem({ type: 'separator' }));
@@ -112,5 +105,31 @@ app.service("appMenu", function($q) {
 			menu.append(help);
 
 			win.menu = menu;
+		}
+
+		var initRecentProjects = function ($scope, array) {
+			var recentProjectsSubMenu = new gui.Menu();
+
+			array.forEach(function (entry) {
+				console.log(entry)
+				recentProjectsSubMenu.append(new gui.MenuItem({
+					label: entry,
+					click: function () {
+						console.log(entry) 
+					}
+				}));
+			})
+			
+			if (recentProjectsSubMenu.items.length > 0) {
+				recentProjectsSubMenu.append(new gui.MenuItem({ type: 'separator' }))
+			};
+			recentProjectsSubMenu.append(new gui.MenuItem({
+				label: 'Clear List',
+				enabled: recentProjectsSubMenu.items.length > 0,
+				click: function () {
+					 self.buildMenu($scope, [])
+				}
+			}));
+			return recentProjectsSubMenu
 		}
 });
