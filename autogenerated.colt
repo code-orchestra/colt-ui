@@ -1,13 +1,12 @@
-<xml projectName="text-angular" projectPort="9091" projectType="JS">
+<xml projectName='index' projectType='JS' projectPort='9092'>
   <paths>
-    <sources-set>**/*.js, **/*.htm*, -java/, -bower_components/</sources-set>
     <excludes-set>out/**, .git/**, .*/**, **/*bak___</excludes-set>
-    <reloads-set>**/*.htm*, **/*.css, **/*.png</reloads-set>
+    <sources-url></sources-url>
   </paths>
   <build>
-    <main-document>/Volumes/Archive/Projects/colt-ui/text-angular.html</main-document>
+    <main-document>${project}\index.html</main-document>
     <use-custom-output-path>true</use-custom-output-path>
-    <out-path>/Volumes/Archive/Projects/tmp/out</out-path>
+    <out-path>C:\Users\CodeOrchestra\IdeaProjects\tmp\out</out-path>
     <precompile>
       <is-new>true</is-new>
       <type-script>false</type-script>
@@ -21,69 +20,70 @@
     </offline-cms>
     <security>
       <use-inspectable>true</use-inspectable>
-      <can-edit />
+      <can-edit></can-edit>
       <can-view>*</can-view>
     </security>
-    <use-real-time-transformation>true</use-real-time-transformation>
   </build>
   <live>
     <settings>
       <clear-log>false</clear-log>
-      <disconnect>true</disconnect>
+      <disconnect>false</disconnect>
     </settings>
     <launch>
-      <launcher>BROWSER</launcher>
-      <browser-path />
-      <nodejs-path />
-      <console-value />
+      <launcher>NODE_WEBKIT</launcher>
+      <browser-path></browser-path>
+      <nodejs-path></nodejs-path>
+      <node-webkit-path>C:\Users\CodeOrchestra\Downloads\node-webkit-v0.9.2-win-ia32\nw.exe</node-webkit-path>
+      <copy-node-webkit-launcher>true</copy-node-webkit-launcher>
+      <console-value></console-value>
     </launch>
     <live>
       <paused>false</paused>
       <max-loop>10000</max-loop>
-      <live-html-edit>true</live-html-edit>
+      <simple-reload>false</simple-reload>
       <disable-in-minified>true</disable-in-minified>
       <enable-debugger>false</enable-debugger>
     </live>
   </live>
   <production-build>
-    <output-path />
-    <files-paths />
+    <output-path></output-path>
+    <files-paths></files-paths>
     <require-js>
       <used>false</used>
-      <build-profile />
+      <build-profile></build-profile>
     </require-js>
     <combing-files>
       <used>false</used>
     </combing-files>
     <gZip>
       <used>false</used>
-      <files-paths />
+      <files-paths></files-paths>
     </gZip>
     <jsdoc>
       <used>false</used>
-      <files-paths />
-      <output-path />
+      <files-paths></files-paths>
+      <output-path></output-path>
     </jsdoc>
     <jshint>
       <used>false</used>
-      <files-paths />
+      <files-paths></files-paths>
     </jshint>
     <minimizing-scripts>
       <used>false</used>
-      <warning-level />
+      <warning-level></warning-level>
     </minimizing-scripts>
     <props2js>
       <used>false</used>
-      <property-file />
-      <type-value />
+      <property-file></property-file>
+      <type-value></type-value>
     </props2js>
     <s3>
       <used>false</used>
-      <access-key />
-      <secret-key />
-      <bucket-value />
+      <access-key></access-key>
+      <secret-key></secret-key>
+      <bucket-value></bucket-value>
       <use-config>false</use-config>
-      <config-file />
+      <config-file></config-file>
       <gzip-enabled>false</gzip-enabled>
       <encryption-enabled>false</encryption-enabled>
     </s3>
