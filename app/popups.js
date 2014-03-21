@@ -178,6 +178,13 @@ app.controller("ContinueDemoController", function($scope, $rootScope) {
 
 app.controller("UpdateController", function($scope, $rootScope) {
 	console.log("update colt dialog");
+
+	$scope.update = function() {
+		$scope.callToOwnerWindow("update");
+	}
+	$scope.cancel = function() {
+		$scope.callToOwnerWindow("cancel");
+	}
 });
 
 app.controller("CloseSaveController", function($scope, $rootScope) {
