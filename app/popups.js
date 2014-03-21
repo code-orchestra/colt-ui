@@ -26,7 +26,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller: "PurchaseController"
 	})
 	.state('continue-demo-dialog', {
-		url: "/purchase-dialog",
+		url: "/continue-demo-dialog",
 		templateUrl: "popups/continue-demo-dialog.html",
 		pageName: "Purchase COLT",
 		controller: "ContinueDemoController"
@@ -41,6 +41,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		url: "/close-save-dialog",
 		templateUrl: "popups/close-save-dialog.html",
 		pageName: "Close COLT",
+		controller: "CloseSaveController"
+	})
+	.state('alert-dialog', {
+		url: "/alert-dialog",
+		templateUrl: "popups/alert-dialog.html",
+		pageName: "Alert",
 		controller: "CloseSaveController"
 	})
 });
