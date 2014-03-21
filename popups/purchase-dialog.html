@@ -2,12 +2,12 @@
 	<form class="col-md-12">
 		<div class="form-group row">
 			<img src="images/ico-colt.png" height="48" width="48" class="dialog-image pull-left">
-			<div class="dialog-message pull-right" ng-show="!message">
+			<div class="dialog-message pull-right" ng-show="!popup.message">
 				<h4>Hello! Thanks for trying out COLT!</h4>
 				<p>This is an unregistered demo version, and although the demo is untimed,<br> a license must be purchased for continued use.<br>Would you like to purchase a license now?</p>
 			</div>
-			<div class="dialog-message pull-right" ng-show="message">
-				<h4 class="message">{{message}}</h4>
+			<div class="dialog-message pull-right" ng-show="popup.message">
+				<h4 class="message">{{popup.message}}</h4>
 			</div>
 		</div>
 		<div class="form-group row">

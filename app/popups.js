@@ -140,8 +140,6 @@ app.controller("PurchaseController", function($scope, $rootScope, $window) {
 	$scope.demo = function() {
 		$scope.callToOwnerWindow("demo");
 	}
-
-	$scope.message = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, illo, dolorum modi inventore amet provident ducimus adipisci ab? Eligendi, sed, nobis eius deserunt iste dolor inventore incidunt sequi quam aliquid?"
 });
 
 app.controller("ContinueDemoController", function($scope, $rootScope, $window) {
@@ -175,6 +173,14 @@ app.controller("CloseSaveController", function($scope, $rootScope, $window) {
 	}
 	$scope.cancel = function() {
 		$scope.callToOwnerWindow("cancel");
+	}
+});
+
+app.controller("AlertController", function($scope, $rootScope, $window) {
+	console.log("close/save colt dialog");	
+
+	$scope.close = function() {
+		$scope.callToOwnerWindow("close");
 	}
 });
 
