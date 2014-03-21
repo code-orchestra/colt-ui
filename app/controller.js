@@ -136,12 +136,36 @@ app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $
 	/*
 	* type - error, info, warning, app
 	*/
-	$scope.showMessageDialog = function(type, message) {
-		//todo: realize
+	$scope.showMessageDialog = function(type, message, stacktrase) {
+		var win = $scope.openPopup('popups.html#/alert-dialog', "COLT");
+		win.popup = {
+			close: function(){
+				console.log("close alert");
+				win.close();
+			}
+		}
 	}
 
 	$scope.showPurchaseDialog = function() {
-		var win = $scope.openPopup('popups.html#/purchase-dialog', "Close COLT");
+		var win = $scope.openPopup('popups.html#/purchase-dialog', "Purchase COLT");
+		win.popup = {
+			enterSerialNumber: function(serial){
+				console.log("serial number", serial);
+				win.close();
+			},
+			buy: function(){
+				console.log("purchase COLT");
+				win.close();
+			},
+			demo: function(){
+				console.log("continue demo");
+				win.close();
+			}
+		}
+	}
+
+	$scope.showContinueWithDemoDialog = function(message) {
+		var win = $scope.openPopup('popups.html#/continue-with-demo-dialog', "COLT Demo");
 		win.popup = {
 			enterSerialNumber: function(serial){
 				console.log("serial number", serial);

@@ -25,6 +25,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		pageName: "Purchase COLT",
 		controller: "PurchaseController"
 	})
+	.state('continue-demo-dialog', {
+		url: "/purchase-dialog",
+		templateUrl: "popups/continue-demo-dialog.html",
+		pageName: "Purchase COLT",
+		controller: "ContinueDemoController"
+	})
 	.state('update-dialog', {
 		url: "/update-dialog",
 		templateUrl: "popups/update-dialog.html",
@@ -55,7 +61,6 @@ app.run(function($rootScope, Analytics) {
 	$rootScope.onResize = function() {
 		var win = $(".popup-window");
 		if(win.size() > 0){
-			console.log("on-resize: ",$(win)[0].scrollWidth, $(win)[0].scrollHeight)
 			if(window.popupInfo){
 				window.popupInfo.onResize($(win)[0].scrollWidth, $(win)[0].scrollHeight);
 			}
@@ -115,9 +120,25 @@ app.controller("WelcomeController", function($scope, $rootScope, $window) {
 	}
 });
 
-
-
 app.controller("PurchaseController", function($scope, $rootScope, $window) {
+	console.log("purchase colt dialog");
+
+	$scope.serialNumber = '';
+
+	$scope.enterSerialNumber = function() {
+		$scope.callToOwnerWindow("enterSerialNumber", $scope.serialNumber);
+	}
+	$scope.buy = function() {
+		$scope.callToOwnerWindow("buy");
+	}
+	$scope.demo = function() {
+		$scope.callToOwnerWindow("demo");
+	}
+
+	$scope.message = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, illo, dolorum modi inventore amet provident ducimus adipisci ab? Eligendi, sed, nobis eius deserunt iste dolor inventore incidunt sequi quam aliquid?"
+});
+
+app.controller("ContinueDemoController", function($scope, $rootScope, $window) {
 	console.log("purchase colt dialog");
 
 	$scope.serialNumber = '';

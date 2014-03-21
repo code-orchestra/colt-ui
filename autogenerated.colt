@@ -1,11 +1,11 @@
-<xml projectName="welcome-screen" projectPort="9091" projectType="JS">
+<xml projectName="purchase-dialog" projectPort="9091" projectType="JS">
   <paths>
     <sources-set>**/*.js, **/*.htm*, -java/, -bower_components/</sources-set>
     <excludes-set>out/**, .git/**, .*/**, **/*bak___</excludes-set>
     <reloads-set>**/*.htm*, **/*.css, **/*.png</reloads-set>
   </paths>
   <build>
-    <main-document>/Volumes/Archive/Projects/colt-ui/popups/welcome-screen.html</main-document>
+    <main-document>/Volumes/Archive/Projects/colt-ui/popups/purchase-dialog.html</main-document>
     <use-custom-output-path>true</use-custom-output-path>
     <out-path>/Volumes/Archive/Projects/tmp/out</out-path>
     <precompile>
