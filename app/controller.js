@@ -203,11 +203,21 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	}
 
 	$scope.showOpenProjectDialog = function(){
-		return chooseFile("#openProjectInput");
+		chooseFile("#openProjectInput").then(function (path) {
+			$scope.sendToJavaWithPromise("load -file:" + path, "loaded")
+			.then(function () {
+				$scope.loadProject(path) 
+			})
+		});
 	}
 
 	$scope.showNewProjectDialog = function(){
-		return chooseFile("#newProjectInput");
+		chooseFile("#newProjectInput").then(function (path) {
+			$scope.sendToJavaWithPromise("create -file:" + path, "created")
+			.then(function () {
+				$scope.loadProject(path) 
+			})
+		})
 	}
 	
 	$scope.showSaveAsProjectDialog = function(){

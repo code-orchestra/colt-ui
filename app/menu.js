@@ -16,14 +16,14 @@ app.service("appMenu", function($q) {
 			fileSubMenu.append(new gui.MenuItem({
 				label: 'New Project',
 				click: function () {
-					//todo: implement 
+					$scope.showNewProjectDialog();
 				}
 			}));
 			fileSubMenu.append(new gui.MenuItem({ type: 'separator' }));
 			fileSubMenu.append(new gui.MenuItem({
 				label: 'Open Project',
 				click: function () {
-					//todo: implement 
+					$scope.showOpenProjectDialog();
 				}
 			})); 
 			
@@ -118,7 +118,7 @@ app.service("appMenu", function($q) {
 				recentProjectsSubMenu.append(new gui.MenuItem({
 					label: entry,
 					click: function () {
-						console.log(entry) 
+						$scope.loadProject(entry) 
 					}
 				}));
 			})

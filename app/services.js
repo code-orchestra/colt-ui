@@ -136,14 +136,24 @@ app.service("nodeApp", function($q, appMenu) {
 												break;
 										}									
 									}else if(json.type == "recentProjectsPaths") {
-										if (serviceDefers["recentProjectsPaths"] != null) {
-											serviceDefers["recentProjectsPaths"].resolve(json.array)
-											serviceDefers["recentProjectsPaths"] = null
+										if (serviceDefers[json.type] != null) {
+											serviceDefers[json.type].resolve(json.array)
+											serviceDefers[json.type] = null
+										};
+									}else if(json.type == "loaded") {
+										if (serviceDefers[json.type] != null) {
+											serviceDefers[json.type].resolve()
+											serviceDefers[json.type] = null
+										};
+									}else if(json.type == "created") {
+										if (serviceDefers[json.type] != null) {
+											serviceDefers[json.type].resolve()
+											serviceDefers[json.type] = null
 										};
 									}
 									$scope.$emit(json.type, json);
 								});
-
+								console.log("json.type = ", json.type)
 							}catch(e){
 								console.error("error parse json: |" + messageText + "|", e);
 								return;
