@@ -48,6 +48,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl: "popups/alert-dialog.html",
 		pageName: "Alert",
 		controller: "CloseSaveController"
+	}).state('enter-serial-number-dialog', {
+		url: "/enter-serial-number-dialog",
+		templateUrl: "popups/enter-serial-number-dialog.html",
+		pageName: "Enter Serial Number",
+		controller: "EnterSerialNumberController"
 	})
 });
 
@@ -97,7 +102,7 @@ app.run(function($rootScope, Analytics) {
 	}
 });
 
-app.controller("WelcomeController", function($scope, $rootScope, $window) {
+app.controller("WelcomeController", function($scope, $rootScope) {
 	console.log("welcome screen");
 
 	$scope.rescentProjects = [
@@ -126,7 +131,7 @@ app.controller("WelcomeController", function($scope, $rootScope, $window) {
 	}
 });
 
-app.controller("PurchaseController", function($scope, $rootScope, $window) {
+app.controller("PurchaseController", function($scope, $rootScope) {
 	console.log("purchase colt dialog");
 
 	$scope.serialNumber = '';
@@ -142,8 +147,18 @@ app.controller("PurchaseController", function($scope, $rootScope, $window) {
 	}
 });
 
-app.controller("ContinueDemoController", function($scope, $rootScope, $window) {
-	console.log("purchase colt dialog");
+app.controller("EnterSerialNumberController", function($scope, $rootScope) {
+	console.log("enter serial number dialog");
+
+	$scope.serialNumber = '';
+
+	$scope.enterSerialNumber = function() {
+		$scope.callToOwnerWindow("enterSerialNumber", $scope.serialNumber); 
+	}
+});
+
+app.controller("ContinueDemoController", function($scope, $rootScope) {
+	console.log("continue with deme dialog");
 
 	$scope.serialNumber = '';
 
@@ -158,11 +173,11 @@ app.controller("ContinueDemoController", function($scope, $rootScope, $window) {
 	}
 });
 
-app.controller("UpdateController", function($scope, $rootScope, $window) {
+app.controller("UpdateController", function($scope, $rootScope) {
 	console.log("update colt dialog");
 });
 
-app.controller("CloseSaveController", function($scope, $rootScope, $window) {
+app.controller("CloseSaveController", function($scope, $rootScope) {
 	console.log("close/save colt dialog");	
 
 	$scope.dontSave = function() {
@@ -176,8 +191,8 @@ app.controller("CloseSaveController", function($scope, $rootScope, $window) {
 	}
 });
 
-app.controller("AlertController", function($scope, $rootScope, $window) {
-	console.log("close/save colt dialog");	
+app.controller("AlertController", function($scope, $rootScope) {
+	console.log("alert dialog");	
 
 	$scope.close = function() {
 		$scope.callToOwnerWindow("close");

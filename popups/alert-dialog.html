@@ -1,8 +1,9 @@
-<meta colt-main="http://10.0.1.8:9091/popups.html#/close-save-dialog">
 <div class="lose-save dialog container popup-window" style="padding-top:10px">
 	<form class="col-xs-12">
 		<div class="form-group row">
-			<img src="images/messages/warning-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			<div ng-switch on="">
+				<img src="images/messages/warning-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			</div>
 			<div class="dialog-message pull-right"><h4>Save changes to COLT "Project" project before closing?</h4></div>
 		</div>
 		<div class="form-group row">
