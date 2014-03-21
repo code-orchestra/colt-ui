@@ -43,8 +43,25 @@ app.run(function($rootScope, Analytics) {
 	$rootScope.$on('$stateChangeSuccess', function(event, toState){ 
 		$rootScope.pageName = toState.pageName;
 		$rootScope.pageIndex = toState.pageIndex;
-		Analytics.trackPage(toState.url + ".html");
+		// Analytics.trackPage(toState.url + ".html");
+		
+		$rootScope.onResize();
+		$(".popup-window").bind("resize", function() {
+			console.log("on resize");
+			$rootScope.onResize();
+		});
 	});
+	$(document).bind("resize", function() {
+		console.log("on resize");
+		$rootScope.onResize();
+	});
+
+	$rootScope.onResize = function() {
+		var win = $(".popup-window");
+		if(win.size() > 0){
+			$scope.callToOwnerWindow("resize", win.width()+5, win.height());
+		}
+	}
 
 	$rootScope.callToOwnerWindow = function(command, arg) {
 		if(window.hasOwnProperty("popup")){
@@ -67,10 +84,9 @@ app.run(function($rootScope, Analytics) {
 app.controller("WelcomeController", function($scope, $rootScope, $window) {
 	console.log("welcome screen");
 
-	//@todo: брать из параметров, которые даст главное окно или вычислять
 	$scope.rescentProjects = [
-		{name:"My Rescent Project"},
-		{name:"Index"}
+	{name:"My Rescent Project"},
+	{name:"Index"}
 	];
 
 	$scope.openLink = function(url) {
