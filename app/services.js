@@ -222,7 +222,7 @@ app.service("nodeApp", function($q) {
 				});
 				windowObject.popupInfo = {};
 				windowObject.popupInfo.onResize = function(w, h) {
-					windowObject.resizeTo(w+25, h+32);
+					windowObject.resizeTo(w, h+32);
 				};
 				modal.on('focused', function() {
 					console.log("popup focused");
