@@ -186,6 +186,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		}
 	}
 
+	$scope.openProject = function(){
+		var d = $q.defer();
+	}
+
 	nodeApp.buildNode($scope);
 
 	var projectPath = $scope.getProjectPath();
