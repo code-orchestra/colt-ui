@@ -186,8 +186,32 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		}
 	}
 
-	$scope.openProject = function(){
+	var chooseFile = function(name) {
 		var d = $q.defer();
+		var chooser = $(name);
+		chooser.change(function(evt) {
+			var filePath = $(this).val();
+			if(filePath){
+				d.resolve(filePath);
+			}else{
+				d.reject(filePath);
+			}
+		});
+
+		chooser.trigger('click');
+		return d.promise;
+	}
+
+	$scope.showOpenProjectDialog = function(){
+		return chooseFile("#openProjectInput");
+	}
+
+	$scope.showNewProjectDialog = function(){
+		return chooseFile("#newProjectInput");
+	}
+	
+	$scope.showSaveAsProjectDialog = function(){
+		return chooseFile("#saveAsProjectInput");
 	}
 
 	nodeApp.buildNode($scope);

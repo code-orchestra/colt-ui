@@ -44,8 +44,8 @@
 		<div class="logFilterButton" ng-class="{selected:logFilter=='LIVE'}" ng-click="selectLogFilter('LIVE')" ng-show="pageIndex==2">Live({{filter.liveCount}})</div>
 		<button class="btn-live" ng-disabled="sessionStateSwitching" ng-class="{selected:sessionInProgress}" ng-click="startSession()"></button>
 	</div>
-	<input id="newProjectInput" style="display:none;" type="file" accept=".colt"> 
+	<input id="newProjectInput" style="display:none;" nwsaveas="project.colt" type="file" accept=".colt"> 
+	<input id="saveAsProjectInput" style="display:none;" nwsaveas type="file" accept=".colt">
 	<input id="openProjectInput" style="display:none;" type="file" accept=".colt"> 
-	<input id="saveAsProjectInput" style="display:none;" nwsaveas="project.colt" type="file" accept=".colt">
 </body>
 </html>
