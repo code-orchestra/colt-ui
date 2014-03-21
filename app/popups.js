@@ -44,25 +44,26 @@ app.run(function($rootScope, Analytics) {
 		$rootScope.pageName = toState.pageName;
 		$rootScope.pageIndex = toState.pageIndex;
 		// Analytics.trackPage(toState.url + ".html");
-		
-		$rootScope.onResize();
-		$(".popup-window").bind("resize", function() {
-			console.log("on resize");
-			$rootScope.onResize();
-		});
-	});
-	$(document).bind("resize", function() {
-		console.log("on resize");
 		$rootScope.onResize();
 	});
 
+	$(document).bind("resize", function() {
+		console.log("on resize", arguments);
+		$rootScope.onResize();
+	});
+	
 	$rootScope.onResize = function() {
 		var win = $(".popup-window");
 		if(win.size() > 0){
-			window.popupInfo.onResize(win.width()+5, win.height());
+			console.log("on-resize: ",$(win)[0].scrollWidth, $(win)[0].scrollHeight)
+			if(window.popupInfo){
+				window.popupInfo.onResize($(win)[0].scrollWidth, $(win)[0].scrollHeight);
+			}
+		}else{
+			console.log("popup window not found")
 		}
 	}
-
+	
 	$rootScope.callToOwnerWindow = function(command, arg) {
 		if(window.hasOwnProperty("popup")){
 			if(window.popup.hasOwnProperty(command)){
