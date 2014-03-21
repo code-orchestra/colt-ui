@@ -93,6 +93,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 			initValues(model,['live','launch'],[]);
 			initValues(model,['live','settings'],['disconnect','clear-log'],false);
 
+			if(/(^\w[:].+)|(^\/)/.exec(projectPath)){
+				$scope.projectBaseDir = projectPath.replace(/([^\/\\]+)\.colt$/, "");
+			}
+
 			console.log(model);
 		});
 	}
@@ -219,7 +223,7 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 			})
 		})
 	}
-	
+
 	$scope.showSaveAsProjectDialog = function(){
 		return chooseFile("#saveAsProjectInput");
 	}
