@@ -205,8 +205,8 @@ app.service("nodeApp", function($q) {
 				return d.promise
 			}
 			
-			$scope.openPopup = function(html, width, height, title) {
-				var windowObject = window.open(html, "popup", {resizable:false,width:width,height:height});
+			$scope.openPopup = function(html, title) {
+				var windowObject = window.open(html, "popup", {resizable:false, width:window.width,height:window.height});
 				var modal = gui.Window.get(windowObject);
 				modal.hide();
 				modal.showDevTools();
@@ -215,12 +215,15 @@ app.service("nodeApp", function($q) {
 					win.hide();
 					modal.focus();
 					modal.title = title;
-					modal.resizeTo(width, height);
 					modal.x = win.x - 40;
 					modal.y = win.y - 40;
 					modal.setPosition("mouse");
 					modal.show();
 				});
+				windowObject.popupInfo = {};
+				windowObject.popupInfo.onResize = function(w, h) {
+					windowObject.resizeTo(w+25, h+32);
+				};
 				modal.on('focused', function() {
 					console.log("popup focused");
 				});

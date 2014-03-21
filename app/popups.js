@@ -59,7 +59,7 @@ app.run(function($rootScope, Analytics) {
 	$rootScope.onResize = function() {
 		var win = $(".popup-window");
 		if(win.size() > 0){
-			$scope.callToOwnerWindow("resize", win.width()+5, win.height());
+			window.popupInfo.onResize(win.width()+5, win.height());
 		}
 	}
 

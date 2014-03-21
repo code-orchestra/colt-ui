@@ -111,7 +111,7 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	// popups.html#/update-dialog
 	// popups.html#/welcome-screen (in progress)
 	$scope.showSerialNumberDialog = function() {
-		var win = $scope.openPopup('popups.html#/purchase-dialog', 555, 300, "Close COLT");
+		var win = $scope.openPopup('popups.html#/purchase-dialog', "Close COLT");
 		var d = $q.defer();
 		win.popup = {
 			enterSerialNumber: function(serial){
@@ -132,8 +132,8 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		return d.promise
 	}
 
-	$scope.testPopup = function() {
-		var win = $scope.openPopup('popups.html#/purchase-dialog', 555, 300, "Close COLT");
+	$scope.showPurchaseDialog = function() {
+		var win = $scope.openPopup('popups.html#/purchase-dialog', "Close COLT");
 		win.popup = {
 			enterSerialNumber: function(serial){
 				console.log("serial number", serial);
@@ -150,8 +150,8 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		}
 	}	
 
-	$scope.testPopup2 = function() {
-		var win = $scope.openPopup('popups.html#/close-save-dialog', 550, 150, "Close COLT");
+	$scope.showCloseColtDialog = function() {
+		var win = $scope.openPopup('popups.html#/close-save-dialog',"Close COLT");
 		win.popup = {
 			cancel: function(){
 				console.log("cancel close", w);

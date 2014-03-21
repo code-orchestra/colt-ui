@@ -77,3 +77,12 @@ IMG {
 	color: #FFF;
 	text-shadow: none;
 }
+
+.popup-window, .dialog, form{
+	margin: 0;
+}
+
+.dialog{
+	padding: 17px, 30px, 30px, 30px;
+	width: 588px;
+}
