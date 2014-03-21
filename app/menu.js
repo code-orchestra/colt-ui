@@ -1,11 +1,14 @@
 'use strict';
 
 app.service("appMenu", function($q) { 
+	if(top['require']){
 		var gui = require('nw.gui');
 		var win = gui.Window.get();
 		var self = this
 		this.buildMenu = function($scope, array) {
 
+			console.log("build menu");
+			
 			var menu  = new gui.Menu({ type: 'menubar' });
 			
 			var file = new gui.MenuItem({label: 'File'});
@@ -127,9 +130,10 @@ app.service("appMenu", function($q) {
 				label: 'Clear List',
 				enabled: recentProjectsSubMenu.items.length > 0,
 				click: function () {
-					 self.buildMenu($scope, [])
+					self.buildMenu($scope, [])
 				}
 			}));
 			return recentProjectsSubMenu
 		}
+	}
 });

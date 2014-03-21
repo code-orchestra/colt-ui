@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $q) {
+app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
@@ -17,7 +17,6 @@ app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $
 			}
 		};
 	}
-
 
 	$scope.model = {};
 	$scope.logMessages = [];
@@ -66,12 +65,7 @@ app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $
 		Analytics.trackPage(toState.url + ".html");
 	});
 
-	nodeApp.buildNode($scope);
-	appMenu.buildMenu($scope, []);
-	$scope.sendToJavaWithPromise("getRecentProjectsPaths", "recentProjectsPaths").then(function (array) {
-		appMenu.buildMenu($scope, array);
-	});
-
+	
 	$scope.loadProject = function(projectPath) {
 		$http.get(projectPath,
 			{transformResponse:function(data) {
@@ -103,17 +97,6 @@ app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $
 		});
 	}
 
-	var projectPath = $scope.getProjectPath();
-
-	if(projectPath){
-		console.log("load project: " + projectPath);
-		$scope.loadProject(projectPath);
-	}
-
-	// popups.html#/close-save-dialog (in progress)
-	// popups.html#/purchase-dialog
-	// popups.html#/update-dialog
-	// popups.html#/welcome-screen (in progress)
 	$scope.showSerialNumberDialog = function() {
 		var win = $scope.openPopup('popups.html#/purchase-dialog', "Close COLT");
 		var d = $q.defer();
@@ -201,5 +184,14 @@ app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $
 				win.close();
 			}
 		}
+	}
+
+	nodeApp.buildNode($scope);
+
+	var projectPath = $scope.getProjectPath();
+
+	if(projectPath){
+		console.log("load project: " + projectPath);
+		$scope.loadProject(projectPath);
 	}
 })
