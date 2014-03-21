@@ -1,17 +1,14 @@
-<meta colt-main="http://10.0.1.8:9091/popups.html#/close-save-dialog">
 <div class="lose-save dialog container popup-window" style="padding-top:10px">
 	<form class="col-xs-12">
-		<div class="form-group row">
-			<img src="images/messages/warning-48x48.png" height="48" width="48" class="dialog-image pull-left">
-			<div class="dialog-message pull-right"><h4>Save changes to COLT "Project" project before closing?</h4></div>
+		<div class="form-group row" ng-submit="close()">
+			<img ng-src="images/messages/{{popup.type}}-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			<div class="dialog-message pull-right"><h4>{{popup.message}}</h4></div>
+		</div>
+		<div class="stacktrace" ng-show="popup.stacktrace">
+			<h5 class="message">{{popup.stacktrace}}</h5>
 		</div>
 		<div class="form-group row">
-			<button type="submit" ng-click="dontSave()" class="btn btn-default dialog-button">Don't Save</button>
-
-			<div class="pull-right">
-				<button type="submit" ng-click="save()" class="btn btn-primary dialog-button">Save</button>
-				<button type="submit" ng-click="cancel()" class="btn btn-default dialog-button">Cancel</button>
-			</div>
+			<button type="submit" ng-click="close()" class="btn btn-default pull-right">Close</button>
 		</div>
 		
 	</form>
@@ -20,37 +17,48 @@
 <!-- <img class="image-screen" src="../images/dialogs-screens/s5.png" height=dialog"223" width="629"> -->
 <div>
 	
-<style type="text/css">
+	<style type="text/css">
 	
-.dialog{
-	width: 588px;
-}
+	.dialog{
+		width: 588px;
+	}
 
-.image-screen{
-	margin-top: 400px;
-}
+	.image-screen{
+		margin-top: 400px;
+	}
 
-.dialog-button {
-	margin: 5px;
-}
+	.dialog-button {
+		margin: 5px;
+	}
 
-.dialog-message {
-	padding-top: 10px;
-	padding-right: 10px;
-}
+	.dialog-message {
+		padding-top: 10px;
+		padding-right: 10px;
+		width: 486px;
+	}
 
-.dialog-message h4 {
-	font-weight: bold;
-}
+	.dialog-message h4 {
+		font-weight: bold;
+	}
 
-.dialog-message h5 {
-	font-weight: bold;
-}
+	.dialog-message h5 {
+		font-weight: bold;
+	}
 
-.dialog-image{
-	margin-left: 5px;
-}
+	.dialog-image{
+		margin-top: 16px;
+		margin-left: 5px;
+	}
 
-</style>
+	.stacktrace{
+		color: red;
+		overflow-x: auto;
+		overflow-y: node;
+		max-height: 200px;
+		margin-top: 0px;
+		margin-bottom: 20px;
+	}
+
+	</style>
 	
 </div>

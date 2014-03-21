@@ -2,24 +2,18 @@
 	<form class="col-md-12" ng-submit="enterSerialNumber()">
 		<div class="form-group row">
 			<img src="images/ico-colt.png" height="48" width="48" class="dialog-image pull-left">
-			<div class="dialog-message pull-right" ng-show="!popup.message">
-				<h4>Hello! Thanks for trying out COLT!</h4>
-				<p>This is an unregistered demo version, and although the demo is untimed,<br> a license must be purchased for continued use.<br>Would you like to purchase a license now?</p>
+			<div class="dialog-message pull-right">
+				<h4>Enter Serial Number:</h4>
 			</div>
 			<div class="dialog-message pull-right" ng-show="popup.message">
 				<h4 class="message">{{popup.message}}</h4>
 			</div>
 		</div>
-		<div class="form-group row">
-			<button type="submit" ng-click="buy()" class="btn btn-default dialog-button ">Purchase</button>
-			<button type="submit" ng-click="demo()" class="btn btn-default dialog-button pull-right">Continue With Demo</button>
-		</div>
-		<p>Or enter a serial number</p>
 		<div class="input-group row">
 			<input type="file" class="hidden" ng-model="path">
 			<input type="text" placeholder="Serial Number" class="form-control" ng-model="serialNumber">
 			<span class="input-group-btn">
-				<button type="button" class="btn btn-default btn-add ok-button" ng-disabled="!serialNumber" ng-click="enterSerialNumber()">OK</button>
+				<button type="button" class="btn btn-default" ng-disabled="!serialNumber" ng-click="enterSerialNumber()">Register</button>
 			</span>
 		</div>
 	</form>
