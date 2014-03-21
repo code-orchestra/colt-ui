@@ -2,8 +2,9 @@
   "name": "hello",
   "version": "2.0.0",
   "main": "index.html",
+  "single-instance": false,
   "window": {
-  	"title" : "COLT 2.0",
+          "title" : "COLT 2.0",
     "toolbar": false,
     "width": 480,
     "height": 800

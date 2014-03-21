@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
+app.controller("AppCtrl", function($scope, nodeApp, appMenu, Analytics, $http, $q) {
 	
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
@@ -67,6 +67,7 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	});
 
 	nodeApp.buildNode($scope);
+	appMenu.buildMenu($scope);
 
 	$scope.loadProject = function(projectPath) {
 		$http.get(projectPath,
