@@ -5,3 +5,4 @@ node-webkit.app/*
 *.dll
 nw.exe
 nw.pak
+*.colt
