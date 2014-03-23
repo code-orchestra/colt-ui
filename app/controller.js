@@ -70,7 +70,19 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, Analytics, $htt
 		Analytics.trackPage(toState.url + ".html");
 	});
 
+	var autoSave = true;
+	$scope.$watch('model', function() {
+        if(autoSave)$scope.saveProject();
+    }, true);
 	
+	$scope.saveBeforeClose = function() {
+		if(needSave){
+			$scope.showCloseColtDialog();
+			return true;
+		}
+		return false;
+	}
+
 	$scope.loadProject = function(projectPath) {
 		$http.get(projectPath,
 			{transformResponse:function(data) {
@@ -84,6 +96,7 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, Analytics, $htt
 			console.log("error load project: " + projectPath);
 		})
 		.success(function(res) {
+			autoSave = false;
 			console.log("success load project: " + projectPath, res);
 			var model = $scope.model;
 			for(var v in res.xml){
@@ -103,6 +116,8 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, Analytics, $htt
 			}
 
 			console.log(model);
+
+			autoSave = true;
 		});
 	}
 	coltDialogs.buildDialogs($scope);

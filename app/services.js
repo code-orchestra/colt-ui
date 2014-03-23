@@ -22,6 +22,14 @@ app.service("nodeApp", function($q, appMenu) {
 			var gui = require('nw.gui'); 
 			var win = gui.Window.get(); //win.showDevTools();
 
+			win.on('close', function() {
+				// if(!$scope.saveBeforeClose()){
+				// 	this.close(true);
+				// }
+				// 
+				
+			});
+
 			var java;
 			var runJava = function (projectPath) {
 				var spawn = require('child_process').spawn;
