@@ -20,15 +20,7 @@ app.service("nodeApp", function($q, appMenu) {
 		
 		}else{
 			var gui = require('nw.gui'); 
-			var win = gui.Window.get(); //win.showDevTools();
-
-			win.on('close', function() {
-				// if(!$scope.saveBeforeClose()){
-				// 	this.close(true);
-				// }
-				//
-
-			});
+			var win = gui.Window.get(); win.showDevTools();
 
 			var java;
 			var runJava = function (projectPath) {
@@ -219,6 +211,7 @@ app.service("nodeApp", function($q, appMenu) {
 				}); 
 				return d.promise;
 			};
+
 			var serviceDefers = {}
 			$scope.sendToJava = function(message, resolveType) {
 				var d = serviceDefers[resolveType] || $q.defer();
@@ -269,21 +262,29 @@ app.service("nodeApp", function($q, appMenu) {
 			};
 
 			$scope.openJsDoc = function(html, title) {
-				var win = gui.Window.open('app://./popups.html#/js-doc-popup', {
+				var modal = gui.Window.open('app://./popups.html#/js-doc-popup', {
 				  position: 'mouse',
 				  title:title,
 				  width: 400,
 				  height: 200,
 				  frame: false
-				})
-				win.window.popup = {
+				});
+				var popupObject = {
 					jsdocTitle : title,
 					jsdocHtml : html
 				}
-
-				win.on('blur', function() {
-					win.close();
+				modal.on('loaded', function() {
+					if(!modal.window.popup){
+						modal.window.popup = popupObject;
+					}else{
+						$.extend(modal.window.popup, popupObject);
+					}
+					modal.focus();
 				});
+				modal.on('blur', function() {
+					modal.close();
+				});
+				console.log(popupObject)
 			};
 
 			$scope.getProjectPath = function(){

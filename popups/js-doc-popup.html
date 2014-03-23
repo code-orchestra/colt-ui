@@ -1,6 +1,6 @@
 <meta name="colt-main-document" content="popups.html#/js-doc-popup">
 <div class="container popup-window">
-	<div class="jsdoc-title"><h4>{{popup.jsdocTile}}</h4></div>
+	<div class="jsdoc-title"><h4>{{popup.jsdocTitle}}</h4></div>
 	<div class="jsdoc-body" ng-bind-html="popup.jsdocHtml"></div>
 </div>
 <!-- <img class="image-screen" src="../images/dialogs-screens/s5.png" height=dialog"223" width="629"> -->
@@ -9,9 +9,12 @@
 	<style type="text/css">
 	
 	body{
+		background: none;
+
+	}
+
+	.popup-window{
 		display: block;
-		width: 500px;
-		
 		/*border-radius: 9px;*/
 		background: #F5A623;
 		/*border: 1px solid #979797;*/
@@ -28,6 +31,7 @@
 	}
 
 	.jsdoc-body{
+		display: block;
 		overflow-x: auto;
 		overflow-y: node;		
 	}

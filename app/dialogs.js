@@ -33,16 +33,11 @@ app.service("coltDialogs", function($q) {
 		}
 
 		$scope.showProxyDialog = function() {
-			var popup = $scope.openPopup('popups.html#/update-dialog', "Proxy Settings");
+			var popup = $scope.openPopup('popups.html#/proxy-settings-dialog', "Proxy Settings");
 			var d = $q.defer();
 			$.extend(popup, {
-				close: function(){
-					console.log("close update");
-					d.resolve();
-					popup.window.close();
-				},
 				save: function(){
-					console.log("update!");
+					console.log("save proxy settings");
 					d.resolve();
 					popup.window.close();
 				}
@@ -201,7 +196,7 @@ app.service("coltDialogs", function($q) {
 		}
 
 		$scope.testJsDocs = function() {
-			$scope.openJsDoc("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, facere ratione itaque laudantium possimus natus illum vero rerum quae deleniti aperiam incidunt atque veniam nisi facilis reiciendis voluptas. Sequi, veritatis, enim numquam molestias nam debitis inventore ipsam aut et quas eos aliquam necessitatibus sapiente quos praesentium labore assumenda molestiae veniam maxime reprehenderit mollitia voluptatum consectetur harum repudiandae eaque id quod? Commodi, magnam, nostrum, eaque nesciunt assumenda nulla sit facilis possimus impedit tempora eligendi minus vero labore dolor tempore qui id ullam facere alias incidunt enim quod hic sint voluptates iure! Voluptas, natus, a, possimus, obcaecati impedit aliquid maxime laboriosam labore porro mollitia ab aspernatur harum optio accusamus temporibus veniam ut! Doloremque, saepe, hic quis in ut voluptates veniam error itaque laboriosam minima illo consequuntur harum consectetur cum esse officiis non accusantium nostrum blanditiis beatae magni optio libero debitis. Laboriosam, deserunt, quidem soluta quo distinctio cupiditate ad perferendis sequi ducimus labore dignissimos veritatis atque id quibusdam delectus reiciendis facilis. Atque, soluta, aliquid accusamus porro iusto magni voluptatum cumque totam ex quod illo distinctio blanditiis at tempore reiciendis repudiandae dicta ullam facere rem explicabo facilis nesciunt voluptatibus optio corporis vel sequi a impedit! Perferendis excepturi molestiae deleniti tempore quia voluptas in iure!", "JS Doc Title")
+			$scope.openJsDoc("Lorem ipsum dolor sit amet, <b>consectetur</b> adipisicing elit. <b>Fugiat</b>, facere ratione itaque laudantium possimus natus illum vero rerum quae deleniti aperiam incidunt atque veniam nisi facilis reiciendis voluptas. Sequi, veritatis, enim numquam molestias nam debitis inventore ipsam aut et quas eos aliquam necessitatibus sapiente quos praesentium labore assumenda molestiae veniam maxime reprehenderit mollitia voluptatum consectetur harum repudiandae eaque id quod? Commodi, magnam, nostrum, eaque nesciunt assumenda nulla sit facilis possimus impedit tempora eligendi minus vero labore dolor tempore qui id ullam facere alias incidunt enim quod hic sint voluptates iure! Voluptas, natus, a, possimus, obcaecati impedit aliquid maxime laboriosam labore porro mollitia ab aspernatur harum optio accusamus temporibus veniam ut! Doloremque, saepe, hic quis in ut voluptates veniam error itaque laboriosam minima illo consequuntur harum consectetur cum esse officiis non accusantium nostrum blanditiis beatae magni optio libero debitis. Laboriosam, deserunt, quidem soluta quo distinctio cupiditate ad perferendis sequi ducimus labore dignissimos veritatis atque id quibusdam delectus reiciendis facilis. Atque, soluta, aliquid accusamus porro iusto magni voluptatum cumque totam ex quod illo distinctio blanditiis at tempore reiciendis repudiandae dicta ullam facere rem explicabo facilis nesciunt voluptatibus optio corporis vel sequi a impedit! Perferendis excepturi molestiae deleniti tempore quia voluptas in iure!", "JS Doc Title")
 		}
 	}
 });
