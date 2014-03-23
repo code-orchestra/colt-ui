@@ -28,6 +28,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		$scope.$broadcast("logMessage", m);
 	};
 
+	window.onerror = function(msg, url, line) {
+		$scope.log("ERROR", "COLT UI Error: " + message, url+":"+line);
+	}
+
 	$scope.updateFilters = function() {
 		var messages = $scope.logMessages;
 		$scope.filter.errorsCount = messages.filter(function(e) {return e.level=="ERROR"}).length;
