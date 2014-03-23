@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
+app.controller("AppCtrl", function($scope, nodeApp, dialogs, Analytics, $http, $q) {
 	
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
@@ -105,7 +105,7 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 			console.log(model);
 		});
 	}
-
+	dialogs.buildDialogs($scope);
 	nodeApp.buildNode($scope);
 
 	// var projectPath = $scope.getProjectPath();

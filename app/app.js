@@ -6,6 +6,7 @@ var app = angular.module("COLT", [
 	'log.visualizer.directive', 
 	'ui.router', 
 	'pasvaz.bindonce',
+	'dialogs',
 	'angular-google-analytics'
 	]);
 

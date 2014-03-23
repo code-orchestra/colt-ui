@@ -1,7 +1,7 @@
 'use strict';
 
 app.service("dialogs", function($q) {
-	this.bildDialogs($scope){
+	this.buildDialogs($scope){
 		$scope.showSerialNumberDialog = function() {
 			var win = $scope.openPopup('popups.html#/enter-serial-number-dialog', "Close COLT");
 			var d = $q.defer();
