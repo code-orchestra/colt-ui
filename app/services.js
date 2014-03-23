@@ -208,15 +208,11 @@ app.service("nodeApp", function($q, appMenu) {
 				}); 
 				return d.promise;
 			};
-			$scope.sendToJava = function(message) {
-				java.stdin.write(message + "\n");
-			};
-
 			var serviceDefers = {}
-			$scope.sendToJavaWithPromise = function(message, resolveType) {
+			$scope.sendToJava = function(message, resolveType) {
 				var d = serviceDefers[resolveType] || $q.defer();
 				serviceDefers[resolveType] = d; 
-				$scope.sendToJava(message);
+				java.stdin.write(message + "\n");
 				return d.promise;
 			}
 			
@@ -251,7 +247,7 @@ app.service("nodeApp", function($q, appMenu) {
 			};
 
 			appMenu.buildMenu($scope, []);
-			$scope.sendToJavaWithPromise("getRecentProjectsPaths", "recentProjectsPaths").then(function (array) {
+			$scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths").then(function (array) {
 				appMenu.buildMenu($scope, array);
 			});
 		}

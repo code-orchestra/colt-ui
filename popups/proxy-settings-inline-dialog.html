@@ -1,0 +1,66 @@
+<div class="dialog container popup-window" ng-class="{opened:open,closed:!open}">
+	<div class="form-group row minimize-button" ng-click="open=!open" ng-class="{closed:!open,opened:open}"><p class="settins" ng-show="!open" ng-click="open=!open">Proxy Settings</p></div>
+	<form class="col-xs-12 dialog-form" ng-show="open">
+		<div class="form-group row" ng-submit="ok()">
+			<div class="dialog-message"><h4>Proxy Settings</h4></div>
+		</div>
+		<checkbox label="Use Proxy" checked="popup.useProxy"></checkbox>
+		<value label="Host" value="popup.host" disabled="!popup.useProxy"></value>
+		<value label="Port" value="popup.port" disabled="!popup.useProxy"></value>
+		<value label="Username" value="popup.username" disabled="!popup.useProxy"></value>
+		<value label="Password" value="popup.password" disabled="!popup.useProxy"></value>
+
+		<div class="form-group row">
+			<button type="submit" ng-click="ok()" class="btn btn-primary pull-right col-xs-2">OK</button>
+		</div>
+
+
+
+		<style type="text/css">
+		
+
+		.dialog{
+			width: 588px;
+		}
+
+		.dialog.opened{
+			background-color: #ECEFF3;
+		}
+		
+		.dialog.closed{
+			background-color: none;
+		}
+
+
+		.dialog-message h4 {
+			font-weight: bold;
+		}
+
+		.minimize-button{
+			height: 32px;
+			display: block;
+			background-repeat: no-repeat;
+			background-position: 7px 7px;
+			padding: 7px 0px 0px 32px;
+		}
+
+		.minimize-button.closed{
+			background-image: url(images/btns/arrow-r.png);
+			background-color: none;
+		}
+
+		.minimize-button.opened{
+			background-image: url(images/btns/arrow-u.png);
+			background-color: #dde0e4;
+		}
+
+
+
+		</style>		
+	</form>
+</div>
+<!-- <img class="image-screen" src="../images/dialogs-screens/s1.png" height=648"223" width="1152"> -->
+<div>
+	
+	
+</div>

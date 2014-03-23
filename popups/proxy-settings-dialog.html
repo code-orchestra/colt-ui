@@ -1,0 +1,56 @@
+<div class="lose-save dialog container popup-window" style="padding-top:10px">
+	<form class="col-xs-12">
+		<div class="form-group row" ng-submit="ok()">
+			<div class="dialog-message"><h4>Proxy Settings</h4></div>
+		</div>
+		<checkbox label="Use Proxy" checked="popup.useProxy"></checkbox>
+		<value label="Host" value="popup.host" disabled="!popup.useProxy"></value>
+		<value label="Port" value="popup.port" disabled="!popup.useProxy"></value>
+		<value label="Username" value="popup.username" disabled="!popup.useProxy"></value>
+		<value label="Password" value="popup.password" disabled="!popup.useProxy"></value>
+
+		<div class="form-group row">
+			<button type="submit" ng-click="ok()" class="btn btn-primary pull-right col-xs-2">OK</button>
+		</div>
+
+		<style type="text/css">
+
+		.dialog{
+			width: 588px;
+		}
+
+		.image-screen{
+			margin-top: 200px;
+		}
+
+		.dialog-button {
+			margin: 5px;
+		}
+
+		.dialog-message {
+
+		}
+
+		.dialog-message h4 {
+			font-weight: bold;
+		}
+
+		.dialog-message h5 {
+			font-weight: bold;
+		}
+
+		.dialog-image{
+			margin-top: 16px;
+			margin-left: 5px;
+		}
+
+		</style>
+
+		
+	</form>
+</div>
+<!-- <img class="image-screen" src="../images/dialogs-screens/s1.png" height=648"223" width="1152"> -->
+<div>
+	
+	
+</div>
