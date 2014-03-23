@@ -68,6 +68,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		pageName: "Proxy Settings",
 		controller: "ProxySettingsController"
 	})
+	.state('js-doc-popup', {
+		url: "/js-doc-popup",
+		templateUrl: "popups/js-doc-popup.html",
+		pageName: "JS Doct",
+		controller: "JsDocsController"
+	})
 });
 
 app.run(function($rootScope, Analytics) {
