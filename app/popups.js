@@ -254,3 +254,7 @@ app.controller("ProxySettingsController", function($scope, $rootScope) {
 	}
 });
 
+app.controller("JsDocsController", function($scope) {
+	console.log("js doc popup");
+});
+

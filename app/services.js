@@ -6,6 +6,7 @@ app.service("nodeApp", function($q, appMenu) {
 		$scope.saveProject = function() {};
 		$scope.sendToJava = function() {};
 		$scope.openPopup = function() {};
+		$scope.openJsDoc = function() {};
 
 		if(!top['require']){
 			setTimeout(function() {
@@ -71,97 +72,87 @@ app.service("nodeApp", function($q, appMenu) {
 								try{
 									var json = JSON.parse(trimMessage(messageText));
 									$scope.$apply(function() {
-										switch(json.type) {
-											case "log":
-												$scope.logMessages.push(json);
-												$scope.updateFilters();
-												break
-											case "runSession":
-												$scope.sessionInProgress = true;
-												$scope.sessionStateSwitching = false;
-												console.log("$scope.sessionInProgress", $scope.sessionInProgress);
-												break
-											case "stopSession":
-												$scope.sessionInProgress = false;
-												$scope.sessionStateSwitching = false;
-												console.log("$scope.sessionInProgress", $scope.sessionInProgress);
-												break
-											case "exec":
-												var exec = require('child_process').exec;
-											    var child = exec(json.exec,
-												  function (error, stdout, stderr) {
-												    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
-												    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
-												    if (error !== null) {
-												      $scope.log("ERROR", 'exec error: ' + error);
-												    }
-												});
-												break
-											case "serialNumber":
-												switch(json.state){
-													case "show":
-														$scope.showPurchaseDialog().then(
-															$scope.sendToJava,
-															function() {
-														    	$scope.sendToJava("continue");
-															},
-															function(update) {
-															    gui.Shell.openExternal(update);
-															}
-														)
-														break;
-													case "error":
-														$scope.showMessageDialog("error", json.message)
-														.then($scope.showSerialNumberDialog)
-														.then($scope.sendToJava,
-															function() {
-														    	$scope.sendToJava("continue");
-															});
-														break;
-													case "success":
-														$scope.showMessageDialog("app", json.message)
-														break;
-													case "demoMessage":
-														$scope.showMessageDialog("info", json.message)
-														break;
-													case "demoCount":
-														$scope.showContinueWithDemoDialog(json.message).then(
-															$scope.sendToJava,
-															function() {
-														    	$scope.sendToJava("continue");
-															},
-															function(update) {
-															    gui.Shell.openExternal(update);
-															}
-														)
-														break;
-												}		
-												break
-											case "recentProjectsPaths":
-												if (serviceDefers[json.type] != null) {
-													serviceDefers[json.type].resolve(json.array)
-													serviceDefers[json.type] = null
-												};
-												break
-											case "project":
-												switch(json.state) {
-													case "load":
-														$scope.loadProject(json.message)
-														break;
-													case "created":
-														break
-													case "createError":
-														break
-													case "loaded":
-														break
-													case "loadError":
-														break
-													case "saved":
-														break
-													case "saveError":
-														break
-												}
-												break
+										if(json.type == "log"){
+											$scope.logMessages.push(json);
+											$scope.updateFilters();
+										}else if(json.type == "runSession"){
+											$scope.sessionInProgress = true;
+											$scope.sessionStateSwitching = false;
+											console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+										}else if(json.type == "stopSession"){
+											$scope.sessionInProgress = false;
+											$scope.sessionStateSwitching = false;
+											console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+										}else if(json.type == "exec"){
+											var exec = require('child_process').exec;
+										    var child = exec(json.exec,
+											  function (error, stdout, stderr) {
+											    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
+											    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
+											    if (error !== null) {
+											      $scope.log("ERROR", 'exec error: ' + error);
+											    }
+											});
+										}else if(json.type == "SerialNumber") {
+											switch(json.state){
+												case "show":
+													$scope.showPurchaseDialog().then(
+														$scope.sendToJava,
+														function() {
+													    	$scope.sendToJava("continue");
+														},
+														function(update) {
+														    gui.Shell.openExternal(update);
+														}
+													)
+													break;
+												case "error":
+													$scope.showMessageDialog("error", json.message)
+													.then($scope.showSerialNumberDialog)
+													.then($scope.sendToJava,
+														function() {
+													    	$scope.sendToJava("continue");
+														});
+													break;
+												case "success":
+													$scope.showMessageDialog("app", json.message)
+													break;
+												case "demoMessage":
+													$scope.showMessageDialog("info", json.message)
+													break;
+												case "demoCount":
+													$scope.showContinueWithDemoDialog(json.message).then(
+														$scope.sendToJava,
+														function() {
+													    	$scope.sendToJava("continue");
+														},
+														function(update) {
+														    gui.Shell.openExternal(update);
+														}
+													)
+													break;
+											}									
+										}else if(json.type == "recentProjectsPaths") {
+											if (serviceDefers[json.type] != null) {
+												serviceDefers[json.type].resolve(json.array)
+												serviceDefers[json.type] = null
+											};
+										}else if(json.type == "loaded") {
+											if (serviceDefers[json.type] != null) {
+												serviceDefers[json.type].resolve()
+												serviceDefers[json.type] = null
+											};
+										}else if(json.type == "created") {
+											if (serviceDefers[json.type] != null) {
+												serviceDefers[json.type].resolve()
+												serviceDefers[json.type] = null
+											};
+										}else if(json.type == "project") {
+											switch(json.state) {
+												case "load":
+													$scope.loadProject(json.message)
+													break;
+											}
 										}
 										$scope.$emit(json.type, json);
 									});
@@ -219,11 +210,12 @@ app.service("nodeApp", function($q, appMenu) {
 			}
 			
 			$scope.openPopup = function(html, title) {
-				var windowObject = window.open(html, "popup", {resizable:false, width:window.width,height:window.height});
-				var modal = gui.Window.get(windowObject);
+				var modal = gui.Window.open('app://./'+ html,{
+					toolbar: false
+				});
 				modal.hide();
-				win.hide();
-				modal.showDevTools();
+				// win.hide();
+				//modal.showDevTools();
 				var popupObject = {};
 				modal.on('loaded', function() {
 					console.log("popup opened");
@@ -233,14 +225,15 @@ app.service("nodeApp", function($q, appMenu) {
 					modal.y = win.y - 40;
 					modal.setPosition("mouse");
 					modal.show();
-					popupObject = windowObject.popup;
-				});
-				windowObject.popupInfo = {};
-				windowObject.popupInfo.onResize = function(w, h) {
-					windowObject.resizeTo(w, h+32);
-				};
-				modal.on('focused', function() {
-					console.log("popup focused");
+					popupObject = modal.window.popup;
+					var $ = modal.window.$;
+					var popupWindow = $(".popup-window");
+					if(popupWindow.size() > 0){
+						modal.resizeTo($(popupWindow)[0].scrollWidth, $(popupWindow)[0].scrollHeight+32);
+					}else{
+						console.log("popup window not found")
+					}
+					console.log("loaded", $);
 				});
 				modal.on('closed', function() {
 					win.show();
@@ -250,7 +243,26 @@ app.service("nodeApp", function($q, appMenu) {
 						popupObject.close();
 					}
 				});
-				return windowObject;
+				console.loo("!!!!", modal.window)
+				return modal.window;
+			};
+
+			$scope.openJsDoc = function(html, title) {
+				var win = gui.Window.open('app://./popups.html#/js-doc-popup', {
+				  position: 'mouse',
+				  title:title,
+				  width: 400,
+				  height: 200,
+				  frame: false
+				})
+				win.window.popup = {
+					jsdocTitle : title,
+					jsdocHtml : html
+				}
+
+				win.on('blur', function() {
+					win.close();
+				});
 			};
 
 			$scope.getProjectPath = function(){
@@ -281,4 +293,4 @@ app.service("nodeApp", function($q, appMenu) {
 			});
 		}
 	} 
-});
+});  
