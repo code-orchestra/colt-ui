@@ -214,7 +214,7 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 
 	$scope.showOpenProjectDialog = function(){
 		chooseFile("#openProjectInput").then(function (path) {
-			$scope.sendToJavaWithPromise("load -file:" + path, "loaded")
+			$scope.sendToJava("load -file:" + path, "loaded")
 			.then(function () {
 				$scope.loadProject(path) 
 			})
@@ -223,7 +223,7 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 
 	$scope.showNewProjectDialog = function(){
 		chooseFile("#newProjectInput").then(function (path) {
-			$scope.sendToJavaWithPromise("create -file:" + path, "created")
+			$scope.sendToJava("create -file:" + path, "created")
 			.then(function () {
 				$scope.loadProject(path) 
 			})

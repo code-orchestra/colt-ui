@@ -11,7 +11,8 @@ angular.module('colt.directives', [])
      path: "=",
      disabled: "=",
      checkbox: "=",
-     placeholder: "@"
+     placeholder: "@",
+     nwworkingdir:"="
    },
    link: function (scope, element, attrs) {
     var fileInput = $(element).find("input:file");
@@ -30,7 +31,7 @@ angular.module('colt.directives', [])
   '<div class="form-group row">'+
   '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label>'+
   '  <div class="input-group input-group-sm">'+
-  '    <input type="file" class="hidden" ng-model="path">'+
+  '    <input type="file" class="hidden" ng-model="path" nwworkingdir="{{nwworkingdir}}">'+
   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="disabled">'+
   '    <span class="input-group-btn"><button type="button" '+
   '    class="btn btn-default btn-add" ng-disabled="disabled">Browse</button></span>'+
@@ -261,12 +262,13 @@ angular.module('colt.directives', [])
     scope: {
       label: "@",
       value: "=",
-      placeholder: "@"
+      placeholder: "@",
+      disabled:"="
     },
     template: 
     '<div class="form-group row">'+
     '  <label>{{label}}</label>'+
-    '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-model="value">'+
+    '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-disabled="disabled" ng-model="value">'+
     '</div>'
   };
 
