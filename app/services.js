@@ -220,7 +220,7 @@ app.service("nodeApp", function($q, appMenu) {
 				modal.showDevTools();
 				var popupObject = {};
 				modal.on('loaded', function() {
-					console.log("popup opened", win);
+					console.log("popup opened");
 					win.hide();
 					modal.focus();
 					modal.title = title;
@@ -228,7 +228,6 @@ app.service("nodeApp", function($q, appMenu) {
 					modal.y = win.y - 40;
 					modal.setPosition("mouse");
 					modal.show();
-					console.log("windowObject.popup", windowObject.popup)
 					popupObject = windowObject.popup;
 				});
 				windowObject.popupInfo = {};

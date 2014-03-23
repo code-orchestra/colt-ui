@@ -150,7 +150,7 @@ app.controller("WelcomeController", function($scope, $rootScope) {
 
 	$scope.openProject = function() {
 		console.log("open project")
-		// $scope.callToOwnerWindow("openProject2");
+		$scope.callToOwnerWindow("openProject");
 	}
 });
 

@@ -13,11 +13,11 @@
 			</ul>
 
 			<ul class="m-open">
-				<li><a href="openProject()">Open</a></li>
+				<li><a ng-click="openProject()">Open</a></li>
 				<li><a ng-click="openDemoProjects()">Open Demo Project</a></li>
 				<li id="recent-projects" class="submenu-title">Open a Recent Project
 					<ul>
-						<li ng-repeat="project in popup.rescentProjects"><a ng-click="openProject($index)">{{project.name}}</a></li>
+						<li ng-repeat="project in popup.rescentProjects"><a ng-click="openRescentProject($index)">{{project.name}}</a></li>
 					</ul>
 				</li>
 			</ul>
