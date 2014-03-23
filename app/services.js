@@ -116,7 +116,7 @@ app.service("nodeApp", function($q, appMenu) {
 												$scope.showMessageDialog("app", json.message)
 												break;
 											case "demoMessage":
-												$scope.showMessage("info", json.message)
+												$scope.showMessageDialog("info", json.message)
 												break;
 											case "demoCount":
 												$scope.showContinueWithDemoDialog(json.message).then(

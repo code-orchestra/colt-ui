@@ -77,7 +77,7 @@ app.service("appMenu", function($q) {
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Open Welcome Screen',
 				click: function () {
-					//todo: implement 
+					$scope.showWelcomeScreen() 
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({

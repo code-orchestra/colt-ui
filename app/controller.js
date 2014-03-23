@@ -196,6 +196,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		}
 	}
 
+	$scope.showWelcomeScreen = function() {
+		var win = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
+	}
+
 	var chooseFile = function(name) {
 		var d = $q.defer();
 		var chooser = $(name);
