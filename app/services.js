@@ -218,7 +218,7 @@ app.service("nodeApp", function($q, appMenu) {
 				modal.showDevTools();
 				var popupObject = {};
 				modal.on('loaded', function() {
-					console.log("popup opened", win);
+					console.log("popup opened");
 					win.hide();
 					modal.focus();
 					modal.title = title;
@@ -238,8 +238,8 @@ app.service("nodeApp", function($q, appMenu) {
 				modal.on('closed', function() {
 					win.show();
 					win.focus();
-					console.log("popup closed");
-					if(popupObject.hasOwnProperty("close")){
+					console.log("popup closed", popupObject);
+					if(popupObject && popupObject.hasOwnProperty("close")){
 						popupObject.close();
 					}
 				});

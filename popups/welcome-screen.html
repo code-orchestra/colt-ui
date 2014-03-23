@@ -1,5 +1,5 @@
+<meta name="colt-main-document" content="popups.html#/welcome-screen">
 <div class="welcome-screen popup-window">
-
 	<header role="banner">
 		<img src="images/welcome-screen/banner.png" alt="COLT: Code Orchestra Livecoding Tool" width="598" height="97">
 	</header>
@@ -13,11 +13,11 @@
 			</ul>
 
 			<ul class="m-open">
-				<li><a href="openProject()">Open</a></li>
+				<li><a ng-click="openProject()">Open</a></li>
 				<li><a ng-click="openDemoProjects()">Open Demo Project</a></li>
 				<li id="recent-projects" class="submenu-title">Open a Recent Project
 					<ul>
-						<li ng-repeat="project in rescentProjects"><a ng-click="openProject($index)">{{project.name}}</a></li>
+						<li ng-repeat="project in popup.rescentProjects"><a ng-click="openRescentProject($index)">{{project.name}}</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -34,11 +34,11 @@
 				<li><a ng-click="openLink('https://github.com/code-orchestra/documentation/wiki/FAQ')"target="_blank">FAQ</a></li>
 			</ul>
 
-			<ul class="m-video">
+<!-- 			<ul class="m-video">
 				<li><a ng-click="openLink('http://www.youtube.com/watch?v=ELGiZg46h8M&amp;hd=1')">Introduction</a>
 				</li>
 			</ul>
-		</div>
+ -->		</div>
 
 </div>
 
