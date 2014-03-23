@@ -13,6 +13,43 @@ app.service("coltDialogs", function($q) {
 			return d.promise;
 		}
 
+
+		$scope.showUpdateDialog = function() {
+			var popup = $scope.openPopup('popups.html#/update-dialog', "Update COLT");
+			var d = $q.defer();
+			$.extend(popup, {
+				cancel: function(){
+					console.log("close update");
+					d.resolve();
+					popup.window.close();
+				},
+				update: function(){
+					console.log("update!");
+					d.resolve();
+					popup.window.close();
+				}
+			});
+			return d.promise;
+		}
+
+		$scope.showProxyDialog = function() {
+			var popup = $scope.openPopup('popups.html#/update-dialog', "Proxy Settings");
+			var d = $q.defer();
+			$.extend(popup, {
+				close: function(){
+					console.log("close update");
+					d.resolve();
+					popup.window.close();
+				},
+				save: function(){
+					console.log("update!");
+					d.resolve();
+					popup.window.close();
+				}
+			});
+			return d.promise;
+		}
+
 		/* type - error, info, warning, app */
 		$scope.showMessageDialog = function(type, message, stacktrase) {
 			var popup = $scope.openPopup('popups.html#/alert-dialog', "COLT");

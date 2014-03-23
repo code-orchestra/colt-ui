@@ -248,9 +248,8 @@ app.controller("ProxySettingsController", function($scope, $rootScope) {
 	if($scope.popup.port == undefined){
 		$scope.popup.port = "8080";
 	}
-	$scope.useMinimizeButton = true;
 	$scope.ok = function() {
-		$scope.callToOwnerWindow("ok");
+		$scope.callToOwnerWindow("save");
 	}
 });
 
