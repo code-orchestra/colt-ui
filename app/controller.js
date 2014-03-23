@@ -70,9 +70,11 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, Analytics, $htt
 		Analytics.trackPage(toState.url + ".html");
 	});
 
-	var autoSave = true;
+	var autoSave = false;
 	$scope.$watch('model', function() {
-        if(autoSave)$scope.saveProject($scope.getProjectPath(), $scope.model);
+        if(autoSave){
+        	$scope.saveProject($scope.getProjectPath(), $scope.model);
+        }
     }, true);
 	
 	$scope.saveBeforeClose = function() {
