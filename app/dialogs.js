@@ -10,7 +10,7 @@ app.service("coltDialogs", function($q) {
 				d.resolve(serial);
 				popup.window.close();
 			}
-			return d.promise
+			return d.promise;
 		}
 
 		/* type - error, info, warning, app */
@@ -21,7 +21,7 @@ app.service("coltDialogs", function($q) {
 				close: function(){
 					console.log("close alert");
 					d.resolve();
-					win.close();
+					popup.window.close();
 				}
 			});
 			popup.type = type
@@ -36,17 +36,17 @@ app.service("coltDialogs", function($q) {
 				enterSerialNumber: function(serial){
 					console.log("serial number", serial);
 					d.resolve(serial);
-					win.close();
+					popup.window.close();
 				},
 				buy: function(){
 					console.log("purchase COLT");
 					d.notify("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
-					win.close();
+					popup.window.close();
 				},
 				demo: function(){
 					console.log("continue demo");
 					d.reject();
-					win.close();
+					popup.window.close();
 				},
 				close: function(){
 					console.log("close");
@@ -63,17 +63,17 @@ app.service("coltDialogs", function($q) {
 				enterSerialNumber: function(serial){
 					console.log("serial number", serial);
 					d.resolve(serial);
-					win.close();
+					popup.window.close();
 				},
 				buy: function(){
 					console.log("purchase COLT");
 					d.notify("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
-					win.close();
+					popup.window.close();
 				},
 				demo: function(){
 					console.log("continue demo");
 					d.reject();
-					win.close();
+					popup.window.close();
 				},
 				close: function(){
 					console.log("close");
@@ -88,19 +88,19 @@ app.service("coltDialogs", function($q) {
 			$.extend(popup, {
 				cancel: function(){
 					console.log("cancel close");
-					win.close();
+					popup.window.close();
 				},
 				close: function(){
 					console.log("close");
-					win.close();
+					popup.window.close();
 				},
 				save: function(){
 					console.log("save project");
-					win.close();
+					popup.window.close();
 				},
 				dontSave: function(){
 					console.log("dont save");
-					win.close();
+					popup.window.close();
 				}
 			});
 		}
@@ -110,23 +110,23 @@ app.service("coltDialogs", function($q) {
 			$.extend(popup, {
 				close: function(){
 					console.log("close");
-					win.close();
+					popup.window.close();
 				},
 				newProject: function(){
 					console.log("new project");
-					win.close();
+					popup.window.close();
 				},
 				openDemoProjects: function(){
 					console.log("open demo project");
-					win.close();
+					popup.window.close();
 				},
 				openProject: function(){
 					console.log("open project");
-					win.close();
+					popup.window.close();
 				},
 				openRescentProject: function(index){
 					console.log("open rescent project", rescentProjects[index]);
-					win.close();
+					popup.window.close();
 				}
 			});
 		}

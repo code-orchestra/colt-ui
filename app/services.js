@@ -20,7 +20,7 @@ app.service("nodeApp", function($q, appMenu) {
 		
 		}else{
 			var gui = require('nw.gui'); 
-			var win = gui.Window.get(); win.showDevTools();
+			var win = gui.Window.get(); //win.showDevTools();
 
 			var java;
 			var runJava = function (projectPath) {
@@ -225,7 +225,6 @@ app.service("nodeApp", function($q, appMenu) {
 					modal.y = win.y - 40;
 					modal.setPosition("mouse");
 					modal.show();
-					popupObject = modal.window.popup;
 					var $ = modal.window.$;
 					var popupWindow = $(".popup-window");
 					if(popupWindow.size() > 0){
@@ -233,8 +232,11 @@ app.service("nodeApp", function($q, appMenu) {
 					}else{
 						console.log("popup window not found")
 					}
-					console.log("loaded", $);
-					modal.window.popup = popupObject;
+					if(!modal.window.popup){
+						modal.window.popup = popupObject;
+					}else{
+						$.extend(modal.window.popup, popupObject);
+					}
 				});
 				modal.on('closed', function() {
 					win.show();
