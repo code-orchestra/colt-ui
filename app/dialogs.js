@@ -20,12 +20,12 @@ app.service("coltDialogs", function($q) {
 			win.popup = {
 				close: function(){
 					console.log("close alert");
-					win.close();
 					d.resolve();
+					win.close();
 				}
 			}
-			win.popup.type = type
-			win.popup.message = message
+			$scope.popup.type = type
+			$scope.popup.message = message
 			return d.promise;
 		}
 
