@@ -72,7 +72,7 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, Analytics, $htt
 
 	var autoSave = true;
 	$scope.$watch('model', function() {
-        if(autoSave)$scope.saveProject($scope.getProjectPath, $scope.model);
+        if(autoSave)$scope.saveProject($scope.getProjectPath(), $scope.model);
     }, true);
 	
 	$scope.saveBeforeClose = function() {
