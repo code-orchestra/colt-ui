@@ -22,8 +22,8 @@ app.service("coltDialogs", function($q) {
 			win.popup = {
 				close: function(){
 					console.log("close alert");
-					d.resolve();
 					win.close();
+					d.resolve();
 				}
 			}
 			win.popup.type = type

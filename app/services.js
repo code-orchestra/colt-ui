@@ -28,7 +28,7 @@ app.service("nodeApp", function($q, appMenu) {
 				if (projectPath) {
 					java  = spawn('java', ['-jar', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', projectPath, '-ui']);
 				} else {
-					java  = spawn('java', ['-jar', './java/colt.jar', '-ui']);
+					java  = spawn('java', ['-jar', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', '-ui']);
 				};
 
 				java.on('close', function (code, signal) {
@@ -175,7 +175,7 @@ app.service("nodeApp", function($q, appMenu) {
 						}else if(!isPing(text)){
 							console.log("stdout:", text);
 						}
-						
+
 						if(isPing(text)){
 					    	$scope.sendToJava("pong");
 					    }
