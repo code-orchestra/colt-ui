@@ -20,7 +20,7 @@ app.service("nodeApp", function($q, appMenu) {
 		
 		}else{
 			var gui = require('nw.gui'); 
-			var win = gui.Window.get(); //win.showDevTools();
+			var win = gui.Window.get(); win.showDevTools();
 
 			var java;
 			var runJava = function (projectPath) {

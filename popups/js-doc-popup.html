@@ -1,5 +1,5 @@
 <meta name="colt-main-document" content="popups.html#/js-doc-popup">
-<div class="container popup-window" style="padding-top:10px">
+<div class="container popup-window">
 	<div class="jsdoc-title"><h4>{{popup.jsdocTile}}</h4></div>
 	<div class="jsdoc-body" ng-bind-html="popup.jsdocHtml"></div>
 </div>
@@ -8,11 +8,18 @@
 	
 	<style type="text/css">
 	
-	.popup-window{
+	body{
 		display: block;
+		width: 500px;
+		
+		/*border-radius: 9px;*/
+		background: #F5A623;
+		/*border: 1px solid #979797;*/
 	}
 	
 	.jsdoc-title{
+		-webkit-user-select: none;
+  		-webkit-app-region: drag;
 		display: block;
 	}
 
