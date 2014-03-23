@@ -1,23 +1,28 @@
 <meta name="colt-main-document" content="popups.html#/js-doc-popup">
 <div class="container popup-window">
 	<div class="jsdoc-title"><h4>{{popup.jsdocTitle}}</h4></div>
-	<div class="jsdoc-body" ng-bind-html="popup.jsdocHtml"></div>
+	<div class="jsdoc-body"><p ng-bind-html="popup.jsdocHtml"></p></div>
 </div>
+
 <!-- <img class="image-screen" src="../images/dialogs-screens/s5.png" height=dialog"223" width="629"> -->
 <div>
 	
 	<style type="text/css">
 	
 	body{
-		background: none;
+		display: block;
+		/*border-radius: 9px;*/
+		background-color: #F5A623;
+		/*border: 1px solid #979797;*/
+		color:black;
 
+		-webkit-touch-callout: default;
+		-webkit-user-select: text;
+		user-select: text;
 	}
 
 	.popup-window{
-		display: block;
-		/*border-radius: 9px;*/
-		background: #F5A623;
-		/*border: 1px solid #979797;*/
+		
 	}
 	
 	.jsdoc-title{
@@ -30,10 +35,11 @@
 		font-weight: bold;
 	}
 
-	.jsdoc-body{
+	.jsdoc-body p{
 		display: block;
 		overflow-x: auto;
-		overflow-y: node;		
+		overflow-y: node;
+		height: 200px;		
 	}
 
 	</style>
