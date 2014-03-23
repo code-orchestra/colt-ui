@@ -26,8 +26,8 @@ app.service("coltDialogs", function($q) {
 					win.close();
 				}
 			}
-			$scope.popup.type = type
-			$scope.popup.message = message
+			win.popup.type = type
+			win.popup.message = message
 			return d.promise;
 		}
 
