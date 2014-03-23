@@ -26,8 +26,8 @@ app.service("nodeApp", function($q, appMenu) {
 				// if(!$scope.saveBeforeClose()){
 				// 	this.close(true);
 				// }
-				// 
-				
+				//
+
 			});
 
 			var java;
@@ -82,81 +82,81 @@ app.service("nodeApp", function($q, appMenu) {
 									$scope.$apply(function() {
 										switch(json.type) {
 											case "log":
-												$scope.logMessages.push(json);
-												$scope.updateFilters();
+											$scope.logMessages.push(json);
+											$scope.updateFilters();
 												break
 											case "runSession":
-												$scope.sessionInProgress = true;
-												$scope.sessionStateSwitching = false;
-												console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+											$scope.sessionInProgress = true;
+											$scope.sessionStateSwitching = false;
+											console.log("$scope.sessionInProgress", $scope.sessionInProgress);
 												break
 											case "stopSession":
-												$scope.sessionInProgress = false;
-												$scope.sessionStateSwitching = false;
-												console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+											$scope.sessionInProgress = false;
+											$scope.sessionStateSwitching = false;
+											console.log("$scope.sessionInProgress", $scope.sessionInProgress);
 												break
 											case "exec":
-												var exec = require('child_process').exec;
-											    var child = exec(json.exec,
-												  function (error, stdout, stderr) {
-												    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
-												    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
-												    if (error !== null) {
-												      $scope.log("ERROR", 'exec error: ' + error);
-												    }
-												});
+											var exec = require('child_process').exec;
+										    var child = exec(json.exec,
+											  function (error, stdout, stderr) {
+											    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
+											    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
+											    if (error !== null) {
+											      $scope.log("ERROR", 'exec error: ' + error);
+											    }
+											});
 												break
 											case "serialNumber":
-												switch(json.state){
-													case "show":
-														$scope.showPurchaseDialog().then(
-															$scope.sendToJava,
-															function() {
-														    	$scope.sendToJava("continue");
-															},
-															function(update) {
-															    gui.Shell.openExternal(update);
-															}
-														)
-														break;
-													case "error":
-														$scope.showMessageDialog("error", json.message)
-														.then($scope.showSerialNumberDialog)
-														.then($scope.sendToJava,
-															function() {
-														    	$scope.sendToJava("continue");
-															});
-														break;
-													case "success":
-														$scope.showMessageDialog("app", json.message)
-														break;
-													case "demoMessage":
-														$scope.showMessageDialog("info", json.message)
-														break;
-													case "demoCount":
-														$scope.showContinueWithDemoDialog(json.message).then(
-															$scope.sendToJava,
-															function() {
-														    	$scope.sendToJava("continue");
-															},
-															function(update) {
-															    gui.Shell.openExternal(update);
-															}
-														)
-														break;
-												}		
+											switch(json.state){
+												case "show":
+													$scope.showPurchaseDialog().then(
+														$scope.sendToJava,
+														function() {
+													    	$scope.sendToJava("continue");
+														},
+														function(update) {
+														    gui.Shell.openExternal(update);
+														}
+													)
+													break;
+												case "error":
+													$scope.showMessageDialog("error", json.message)
+													.then($scope.showSerialNumberDialog)
+													.then($scope.sendToJava,
+														function() {
+													    	$scope.sendToJava("continue");
+														});
+													break;
+												case "success":
+													$scope.showMessageDialog("app", json.message)
+													break;
+												case "demoMessage":
+													$scope.showMessageDialog("info", json.message)
+													break;
+												case "demoCount":
+													$scope.showContinueWithDemoDialog(json.message).then(
+														$scope.sendToJava,
+														function() {
+													    	$scope.sendToJava("continue");
+														},
+														function(update) {
+														    gui.Shell.openExternal(update);
+														}
+													)
+													break;
+											}									
 												break
 											case "recentProjectsPaths":
-												if (serviceDefers[json.type] != null) {
-													serviceDefers[json.type].resolve(json.array)
-													serviceDefers[json.type] = null
-												};
+											if (serviceDefers[json.type] != null) {
+												serviceDefers[json.type].resolve(json.array)
+												serviceDefers[json.type] = null
+											};
 												break
 											case "project":
-												switch(json.state) {
-													case "load":
-														$scope.loadProject(json.message)
-														break;
+											switch(json.state) {
+												case "load":
+													$scope.loadProject(json.message)
+													break;
 													case "created":
 														break
 													case "createError":
@@ -169,7 +169,7 @@ app.service("nodeApp", function($q, appMenu) {
 														break
 													case "saveError":
 														break
-												}
+											}
 												break
 										}
 										$scope.$emit(json.type, json);
