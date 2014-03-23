@@ -155,6 +155,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 				console.log("continue demo");
 				d.reject();
 				win.close();
+			},
+			close: function(){
+				console.log("close");
+				d.reject();
 			}
 		}
 		return d.promise;
@@ -178,6 +182,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 				console.log("continue demo");
 				d.reject();
 				win.close();
+			},
+			close: function(){
+				console.log("close");
+				d.reject();
 			}
 		}
 		return d.promise;
