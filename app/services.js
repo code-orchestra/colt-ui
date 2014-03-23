@@ -234,6 +234,7 @@ app.service("nodeApp", function($q, appMenu) {
 						console.log("popup window not found")
 					}
 					console.log("loaded", $);
+					modal.window.popup = popupObject;
 				});
 				modal.on('closed', function() {
 					win.show();
@@ -243,8 +244,8 @@ app.service("nodeApp", function($q, appMenu) {
 						popupObject.close();
 					}
 				});
-				console.loo("!!!!", modal.window)
-				return modal.window;
+				popupObject.window = modal;
+				return popupObject;
 			};
 
 			$scope.openJsDoc = function(html, title) {
