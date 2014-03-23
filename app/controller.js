@@ -182,15 +182,15 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		var win = $scope.openPopup('popups.html#/close-save-dialog',"Close COLT");
 		win.popup = {
 			cancel: function(){
-				console.log("cancel close", w);
+				console.log("cancel close");
 				win.close();
 			},
 			close: function(){
-				console.log("close", w);
+				console.log("close");
 				win.close();
 			},
 			save: function(){
-				console.log("save project", w);
+				console.log("save project");
 				win.close();
 			},
 			dontSave: function(){

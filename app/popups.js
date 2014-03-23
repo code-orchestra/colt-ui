@@ -112,7 +112,7 @@ app.run(function($rootScope, Analytics) {
 	}
 
 	if(window.popup){
-		$rootScope.popup = popup;
+		$rootScope.popup = window.popup;
 	}else{
 		$rootScope.popup = {};
 	}
