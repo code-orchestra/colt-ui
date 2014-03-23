@@ -222,19 +222,13 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 
 	$scope.showOpenProjectDialog = function(){
 		chooseFile("#openProjectInput").then(function (path) {
-			$scope.sendToJava("load -file:" + path, "loaded")
-			.then(function () {
-				$scope.loadProject(path) 
-			})
+			$scope.sendToJava("load -file:" + path)
 		});
 	}
 
 	$scope.showNewProjectDialog = function(){
 		chooseFile("#newProjectInput").then(function (path) {
-			$scope.sendToJava("create -file:" + path, "created")
-			.then(function () {
-				$scope.loadProject(path) 
-			})
+			$scope.sendToJava("create -file:" + path)
 		})
 	}
 
@@ -244,10 +238,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 
 	nodeApp.buildNode($scope);
 
-	var projectPath = $scope.getProjectPath();
+	// var projectPath = $scope.getProjectPath();
 
-	if(projectPath){
-		console.log("load project: " + projectPath);
-		$scope.loadProject(projectPath);
-	}
+	// if(projectPath){
+	// 	console.log("load project: " + projectPath);
+	// 	$scope.loadProject(projectPath);
+	// }
 })

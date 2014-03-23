@@ -117,14 +117,10 @@ app.service("appMenu", function($q) {
 			var recentProjectsSubMenu = new gui.Menu();
 
 			array.forEach(function (entry) {
-				console.log(entry)
 				recentProjectsSubMenu.append(new gui.MenuItem({
 					label: entry,
 					click: function () {
-						$scope.sendToJavaWithPromise("load -file:" + entry, "loaded")
-						.then(function () {
-							$scope.loadProject(entry)
-						}) 
+						$scope.sendToJavaWithPromise("load -file:" + entry)
 					}
 				}));
 			})
