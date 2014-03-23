@@ -241,7 +241,9 @@ app.service("nodeApp", function($q, appMenu) {
 					win.show();
 					win.focus();
 					console.log("popup closed");
-					popupObject.close();
+					if(popupObject.hasOwnProperty("close")){
+						popupObject.close();
+					}
 				});
 				return windowObject;
 			};
