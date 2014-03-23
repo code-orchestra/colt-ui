@@ -120,8 +120,6 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	$scope.showMessageDialog = function(type, message, stacktrase) {
 		var win = $scope.openPopup('popups.html#/alert-dialog', "COLT");
 		var d = $q.defer();
-		$scope.popup.type = type
-		$scope.popup.message = message
 		win.popup = {
 			close: function(){
 				console.log("close alert");
@@ -129,6 +127,8 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 				win.close();
 			}
 		}
+		$scope.popup.type = type
+		$scope.popup.message = message
 		return d.promise;
 	}
 
@@ -183,6 +183,10 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		win.popup = {
 			cancel: function(){
 				console.log("cancel close", w);
+				win.close();
+			},
+			close: function(){
+				console.log("close", w);
 				win.close();
 			},
 			save: function(){

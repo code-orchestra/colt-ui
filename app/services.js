@@ -241,6 +241,10 @@ app.service("nodeApp", function($q, appMenu) {
 				modal.on('closed', function() {
 					win.show();
 					win.focus();
+					console.log(!!win.popup, win.popup.hasOwnProperty("close"));
+					if(win.popup && win.popup.hasOwnProperty("close")){
+						win.popup.close();
+					}
 					console.log("popup closed");
 				});
 				return windowObject;
