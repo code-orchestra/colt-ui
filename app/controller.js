@@ -29,7 +29,8 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	};
 
 	window.onerror = function(msg, url, line) {
-		$scope.log("ERROR", "COLT UI Error: " + message, url+":"+line);
+		console.log("ERROR", "COLT UI Error: " + msg, url+":"+line);
+		$scope.log("ERROR", "COLT UI Error: " + msg, url+":"+line);
 	}
 
 	$scope.updateFilters = function() {
@@ -204,8 +205,30 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 		}
 	}
 
-	$scope.showWelcomeScreen = function() {
+	$scope.showWelcomeScreen = function(rescentProjects) {
 		var win = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
+		win.popup = {
+			close: function(){
+				console.log("close");
+				win.close();
+			},
+			newProject: function(){
+				console.log("new project");
+				win.close();
+			},
+			openDemoProjects: function(){
+				console.log("open demo project");
+				win.close();
+			},
+			openProject: function(){
+				console.log("open project");
+				win.close();
+			},
+			openRescentProject: function(index){
+				console.log("open rescent project", rescentProjects[index]);
+				win.close();
+			}
+		}
 	}
 
 	var chooseFile = function(name) {

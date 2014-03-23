@@ -116,15 +116,21 @@ app.run(function($rootScope, Analytics) {
 	}else{
 		$rootScope.popup = {};
 	}
+
+	window.onerror = function(msg, url, line) {
+		console.log("ERROR", "COLT UI Error: " + msg, url+":"+line);
+	}
 });
 
 app.controller("WelcomeController", function($scope, $rootScope) {
 	console.log("welcome screen");
 
-	$scope.rescentProjects = [
-	{name:"My Rescent Project"},
-	{name:"Index"}
-	];
+	if(!$scope.popup.hasOwnProperty("rescentProjects")){
+		$scope.popup.rescentProjects = [
+		{name:"My Rescent Project"},
+		{name:"Index"}
+		];
+	}
 
 	$scope.openLink = function(url) {
 		$window.open(url);
@@ -143,7 +149,8 @@ app.controller("WelcomeController", function($scope, $rootScope) {
 	}
 
 	$scope.openProject = function() {
-		$scope.callToOwnerWindow("openProject");
+		console.log("open project")
+		// $scope.callToOwnerWindow("openProject2");
 	}
 });
 
