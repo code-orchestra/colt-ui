@@ -120,7 +120,7 @@ app.service("appMenu", function($q) {
 				recentProjectsSubMenu.append(new gui.MenuItem({
 					label: entry,
 					click: function () {
-						$scope.sendToJavaWithPromise("load -file:" + entry)
+						$scope.sendToJava("load -file:" + entry)
 					}
 				}));
 			})
@@ -132,7 +132,8 @@ app.service("appMenu", function($q) {
 				label: 'Clear List',
 				enabled: recentProjectsSubMenu.items.length > 0,
 				click: function () {
-					self.buildMenu($scope, [])
+					$scope.sendToJava("clearRecentProjectsPaths");
+					self.buildMenu($scope, []);
 				}
 			}));
 			return recentProjectsSubMenu
