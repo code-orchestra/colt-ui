@@ -1,7 +1,7 @@
 'use strict';
 
 app.service("dialogs", function($q) {
-	this.buildDialogs($scope){
+	this.buildDialogs = function($scope){
 		$scope.showSerialNumberDialog = function() {
 			var win = $scope.openPopup('popups.html#/enter-serial-number-dialog', "Close COLT");
 			var d = $q.defer();
@@ -15,9 +15,7 @@ app.service("dialogs", function($q) {
 			return d.promise
 		}
 
-		/*
-		* type - error, info, warning, app
-		*/
+		/* type - error, info, warning, app */
 		$scope.showMessageDialog = function(type, message, stacktrase) {
 			var win = $scope.openPopup('popups.html#/alert-dialog', "COLT");
 			var d = $q.defer();
