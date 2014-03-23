@@ -118,8 +118,9 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, Analytics, $htt
 			}
 
 			console.log(model);
-
-			autoSave = true;
+			setTimeout(function () {
+				autoSave = true;
+			}, 500)
 		});
 	}
 	coltDialogs.buildDialogs($scope);

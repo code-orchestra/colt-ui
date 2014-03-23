@@ -29,7 +29,7 @@ app.service("nodeApp", function($q, appMenu) {
 				if (projectPath) {
 					java  = spawn('java', ['-jar', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', projectPath, '-ui']);
 				} else {
-					java  = spawn('java', ['-jar', './java/colt.jar', '-ui']);
+					java  = spawn('java', ['-jar', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', '-ui']);
 				};
 
 				java.on('close', function (code, signal) {
@@ -147,7 +147,8 @@ app.service("nodeApp", function($q, appMenu) {
 											case "project":
 											switch(json.state) {
 												case "load":
-													$scope.loadProject(json.message)
+													projectPath = json.message
+													$scope.loadProject(projectPath)
 													break;
 													case "created":
 														break
@@ -199,14 +200,22 @@ app.service("nodeApp", function($q, appMenu) {
 			});
 
 			$scope.saveProject = function (filePath, data){
+				console.log("data ", data)
+				console.log("filePath ", data)
+				data = {xml:data}
 				var d = $q.defer();
-				var xml = xml2js.json2xml(data);
-
+				var xml2js = new X2JS({
+					escapeMode:false,
+					stripWhitespaces:false
+				})
+				var xml = xml2js.json2xml_str(data);
+				var fs = require('fs')
 				fs.writeFile(filePath, xml, function(err) {
 					if(err) {
 						d.reject(err);
 					} else {
 						d.resolve();
+                        $scope.sendToJava("save " + new Date().getTime())
 					}
 				}); 
 				return d.promise;
