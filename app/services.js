@@ -29,7 +29,7 @@ app.service("nodeApp", function($q, appMenu) {
 			var startup = new Date().getTime();
 			var spawn = require('child_process').spawn,
 
-			java  = spawn('java', ['-jar', './java/colt.jar', projectPath, '-ui']);
+			java  = spawn('java', ['-jar','-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', projectPath, '-ui']);
 			java.on('close', function (code, signal) {
 				console.log('child process terminated due to receipt of signal ' + signal);
 				//win.close(true);
@@ -94,7 +94,7 @@ app.service("nodeApp", function($q, appMenu) {
 									}else if(json.type == "SerialNumber") {
 										switch(json.state){
 											case "show":
-												$scope.showSerialNumberDialog().then(
+												$scope.showPurchaseDialog().then(
 													$scope.sendToJava,
 													function() {
 												    	$scope.sendToJava("continue");
@@ -105,16 +105,12 @@ app.service("nodeApp", function($q, appMenu) {
 												)
 												break;
 											case "error":
-												$scope.popup.errorMessage = json.message
-												$scope.showSerialNumberDialog().then(
-													$scope.sendToJava,
+												$scope.showMessageDialog("error", json.message)
+												.then($scope.showSerialNumberDialog)
+												.then($scope.sendToJava,
 													function() {
 												    	$scope.sendToJava("continue");
-													},
-													function(update) {
-													    gui.Shell.openExternal(update);
-													}
-												)
+													});
 												break;
 											case "success":
 												$scope.showMessageDialog("app", json.message)
@@ -123,8 +119,7 @@ app.service("nodeApp", function($q, appMenu) {
 												$scope.showMessage("info", json.message)
 												break;
 											case "demoCount":
-												$scope.popup.message = json.message
-												$scope.showSerialNumberDialog().then(
+												$scope.showContinueWithDemoDialog(json.message).then(
 													$scope.sendToJava,
 													function() {
 												    	$scope.sendToJava("continue");

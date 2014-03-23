@@ -101,7 +101,10 @@ app.service("appMenu", function($q) {
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Enter Serial Number',
 				click: function () {
-					$scope.showSerialNumberDialog() 
+					$scope.showSerialNumberDialog()
+					.then(function(serial) {
+						$scope.sendToJava("serialNumber " + serial)
+					}) 
 				}
 			}));
 			help.submenu = helpSubMenu;
@@ -118,7 +121,10 @@ app.service("appMenu", function($q) {
 				recentProjectsSubMenu.append(new gui.MenuItem({
 					label: entry,
 					click: function () {
-						$scope.loadProject(entry) 
+						$scope.sendToJavaWithPromise("load -file:" + entry, "loaded")
+						.then(function () {
+							$scope.loadProject(entry)
+						}) 
 					}
 				}));
 			})

@@ -102,21 +102,12 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	}
 
 	$scope.showSerialNumberDialog = function() {
-		var win = $scope.openPopup('popups.html#/purchase-dialog', "Close COLT");
+		var win = $scope.openPopup('popups.html#/enter-serial-number-dialog', "Close COLT");
 		var d = $q.defer();
 		win.popup = {
 			enterSerialNumber: function(serial){
 				console.log("serial number", serial);
 				d.resolve(serial);
-				win.close();
-			},
-			buy: function(){
-				console.log("purchase COLT");
-				d.notify("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
-			},
-			demo: function(){
-				console.log("continue demo");
-				d.reject();
 				win.close();
 			}
 		}
@@ -128,48 +119,63 @@ app.controller("AppCtrl", function($scope, nodeApp, Analytics, $http, $q) {
 	*/
 	$scope.showMessageDialog = function(type, message, stacktrase) {
 		var win = $scope.openPopup('popups.html#/alert-dialog', "COLT");
+		var d = $q.defer();
+		$scope.popup.type = type
+		$scope.popup.message = message
 		win.popup = {
 			close: function(){
 				console.log("close alert");
+				d.resolve();
 				win.close();
 			}
 		}
+		return d.promise;
 	}
 
 	$scope.showPurchaseDialog = function() {
 		var win = $scope.openPopup('popups.html#/purchase-dialog', "Purchase COLT");
+		var d = $q.defer();
 		win.popup = {
 			enterSerialNumber: function(serial){
 				console.log("serial number", serial);
+				d.resolve(serial);
 				win.close();
 			},
 			buy: function(){
 				console.log("purchase COLT");
+				d.notify("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
 				win.close();
 			},
 			demo: function(){
 				console.log("continue demo");
+				d.reject();
 				win.close();
 			}
 		}
+		return d.promise;
 	}
 
 	$scope.showContinueWithDemoDialog = function(message) {
 		var win = $scope.openPopup('popups.html#/continue-with-demo-dialog', "COLT Demo");
+		var d = $q.defer();
 		win.popup = {
 			enterSerialNumber: function(serial){
 				console.log("serial number", serial);
+				d.resolve(serial);
 				win.close();
 			},
 			buy: function(){
 				console.log("purchase COLT");
+				d.notify("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
 				win.close();
 			},
 			demo: function(){
 				console.log("continue demo");
+				d.reject();
 				win.close();
 			}
 		}
+		return d.promise;
 	}	
 
 	$scope.showCloseColtDialog = function() {
