@@ -15,24 +15,24 @@ app.service("coltDialogs", function($q) {
 
 		/* type - error, info, warning, app */
 		$scope.showMessageDialog = function(type, message, stacktrase) {
-			var win = $scope.openPopup('popups.html#/alert-dialog', "COLT");
+			var popup = $scope.openPopup('popups.html#/alert-dialog', "COLT");
 			var d = $q.defer();
-			win.popup = {
+			$.extend(popup, {
 				close: function(){
 					console.log("close alert");
 					d.resolve();
 					win.close();
 				}
-			}
-			$scope.popup.type = type
-			$scope.popup.message = message
+			});
+			popup.type = type
+			popup.message = message
 			return d.promise;
 		}
 
 		$scope.showPurchaseDialog = function() {
-			var win = $scope.openPopup('popups.html#/purchase-dialog', "Purchase COLT");
+			var popup = $scope.openPopup('popups.html#/purchase-dialog', "Purchase COLT");
 			var d = $q.defer();
-			win.popup = {
+			$.extend(popup, {
 				enterSerialNumber: function(serial){
 					console.log("serial number", serial);
 					d.resolve(serial);
@@ -52,14 +52,14 @@ app.service("coltDialogs", function($q) {
 					console.log("close");
 					d.reject();
 				}
-			}
+			});
 			return d.promise;
 		}
 
 		$scope.showContinueWithDemoDialog = function(message) {
-			var win = $scope.openPopup('popups.html#/continue-with-demo-dialog', "COLT Demo");
+			var popup = $scope.openPopup('popups.html#/continue-with-demo-dialog', "COLT Demo");
 			var d = $q.defer();
-			win.popup = {
+			$.extend(popup, {
 				enterSerialNumber: function(serial){
 					console.log("serial number", serial);
 					d.resolve(serial);
@@ -79,13 +79,13 @@ app.service("coltDialogs", function($q) {
 					console.log("close");
 					d.reject();
 				}
-			}
+			});
 			return d.promise;
 		}	
 
 		$scope.showCloseColtDialog = function() {
-			var win = $scope.openPopup('popups.html#/close-save-dialog',"Close COLT");
-			win.popup = {
+			var popup = $scope.openPopup('popups.html#/close-save-dialog',"Close COLT");
+			$.extend(popup, {
 				cancel: function(){
 					console.log("cancel close");
 					win.close();
@@ -102,12 +102,12 @@ app.service("coltDialogs", function($q) {
 					console.log("dont save");
 					win.close();
 				}
-			}
+			});
 		}
 
 		$scope.showWelcomeScreen = function(rescentProjects) {
-			var win = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
-			win.popup = {
+			var popup = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
+			$.extend(popup, {
 				close: function(){
 					console.log("close");
 					win.close();
@@ -128,7 +128,7 @@ app.service("coltDialogs", function($q) {
 					console.log("open rescent project", rescentProjects[index]);
 					win.close();
 				}
-			}
+			});
 		}
 
 		var chooseFile = function(name) {
