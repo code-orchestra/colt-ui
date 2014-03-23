@@ -15,6 +15,9 @@ app.service("nodeApp", function($q, appMenu) {
 					}
 				});
 			}, 1000);
+
+		$scope.loadProject($scope.getProjectPath());
+		
 		}else{
 			var gui = require('nw.gui'); 
 			var win = gui.Window.get(); //win.showDevTools();
@@ -184,11 +187,6 @@ app.service("nodeApp", function($q, appMenu) {
 				}
 				this.close(true);
 			});
-
-			// var tray = new gui.Tray({ title: '', icon: './icons/colt_32.png' });
-			// var menu = new gui.Menu();
-			// menu.append(new gui.MenuItem({ type: 'checkbox', label: 'box1' }));
-			// tray.menu = menu;
 
 			$scope.saveProject = function (filePath, data){
 				var d = $q.defer();
