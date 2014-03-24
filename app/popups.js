@@ -139,7 +139,8 @@ app.controller("WelcomeController", function($scope, $rootScope) {
 	}
 
 	$scope.openLink = function(url) {
-		$window.open(url);
+		//$window.open(url);
+        $scope.callToOwnerWindow("openLink", url);
 	}
 
 	$scope.newProject = function() {

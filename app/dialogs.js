@@ -174,7 +174,11 @@ app.service("coltDialogs", function($q) {
 					console.log("open rescent project", recentProjects[index]);
                     $scope.sendToJava("load -file:" + recentProjects[index]);
 					popup.window.close();
-				}
+				},
+                openLink: function (url) {
+                    console.log("url");
+                    $scope.openExternal(url);
+                }
 			});
 		}
 
