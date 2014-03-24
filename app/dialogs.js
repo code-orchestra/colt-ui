@@ -208,7 +208,10 @@ app.service("coltDialogs", function($q) {
 		}
 
 		$scope.showSaveAsProjectDialog = function(){
-			return chooseFile("#saveAsProjectInput");
+			return chooseFile("#saveAsProjectInput").then(function(path) {
+                $scope.saveProject(path, $scope.model);
+                $scope.sendToJava("load -file:" + path);
+            });
 		}
 
 		$scope.testJsDocs = function() {

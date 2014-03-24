@@ -150,25 +150,26 @@ app.service("nodeApp", function($q, appMenu) {
                                                 }
 												break;
 											case "project":
-											switch(json.state) {
-												case "load":
-                                                    projectFilePath = json.message;
-													$scope.loadProject(projectFilePath);
-													break;
-													case "created":
-														break;
-													case "createError":
-														break;
-													case "loaded":
-														break;
-													case "loadError":
-														break;
-													case "saved":
-														break;
-													case "saveError":
-														break;
-											}
-												break
+                                                switch(json.state) {
+                                                    case "savedAs":
+                                                    case "load":
+                                                        projectFilePath = json.message;
+                                                        $scope.loadProject(projectFilePath);
+                                                        break;
+                                                    case "created":
+                                                        break;
+                                                    case "createError":
+                                                        break;
+                                                    case "loaded":
+                                                        break;
+                                                    case "loadError":
+                                                        break;
+                                                    case "saved":
+                                                        break;
+                                                    case "saveError":
+                                                        break;
+                                                }
+												break;
 											case "javadoc":
 												// todo: parse javadoc
 												console.log(json.message)

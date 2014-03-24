@@ -33,17 +33,17 @@ app.service("appMenu", function($q) {
 			fileSubMenu.append(recentProjects);
 
 			fileSubMenu.append(new gui.MenuItem({ type: 'separator' }));
-			fileSubMenu.append(new gui.MenuItem({
-				label: 'Save Project',
-				click: function () {
-					//$scope.sendToJava("save") 
-				}
-			}));
+//			fileSubMenu.append(new gui.MenuItem({
+//				label: 'Save Project',
+//				click: function () {
+//					//$scope.sendToJava("save")
+//				}
+//			}));
 			fileSubMenu.append(new gui.MenuItem({
 				label: 'Save As...',
 				click: function () {
-					//todo: implement 
-				}
+                    $scope.showSaveAsProjectDialog()
+                }
 			}));
 			fileSubMenu.append(new gui.MenuItem({
 				label: 'Close Project',
