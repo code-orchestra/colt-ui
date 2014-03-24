@@ -32,20 +32,17 @@ app.service("coltDialogs", function($q) {
 			return d.promise;
 		}
 
-		$scope.showProxyDialog = function() {
+		$scope.showProxyDialog = function(settings) {
 			var popup = $scope.openPopup('popups.html#/proxy-settings-dialog', "Proxy Settings");
 			var d = $q.defer();
 			$.extend(popup, {
-				save: function(){
-					try{
+				save: function(value){
 					console.log("save proxy settings");
-					d.resolve();
+					d.resolve(value);
 					popup.window.close();
-					}catch(e){
-					console.log(e);		
-					}
 				}
-			});
+			}, settings);
+
 			return d.promise;
 		}
 
