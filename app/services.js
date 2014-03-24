@@ -307,7 +307,7 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 					if(!modal.window.popup){
 						modal.window.popup = popupObject;
 					}else{
-						$.extend(modal.window.popup, popupObject);
+						modal.window.setPopup(popupObject);
 					}
 					modal.show();
 					modal.focus();
