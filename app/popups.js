@@ -116,6 +116,11 @@ app.run(function($rootScope, Analytics) {
 		$rootScope.popup = window.popup;
 	}else{
 		$rootScope.popup = window.popup = {};
+		window.setPopup = function(p) {
+			$rootScope.$apply(function() {
+				$.extend($rootScope.popup, p);
+			})
+		}
 	}
 
 	window.onerror = function(msg, url, line) {
