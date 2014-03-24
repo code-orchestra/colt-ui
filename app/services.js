@@ -205,6 +205,12 @@ app.service("nodeApp", function($q, appMenu) {
 				this.close(true);
 			});
 
+			/**
+			 * [saveProject description]
+			 * @param  {[type]} filePath [description]
+			 * @param  {[type]} data     [description]
+			 * @return {[type]}          [description]
+			 */
 			$scope.saveProject = function (filePath, data){
 				data = {xml:data};
 				var d = $q.defer();
@@ -279,8 +285,8 @@ app.service("nodeApp", function($q, appMenu) {
 				modal.on('closed', function() {
 					console.log("popup closed", popupObject);
 					if(popupObject && popupObject.hasOwnProperty("close")){
-						if(popupObject.close()){
-							win.clos(true);
+						if(popupObject.close(true)){
+							win.close(true);
 						}
 					}
 					win.show();
