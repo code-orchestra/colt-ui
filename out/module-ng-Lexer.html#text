@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: text</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: text</h1>
+
+    
+
+
+
+<section>
+
+<header>
+    <h2>
+    text
+    </h2>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+
+    
+        
+<dt>
+    <h4 class="name" id="text"><span class="type-signature"></span>new text<span class="signature">(appBase, basePrefix)</span><span class="type-signature"></span></h4>
+
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        LocationHtml5Url represents an url
+This object is exposed as $location service when HTML5 mode is enabled and supported
+    </div>
+    
+
+    
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>appBase</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">application base URL</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>basePrefix</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">url path prefix</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+    
+
+    
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="angular.js.html">angular.js</a>, <a href="angular.js.html#line9621">line 9621</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-ng.html">ng</a></li></ul><h3>Classes</h3><ul><li><a href="module-ng-Lexer.html#text">text</a></li><li><a href="module-ng-Lexer_tokens.html">tokens</a></li><li><a href="module-ng-Parser_tokens.html">tokens</a></li><li><a href="module-ng-token.text.html">text</a></li></ul><h3>Global</h3><ul><li><a href="global.html#$anchorScroll">$anchorScroll</a></li><li><a href="global.html#$animate">$animate</a></li><li><a href="global.html#$animateProvider">$animateProvider</a></li><li><a href="global.html#$browser">$browser</a></li><li><a href="global.html#$cacheFactory">$cacheFactory</a></li><li><a href="global.html#$compile">$compile</a></li><li><a href="global.html#$compileProvider">$compileProvider</a></li><li><a href="global.html#$controller">$controller</a></li><li><a href="global.html#$controllerProvider">$controllerProvider</a></li><li><a href="global.html#$document">$document</a></li><li><a href="global.html#$exceptionHandler">$exceptionHandler</a></li><li><a href="global.html#$filter">$filter</a></li><li><a href="global.html#$filterProvider">$filterProvider</a></li><li><a href="global.html#$http">$http</a></li><li><a href="global.html#$httpBackend">$httpBackend</a></li><li><a href="global.html#$injector">$injector</a></li><li><a href="global.html#$interpolate">$interpolate</a></li><li><a href="global.html#$interpolateProvider">$interpolateProvider</a></li><li><a href="global.html#$interval">$interval</a></li><li><a href="global.html#$locale">$locale</a></li><li><a href="global.html#$location">$location</a></li><li><a href="global.html#$locationProvider">$locationProvider</a></li><li><a href="global.html#$log">$log</a></li><li><a href="global.html#$logProvider">$logProvider</a></li><li><a href="global.html#$parse">$parse</a></li><li><a href="global.html#$parseProvider">$parseProvider</a></li><li><a href="global.html#$provide">$provide</a></li><li><a href="global.html#$q">$q</a></li><li><a href="global.html#$rootScope">$rootScope</a></li><li><a href="global.html#$rootScopeProvider">$rootScopeProvider</a></li><li><a href="global.html#$sce">$sce</a></li><li><a href="global.html#$sceDelegate">$sceDelegate</a></li><li><a href="global.html#$sceDelegateProvider">$sceDelegateProvider</a></li><li><a href="global.html#$sceProvider">$sceProvider</a></li><li><a href="global.html#$sniffer">$sniffer</a></li><li><a href="global.html#$templateCache">$templateCache</a></li><li><a href="global.html#$timeout">$timeout</a></li><li><a href="global.html#$window">$window</a></li><li><a href="global.html#a">a</a></li><li><a href="global.html#angular">angular</a></li><li><a href="global.html#auto">auto</a></li><li><a href="global.html#currency">currency</a></li><li><a href="global.html#date">date</a></li><li><a href="global.html#filter">filter</a></li><li><a href="global.html#form">form</a></li><li><a href="global.html#input">input</a></li><li><a href="global.html#input[checkbox]">input[checkbox]</a></li><li><a href="global.html#input[email]">input[email]</a></li><li><a href="global.html#input[number]">input[number]</a></li><li><a href="global.html#input[radio]">input[radio]</a></li><li><a href="global.html#input[text]">input[text]</a></li><li><a href="global.html#input[url]">input[url]</a></li><li><a href="global.html#json">json</a></li><li><a href="global.html#limitTo">limitTo</a></li><li><a href="global.html#lowercase">lowercase</a></li><li><a href="global.html#ng">ng</a></li><li><a href="global.html#ngBind">ngBind</a></li><li><a href="global.html#ngBindHtml">ngBindHtml</a></li><li><a href="global.html#ngBindTemplate">ngBindTemplate</a></li><li><a href="global.html#ngChange">ngChange</a></li><li><a href="global.html#ngChecked">ngChecked</a></li><li><a href="global.html#ngClass">ngClass</a></li><li><a href="global.html#ngClassEven">ngClassEven</a></li><li><a href="global.html#ngClassOdd">ngClassOdd</a></li><li><a href="global.html#ngClick">ngClick</a></li><li><a href="global.html#ngCloak">ngCloak</a></li><li><a href="global.html#ngController">ngController</a></li><li><a href="global.html#ngCopy">ngCopy</a></li><li><a href="global.html#ngCsp">ngCsp</a></li><li><a href="global.html#ngCut">ngCut</a></li><li><a href="global.html#ngDblclick">ngDblclick</a></li><li><a href="global.html#ngDisabled">ngDisabled</a></li><li><a href="global.html#ngFocus">ngFocus</a></li><li><a href="global.html#ngForm">ngForm</a></li><li><a href="global.html#ngHide">ngHide</a></li><li><a href="global.html#ngHref">ngHref</a></li><li><a href="global.html#ngIf">ngIf</a></li><li><a href="global.html#ngInclude">ngInclude</a></li><li><a href="global.html#ngInit">ngInit</a></li><li><a href="global.html#ngKeydown">ngKeydown</a></li><li><a href="global.html#ngKeypress">ngKeypress</a></li><li><a href="global.html#ngKeyup">ngKeyup</a></li><li><a href="global.html#ngList">ngList</a></li><li><a href="global.html#ngModel">ngModel</a></li><li><a href="global.html#ngMousedown">ngMousedown</a></li><li><a href="global.html#ngMouseenter">ngMouseenter</a></li><li><a href="global.html#ngMouseleave">ngMouseleave</a></li><li><a href="global.html#ngMouseover">ngMouseover</a></li><li><a href="global.html#ngMouseup">ngMouseup</a></li><li><a href="global.html#ngNonBindable">ngNonBindable</a></li><li><a href="global.html#ngOpen">ngOpen</a></li><li><a href="global.html#ngPaste">ngPaste</a></li><li><a href="global.html#ngPluralize">ngPluralize</a></li><li><a href="global.html#ngReadonly">ngReadonly</a></li><li><a href="global.html#ngRepeat">ngRepeat</a></li><li><a href="global.html#ngSelected">ngSelected</a></li><li><a href="global.html#ngShow">ngShow</a></li><li><a href="global.html#ngSrc">ngSrc</a></li><li><a href="global.html#ngSrcset">ngSrcset</a></li><li><a href="global.html#ngStyle">ngStyle</a></li><li><a href="global.html#ngSubmit">ngSubmit</a></li><li><a href="global.html#ngSwitch">ngSwitch</a></li><li><a href="global.html#ngTransclude">ngTransclude</a></li><li><a href="global.html#ngValue">ngValue</a></li><li><a href="global.html#number">number</a></li><li><a href="global.html#orderBy">orderBy</a></li><li><a href="global.html#script">script</a></li><li><a href="global.html#select">select</a></li><li><a href="global.html#textarea">textarea</a></li><li><a href="global.html#uppercase">uppercase</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Mon Mar 24 2014 20:50:52 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
