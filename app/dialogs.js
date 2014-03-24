@@ -217,5 +217,9 @@ app.service("coltDialogs", function($q) {
 		$scope.testJsDocs = function() {
 			$scope.openJsDoc("Lorem ipsum <b>dolor</b> sit amet, <b>consectetur</b> adipisicing <b>elit</b>. Placeat, eos, maiores, doloremque, quaerat beatae a veniam fuga dignissimos aut ipsa autem mollitia alias modi doloribus consequatur laboriosam odio praesentium ea natus reprehenderit voluptatum dolores necessitatibus veritatis quasi magnam neque deleniti facere sapiente nisi animi sit optio tempore quae ullam eum voluptate velit debitis. Rerum, ducimus fugiat qui accusantium sit et quas provident dicta aliquid quos excepturi fugit tempora sint blanditiis id eum recusandae asperiores doloremque quod odio possimus vel voluptatum in ullam aperiam dolor officia minima quisquam dolorum maiores itaque placeat numquam veritatis inventore impedit tenetur sequi. Nulla, est aperiam optio molestias ex iste et beatae iusto illo? Quam, tempore ab corrupti tempora expedita! Tenetur, fugiat, amet molestias sed eius quis beatae quos quod aperiam tempore et cum sunt vitae enim maiores culpa aspernatur doloremque totam numquam quas dolorem aut accusamus ab delectus rerum optio molestiae libero recusandae maxime sint nisi eligendi sequi vero qui illo veniam aliquam. A, enim, illo, vero laborum inventore totam pariatur hic nulla numquam sunt dicta nisi fuga explicabo. Officiis, tempore, dolore, ipsam deserunt maxime impedit ut odit perferendis iure aliquam vero dolor praesentium quae explicabo velit? Ut, blanditiis perspiciatis obcaecati autem delectus quod accusantium.", "JS Doc Title")
 		}
+
+		$scope.testJsDocsFile = function(url) {
+			$scope.openJsDocFile(url);
+		}
 	}
 });

@@ -342,6 +342,7 @@ app.service("nodeApp", function($q, appMenu) {
 			};
 
 			$scope.openJsDocFile = function(url) {
+				console.log("url", 'app://'+url);
 				var modal = gui.Window.open('app://'+url, {
 				  position: 'mouse',
 				  width: jsDocSize[0],
