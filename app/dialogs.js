@@ -137,20 +137,9 @@ app.service("coltDialogs", function($q) {
 			});
 		};
 
-        var collect = function (arr, func) {
-            var result = [];
-            arr.forEach(function (entry) {
-                result.push(func(entry))
-            });
-            return result
-        };
-
-		$scope.showWelcomeScreen = function(recentProjects) {
+        $scope.showWelcomeScreen = function(recentProjects) {
 			var popup = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
-            popup.recentProjects = collect(recentProjects, function (it) {
-                  return {name : it}
-            });
-            console.log(popup.recentProjects);
+			recentProjects = recentProjects.map(function (it) {return {name : it} });
 			$.extend(popup, {
 				close: function(){
 					console.log("close");
@@ -171,15 +160,17 @@ app.service("coltDialogs", function($q) {
 					popup.window.close();
 				},
 				openRecentProject: function(index){
-					console.log("open rescent project", recentProjects[index]);
+					console.log("open recent project", recentProjects[index]);
                     $scope.sendToJava("load -file:" + recentProjects[index]);
 					popup.window.close();
 				},
+				recentProjects: recentProjects,
                 openLink: function (url) {
                     console.log("url");
                     $scope.openExternal(url);
                 }
 			});
+			console.log("recentProjects", popup.recentProjects);
 		}
 
 		var chooseFile = function(name) {
