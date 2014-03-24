@@ -6,13 +6,7 @@ var app = angular.module("COLT", [
 	'log.visualizer.directive', 
 	'ui.router', 
 	'pasvaz.bindonce',
-	'angular-google-analytics'
 	]);
-
-// app.config(function(AnalyticsProvider) {
-// 	AnalyticsProvider.setAccount('UA-40699654-4');
-// 	AnalyticsProvider.trackPages(true);
-// });
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/settings");

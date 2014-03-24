@@ -2,7 +2,6 @@
 
 var app = angular.module("popups", [
 	'ui.router', 
-	'angular-google-analytics',
 	'colt.directives'
 	]);
 

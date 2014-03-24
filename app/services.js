@@ -20,7 +20,7 @@ app.service("nodeApp", function($q, appMenu) {
 		
 		}else{
 			var gui = require('nw.gui'); 
-			var win = gui.Window.get(); win.showDevTools();
+			var win = gui.Window.get(); //win.showDevTools();
 
 			var java;
 			var runJava = function (projectPath) {
@@ -320,15 +320,15 @@ app.service("nodeApp", function($q, appMenu) {
 				return popupObject;
 			};
 
-			var jsDocSize = [400, 210];
-			var jsDocPosition = [];
+			var jsDocSize = {width:400, height:210};
+			var jsDocPosition = {x:win.x,y:win.y};
 
 			$scope.openJsDoc = function(html, title) {
 				var modal = gui.Window.open('app://./popups.html#/js-doc-popup', {
 				  position: 'mouse',
 				  title:title,
-				  width: jsDocSize[0],
-				  height: jsDocSize[1],
+				  width: jsDocSize.width,
+				  height: jsDocSize.height,
 				  frame: false
 				});
 				modal.hide();
@@ -337,10 +337,8 @@ app.service("nodeApp", function($q, appMenu) {
 					html : html
 				};
 				modal.on('loaded', function() {
-					if(jsDocPosition){
-						modal.x = jsDocPosition.x;
-						modal.y = jsDocPosition.y;
-					}
+					modal.x = jsDocPosition.x;
+					modal.y = jsDocPosition.y;
 					if(!modal.window.popup){
 						modal.window.popup = popupObject;
 					}else{
@@ -352,7 +350,7 @@ app.service("nodeApp", function($q, appMenu) {
 				modal.on('blur', function() {
 					var size = getModalSise(modal);
 					if(size){
-						jsDocSize = [Math.max(400, size[0]), Math.max(210, size[1])];
+						jsDocSize = {width:Math.max(400, size[0]), height:Math.max(210, size[1])};
 					}
 					jsDocPosition.x = modal.x;
 					jsDocPosition.y = modal.y;
@@ -361,55 +359,22 @@ app.service("nodeApp", function($q, appMenu) {
 			};
 
 			$scope.openJsDocFile = function(url) {
-				var modal = gui.Window.get(
-				  window.open(url)
-				);
-
-				modal.hide();
-				modal.on('loaded', function() {
-					if(jsDocPosition){
-						modal.x = jsDocPosition.x;
-						modal.y = jsDocPosition.y;
-					}
-					modal.resizeTo(jsDocSize.width, jsDocSize.height);
-					modal.show();
-					modal.focus();
-				});
-				modal.on('blur', function() {
-					var size = [modal.x, modal.y];
-					if(size){
-						jsDocSize = [Math.max(400, size[0]), Math.max(210, size[1])];
-					}
-					jsDocPosition.x = modal.x;
-					jsDocPosition.y = modal.y;
-					modal.close(true);
-				});
-			};
-
-			$scope.openJsDocFile2 = function(url) {
-				console.log("url", url);
-				var modal = gui.Window.open('app://'+url, {
+				var modal = gui.Window.open('file://'+url, {
 				  position: 'mouse',
-				  width: jsDocSize[0],
-				  height: jsDocSize[1],
+				  width: jsDocSize.width,
+				  height: jsDocSize.height,
 				  frame: false
 				});
 				modal.hide();
 				modal.on('loaded', function() {
-					if(jsDocPosition){
-						modal.x = jsDocPosition.x;
-						modal.y = jsDocPosition.y;
-					}
+					modal.x = jsDocPosition.x;
+					modal.y = jsDocPosition.y;
 					modal.show();
 					modal.focus();
 				});
 				modal.on('blur', function() {
-					var size = [modal.x, modal.y];
-					if(size){
-						jsDocSize = [Math.max(400, size[0]), Math.max(210, size[1])];
-					}
-					jsDocPosition.x = modal.x;
-					jsDocPosition.y = modal.y;
+					jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
+					jsDocPosition = {x:modal.x,y:modal.y};
 					modal.close(true);
 				});
 			};
