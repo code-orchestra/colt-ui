@@ -146,8 +146,8 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 											case "project":
 											switch(json.state) {
 												case "load":
-													projectPath = json.message;
-													$scope.loadProject(projectPath);
+                                                    projectFilePath = json.message;
+													$scope.loadProject(projectFilePath);
 													break;
 													case "created":
 														break;
@@ -293,11 +293,12 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 			};
 
 			$scope.getProjectPath = function(){
+                console.log(projectFilePath);
 				return projectFilePath;
 			};
 
 			console.log("app args:", gui.App.argv);
-			var projectFilePath = gui.App.argv[0];
+            var projectFilePath = gui.App.argv[0];
 			if(projectFilePath) {
 				runJava(projectFilePath);
 			} else {
