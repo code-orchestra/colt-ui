@@ -284,7 +284,7 @@ app.service("nodeApp", function($q, appMenu) {
 					console.log("popup closed", popupObject);
 					if(popupObject && popupObject.hasOwnProperty("close")){
 						if(popupObject.close()){
-							win.clos(true);
+							win.close();
 						}
 					}
 					win.show();
@@ -382,7 +382,7 @@ app.service("nodeApp", function($q, appMenu) {
 						projectFilePath = array[0];
 						$scope.sendToJava("load -file:" + projectFilePath)
 					} else {
-						$scope.showWelcomeScreen([])
+						$scope.showWelcomeScreen([], true)
 					}
 				})
 			}

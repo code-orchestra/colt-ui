@@ -138,12 +138,13 @@ app.service("coltDialogs", function($q) {
 			});
 		};
 
-        $scope.showWelcomeScreen = function(recentProjects) {
+        $scope.showWelcomeScreen = function(recentProjects, isMain) {
 			var popup = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
 			$.extend(popup, {
 				close: function(){
 					console.log("close");
 					popup.window.close();
+                    //return isMain
 				},
 				newProject: function(){
 					console.log("new project");

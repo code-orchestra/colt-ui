@@ -48,7 +48,7 @@ app.service("appMenu", function($q) {
 			fileSubMenu.append(new gui.MenuItem({
 				label: 'Close Project',
 				click: function () {
-					//todo: implement 
+                    $scope.showWelcomeScreen(recentProjectsPaths, true)
 				}
 			}));
 			
