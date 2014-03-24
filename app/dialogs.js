@@ -37,9 +37,13 @@ app.service("coltDialogs", function($q) {
 			var d = $q.defer();
 			$.extend(popup, {
 				save: function(){
+					try{
 					console.log("save proxy settings");
 					d.resolve();
 					popup.window.close();
+					}catch(e){
+					console.log(e);		
+					}
 				}
 			});
 			return d.promise;
@@ -54,10 +58,10 @@ app.service("coltDialogs", function($q) {
 					console.log("close alert");
 					d.resolve();
 					popup.window.close();
-				}
+				},
+				type: type,
+				message: message
 			});
-			popup.type = type
-			popup.message = message
 			return d.promise;
 		}
 

@@ -250,10 +250,10 @@ app.service("nodeApp", function($q, appMenu) {
 				});
 				modal.hide();
 				win.hide();
-				//modal.showDevTools();
 				var popupObject = {};
 				modal.on('loaded', function() {
 					console.log("popup opened");
+					// modal.showDevTools();
 					modal.focus();
 					modal.title = title;
 					modal.x = win.x - 40;

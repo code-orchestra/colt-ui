@@ -1,7 +1,7 @@
 <meta name="colt-main-document" content="popups.html#/proxy-settings-dialog">
 <div class="lose-save dialog container popup-window" style="padding-top:10px">
 	<form class="col-xs-12">
-		<div class="form-group row" ng-submit="ok()">
+		<div class="form-group row" ng-submit="save()">
 			<div class="dialog-message"><h4>Proxy Settings</h4></div>
 		</div>
 		<checkbox label="Use Proxy" checked="popup.useProxy"></checkbox>
@@ -11,7 +11,7 @@
 		<value label="Password" value="popup.password" disabled="!popup.useProxy"></value>
 
 		<div class="form-group row">
-			<button type="submit" ng-click="ok()" class="btn btn-primary pull-right col-xs-2">OK</button>
+			<button type="submit" ng-click="save()" class="btn btn-primary pull-right col-xs-2">OK</button>
 		</div>
 
 		<style type="text/css">

@@ -85,7 +85,6 @@ app.run(function($rootScope, Analytics) {
 	});
 
 	$(document).bind("resize", function() {
-		console.log("on resize", arguments);
 		$rootScope.onResize();
 	});
 	
@@ -240,7 +239,7 @@ app.controller("ProxySettingsController", function($scope, $rootScope) {
 	if($scope.popup.port == undefined){
 		$scope.popup.port = "8080";
 	}
-	$scope.ok = function() {
+	$scope.save = function() {
 		$scope.callToOwnerWindow("save");
 	}
 });
