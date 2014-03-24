@@ -133,7 +133,6 @@ app.service("appMenu", function($q) {
 				enabled: recentProjectsSubMenu.items.length > 0,
 				click: function () {
 					$scope.sendToJava("clearRecentProjectsPaths");
-					self.buildMenu($scope, []);
 				}
 			}));
 			return recentProjectsSubMenu

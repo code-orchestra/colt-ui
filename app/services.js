@@ -141,6 +141,8 @@ app.service("nodeApp", function($q, appMenu, $sce) {
                                                 if (serviceDefers[json.type] != null) {
                                                     serviceDefers[json.type].resolve(json.array);
                                                     serviceDefers[json.type] = null;
+                                                } else {
+                                                    appMenu.buildMenu($scope, json.array);
                                                 }
 												break;
 											case "project":
@@ -297,10 +299,13 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 				return projectFilePath;
 			};
 
+            appMenu.buildMenu($scope, []);
+
 			console.log("app args:", gui.App.argv);
             var projectFilePath = gui.App.argv[0];
 			if(projectFilePath) {
 				runJava(projectFilePath);
+                $scope.sendToJava("getRecentProjectsPaths");
 			} else {
 				runJava();
 				$scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths")
@@ -313,11 +318,6 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 					}
 				})
 			}
-
-			appMenu.buildMenu($scope, []);
-			$scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths").then(function (array) {
-				appMenu.buildMenu($scope, array);
-			});
 		}
 	} 
 });  
