@@ -165,6 +165,11 @@ app.service("nodeApp", function($q, appMenu) {
 														break;
 											}
 												break
+											case "javadoc":
+												// todo: parse javadoc
+												console.log(json.message)
+												$scope.openJsDoc("<pre>" + json.message + "</pre>", "hello")
+												break
 										}
 										$scope.$emit(json.type, json);
 									});
