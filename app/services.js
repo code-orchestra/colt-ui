@@ -290,7 +290,7 @@ app.service("nodeApp", function($q, appMenu) {
 					console.log("popup closed", popupObject);
 					if(popupObject && popupObject.hasOwnProperty("close")){
 						if(popupObject.close(true)){
-							win.close(true);
+							win.close();
 						}
 					}
 					win.show();
