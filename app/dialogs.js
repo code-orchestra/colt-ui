@@ -140,29 +140,34 @@ app.service("coltDialogs", function($q) {
 
         $scope.showWelcomeScreen = function(recentProjects, isMain) {
 			var popup = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
-			$.extend(popup, {
+			var isCloseButton = true;
+            $.extend(popup, {
 				close: function(){
 					console.log("close");
 					popup.window.close();
-                    //return isMain
+                    return isMain && isCloseButton
 				},
 				newProject: function(){
 					console.log("new project");
                     $scope.showNewProjectDialog();
+                    isCloseButton = false;
 					popup.window.close();
 				},
 				openDemoProjects: function(){
 					console.log("open demo project");
+                    isCloseButton = false;
 					popup.window.close();
 				},
 				openProject: function(){
 					console.log("open project");
                     $scope.showOpenProjectDialog();
+                    isCloseButton = false;
 					popup.window.close();
 				},
 				openRecentProject: function(index){
 					console.log("open recent project", recentProjects[index]);
                     $scope.sendToJava("load -file:" + recentProjects[index]);
+                    isCloseButton = false;
 					popup.window.close();
 				},
 				recentProjects: recentProjects.map(function (it) {return {name : it} }),
