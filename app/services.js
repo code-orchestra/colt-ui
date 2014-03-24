@@ -277,12 +277,14 @@ app.service("nodeApp", function($q, appMenu) {
 					modal.focus();
 				});
 				modal.on('closed', function() {
-					win.show();
-					win.focus();
 					console.log("popup closed", popupObject);
 					if(popupObject && popupObject.hasOwnProperty("close")){
-						popupObject.close();
+						if(popupObject.close()){
+							win.clos(true);
+						}
 					}
+					win.show();
+					win.focus();
 				});
 				popupObject.window = modal;
 				return popupObject;
