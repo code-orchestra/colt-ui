@@ -174,8 +174,8 @@ app.service("nodeApp", function($q, appMenu) {
 												// todo: parse javadoc
 											    var os = require('os'), ostemp = os.tmpdir();
 
-												console.log("About to run: /Users/makc/node_modules/.bin/jsdoc " + json.message + " -d " + ostemp);
-												var spawn = require('child_process').spawn, jsdoc = spawn('/Users/makc/node_modules/.bin/jsdoc', [json.message, '-d', ostemp]);
+												console.log("About to run: ./node_modules/.bin/jsdoc " + json.message + " -d " + ostemp);
+												var spawn = require('child_process').spawn, jsdoc = spawn('./node_modules/.bin/jsdoc', [json.message, '-d', ostemp]);
 
 												jsdoc.on('error', function (err) {
 													console.log('Jsdoc error:', err);
@@ -363,7 +363,6 @@ app.service("nodeApp", function($q, appMenu) {
 				console.log("url", 'app://'+url);
 				var modal = gui.Window.open('app://'+url, {
 				  position: 'mouse',
-				  title: 'javadoc',
 				  width: jsDocSize[0],
 				  height: jsDocSize[1],
 				  frame: false
