@@ -1,7 +1,7 @@
 <meta name="colt-main-document" content="popups.html#/js-doc-popup">
 <div class="container popup-window">
 	<div class="jsdoc-title"><h4>{{popup.jsdocTitle}}</h4></div>
-	<div class="jsdoc-body"><p ng-bind-html="popup.jsdocHtml"></p></div>
+	<div class="jsdoc-body" ng-bind-html="popup.jsdocHtml"></div>
 </div>
 
 <!-- <img class="image-screen" src="../images/dialogs-screens/s5.png" height=dialog"223" width="629"> -->
@@ -10,6 +10,7 @@
 	<style type="text/css">
 	
 	body{
+		display: block;
 		/*border-radius: 9px;*/
 		background-color: #F5A623;
 		/*border: 1px solid #979797;*/
@@ -18,28 +19,48 @@
 		-webkit-touch-callout: default;
 		-webkit-user-select: text;
 		user-select: text;
-
-		overflow-x: auto;
-		overflow-y: node;
-	}
-
-	.popup-window{
 		
 	}
-	
+
 	.jsdoc-title{
 		-webkit-user-select: none;
   		-webkit-app-region: drag;
 		display: block;
 	}
 
-	.jsdoc-title h5 {
+	.jsdoc-title h4{
+		font: 22px Arial, 'Helvetica Neue', Helvetica, sans-serif;
 		font-weight: bold;
 	}
 
-	.jsdoc-body p{
-		display: block;
+
+	.jsdoc-body{
+		font-size: 15px;
+		position: fixed;
+		top: 44px;
+		left: 15px;
+		bottom: 0px;
+		right: 2px;
+
+		overflow-x: auto;
+		overflow-y: node;
+		padding-right: 10px;
 	}
+
+	.jsdoc-body::-webkit-scrollbar {  
+    width: 8px;  
+	}  
+	.jsdoc-body::-webkit-scrollbar-track {  
+	    background-color: rgba(0,0,0,0.0);  
+	    border-left: 1px solid #F5A623;
+	}  
+	.jsdoc-body::-webkit-scrollbar-thumb {  
+	    background-color: rgba(0,0,0,0.2);  
+	    border-radius: 3px;
+	}  
+	.jsdoc-body::-webkit-scrollbar-thumb:hover {  
+	    background-color: rgba(0,0,0,0.3);  
+	}  
 
 	</style>
 	
