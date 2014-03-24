@@ -131,9 +131,9 @@ app.run(function($rootScope, Analytics) {
 app.controller("WelcomeController", function($scope, $rootScope) {
 	console.log("welcome screen");
 
-	if(!$scope.popup.hasOwnProperty("rescentProjects")){
-		$scope.popup.rescentProjects = [
-		{name:"My Rescent Project"},
+	if(!$scope.popup.hasOwnProperty("recentProjects")){
+		$scope.popup.recentProjects = [
+		{name:"My Recent Project"},
 		{name:"Index"}
 		];
 	}
@@ -151,7 +151,7 @@ app.controller("WelcomeController", function($scope, $rootScope) {
 	}
 
 	$scope.openRescentProject = function(index) {
-		$scope.callToOwnerWindow("openRescentProject", index);
+		$scope.callToOwnerWindow("openRecentProject", index);
 	}
 
 	$scope.openProject = function() {
