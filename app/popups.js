@@ -144,7 +144,7 @@ app.controller("WelcomeController", function($scope, $rootScope) {
 		$scope.callToOwnerWindow("openDemoProjects");
 	}
 
-	$scope.openRescentProject = function(index) {
+	$scope.openRecentProject = function(index) {
 		$scope.callToOwnerWindow("openRecentProject", index);
 	}
 

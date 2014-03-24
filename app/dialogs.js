@@ -139,7 +139,6 @@ app.service("coltDialogs", function($q) {
 
         $scope.showWelcomeScreen = function(recentProjects) {
 			var popup = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
-			recentProjects = recentProjects.map(function (it) {return {name : it} });
 			$.extend(popup, {
 				close: function(){
 					console.log("close");
@@ -164,7 +163,7 @@ app.service("coltDialogs", function($q) {
                     $scope.sendToJava("load -file:" + recentProjects[index]);
 					popup.window.close();
 				},
-				recentProjects: recentProjects,
+				recentProjects: recentProjects.map(function (it) {return {name : it} }),
                 openLink: function (url) {
                     console.log("url");
                     $scope.openExternal(url);
