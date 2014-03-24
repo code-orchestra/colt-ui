@@ -344,7 +344,6 @@ app.service("nodeApp", function($q, appMenu) {
 			$scope.openJsDocFile = function(url) {
 				var modal = gui.Window.open('app://'+url, {
 				  position: 'mouse',
-				  title:title,
 				  width: jsDocSize[0],
 				  height: jsDocSize[1],
 				  frame: false
@@ -359,7 +358,7 @@ app.service("nodeApp", function($q, appMenu) {
 					modal.focus();
 				});
 				modal.on('blur', function() {
-					var size = getModalSise(modal);
+					var size = [modal.x, modal.y];
 					if(size){
 						jsDocSize = [Math.max(400, size[0]), Math.max(210, size[1])];
 					}

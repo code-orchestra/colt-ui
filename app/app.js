@@ -9,10 +9,10 @@ var app = angular.module("COLT", [
 	'angular-google-analytics'
 	]);
 
-app.config(function(AnalyticsProvider) {
-	// AnalyticsProvider.setAccount('UA-40699654-4');
-	// AnalyticsProvider.trackPages(true);
-});
+// app.config(function(AnalyticsProvider) {
+// 	AnalyticsProvider.setAccount('UA-40699654-4');
+// 	AnalyticsProvider.trackPages(true);
+// });
 
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/settings");

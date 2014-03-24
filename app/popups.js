@@ -6,11 +6,6 @@ var app = angular.module("popups", [
 	'colt.directives'
 	]);
 
-// app.config(function(AnalyticsProvider) {
-// 	AnalyticsProvider.setAccount('UA-40699654-4');
-// 	AnalyticsProvider.trackPages(true);
-// });
-
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/welcome-screen");
 	$stateProvider
@@ -76,11 +71,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 });
 
-app.run(function($rootScope, Analytics) {
+app.run(function($rootScope, analyticsService) {
 	$rootScope.$on('$stateChangeSuccess', function(event, toState){ 
 		$rootScope.pageName = toState.pageName;
 		$rootScope.pageIndex = toState.pageIndex;
-		// Analytics.trackPage(toState.url + ".html");
 		$rootScope.onResize();
 	});
 

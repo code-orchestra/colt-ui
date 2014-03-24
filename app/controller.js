@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, Analytics, $http, $q) {
+app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, analyticsService) {
 	
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
