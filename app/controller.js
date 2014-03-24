@@ -67,6 +67,7 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, Analytics, $htt
 	$scope.$on('$stateChangeSuccess', function(event, toState){ 
 		$scope.pageName = toState.pageName;
 		$scope.pageIndex = toState.pageIndex;
+		console.log("track-page", toState.url + ".html");
 		Analytics.trackPage(toState.url + ".html");
 	});
 

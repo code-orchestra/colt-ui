@@ -13,8 +13,9 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<button type="submit" ng-click="buy()" class="btn btn-default dialog-button ">Purchase</button>
-			<button type="submit" ng-click="demo()" class="btn btn-default dialog-button pull-right">Continue With Demo</button>
+			<button type="submit" ng-click="buy('mo')" class="btn btn-default buy-button ">Subscribe $6.95/mo</button>
+			<button type="submit" ng-click="buy('year')" class="btn btn-default buy-button ">Subscribe $50/year</button>
+			<button type="submit" ng-click="demo()" class="btn btn-default demo-button pull-right">Continue With Demo</button>
 		</div>
 		<p>Or enter a serial number</p>
 		<div class="input-group row">
@@ -45,8 +46,12 @@
 			margin-top: 400px;
 		}
 
-		.dialog-button {
-			width: 48%;
+		.buy-button {
+			margin-right: 10px;
+		}
+
+		.demo-button {
+			/*width: 33%;*/
 		}
 
 		.dialog-message {
