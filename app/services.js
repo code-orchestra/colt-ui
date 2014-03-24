@@ -26,9 +26,9 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 			var runJava = function (projectPath) {
 				var spawn = require('child_process').spawn;
 				if (projectPath) {
-					java  = spawn('java', ['-jar', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', projectPath, '-ui']);
+					java  = spawn('java', ['-jar', './java/colt.jar', projectPath, '-ui']);
 				} else {
-					java  = spawn('java', ['-jar', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', '-ui']);
+					java  = spawn('java', ['-jar', './java/colt.jar', '-ui']);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
 				}
 
 				java.on('close', function (code, signal) {
