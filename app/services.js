@@ -73,29 +73,33 @@ app.service("nodeApp", function($q, appMenu) {
 									$scope.$apply(function() {
 										switch(json.type) {
 											case "log":
-											$scope.logMessages.push(json);
-											$scope.updateFilters();
+                                                $scope.logMessages.push(json);
+                                                $scope.updateFilters();
 												break;
 											case "runSession":
-											$scope.sessionInProgress = true;
-											$scope.sessionStateSwitching = false;
-											console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+                                                $scope.sessionInProgress = true;
+                                                $scope.sessionStateSwitching = false;
 												break;
 											case "stopSession":
-											$scope.sessionInProgress = false;
-											$scope.sessionStateSwitching = false;
-											console.log("$scope.sessionInProgress", $scope.sessionInProgress);
+                                                $scope.sessionInProgress = false;
+                                                $scope.sessionStateSwitching = false;
 												break;
+                                            case "proxy":
+                                                if (serviceDefers[json.type] != null) {
+                                                    serviceDefers[json.type].resolve(JSON.parse(json.message));
+                                                    serviceDefers[json.type] = null;
+                                                }
+                                                break;
 											case "exec":
-											var exec = require('child_process').exec;
-										    var child = exec(json.exec,
-											  function (error, stdout, stderr) {
-											    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
-											    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
-											    if (error !== null) {
-											      $scope.log("ERROR", 'exec error: ' + error);
-											    }
-											});
+                                                var exec = require('child_process').exec;
+                                                var child = exec(json.exec,
+                                                  function (error, stdout, stderr) {
+                                                    if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
+                                                    if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
+                                                    if (error !== null) {
+                                                      $scope.log("ERROR", 'exec error: ' + error);
+                                                    }
+                                                });
 												break;
 											case "serialNumber":
                                                 switch(json.state){
@@ -384,7 +388,7 @@ app.service("nodeApp", function($q, appMenu) {
 						projectFilePath = array[0];
 						$scope.sendToJava("load -file:" + projectFilePath)
 					} else {
-						$scope.showWelcomeScreen([])
+						$scope.showWelcomeScreen([], true)
 					}
 				})
 			}

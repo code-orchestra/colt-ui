@@ -240,7 +240,7 @@ app.controller("ProxySettingsController", function($scope, $rootScope) {
 		$scope.popup.port = "8080";
 	}
 	$scope.save = function() {
-		$scope.callToOwnerWindow("save");
+		$scope.callToOwnerWindow("save", $scope.popup);
 	}
 });
 

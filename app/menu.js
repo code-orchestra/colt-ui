@@ -48,7 +48,7 @@ app.service("appMenu", function($q) {
 			fileSubMenu.append(new gui.MenuItem({
 				label: 'Close Project',
 				click: function () {
-					//todo: implement 
+                    $scope.showWelcomeScreen(recentProjectsPaths, true)
 				}
 			}));
 			
@@ -82,15 +82,16 @@ app.service("appMenu", function($q) {
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({
-				type: 'separator',
-				click: function () {
-					//todo: implement 
-				}
+				type: 'separator'
 			}));
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Proxy settings',
 				click: function () {
-					//todo: implement 
+                    $scope.sendToJava("getProxy", "proxy")
+                        .then($scope.showProxyDialog)
+                        .then(function (settings) {
+                            $scope.sendToJava("setProxy " + JSON.stringify(settings));
+                        });
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({
