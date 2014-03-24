@@ -175,7 +175,8 @@ app.service("nodeApp", function($q, appMenu) {
 											    var os = require('os'), ostemp = os.tmpdir();
 
 												console.log("About to run: ./node_modules/.bin/jsdoc " + json.message + " -d " + ostemp);
-												var spawn = require('child_process').spawn, jsdoc = spawn('./node_modules/.bin/jsdoc', [json.message, '-d', ostemp]);
+												var spawn = require('child_process').spawn, 
+												jsdoc = spawn('./node_modules/.bin/jsdoc', [json.message, '-d', ostemp]);
 
 												jsdoc.on('error', function (err) {
 													console.log('Jsdoc error:', err);
@@ -360,7 +361,33 @@ app.service("nodeApp", function($q, appMenu) {
 			};
 
 			$scope.openJsDocFile = function(url) {
-				console.log("url", 'app://'+url);
+				var modal = gui.Window.get(
+				  window.open(url)
+				);
+
+				modal.hide();
+				modal.on('loaded', function() {
+					if(jsDocPosition){
+						modal.x = jsDocPosition.x;
+						modal.y = jsDocPosition.y;
+					}
+					modal.resizeTo(jsDocSize.width, jsDocSize.height);
+					modal.show();
+					modal.focus();
+				});
+				modal.on('blur', function() {
+					var size = [modal.x, modal.y];
+					if(size){
+						jsDocSize = [Math.max(400, size[0]), Math.max(210, size[1])];
+					}
+					jsDocPosition.x = modal.x;
+					jsDocPosition.y = modal.y;
+					modal.close(true);
+				});
+			};
+
+			$scope.openJsDocFile2 = function(url) {
+				console.log("url", url);
 				var modal = gui.Window.open('app://'+url, {
 				  position: 'mouse',
 				  width: jsDocSize[0],
