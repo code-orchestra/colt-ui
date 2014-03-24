@@ -29,6 +29,12 @@ BODY {
 	overflow: hidden;
 }
 
+.no-select{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
 :focus {
 	outline: none;
 }

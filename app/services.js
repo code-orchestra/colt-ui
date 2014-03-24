@@ -232,11 +232,19 @@ app.service("nodeApp", function($q, appMenu, $sce) {
                 gui.Shell.openExternal(url);
             };
 			
+			var getModalSise = function(modal) {
+				var $ = modal.window.$;
+				var popupWindow = $(".popup-window");
+				if(!popupWindow.size())return [];
+				return [$(popupWindow)[0].scrollWidth, $(popupWindow)[0].scrollHeight];
+			}
+
 			$scope.openPopup = function(html, title) {
 				var modal = gui.Window.open('app://./'+ html,{
 					toolbar: false
 				});
 				modal.hide();
+				win.hide();
 				//modal.showDevTools();
 				var popupObject = {};
 				modal.on('loaded', function() {
@@ -246,7 +254,8 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 					modal.x = win.x - 40;
 					modal.y = win.y - 40;
 					modal.setPosition("mouse");
-					modal.show();
+					var size = getModalSise(modal);
+					modal.resizeTo(size[0],size[1]);
 					var $ = modal.window.$;
 					var popupWindow = $(".popup-window");
 					if(popupWindow.size() > 0){
@@ -259,6 +268,8 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 					}else{
 						$.extend(modal.window.popup, popupObject);
 					}
+					modal.show();
+					modal.focus();
 				});
 				modal.on('closed', function() {
 					win.show();
@@ -272,27 +283,42 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 				return popupObject;
 			};
 
+			var jsDocSize = [400, 210];
+			var jsDocPosition = [];
+
 			$scope.openJsDoc = function(html, title) {
 				var modal = gui.Window.open('app://./popups.html#/js-doc-popup', {
 				  position: 'mouse',
 				  title:title,
-				  width: 400,
-				  height: 200,
+				  width: jsDocSize[0],
+				  height: jsDocSize[1],
 				  frame: false
 				});
+				modal.hide();
 				var popupObject = {
 					jsdocTitle : title,
 					jsdocHtml : $sce.trustAsHtml(html)
 				};
 				modal.on('loaded', function() {
+					if(jsDocPosition){
+						modal.x = jsDocPosition.x;
+						modal.y = jsDocPosition.y;
+					}
 					if(!modal.window.popup){
 						modal.window.popup = popupObject;
 					}else{
 						$.extend(modal.window.popup, popupObject);
 					}
+					modal.show();
 					modal.focus();
 				});
 				modal.on('blur', function() {
+					var size = getModalSise(modal);
+					if(size){
+						jsDocSize = [Math.max(400, size[0]), Math.max(210, size[1])];
+					}
+					jsDocPosition.x = modal.x;
+					jsDocPosition.y = modal.y;
 					modal.close(true);
 				});
 				console.log(popupObject)
