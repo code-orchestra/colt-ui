@@ -172,8 +172,26 @@ app.service("nodeApp", function($q, appMenu) {
 												break;
 											case "javadoc":
 												// todo: parse javadoc
-												console.log(json.message)
-												$scope.openJsDoc("<pre>" + json.message + "</pre>", "hello")
+											    var os = require('os'), ostemp = os.tmpdir();
+
+												console.log("About to run: /Users/makc/node_modules/.bin/jsdoc " + json.message + " -d " + ostemp);
+												var spawn = require('child_process').spawn, jsdoc = spawn('/Users/makc/node_modules/.bin/jsdoc', [json.message, '-d', ostemp]);
+
+												jsdoc.on('error', function (err) {
+													console.log('Jsdoc error:', err);
+												});
+
+												jsdoc.on('close', function (code) {
+													console.log('Jsdoc exited with code ' + code);
+													if (code == 127) {
+														// why 127 ??
+														// ok to show the file
+														var path = require('path'), htmlFile = path.join(ostemp, "global.html");
+														console.log('openJsDocFile(\"' + htmlFile +'\")')
+														$scope.openJsDocFile(htmlFile);
+													}
+												});
+
 												break
 										}
 										$scope.$emit(json.type, json);
@@ -345,6 +363,7 @@ app.service("nodeApp", function($q, appMenu) {
 				console.log("url", 'app://'+url);
 				var modal = gui.Window.open('app://'+url, {
 				  position: 'mouse',
+				  title: 'javadoc',
 				  width: jsDocSize[0],
 				  height: jsDocSize[1],
 				  frame: false
