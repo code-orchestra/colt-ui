@@ -137,7 +137,7 @@ app.service("coltDialogs", function($q) {
 			});
 		}
 
-		$scope.showWelcomeScreen = function(rescentProjects) {
+		$scope.showWelcomeScreen = function(recentProjects) {
 			var popup = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
 			$.extend(popup, {
 				close: function(){
@@ -157,7 +157,7 @@ app.service("coltDialogs", function($q) {
 					popup.window.close();
 				},
 				openRescentProject: function(index){
-					console.log("open rescent project", rescentProjects[index]);
+					console.log("open rescent project", recentProjects[index]);
 					popup.window.close();
 				}
 			});

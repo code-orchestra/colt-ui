@@ -25,12 +25,11 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 			var java;
 			var runJava = function (projectPath) {
 				var spawn = require('child_process').spawn;
-				console.log("start /", projectPath, "/")
 				if (projectPath) {
 					java  = spawn('java', ['-jar', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', projectPath, '-ui']);
 				} else {
 					java  = spawn('java', ['-jar', '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', './java/colt.jar', '-ui']);
-				};
+				}
 
 				java.on('close', function (code, signal) {
 					console.log('child process terminated due to receipt of signal ' + signal);
@@ -40,7 +39,7 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 				var trimMessage = function(message) {
 					message =  (message + "");
 					message =  message.replace(/^\[fileScanner\]\s+/, "");
-					message =  message.replace(/(\n|\r)+$/, "")
+					message =  message.replace(/(\n|\r)+$/, "");
 					message =  message.replace(/\\n/g, "\\n")
 		                              .replace(/\\'/g, "\\'")
 		                              .replace(/\\"/g, '\\"')
@@ -48,14 +47,14 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 		                              .replace(/\\r/g, "\\r")
 		                              .replace(/\\t/g, "\\t")
 		                              .replace(/\\b/g, "\\b")
-		                              .replace(/\\f/g, "\\f")
+		                              .replace(/\\f/g, "\\f");
 		            return message;
 				};
 
 				var isPing = function(text) {
 					var pingRegexp = /ping/g;
 					return pingRegexp.exec(text) != null;
-				}
+				};
 
 				java.stdout.on('data', function (text) {
 					text = (text+"");
@@ -76,17 +75,17 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 											case "log":
 											$scope.logMessages.push(json);
 											$scope.updateFilters();
-												break
+												break;
 											case "runSession":
 											$scope.sessionInProgress = true;
 											$scope.sessionStateSwitching = false;
 											console.log("$scope.sessionInProgress", $scope.sessionInProgress);
-												break
+												break;
 											case "stopSession":
 											$scope.sessionInProgress = false;
 											$scope.sessionStateSwitching = false;
 											console.log("$scope.sessionInProgress", $scope.sessionInProgress);
-												break
+												break;
 											case "exec":
 											var exec = require('child_process').exec;
 										    var child = exec(json.exec,
@@ -97,71 +96,71 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 											      $scope.log("ERROR", 'exec error: ' + error);
 											    }
 											});
-												break
+												break;
 											case "serialNumber":
-											switch(json.state){
-												case "show":
-													$scope.showPurchaseDialog().then(
-														$scope.sendToJava,
-														function() {
-													    	$scope.sendToJava("continue");
-														},
-														function(update) {
-														    gui.Shell.openExternal(update);
-														}
-													)
-													break;
-												case "error":
-													$scope.showMessageDialog("error", json.message)
-													.then($scope.showSerialNumberDialog)
-													.then($scope.sendToJava,
-														function() {
-													    	$scope.sendToJava("continue");
-														});
-													break;
-												case "success":
-													$scope.showMessageDialog("app", json.message)
-													break;
-												case "demoMessage":
-													$scope.showMessageDialog("info", json.message)
-													break;
-												case "demoCount":
-													$scope.showContinueWithDemoDialog(json.message).then(
-														$scope.sendToJava,
-														function() {
-													    	$scope.sendToJava("continue");
-														},
-														function(update) {
-														    gui.Shell.openExternal(update);
-														}
-													)
-													break;
-											}									
-												break
+                                                switch(json.state){
+                                                    case "show":
+                                                        $scope.showPurchaseDialog().then(
+                                                            $scope.sendToJava,
+                                                            function() {
+                                                                $scope.sendToJava("continue");
+                                                            },
+                                                            function(update) {
+                                                                gui.Shell.openExternal(update);
+                                                            }
+                                                        );
+                                                        break;
+                                                    case "error":
+                                                        $scope.showMessageDialog("error", json.message)
+                                                        .then($scope.showSerialNumberDialog)
+                                                        .then($scope.sendToJava,
+                                                            function() {
+                                                                $scope.sendToJava("continue");
+                                                            });
+                                                        break;
+                                                    case "success":
+                                                        $scope.showMessageDialog("app", json.message)
+                                                        break;
+                                                    case "demoMessage":
+                                                        $scope.showMessageDialog("info", json.message)
+                                                        break;
+                                                    case "demoCount":
+                                                        $scope.showContinueWithDemoDialog(json.message).then(
+                                                            $scope.sendToJava,
+                                                            function() {
+                                                                $scope.sendToJava("continue");
+                                                            },
+                                                            function(update) {
+                                                                gui.Shell.openExternal(update);
+                                                            }
+                                                        )
+                                                        break;
+                                                }
+												break;
 											case "recentProjectsPaths":
-											if (serviceDefers[json.type] != null) {
-												serviceDefers[json.type].resolve(json.array)
-												serviceDefers[json.type] = null
-											};
-												break
+                                                if (serviceDefers[json.type] != null) {
+                                                    serviceDefers[json.type].resolve(json.array);
+                                                    serviceDefers[json.type] = null;
+                                                }
+												break;
 											case "project":
 											switch(json.state) {
 												case "load":
-													projectPath = json.message
-													$scope.loadProject(projectPath)
+													projectPath = json.message;
+													$scope.loadProject(projectPath);
 													break;
 													case "created":
-														break
+														break;
 													case "createError":
-														break
+														break;
 													case "loaded":
-														break
+														break;
 													case "loadError":
-														break
+														break;
 													case "saved":
-														break
+														break;
 													case "saveError":
-														break
+														break;
 											}
 												break
 										}
@@ -182,7 +181,7 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 					    	$scope.sendToJava("pong");
 					    }
 					}catch(e){
-						console.error("!!!!! ", e)
+						console.error("!!!!! ", e);
 					}
 				});
 
@@ -190,7 +189,7 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 					// console.log('stderr: '+ message);
 					$scope.log("ERROR", trimMessage(message));
 				});
-			}
+			};
 
 			win.on('close', function() {
 				if(java) {
@@ -200,29 +199,32 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 			});
 
 			$scope.saveProject = function (filePath, data){
-				console.log("data ", data)
-				console.log("filePath ", data)
-				data = {xml:data}
+				data = {xml:data};
 				var d = $q.defer();
-				var xml = xml2js.json2xml(data);
+                var xml2js = new X2JS({
+                    escapeMode:false
+                });
+                var xml = xml2js.json2xml_str(data);
+                var fs = require('fs');
 
 				fs.writeFile(filePath, xml, function(err) {
 					if(err) {
 						d.reject(err);
 					} else {
 						d.resolve();
+                        $scope.sendToJava("save " + new Date().getTime())
 					}
 				}); 
 				return d.promise;
 			};
 
-			var serviceDefers = {}
+			var serviceDefers = {};
 			$scope.sendToJava = function(message, resolveType) {
 				var d = serviceDefers[resolveType] || $q.defer();
 				serviceDefers[resolveType] = d; 
 				java.stdin.write(message + "\n");
 				return d.promise;
-			}
+			};
 			
 			$scope.openPopup = function(html, title) {
 				var modal = gui.Window.open('app://./'+ html,{
@@ -275,7 +277,7 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 				var popupObject = {
 					jsdocTitle : title,
 					jsdocHtml : $sce.trustAsHtml(html)
-				}
+				};
 				modal.on('loaded', function() {
 					if(!modal.window.popup){
 						modal.window.popup = popupObject;
@@ -292,7 +294,7 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 
 			$scope.getProjectPath = function(){
 				return projectFilePath;
-			}
+			};
 
 			console.log("app args:", gui.App.argv);
 			var projectFilePath = gui.App.argv[0];
@@ -303,7 +305,7 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 				$scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths")
 				.then(function (array) {
 					if (array.length > 0) {
-						projectFilePath = array[0]
+						projectFilePath = array[0];
 						$scope.sendToJava("load -file:" + projectFilePath)
 					} else {
 						$scope.showWelcomeScreen()
@@ -313,7 +315,6 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 
 			appMenu.buildMenu($scope, []);
 			$scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths").then(function (array) {
-				console.log("getRecentProjectsPaths:" + projectFilePath)
 				appMenu.buildMenu($scope, array);
 			});
 		}
