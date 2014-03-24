@@ -227,6 +227,10 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 				java.stdin.write(message + "\n");
 				return d.promise;
 			};
+
+            $scope.openExternal = function (url) {
+                gui.Shell.openExternal(url);
+            };
 			
 			$scope.openPopup = function(html, title) {
 				var modal = gui.Window.open('app://./'+ html,{
@@ -314,7 +318,7 @@ app.service("nodeApp", function($q, appMenu, $sce) {
 						projectFilePath = array[0];
 						$scope.sendToJava("load -file:" + projectFilePath)
 					} else {
-						$scope.showWelcomeScreen()
+						$scope.showWelcomeScreen([])
 					}
 				})
 			}

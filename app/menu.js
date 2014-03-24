@@ -4,9 +4,10 @@ app.service("appMenu", function($q) {
 	if(top['require']){
 		var gui = require('nw.gui');
 		var win = gui.Window.get();
-		var self = this
-		this.buildMenu = function($scope, array) {
+        var recentProjectsPaths = [];
 
+		this.buildMenu = function($scope, array) {
+            recentProjectsPaths = array;
 			console.log("build menu");
 			
 			var menu  = new gui.Menu({ type: 'menubar' });
@@ -63,7 +64,7 @@ app.service("appMenu", function($q) {
 					//todo: implement 
 				}
 			}));
-			run.submenu = runSubMenu
+			run.submenu = runSubMenu;
 			menu.append(run);
 
 			var help = new gui.MenuItem({ label: 'Help' });
@@ -77,7 +78,7 @@ app.service("appMenu", function($q) {
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Open Welcome Screen',
 				click: function () {
-					$scope.showWelcomeScreen() 
+					$scope.showWelcomeScreen(recentProjectsPaths)
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({
@@ -111,7 +112,7 @@ app.service("appMenu", function($q) {
 			menu.append(help);
 
 			win.menu = menu;
-		}
+		};
 
 		var initRecentProjects = function ($scope, array) {
 			var recentProjectsSubMenu = new gui.Menu();
@@ -123,11 +124,11 @@ app.service("appMenu", function($q) {
 						$scope.sendToJava("load -file:" + entry)
 					}
 				}));
-			})
+			});
 			
 			if (recentProjectsSubMenu.items.length > 0) {
 				recentProjectsSubMenu.append(new gui.MenuItem({ type: 'separator' }))
-			};
+			}
 			recentProjectsSubMenu.append(new gui.MenuItem({
 				label: 'Clear List',
 				enabled: recentProjectsSubMenu.items.length > 0,
@@ -135,7 +136,7 @@ app.service("appMenu", function($q) {
 					$scope.sendToJava("clearRecentProjectsPaths");
 				}
 			}));
-			return recentProjectsSubMenu
+			return recentProjectsSubMenu;
 		}
 	}
 });

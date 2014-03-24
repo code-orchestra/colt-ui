@@ -135,10 +135,22 @@ app.service("coltDialogs", function($q) {
 					popup.window.close();
 				}
 			});
-		}
+		};
+
+        var collect = function (arr, func) {
+            var result = [];
+            arr.forEach(function (entry) {
+                result.push(func(entry))
+            });
+            return result
+        };
 
 		$scope.showWelcomeScreen = function(recentProjects) {
 			var popup = $scope.openPopup('popups.html#/welcome-screen',"Welcome");
+            popup.rescentProjects = collect(recentProjects, function (it) {
+                  return {name : it}
+            });
+            console.log(popup.rescentProjects);
 			$.extend(popup, {
 				close: function(){
 					console.log("close");
@@ -146,6 +158,7 @@ app.service("coltDialogs", function($q) {
 				},
 				newProject: function(){
 					console.log("new project");
+                    $scope.showNewProjectDialog();
 					popup.window.close();
 				},
 				openDemoProjects: function(){
@@ -154,10 +167,12 @@ app.service("coltDialogs", function($q) {
 				},
 				openProject: function(){
 					console.log("open project");
+                    $scope.showOpenProjectDialog();
 					popup.window.close();
 				},
 				openRescentProject: function(index){
 					console.log("open rescent project", recentProjects[index]);
+                    $scope.sendToJava("load -file:" + recentProjects[index]);
 					popup.window.close();
 				}
 			});
