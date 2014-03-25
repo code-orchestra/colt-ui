@@ -7,6 +7,7 @@
     "title" : "COLT 2.0",
     "toolbar": false,
     "width": 480,
-    "height": 800
+    "height": 800,
+    "icon": "icons/colt_128.png"
   }
 }
