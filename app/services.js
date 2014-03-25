@@ -187,7 +187,7 @@ var runJava = function (projectPath) {
 
 									console.log("About to run: ./node_modules/.bin/jsdoc " + json.message + " -d " + ostemp);
 									var spawn = require('child_process').spawn, 
-									jsdoc = spawn('./node_modules/.bin/jsdoc', [json.message, '-d', ostemp]);
+									jsdoc = spawn('./node_modules/.bin/jsdoc', [json.message, '-d', ostemp, '-t', 'readable']);
 
 									jsdoc.on('error', function (err) {
 										console.log('Jsdoc error:', err);
