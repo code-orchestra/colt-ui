@@ -22,12 +22,20 @@ if(!top['require']){
 	return;
 }
 
-var gui = require('nw.gui'); 
+var gui = require('nw.gui');
 var win = gui.Window.get(); win.showDevTools();
-//var process = require('process');
+var os = require('os');
 var path = require('path');
-var app_path = "./";//path.dirname(process.execPath) + path.sep;
-console.log("app_path = ", app_path);
+var app_path;
+if(os.platform() == "darwin") {
+    app_path = path.dirname(process.execPath)
+    while(path.basename(app_path) != 'node-webkit.app') {
+        app_path = path.dirname(app_path)
+    }
+    app_path = app_path = path.dirname(app_path) + path.sep;
+} else {
+    app_path = path.dirname(process.execPath) + path.sep;
+}
 $scope.getAppPath = function(){
 	return app_path
 };
