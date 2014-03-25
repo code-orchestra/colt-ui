@@ -70,9 +70,9 @@ app.service("appMenu", function($q) {
 			var help = new gui.MenuItem({ label: 'Help' });
 			var helpSubMenu = new gui.Menu();
 			helpSubMenu.append(new gui.MenuItem({
-				label: 'Open Demo Projects Directory',
+				label: 'Open Demo Project',
 				click: function () {
-					//todo: implement 
+                    $scope.showOpenDemoProjectDialog();
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({

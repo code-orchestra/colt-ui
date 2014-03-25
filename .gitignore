@@ -7,3 +7,4 @@ nw.exe
 nw.pak
 *.colt
 colt-ui.iml
+projects/*

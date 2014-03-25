@@ -27,20 +27,24 @@ var win = gui.Window.get(); win.showDevTools();
 var os = require('os');
 var path = require('path');
 var app_path;
+var demo_path;
 if(os.platform() == "darwin") {
     app_path = path.dirname(process.execPath)
     while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'colt.app') {
         app_path = path.dirname(app_path)
     }
     if(path.basename(app_path) == 'colt.app') {
+        demo_path = path.dirname(app_path) + path.sep + 'projects'
         app_path = path.dirname(app_path) + path.sep + 'Contents' + path.sep + 'Resources' + path.sep + 'app.nw' + path.sep;
     } else {
         app_path = path.dirname(app_path) + path.sep;
+        demo_path = app_path + 'projects'
     }
 } else {
     app_path = path.dirname(process.execPath) + path.sep;
+    demo_path = app_path + 'projects'
 }
-console.log(app_path)
+$scope.demoProjectsDir = demo_path;
 $scope.getAppPath = function(){
 	return app_path
 };

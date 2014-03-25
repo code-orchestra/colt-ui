@@ -155,6 +155,7 @@ app.service("coltDialogs", function($q) {
 				},
 				openDemoProjects: function(){
 					console.log("open demo project");
+                    $scope.showOpenDemoProjectDialog();
                     isCloseButton = false;
 					popup.window.close();
 				},
@@ -201,8 +202,7 @@ app.service("coltDialogs", function($q) {
 			});
 		}
 
-		$scope.showOpenDemoProjectDialog = function(demoProjectsDir){
-			$scope.demoProjectsDir = demoProjectsDir;
+		$scope.showOpenDemoProjectDialog = function(){
 			chooseFile("#openDemoProjectInput").then(function (path) {
 				$scope.sendToJava("load -file:" + path)
 			});
