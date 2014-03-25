@@ -1,0 +1,35 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": ["./jsdoc/in"],
+        "includePattern": ".+\\.js(doc)?$"
+    },
+    "plugins"   : ["plugins/markdown"],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": true,
+        "systemName": "",
+        "footer": "",
+        "copyright": "",
+        "navType": "vertical",
+        "theme": "slate",
+        "linenums": false,
+        "collapseSymbols": true,
+        "inverseNav": false,
+        "collapseSymbols":false,
+        "inverseNav":false
+    },
+    "opts": {
+        "template": "./node_modules/ink-docstrap/template",
+        "encoding": "utf8",
+        "destination": "./jsdoc/out",
+        "recurse": true,
+        "private": true
+    },
+    "markdown"  : {
+        "parser"   : "gfm",
+        "hardwrap" : true
+    }
+}
