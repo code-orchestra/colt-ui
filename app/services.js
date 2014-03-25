@@ -329,7 +329,7 @@ app.service("nodeApp", function($q, appMenu) {
 				return popupObject;
 			};
 
-			var jsDocSize = {width:400, height:210};
+			var jsDocSize = {width:600, height:400};
 			var jsDocPosition = {x:win.x,y:win.y};
 
 			$scope.openJsDoc = function(html, title) {

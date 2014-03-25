@@ -201,6 +201,13 @@ app.service("coltDialogs", function($q) {
 			});
 		}
 
+		$scope.showOpenDemoProjectDialog = function(demoProjectsDir){
+			$scope.demoProjectsDir = demoProjectsDir;
+			chooseFile("#openDemoProjectInput").then(function (path) {
+				$scope.sendToJava("load -file:" + path)
+			});
+		}
+
 		$scope.showNewProjectDialog = function(){
 			chooseFile("#newProjectInput").then(function (path) {
 				$scope.sendToJava("create -file:" + path)
