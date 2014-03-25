@@ -20,15 +20,23 @@ app.service("nodeApp", function($q, appMenu) {
 		
 		}else{
 			var gui = require('nw.gui'); 
-			var win = gui.Window.get(); //win.showDevTools();
-
+			var win = gui.Window.get(); win.showDevTools();
+			//var process = require('process');
+			var path = require('path');
+			var app_path = "./";//path.dirname(process.execPath) + path.sep;
+			console.log("app_path = ", app_path);
+			$scope.getAppPath = function(){
+				return app_path
+			};
+			var jarPath = app_path + "java" + path.sep + "colt.jar";
+			
 			var java;
 			var runJava = function (projectPath) {
 				var spawn = require('child_process').spawn;
 				if (projectPath) {
-					java  = spawn('java', ['-jar', './java/colt.jar', projectPath, '-ui']);
+					java  = spawn('java', ['-jar', jarPath, projectPath, '-ui']);
 				} else {
-					java  = spawn('java', ['-jar', './java/colt.jar', '-ui']);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
+					java  = spawn('java', ['-jar', jarPath, '-ui']);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
 				}
 
 				java.on('close', function (code, signal) {
@@ -276,7 +284,8 @@ app.service("nodeApp", function($q, appMenu) {
 
 			$scope.openPopup = function(html, title) {
 				var modal = gui.Window.open('app://./'+ html,{
-					toolbar: false
+					toolbar: false,
+                    icon: "icons/colt_128.png"
 				});
 				modal.hide();
 				win.hide();
