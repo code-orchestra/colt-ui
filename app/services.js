@@ -29,10 +29,14 @@ var path = require('path');
 var app_path;
 if(os.platform() == "darwin") {
     app_path = path.dirname(process.execPath)
-    while(path.basename(app_path) != 'node-webkit.app') {
+    while(path.basename(app_path) != 'node-webkit.app' || path.basename(app_path) != 'colt.app') {
         app_path = path.dirname(app_path)
     }
-    app_path = app_path = path.dirname(app_path) + path.sep;
+    if(path.basename(app_path) != 'colt.app') {
+        app_path = path.dirname(app_path) + path.sep + 'Contents' + path.sep + 'Resources' + path.sep + 'app.nw' + path.sep;
+    } else {
+        app_path = path.dirname(app_path) + path.sep;
+    }
 } else {
     app_path = path.dirname(process.execPath) + path.sep;
 }
