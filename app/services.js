@@ -29,10 +29,10 @@ var path = require('path');
 var app_path;
 if(os.platform() == "darwin") {
     app_path = path.dirname(process.execPath)
-    while(path.basename(app_path) != 'node-webkit.app' || path.basename(app_path) != 'colt.app') {
+    while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'colt.app') {
         app_path = path.dirname(app_path)
     }
-    if(path.basename(app_path) != 'colt.app') {
+    if(path.basename(app_path) == 'colt.app') {
         app_path = path.dirname(app_path) + path.sep + 'Contents' + path.sep + 'Resources' + path.sep + 'app.nw' + path.sep;
     } else {
         app_path = path.dirname(app_path) + path.sep;
@@ -40,6 +40,7 @@ if(os.platform() == "darwin") {
 } else {
     app_path = path.dirname(process.execPath) + path.sep;
 }
+console.log(app_path)
 $scope.getAppPath = function(){
 	return app_path
 };
@@ -194,27 +195,51 @@ var runJava = function (projectPath) {
                                     }
 									break;
 								case "javadoc":
-									// todo: parse javadoc
-								    var os = require('os'), ostemp = os.tmpdir();
+									var jsdocPath = app_path + 'node_modules' + path.sep + '.bin' + path.sep + 'jsdoc';
+									var jscfgPath = app_path + 'jsdoc' + path.sep + 'conf.json';
 
-									console.log("About to run: ./node_modules/.bin/jsdoc " + json.message + " -d " + ostemp);
-									var spawn = require('child_process').spawn, 
-									jsdoc = spawn('./node_modules/.bin/jsdoc', [json.message, '-d', ostemp, '-t', 'readable']);
+									console.log("About to run: " + jsdocPath + " -c " + jscfgPath);
+
+									var fs = require('fs'), htmlFile = app_path + path.sep + 'jsdoc' + path.sep + 'out' + path.sep + 'global.html';
+									try { fs.unlinkSync(htmlFile); } catch (whatever) {}
+
+									/*var spawn = require('child_process').spawn, 
+									jsdoc = spawn(jsdocPath, ['-c', jscfgPath, '-t', 'readable'], { cwd : app_path });
 
 									jsdoc.on('error', function (err) {
 										console.log('Jsdoc error:', err);
 									});
 
+									jsdoc.stdout.on('data', function (data) {
+										console.log('jsdoc: ' + data);
+									});
+
 									jsdoc.on('close', function (code) {
 										console.log('Jsdoc exited with code ' + code);
-										if (code == 127) {
-											// why 127 ??
+										if (code == 0) {
 											// ok to show the file
-											var path = require('path'), htmlFile = path.join(ostemp, "global.html");
-											console.log('openJsDocFile(\"' + htmlFile +'\")')
-											$scope.openJsDocFile(htmlFile);
+											if (fs.existsSync(htmlFile)) {
+												console.log('openJsDocFile(\"' + htmlFile +'\")')
+												$scope.openJsDocFile(htmlFile);
+											} else {
+												console.log('Jsdoc failed to generate ' + htmlFile)
+											}
 										}
-									});
+									});*/
+									var exec = require('child_process').exec;
+									exec(jsdocPath + " -c " + jscfgPath, function (error, stdout, stderr) {
+										if (error !== null) {
+											console.log('exec error: ' + error);
+										} else {
+											// ok to show the file
+											if (fs.existsSync(htmlFile)) {
+												console.log('openJsDocFile(\"' + htmlFile +'\")')
+												$scope.openJsDocFile(htmlFile);
+											} else {
+												console.log('Jsdoc failed to generate ' + htmlFile)
+											}
+										}
+									}, { cwd : app_path, env : { path : "/usr/local/bin:$PATH"} });
 
 									break
 							}
