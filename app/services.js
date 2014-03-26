@@ -254,7 +254,25 @@ var runJava = function (projectPath) {
 									});*/
 									var exec = require('child_process').exec;
 
-									console.log("exec", exec);
+									try {
+										require("jsdoc").run(app_path, ['-c', jscfgPath], function (errorCode) {
+											if (errorCode != 0) {
+												console.log("jsdoc returned error code " + errorCode);
+											} else {
+												// ok to show the file
+												if (fs.existsSync(htmlFile)) {
+													console.log("ok");
+													console.log('openJsDocFile(\"' + htmlFile +'\")')
+													$scope.openJsDocFile(htmlFile);
+												} else {
+													console.log('jsdoc failed to generate ' + htmlFile)
+												}
+											}
+										});
+									} catch (error) {
+										console.log("jsdoc failed:", error)
+									}
+/*									console.log("exec", exec);
 									exec(jsdocPath + " -c " + jscfgPath, function (error, stdout, stderr) {
 										console.log("!!!!!!");
 										if (error !== null) {
@@ -269,7 +287,7 @@ var runJava = function (projectPath) {
 												// console.log('Jsdoc failed to generate ' + htmlFile)
 											}
 										}
-									}, { cwd : app_path, env : { path : "/usr/local/bin:$PATH"} });
+									}, { cwd : app_path, env : { path : "/usr/local/bin:$PATH"} });*/
 
 									break
 							}
