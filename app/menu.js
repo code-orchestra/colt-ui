@@ -97,7 +97,12 @@ app.service("appMenu", function($q) {
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Check for Updates',
 				click: function () {
-					//todo: implement 
+					$scope.sendToJava("checkUpdate", "checkUpdate").then(function () {
+                        $scope.showUpdateDialog()
+                    },
+                    function () {
+                        $scope.showMessageDialog("info", "You have the latest version of COLT.")
+                    })
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({

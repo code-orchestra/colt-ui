@@ -23,8 +23,7 @@ if(!top['require']){
 	return;
 }
 
-var path = require('path')
-console.log("path: " + path.resolve(''))
+console.log("process.execPath", process.execPath);
 
 var gui = require('nw.gui');
 var win = gui.Window.get(); //win.showDevTools();
@@ -125,6 +124,33 @@ var runJava = function (projectPath) {
                                         serviceDefers[json.type] = null;
                                     }
                                     break;
+                                case "version":
+                                    if (serviceDefers[json.type] != null) {
+                                        serviceDefers[json.type].resolve(json.message);
+                                        serviceDefers[json.type] = null;
+                                    }
+                                    break;
+                                case "checkUpdate":
+                                    if (serviceDefers[json.type] != null) {
+                                        if(json.message == "true") {
+                                            serviceDefers[json.type].resolve();
+                                        } else {
+                                            serviceDefers[json.type].reject();
+                                        }
+                                        serviceDefers[json.type] = null;
+                                    }
+                                    break;
+								case "exec":
+                                    var exec = require('child_process').exec;
+                                    var child = exec(json.exec,
+                                      function (error, stdout, stderr) {
+                                        if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
+                                        if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
+                                        if (error !== null) {
+                                          $scope.log("ERROR", 'exec error: ' + error);
+                                        }
+                                    });
+									break;
 								case "serialNumber":
                                     switch(json.state){
                                         case "show":
@@ -462,6 +488,7 @@ var projectFilePath = gui.App.argv[0];
 if(projectFilePath) {
 	runJava(projectFilePath);
     $scope.sendToJava("getRecentProjectsPaths");
+    $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
 } else {
 	runJava();
 	$scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths")
@@ -473,6 +500,7 @@ if(projectFilePath) {
 			$scope.showWelcomeScreen([], true)
 		}
 	})
+    $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
 }
 		
 	} 
