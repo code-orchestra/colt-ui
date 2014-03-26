@@ -124,6 +124,22 @@ var runJava = function (projectPath) {
                                         serviceDefers[json.type] = null;
                                     }
                                     break;
+                                case "version":
+                                    if (serviceDefers[json.type] != null) {
+                                        serviceDefers[json.type].resolve(json.message);
+                                        serviceDefers[json.type] = null;
+                                    }
+                                    break;
+                                case "checkUpdate":
+                                    if (serviceDefers[json.type] != null) {
+                                        if(json.message == "true") {
+                                            serviceDefers[json.type].resolve();
+                                        } else {
+                                            serviceDefers[json.type].reject();
+                                        }
+                                        serviceDefers[json.type] = null;
+                                    }
+                                    break;
 								case "exec":
                                     var exec = require('child_process').exec;
                                     var child = exec(json.exec,
