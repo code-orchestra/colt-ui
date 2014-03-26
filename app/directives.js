@@ -85,7 +85,7 @@ angular.module('colt.directives', [])
     restrict: 'E',
     scope: {
       label: "@",
-      paths: "=",
+      path: "=",
       currentValue: "=",
       expectedValue: "@",
       placeholder: "@"

@@ -14,7 +14,7 @@
         "footer": "",
         "copyright": "",
         "navType": "vertical",
-        "theme": "slate",
+        "theme": "readable",
         "linenums": false,
         "collapseSymbols": true,
         "inverseNav": false,

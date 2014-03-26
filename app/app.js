@@ -8,8 +8,6 @@ var app = angular.module("COLT", [
 	'pasvaz.bindonce',
 	]);
 
-function_name();
-
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/settings");
 	$stateProvider
@@ -34,10 +32,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
 })
 
 /**
- * Некая крутая функция
- * @param  {массив} argument какойто массиив
- * @return {нифига}          
+ * Repeat <tt>str</tt> several times.
+ * @param {string} str The string to repeat.
+ * @param {number} [times=1] How many times to repeat the string.
+ * @returns {string}
  */
-function function_name (argument) {
-	// body...
+function functionName (argument) {
+	$("hello").click();
 }

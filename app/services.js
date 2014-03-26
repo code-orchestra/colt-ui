@@ -418,7 +418,7 @@ $scope.openPopup = function(html, title) {
 	return popupObject;
 };
 
-var jsDocSize = {width:500, height:420};
+var jsDocSize = {width:550, height:450};
 var jsDocPosition = {x:win.x,y:win.y};
 
 $scope.openJsDoc = function(html, title) {
