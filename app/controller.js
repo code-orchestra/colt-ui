@@ -67,7 +67,6 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 	$scope.$on('$stateChangeSuccess', function(event, toState){ 
 		$scope.pageName = toState.pageName;
 		$scope.pageIndex = toState.pageIndex;
-		// Analytics.trackPage(toState.url + ".html");
 	});
 
 	var autoSave = false;

@@ -337,8 +337,13 @@ var getModalSise = function(modal) {
 	return [$(popupWindow)[0].scrollWidth, $(popupWindow)[0].scrollHeight];
 }
 
+var lastSize = {width:0,height:0};
 var resizeModal = function(modal, w, h) {
-	modal.resizeTo(w, h);
+	if(lastSize.width != w || lastSize.height != h){
+		lastSize = {width:w,height:h}
+		modal.resizeTo(w, h);
+		console.log("set size");
+	}
 }
 
 $scope.openPopup = function(html, title) {
@@ -356,16 +361,10 @@ $scope.openPopup = function(html, title) {
 		modal.title = title;
 		modal.x = win.x - 40;
 		modal.y = win.y - 40;
-		modal.setPosition("mouse");
-		var size = getModalSise(modal);
-		modal.resizeTo(size[0],size[1]);
-		var $ = modal.window.$;
-		var popupWindow = $(".popup-window");
 		modal.window.onResize = function() {
 			var size = getModalSise(modal);
-			console.log("on-resize", size);
 			if(size){
-				resizeModal(modal, size[0], size[1])
+				resizeModal(modal, size[0], size[1]+32)
 			}
 		}
 		modal.window.onResize();
