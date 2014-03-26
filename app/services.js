@@ -94,7 +94,7 @@ var runJava = function (projectPath) {
 			if(match){
 				while(match) {
 					var messageText = match[1];
-					match = regexp.exec(text)
+					match = regexp.exec(text);
 					// console.log("match: " + match);
 					// console.log("message text", messageText);
 					try{
@@ -105,6 +105,9 @@ var runJava = function (projectPath) {
                                     $scope.logMessages.push(json);
                                     $scope.updateFilters();
 									break;
+                                case "error":
+                                    $scope.showMessageDialog("error", json.message, json.stacktrase);
+                                    break;
 								case "runSession":
                                     $scope.sessionInProgress = true;
                                     $scope.sessionStateSwitching = false;
@@ -152,10 +155,10 @@ var runJava = function (projectPath) {
                                                 });
                                             break;
                                         case "success":
-                                            $scope.showMessageDialog("app", json.message)
+                                            $scope.showMessageDialog("app", json.message);
                                             break;
                                         case "demoMessage":
-                                            $scope.showMessageDialog("info", json.message)
+                                            $scope.showMessageDialog("info", json.message);
                                             break;
                                         case "demoCount":
                                             $scope.showContinueWithDemoDialog(json.message).then(
@@ -199,7 +202,18 @@ var runJava = function (projectPath) {
                                             break;
                                     }
 									break;
+                                case "nodePath":
+                                    if (serviceDefers[json.type] != null) {
+                                        serviceDefers[json.type].resolve(json.message);
+                                        serviceDefers[json.type] = null;
+                                    }
+                                    break;
 								case "javadoc":
+                                    //for Maks
+                                    $scope.sendToJava("getNodePath", "nodePath").then(function(nodePath) {
+                                         console.log("nodePath = ", nodePath);
+                                    });
+                                    //end for Maks
 									var jsdocPath = app_path + 'node_modules' + path.sep + '.bin' + path.sep + 'jsdoc';
 									var jscfgPath = app_path + 'jsdoc' + path.sep + 'conf.json';
 
