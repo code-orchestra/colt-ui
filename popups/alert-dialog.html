@@ -2,7 +2,11 @@
 <div class="lose-save dialog container popup-window" style="padding-top:10px">
 	<form class="col-xs-12">
 		<div class="form-group row" ng-submit="close()">
-			<img ng-src="./images/messages/{{popup.type | lowercase}}-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			<img ng-show="popup.type=='warning'" src="images/messages/warning-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			<img ng-show="popup.type=='app'" src="images/messages/app-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			<img ng-show="popup.type=='error'" src="images/messages/error-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			<img ng-show="popup.type=='info'" src="images/messages/info-48x48.png" height="48" width="48" class="dialog-image pull-left">
+
 			<div class="dialog-message pull-right"><h4>{{popup.message}}</h4></div>
 		</div>
 		<div class="stacktrace" ng-show="popup.stacktrace">
@@ -11,10 +15,6 @@
 		<div class="form-group row">
 			<button type="submit" ng-click="close()" class="btn btn-default pull-right col-xs-2">Close</button>
 		</div>
-
-		<p>{{popup.type}}</p>
-		<p>images/messages/{{popup.type | lowercase}}-48x48.png</p>
-		
 	</form>
 </div>
 <!-- <img class="image-screen" src="../images/dialogs-screens/s5.png" height=dialog"223" width="629"> -->
