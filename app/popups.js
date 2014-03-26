@@ -154,8 +154,8 @@ app.controller("PurchaseController", function($scope, $rootScope) {
 	$scope.enterSerialNumber = function() {
 		$scope.callToOwnerWindow("enterSerialNumber", $scope.serialNumber);
 	}
-	$scope.buy = function() {
-		$scope.callToOwnerWindow("buy");
+	$scope.buy = function(type) {
+		$scope.callToOwnerWindow("buy", type);
 	}
 	$scope.demo = function() {
 		$scope.callToOwnerWindow("demo");

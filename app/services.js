@@ -9,6 +9,7 @@ $scope.saveProject = function() {};
 $scope.sendToJava = function() {};
 $scope.openPopup = function() {};
 $scope.openJsDoc = function() {};
+$scope.openBrowserWindow = function(url) {window.open(url)};
 
 if(!top['require']){
 	setTimeout(function() {
@@ -249,7 +250,7 @@ var runJava = function (projectPath) {
 							}
 							$scope.$emit(json.type, json);
 						});
-						console.log("json.type = ", json.type)
+						// console.log("json.type = ", json.type)
 					}catch(e){
 						console.error("error parse json: |" + messageText + "|", e);
 						return;
@@ -373,7 +374,7 @@ $scope.openPopup = function(html, title) {
 	return popupObject;
 };
 
-var jsDocSize = {width:600, height:400};
+var jsDocSize = {width:500, height:300};
 var jsDocPosition = {x:win.x,y:win.y};
 
 $scope.openJsDoc = function(html, title) {
@@ -436,6 +437,10 @@ $scope.getProjectPath = function(){
     console.log(projectFilePath);
 	return projectFilePath;
 };
+
+$scope.openBrowserWindow = function(url) {
+	gui.Shell.openExternal(url)
+}
 
 appMenu.buildMenu($scope, []);
 

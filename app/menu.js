@@ -85,7 +85,7 @@ app.service("appMenu", function($q) {
 				type: 'separator'
 			}));
 			helpSubMenu.append(new gui.MenuItem({
-				label: 'Proxy settings',
+				label: 'Proxy Settings',
 				click: function () {
                     $scope.sendToJava("getProxy", "proxy")
                         .then($scope.showProxyDialog)
@@ -95,9 +95,24 @@ app.service("appMenu", function($q) {
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({
-				label: 'Check for updates',
+				label: 'Check for Updates',
 				click: function () {
 					//todo: implement 
+				}
+			}));
+			helpSubMenu.append(new gui.MenuItem({
+				label: 'Buy COLT',
+				click: function () {
+					$scope.showPurchaseDialog()
+					.then(function(serial) {
+						$scope.sendToJava("serialNumber " + serial)
+					}) 
+				}
+			}));
+			helpSubMenu.append(new gui.MenuItem({
+				label: 'Support',
+				click: function () {
+					$scope.openBrowserWindow("https://codeorchestra.zendesk.com/anonymous_requests/new") 
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({

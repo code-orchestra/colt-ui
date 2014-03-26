@@ -2,7 +2,7 @@
 <div class="lose-save dialog container popup-window" style="padding-top:10px">
 	<form class="col-xs-12">
 		<div class="form-group row" ng-submit="close()">
-			<img ng-src="images/messages/{{popup.type}}-48x48.png" height="48" width="48" class="dialog-image pull-left">
+			<img ng-src="./images/messages/{{popup.type | lowercase}}-48x48.png" height="48" width="48" class="dialog-image pull-left">
 			<div class="dialog-message pull-right"><h4>{{popup.message}}</h4></div>
 		</div>
 		<div class="stacktrace" ng-show="popup.stacktrace">
@@ -11,6 +11,9 @@
 		<div class="form-group row">
 			<button type="submit" ng-click="close()" class="btn btn-default pull-right col-xs-2">Close</button>
 		</div>
+
+		<p>{{popup.type}}</p>
+		<p>images/messages/{{popup.type | lowercase}}-48x48.png</p>
 		
 	</form>
 </div>

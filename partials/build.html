@@ -2,16 +2,19 @@
 <div class="scrolled">
 	<div class="container" style="padding-top:10px">
 		<form class="col-xs-12">
-			<button class="btn btn-default" ng-click="showWelcomeScreen(['index', 'blabla'])">Show Welcome Screen</button>
-			<button class="btn btn-default" ng-click="showPurchaseDialog()">Test Buy Popup</button>
-			<button class="btn btn-default" ng-click="showCloseColtDialog()">Test Close/Save</button>
-			<button class="btn btn-default" ng-click="showUpdateDialog()">Test Update Popup</button>
-			<button class="btn btn-default" ng-click="showProxyDialog()">Test Proxy</button><br><br>
+			<button class="btn btn-default" ng-click="showWelcomeScreen(['index', 'blabla'])">Welcome Screen</button>
+			<button class="btn btn-default" ng-click="showPurchaseDialog()">Buy Popup</button>
+			<button class="btn btn-default" ng-click="showCloseColtDialog()">Close/Save</button>
+			<button class="btn btn-default" ng-click="showUpdateDialog()">Update Popup</button>
+			<button class="btn btn-default" ng-click="showProxyDialog()">Proxy</button>
+			<button class="btn btn-default" ng-click="showMessageDialog('warning', 'hello message')">Alert</button>
+			<button class="btn btn-default" ng-click="testJsDocs()">Open JS Doc</button>
+
+			<br><br>
+
 			<button class="btn btn-default" ng-click="showOpenProjectDialog()">Open Project</button>
 			<button class="btn btn-default" ng-click="showNewProjectDialog()">New Project</button>
 			<button class="btn btn-default" ng-click="showSaveAsProjectDialog()">Save As Project</button>
-			<button class="btn btn-default" ng-click="showWelcomeScreen()">Open Welcome Screen</button>
-			<button class="btn btn-default" ng-click="testJsDocs()">Open JS Doc</button>
 			<button class="btn btn-default" ng-click="testJsDocsFile('/Volumes/Archive/Projects/colt-ui/out/global.html')">Open JS Doc (HTML)</button>
 		</form>
 	

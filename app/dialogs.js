@@ -59,6 +59,7 @@ app.service("coltDialogs", function($q) {
 				type: type,
 				message: message
 			});
+			console.log("type", type)
 			return d.promise;
 		}
 
@@ -71,9 +72,15 @@ app.service("coltDialogs", function($q) {
 					d.resolve(serial);
 					popup.window.close();
 				},
-				buy: function(){
+				buy: function(type){
 					console.log("purchase COLT");
-					d.notify("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
+					console.log("type", type);
+					if(type == 'mo'){
+						$scope.openBrowserWindow("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
+					}else if(type == 'year'){
+						$scope.openBrowserWindow("https://www.plimus.com/jsp/buynow.jsp?contractId=3193830");
+					}
+					d.reject();
 					popup.window.close();
 				},
 				demo: function(){
