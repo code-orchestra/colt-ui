@@ -23,6 +23,8 @@ if(!top['require']){
 	return;
 }
 
+console.log("process.execPath", process.execPath);
+
 var gui = require('nw.gui');
 var win = gui.Window.get(); win.showDevTools();
 var os = require('os');
@@ -246,16 +248,20 @@ var runJava = function (projectPath) {
 										}
 									});*/
 									var exec = require('child_process').exec;
+
+									console.log("exec", exec);
 									exec(jsdocPath + " -c " + jscfgPath, function (error, stdout, stderr) {
+										console.log("!!!!!!");
 										if (error !== null) {
 											console.log('exec error: ' + error);
 										} else {
 											// ok to show the file
 											if (fs.existsSync(htmlFile)) {
+												console.log("ok");
 												console.log('openJsDocFile(\"' + htmlFile +'\")')
 												$scope.openJsDocFile(htmlFile);
 											} else {
-												console.log('Jsdoc failed to generate ' + htmlFile)
+												// console.log('Jsdoc failed to generate ' + htmlFile)
 											}
 										}
 									}, { cwd : app_path, env : { path : "/usr/local/bin:$PATH"} });

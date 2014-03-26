@@ -97,7 +97,7 @@ app.service("coltDialogs", function($q) {
 		}
 
 		$scope.showContinueWithDemoDialog = function(message) {
-			var popup = $scope.openPopup('popups.html#/continue-with-demo-dialog', "COLT Demo");
+			var popup = $scope.openPopup('popups.html#/continue-demo-dialog', "COLT Demo");
 			var d = $q.defer();
 			$.extend(popup, {
 				enterSerialNumber: function(serial){

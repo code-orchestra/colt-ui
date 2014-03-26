@@ -8,6 +8,8 @@ var app = angular.module("COLT", [
 	'pasvaz.bindonce',
 	]);
 
+function_name();
+
 app.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise("/settings");
 	$stateProvider
@@ -30,3 +32,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		pageIndex: 2
 	});
 })
+
+/**
+ * [function_name description]
+ * @param  {[type]} argument [description]
+ * @return {[type]}          [description]
+ */
+function function_name (argument) {
+	// body...
+}
