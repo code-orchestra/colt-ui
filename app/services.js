@@ -23,10 +23,11 @@ if(!top['require']){
 	return;
 }
 
-console.log("process.execPath", process.execPath);
+var path = require('path')
+console.log("path: " + path.resolve(''))
 
 var gui = require('nw.gui');
-var win = gui.Window.get(); win.showDevTools();
+var win = gui.Window.get(); //win.showDevTools();
 var os = require('os');
 var path = require('path');
 var app_path;
@@ -124,17 +125,6 @@ var runJava = function (projectPath) {
                                         serviceDefers[json.type] = null;
                                     }
                                     break;
-								case "exec":
-                                    var exec = require('child_process').exec;
-                                    var child = exec(json.exec,
-                                      function (error, stdout, stderr) {
-                                        if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
-                                        if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
-                                        if (error !== null) {
-                                          $scope.log("ERROR", 'exec error: ' + error);
-                                        }
-                                    });
-									break;
 								case "serialNumber":
                                     switch(json.state){
                                         case "show":
@@ -277,7 +267,7 @@ var runJava = function (projectPath) {
 					}
 					
 				}
-			}else if(!isPing(text)){
+			}else if(!isPing(text) && text){
 				console.log("stdout:", text);
 			}
 			
@@ -290,8 +280,7 @@ var runJava = function (projectPath) {
 	});
 
 	java.stderr.on('data', function (message) {
-		// console.log('stderr: '+ message);
-		$scope.log("ERROR", trimMessage(message));
+		console.log('stderr: '+ message);
 	});
 };
 
@@ -396,7 +385,7 @@ $scope.openPopup = function(html, title) {
 	return popupObject;
 };
 
-var jsDocSize = {width:500, height:300};
+var jsDocSize = {width:500, height:420};
 var jsDocPosition = {x:win.x,y:win.y};
 
 $scope.openJsDoc = function(html, title) {
@@ -435,8 +424,10 @@ $scope.openJsDoc = function(html, title) {
 };
 
 $scope.openJsDocFile = function(url) {
+	win.hide();
 	var modal = gui.Window.open('file://'+url, {
 	  position: 'mouse',
+	  show:false,
 	  width: jsDocSize.width,
 	  height: jsDocSize.height,
 	  frame: false
@@ -446,7 +437,7 @@ $scope.openJsDocFile = function(url) {
 		modal.x = jsDocPosition.x;
 		modal.y = jsDocPosition.y;
 		modal.show();
-		modal.focus();
+		win.minimize();
 	});
 	modal.on('blur', function() {
 		jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};

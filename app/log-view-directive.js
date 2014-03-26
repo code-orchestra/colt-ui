@@ -10,6 +10,7 @@ angular.module('log.view.directive', [])
      var selected;
 
      $scope.toggleOpen = function(e) {
+      // if (window.getSelection().toString().length)return
       if(selected)selected.removeClass("selected");
       var newSelected = $(e.target).parent('li');
       if(newSelected.is(selected)){
@@ -19,6 +20,16 @@ angular.module('log.view.directive', [])
         selected = newSelected;
       }
     }
+
+    // var $log = $(".logContainer .log");
+    // function isMaxScroll() {
+    //   return $log.scrollTop() == maxScrollTop()
+    // }
+
+    // function maxScrollTop() {
+    //   return $log.height() - $log.parent().height()
+    // }
+
   },
   link : function(scope, element, attrs) {
     var sourceLink = element.find('a');
@@ -45,7 +56,7 @@ angular.module('log.view.directive', [])
   '      ng-click="toggleOpen($event)" scroll-item '+
   '      bo-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARNING\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}">'+
   '      <p bo-text="message.message"></p>'+
-  '      <a ng-click="openTarget(message.source)" bo-title="message.source" bo-text="((message.source.length < 113)?message.source:(message.source.substr(0, 3)+\'...\'))"></a>'+
+  '      <a ng-click="openTarget(message.source)" bo-title="message.source" bo-text="((message.source.length <= 13)?message.source:(message.source.substr(0, 12)+\'~\'))"></a>'+
   '    </li>'+
   '  </ul>'+
   '</div>'
@@ -62,7 +73,6 @@ angular.module('log.view.directive', [])
     },
     controller: function($scope){
       $scope.$on("logMessage", function(message) {
-        console.log("autoscroll event");
           // autoscroll
         })
     },
@@ -74,8 +84,9 @@ angular.module('log.view.directive', [])
     restrict: "A",
     link: function(scope, element, attributes) {
       scope.$on("Finished",function(){
-        var chat_height = element.outerHeight();
-        element.scrollTop(chat_height); 
+        var chatHeight = element.outerHeight();
+        // console.log(chatHeight);
+        element.scrollTop(chatHeight); 
       });
     }
   }

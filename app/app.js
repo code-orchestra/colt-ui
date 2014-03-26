@@ -34,9 +34,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 })
 
 /**
- * [function_name description]
- * @param  {[type]} argument [description]
- * @return {[type]}          [description]
+ * Некая крутая функция
+ * @param  {массив} argument какойто массиив
+ * @return {нифига}          
  */
 function function_name (argument) {
 	// body...
