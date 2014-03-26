@@ -323,6 +323,10 @@ var getModalSise = function(modal) {
 	return [$(popupWindow)[0].scrollWidth, $(popupWindow)[0].scrollHeight];
 }
 
+var resizeModal = function(modal, w, h) {
+	modal.resizeTo(w, h);
+}
+
 $scope.openPopup = function(html, title) {
 	var modal = gui.Window.open('app://./'+ html,{
 		toolbar: false,
@@ -343,11 +347,14 @@ $scope.openPopup = function(html, title) {
 		modal.resizeTo(size[0],size[1]);
 		var $ = modal.window.$;
 		var popupWindow = $(".popup-window");
-		if(popupWindow.size() > 0){
-			modal.resizeTo($(popupWindow)[0].scrollWidth, $(popupWindow)[0].scrollHeight+32);
-		}else{
-			console.log("popup window not found")
+		modal.window.onResize = function() {
+			var size = getModalSise(modal);
+			console.log("on-resize", size);
+			if(size){
+				resizeModal(modal, size[0], size[1])
+			}
 		}
+		modal.window.onResize();
 		if(!modal.window.popup){
 			modal.window.popup = popupObject;
 		}else{

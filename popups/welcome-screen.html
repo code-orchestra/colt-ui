@@ -17,7 +17,7 @@
 				<li><a ng-click="openDemoProjects()">Open Demo Project</a></li>
 				<li id="recent-projects" class="submenu-title">Open a Recent Project
 					<ul>
-						<li ng-repeat="project in popup.recentProjects"><a ng-click="openRecentProject($index)">{{project.name}}</a></li>
+						<li ng-repeat="project in popup.recentProjects | limitTo:5"><a ng-click="openRecentProject($index)">{{project.name}}</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -46,7 +46,7 @@
 <style type="text/css">
 
 a {
-	cursor: text;
+	cursor: pointer;
 }
 
 /* Local Styles */

@@ -20,7 +20,6 @@
 	<script src="app/log-visualizer-directive.js"></script>		
 	<script src="app/directives.js"></script>	
 	<script src="app/app.js"></script>
-	<script src="app/analitics-service.js"></script>
 	<script src="app/menu.js"></script>
 	<script src="app/services.js"></script>
 	<script src="app/dialogs.js"></script>
@@ -48,17 +47,7 @@
 	<input id="newProjectInput" style="display:none;" nwsaveas="project.colt" type="file" accept=".colt" nwworkingdir="{{projectBaseDir}}"> 
 	<input id="saveAsProjectInput" style="display:none;" nwsaveas type="file" accept=".colt" nwworkingdir="{{projectBaseDir}}">
 	<input id="openProjectInput" style="display:none;" type="file" accept=".colt" nwworkingdir="{{projectBaseDir}}"> 
-	<input id="openDemoProjectInput" style="display:none;" type="file" accept=".colt" nwworkingdir="{{demoProjectsDir}}"> 
-
-	<script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','lib/analytics.js','ga');
-
-	ga('create', 'UA-40699654-4', 'colt.io');
-	ga('send', 'pageview');
-
-	</script>
+	<input id="openDemoProjectInput" style="display:none;" type="file" accept=".colt" nwworkingdir="{{demoProjectsDir}}">
+	<iframe style="display:none" src="http://codeorchestra.com/ga/build.html" nwdisable nwfaketop></iframe>
 </body>
 </html>
