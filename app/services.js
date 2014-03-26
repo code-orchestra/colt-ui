@@ -23,6 +23,8 @@ if(!top['require']){
 	return;
 }
 
+console.log("process.execPath", process.execPath);
+
 var gui = require('nw.gui');
 var win = gui.Window.get(); win.showDevTools();
 var os = require('os');
@@ -246,16 +248,20 @@ var runJava = function (projectPath) {
 										}
 									});*/
 									var exec = require('child_process').exec;
+
+									console.log("exec", exec);
 									exec(jsdocPath + " -c " + jscfgPath, function (error, stdout, stderr) {
+										console.log("!!!!!!");
 										if (error !== null) {
 											console.log('exec error: ' + error);
 										} else {
 											// ok to show the file
 											if (fs.existsSync(htmlFile)) {
+												console.log("ok");
 												console.log('openJsDocFile(\"' + htmlFile +'\")')
 												$scope.openJsDocFile(htmlFile);
 											} else {
-												console.log('Jsdoc failed to generate ' + htmlFile)
+												// console.log('Jsdoc failed to generate ' + htmlFile)
 											}
 										}
 									}, { cwd : app_path, env : { path : "/usr/local/bin:$PATH"} });
@@ -337,6 +343,15 @@ var getModalSise = function(modal) {
 	return [$(popupWindow)[0].scrollWidth, $(popupWindow)[0].scrollHeight];
 }
 
+var lastSize = {width:0,height:0};
+var resizeModal = function(modal, w, h) {
+	if(lastSize.width != w || lastSize.height != h){
+		lastSize = {width:w,height:h}
+		modal.resizeTo(w, h);
+		console.log("set size");
+	}
+}
+
 $scope.openPopup = function(html, title) {
 	var modal = gui.Window.open('app://./'+ html,{
 		toolbar: false,
@@ -352,16 +367,13 @@ $scope.openPopup = function(html, title) {
 		modal.title = title;
 		modal.x = win.x - 40;
 		modal.y = win.y - 40;
-		modal.setPosition("mouse");
-		var size = getModalSise(modal);
-		modal.resizeTo(size[0],size[1]);
-		var $ = modal.window.$;
-		var popupWindow = $(".popup-window");
-		if(popupWindow.size() > 0){
-			modal.resizeTo($(popupWindow)[0].scrollWidth, $(popupWindow)[0].scrollHeight+32);
-		}else{
-			console.log("popup window not found")
+		modal.window.onResize = function() {
+			var size = getModalSise(modal);
+			if(size){
+				resizeModal(modal, size[0], size[1]+32)
+			}
 		}
+		modal.window.onResize();
 		if(!modal.window.popup){
 			modal.window.popup = popupObject;
 		}else{

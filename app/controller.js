@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, analyticsService) {
+app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 	
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
@@ -67,7 +67,6 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, anal
 	$scope.$on('$stateChangeSuccess', function(event, toState){ 
 		$scope.pageName = toState.pageName;
 		$scope.pageIndex = toState.pageIndex;
-		// Analytics.trackPage(toState.url + ".html");
 	});
 
 	var autoSave = false;

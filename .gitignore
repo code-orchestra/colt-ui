@@ -8,3 +8,4 @@ nw.pak
 *.colt
 colt-ui.iml
 projects/*
+jsdoc/out

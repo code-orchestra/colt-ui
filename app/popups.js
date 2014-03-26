@@ -82,13 +82,8 @@ app.run(function($rootScope, analyticsService) {
 	});
 	
 	$rootScope.onResize = function() {
-		var win = $(".popup-window");
-		if(win.size() > 0){
-			if(window.popupInfo){
-				window.popupInfo.onResize($(win)[0].scrollWidth, $(win)[0].scrollHeight);
-			}
-		}else{
-			console.log("popup window not found")
+		if(window.onResize != undefined){
+			window.onResize();
 		}
 	}
 	
