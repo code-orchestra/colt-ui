@@ -97,7 +97,7 @@ app.service("coltDialogs", function($q) {
 		}
 
 		$scope.showContinueWithDemoDialog = function(message) {
-			var popup = $scope.openPopup('popups.html#/continue-demo-dialog', "COLT Demo");
+			var popup = $scope.openPopup('popups.html#/purchase-dialog', "Purchase COLT");
 			var d = $q.defer();
 			$.extend(popup, {
 				enterSerialNumber: function(serial){
@@ -105,9 +105,15 @@ app.service("coltDialogs", function($q) {
 					d.resolve(serial);
 					popup.window.close();
 				},
-				buy: function(){
+				buy: function(type){
 					console.log("purchase COLT");
-					d.notify("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
+					console.log("type", type);
+					if(type == 'mo'){
+						$scope.openBrowserWindow("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
+					}else if(type == 'year'){
+						$scope.openBrowserWindow("https://www.plimus.com/jsp/buynow.jsp?contractId=3193830");
+					}
+					d.reject();
 					popup.window.close();
 				},
 				demo: function(){
