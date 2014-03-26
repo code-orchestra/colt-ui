@@ -202,7 +202,18 @@ var runJava = function (projectPath) {
                                             break;
                                     }
 									break;
+                                case "nodePath":
+                                    if (serviceDefers[json.type] != null) {
+                                        serviceDefers[json.type].resolve(json.message);
+                                        serviceDefers[json.type] = null;
+                                    }
+                                    break;
 								case "javadoc":
+                                    //for Maks
+                                    $scope.sendToJava("getNodePath", "nodePath").then(function(nodePath) {
+                                         console.log("nodePath = ", nodePath);
+                                    });
+                                    //end for Maks
 									var jsdocPath = app_path + 'node_modules' + path.sep + '.bin' + path.sep + 'jsdoc';
 									var jscfgPath = app_path + 'jsdoc' + path.sep + 'conf.json';
 
