@@ -110,7 +110,7 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, anal
 			initValues(model,['build','offline-cms'],['integrate-mercury','run-mercury'],false);
 			initValues(model,['build','security'],['use-inspectable'],false);
 			initValues(model,['build','precompile'],['coffee-script','type-script','use-less','use-sass'],false);
-			initValues(model,['live','live'],['paused','live-html-edit','disable-in-minified','enable-debuger'],false);
+			initValues(model,['live','live'],['paused','disable-in-minified','enable-debuger'],false);
 			initValues(model,['live','launch'],[]);
 			initValues(model,['live','settings'],['disconnect','clear-log'],false);
 
