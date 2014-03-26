@@ -10,7 +10,7 @@ angular.module('log.view.directive', [])
      var selected;
 
      $scope.toggleOpen = function(e) {
-      // if (window.getSelection().toString().length)return
+      if (window.getSelection().toString().length)return
       if(selected)selected.removeClass("selected");
       var newSelected = $(e.target).parent('li');
       if(newSelected.is(selected)){

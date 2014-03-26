@@ -14,6 +14,10 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 			var prop = properties[j];
 			if(!point.hasOwnProperty(prop)){
 				point[prop] = value;
+			}else if(point[prop]=="false"){
+				point[prop] = false;
+			}else if(point[prop]=="true"){
+				point[prop] = true;
 			}
 		};
 	}
@@ -109,7 +113,7 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 			initValues(model,['build','offline-cms'],['integrate-mercury','run-mercury'],false);
 			initValues(model,['build','security'],['use-inspectable'],false);
 			initValues(model,['build','precompile'],['coffee-script','type-script','use-less','use-sass'],false);
-			initValues(model,['live','live'],['paused','disable-in-minified','enable-debuger'],false);
+			initValues(model,['live','live'],['paused','disable-in-minified','enable-debuger','simple-reload'],false);
 			initValues(model,['live','launch'],[]);
 			initValues(model,['live','settings'],['disconnect','clear-log'],false);
 
@@ -125,5 +129,18 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 	}
 	coltDialogs.buildDialogs($scope);
 	nodeApp.buildNode($scope);
+
+	/**
+	 * Очень хорошая функция
+	 * @param  {int} a первый параметр
+	 * @param  {строка} b втрой крутой параметр
+	 * @param  {int} c третий параметр
+	 * @param  {функция} d кложура
+	 * @return {объект}   this
+	 */
+	function helloWrld (a, b, c, d) {
+		return true;
+	}
+
 
 })

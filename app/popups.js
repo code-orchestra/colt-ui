@@ -181,6 +181,8 @@ app.controller("ContinueDemoController", function($scope, $rootScope) {
 	$scope.demo = function() {
 		$scope.callToOwnerWindow("demo");
 	}
+
+	$scope.enterSerialNumber();
 });
 
 app.controller("UpdateController", function($scope, $rootScope) {

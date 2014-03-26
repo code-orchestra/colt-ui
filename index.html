@@ -42,7 +42,7 @@
 		<div class="logFilterButton" ng-class="{selected:logFilter=='WARNING'}" ng-click="selectLogFilter('WARNING')" ng-show="pageIndex==2">Warnings({{filter.warningCount}})</div>
 		<div class="logFilterButton" ng-class="{selected:logFilter=='INFO'}" ng-click="selectLogFilter('INFO')" ng-show="pageIndex==2">Info({{filter.infoCount}})</div>
 		<div class="logFilterButton" ng-class="{selected:logFilter=='LIVE'}" ng-click="selectLogFilter('LIVE')" ng-show="pageIndex==2">Live({{filter.liveCount}})</div>
-		<button class="btn-live" ng-disabled="sessionStateSwitching" ng-class="{selected:sessionInProgress}" ng-click="startSession()"></button>
+		<button class="btn-live" ng-disabled="sessionStateSwitching" ng-class="{selected:sessionInProgress}" ng-click="startSession()" ui-sref="log"></button>
 	</div>
 	<input id="newProjectInput" style="display:none;" nwsaveas="project.colt" type="file" accept=".colt" nwworkingdir="{{projectBaseDir}}"> 
 	<input id="saveAsProjectInput" style="display:none;" nwsaveas type="file" accept=".colt" nwworkingdir="{{projectBaseDir}}">

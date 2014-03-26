@@ -26,7 +26,7 @@ if(!top['require']){
 console.log("process.execPath", process.execPath);
 
 var gui = require('nw.gui');
-var win = gui.Window.get(); //win.showDevTools();
+var win = gui.Window.get(); win.showDevTools();
 var os = require('os');
 var path = require('path');
 var app_path;
