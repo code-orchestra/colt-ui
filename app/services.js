@@ -140,17 +140,6 @@ var runJava = function (projectPath) {
                                         serviceDefers[json.type] = null;
                                     }
                                     break;
-								case "exec":
-                                    var exec = require('child_process').exec;
-                                    var child = exec(json.exec,
-                                      function (error, stdout, stderr) {
-                                        if(("" + stdout).length)$scope.log('INFO', trimMessage(stdout));
-                                        if(("" + stderr).length)$scope.log('ERROR', trimMessage(stderr));
-                                        if (error !== null) {
-                                          $scope.log("ERROR", 'exec error: ' + error);
-                                        }
-                                    });
-									break;
 								case "serialNumber":
                                     switch(json.state){
                                         case "show":
