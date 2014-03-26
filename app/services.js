@@ -487,6 +487,7 @@ var projectFilePath = gui.App.argv[0];
 if(projectFilePath) {
 	runJava(projectFilePath);
     $scope.sendToJava("getRecentProjectsPaths");
+    $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
 } else {
 	runJava();
 	$scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths")
@@ -498,6 +499,7 @@ if(projectFilePath) {
 			$scope.showWelcomeScreen([], true)
 		}
 	})
+    $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
 }
 		
 	} 
