@@ -181,7 +181,7 @@ app.service("coltDialogs", function($q) {
 				recentProjects: recentProjects.map(function (it) {return {name : it} }),
                 openLink: function (url) {
                     console.log("url");
-                    $scope.openExternal(url);
+                    $scope.openBrowserWindow(url);
                 }
 			});
 			console.log("recentProjects", popup.recentProjects);

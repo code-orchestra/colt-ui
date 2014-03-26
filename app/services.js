@@ -316,10 +316,6 @@ $scope.sendToJava = function(message, resolveType) {
 	return d.promise;
 };
 
-$scope.openExternal = function (url) {
-    gui.Shell.openExternal(url);
-};
-
 var getModalSise = function(modal) {
 	var $ = modal.window.$;
 	var popupWindow = $(".popup-window");
