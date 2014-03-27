@@ -11,6 +11,7 @@ $scope.openPopup = function() {};
 $scope.openJsDoc = function() {};
 $scope.openBrowserWindow = function(url) {window.open(url)};
 
+
 if(!top['require']){
 	setTimeout(function() {
 		$scope.$apply(function() {
