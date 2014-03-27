@@ -46,7 +46,7 @@ if(os.platform() == "darwin") {
     }
 } else {
     app_path = path.dirname(process.execPath) + path.sep;
-    demo_path = app_path + 'projects'
+    demo_path = app_path + 'projects';
 }
 $scope.demoProjectsDir = demo_path;
 $scope.getAppPath = function(){
