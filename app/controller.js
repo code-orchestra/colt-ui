@@ -122,6 +122,8 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 			}
 
 			console.log(model);
+			$scope.$broadcast("projectLoaded", model);
+
 			setTimeout(function () {
 				autoSave = true;
 			}, 500)
@@ -129,18 +131,4 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 	}
 	coltDialogs.buildDialogs($scope);
 	nodeApp.buildNode($scope);
-
-	/**
-	 * Очень хорошая функция
-	 * @param  {int} a первый параметр
-	 * @param  {строка} b втрой крутой параметр
-	 * @param  {int} c третий параметр
-	 * @param  {функция} d кложура
-	 * @return {объект}   this
-	 */
-	function helloWrld (a, b, c, d) {
-		return true;
-	}
-
-
 })

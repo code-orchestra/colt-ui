@@ -9,3 +9,5 @@ nw.pak
 colt-ui.iml
 projects/*
 jsdoc/out
+
+jsdoc/in/1.js

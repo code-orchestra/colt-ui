@@ -26,11 +26,12 @@ if(!top['require']){
 console.log("process.execPath", process.execPath);
 
 var gui = require('nw.gui');
-var win = gui.Window.get(); win.showDevTools();
+var win = gui.Window.get(); //win.showDevTools();
 var os = require('os');
 var path = require('path');
 var app_path;
 var demo_path;
+
 if(os.platform() == "darwin") {
     app_path = path.dirname(process.execPath)
     while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'colt.app') {
@@ -54,16 +55,23 @@ $scope.getAppPath = function(){
 var jarPath = app_path + "java" + path.sep + "colt.jar";
 
 var java;
+
 var runJava = function (projectPath) {
 	var spawn = require('child_process').spawn;
 	if (projectPath) {
-		java  = spawn('java', ['-jar', jarPath, projectPath, '-ui']);
+		java  = spawn('java', ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', '-jar', jarPath, projectPath, '-ui']);
 	} else {
-		java  = spawn('java', ['-jar', jarPath, '-ui']);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
+		java  = spawn('java', ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', '-jar', jarPath, '-ui']);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
 	}
+
+	var pongInterval = setInterval(function() {
+		$scope.sendToJava("pong");
+	}, 5000);
 
 	java.on('close', function (code, signal) {
 		console.log('child process terminated due to receipt of signal ' + signal);
+		java = undefined;
+		clearInterval(pongInterval);
 		//win.close(true);
 	});
 
@@ -317,6 +325,7 @@ var runJava = function (projectPath) {
 	});
 };
 
+
 win.on('close', function() {
 	if(java) {
 		java.kill();
@@ -324,12 +333,29 @@ win.on('close', function() {
 	this.close(true);
 });
 
-/**
- * [saveProject description]
- * @param  {[type]} filePath [description]
- * @param  {[type]} data     [description]
- * @return {[type]}          [description]
- */
+var forceMinimizedFlag = false;
+
+
+win.on('restore', function(){
+	console.log("restore");
+	if(forceMinimizedFlag){
+		forceMinimizedFlag = false;
+		win.show();
+	}
+});
+var forceMinimize = function(){
+	forceMinimizedFlag = true;
+	win.hide();
+	win.minimize();
+}
+
+$scope.$on("projectLoaded", function() {
+	console.log("project loaded event");
+	if($scope.model._isPlugin=="true"){
+		forceMinimize();
+	}
+});
+
 $scope.saveProject = function (filePath, data){
 	data = {xml:data};
 	var d = $q.defer();
@@ -352,6 +378,7 @@ $scope.saveProject = function (filePath, data){
 
 var serviceDefers = {};
 $scope.sendToJava = function(message, resolveType) {
+	if(!java)return;
 	var d = serviceDefers[resolveType] || $q.defer();
 	serviceDefers[resolveType] = d; 
 	java.stdin.write(message + "\n");
@@ -470,7 +497,7 @@ $scope.openJsDocFile = function(url) {
 		modal.x = jsDocPosition.x;
 		modal.y = jsDocPosition.y;
 		modal.show();
-		win.minimize();
+		forceMinimize();
 	});
 	modal.on('blur', function() {
 		jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
@@ -510,5 +537,4 @@ if(projectFilePath) {
     $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
 }
 		
-	} 
-});  
+}});  
