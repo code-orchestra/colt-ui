@@ -39,4 +39,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
  */
 function functionName (argument) {
 	$("hello").click();
+	_.pluck();
 }
