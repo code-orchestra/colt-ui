@@ -38,6 +38,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
  * @returns {string}
  */
 function functionName (argument) {
-	$("hello").click();
-	_.pluck();
+
 }
