@@ -56,12 +56,30 @@ var jarPath = app_path + "java" + path.sep + "colt.jar";
 
 var java;
 
+var closeCallback;
+
+$scope.restartJava = function (filePath) {
+	if(java) {
+		java.kill();
+		java = undefined;
+	}
+	closeCallback = function() {
+		$scope.$apply(function() {
+			$scope.sessionInProgress = false;
+	        $scope.sessionStateSwitching = false;
+	    })
+		projectFilePath = filePath
+		runJava(projectFilePath);
+		closeCallback = undefined 
+	}
+};
+
 var runJava = function (projectPath) {
 	var spawn = require('child_process').spawn;
 	if (projectPath) {
-		java  = spawn('java', ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', '-jar', jarPath, projectPath, '-ui']);
+		java  = spawn('java', ['-jar', jarPath, projectPath, '-ui']);
 	} else {
-		java  = spawn('java', ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005', '-jar', jarPath, '-ui']);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
+		java  = spawn('java', ['-jar', jarPath, '-ui']);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
 	}
 
 	var pongInterval = setInterval(function() {
@@ -72,6 +90,9 @@ var runJava = function (projectPath) {
 		console.log('child process terminated due to receipt of signal ' + signal);
 		java = undefined;
 		clearInterval(pongInterval);
+		if(closeCallback) {
+			closeCallback()
+		}
 		//win.close(true);
 	});
 
@@ -215,6 +236,10 @@ var runJava = function (projectPath) {
                                             $scope.loadProject(projectFilePath);
                                             break;
                                         case "created":
+                                        	if (serviceDefers[json.type] != null) {
+		                                        serviceDefers[json.type].resolve(json.message);
+		                                        serviceDefers[json.type] = null;
+		                                    }
                                             break;
                                         case "createError":
                                             break;

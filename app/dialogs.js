@@ -211,19 +211,21 @@ app.service("coltDialogs", function($q) {
 
 		$scope.showOpenProjectDialog = function(){
 			chooseFile("#openProjectInput").then(function (path) {
-				$scope.sendToJava("load -file:" + path)
+				$scope.restartJava(path)
 			});
 		}
 
 		$scope.showOpenDemoProjectDialog = function(){
 			chooseFile("#openDemoProjectInput").then(function (path) {
-				$scope.sendToJava("load -file:" + path)
+				$scope.restartJava(path)
 			});
 		}
 
 		$scope.showNewProjectDialog = function(){
 			chooseFile("#newProjectInput").then(function (path) {
-				$scope.sendToJava("create -file:" + path)
+				$scope.sendToJava("create -file:" + path + " -load:false", "project").then(function() {
+                	$scope.restartJava(path)
+                });
 			})
 		}
 

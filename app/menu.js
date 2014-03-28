@@ -142,7 +142,7 @@ app.service("appMenu", function($q) {
 				recentProjectsSubMenu.append(new gui.MenuItem({
 					label: entry,
 					click: function () {
-						$scope.sendToJava("load -file:" + entry)
+						$scope.restartJava(entry)
 					}
 				}));
 			});
