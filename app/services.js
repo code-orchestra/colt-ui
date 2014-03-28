@@ -11,7 +11,6 @@ $scope.openPopup = function() {};
 $scope.openJsDoc = function() {};
 $scope.openBrowserWindow = function(url) {window.open(url)};
 
-
 if(!top['require']){
 	setTimeout(function() {
 		$scope.$apply(function() {
@@ -27,7 +26,7 @@ if(!top['require']){
 console.log("process.execPath", process.execPath);
 
 var gui = require('nw.gui');
-var win = gui.Window.get(); win.showDevTools();
+var win = gui.Window.get(); //win.showDevTools();
 var os = require('os');
 var path = require('path');
 var app_path;
@@ -498,6 +497,7 @@ $scope.openJsDocFile = function(url) {
 		modal.x = jsDocPosition.x;
 		modal.y = jsDocPosition.y;
 		modal.show();
+		modal.focus();
 		forceMinimize();
 	});
 	modal.on('blur', function() {

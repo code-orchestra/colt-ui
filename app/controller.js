@@ -26,11 +26,20 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 	$scope.logMessages = [];
 	$scope.filter = {};
 
+	/**
+	 * show log
+	 * @param  {string} level   log level
+	 * @param  {string} message message body
+	 * @param  {source} source  js or class
+	 * @return {nothing}         
+	 */
 	$scope.log = function(level, message, source) {
 		var m = {level:level, message: message, source: source || "COLT"};
 		$scope.logMessages.push(m);
 		$scope.$broadcast("logMessage", m);
 	};
+
+	$scope.log("error", "hello world", "index.js")
 
 	window.onerror = function(msg, url, line) {
 		console.log("ERROR", "COLT UI Error: " + msg, url+":"+line);
