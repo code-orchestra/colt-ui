@@ -226,6 +226,10 @@ var runJava = function (projectPath) {
                                             break;
                                         case "saveError":
                                             break;
+                                        case "updateDocumentUrl":
+                                            console.log("updateDocumentUrl" , json.message);
+                                            $scope.mainDocumentUrl = json.message;
+                                            break;
                                     }
 									break;
                                 case "nodePath":
@@ -235,11 +239,6 @@ var runJava = function (projectPath) {
                                     }
                                     break;
 								case "javadoc":
-                                    //for Maks
-                                    $scope.sendToJava("getNodePath", "nodePath").then(function(nodePath) {
-                                         console.log("nodePath = ", nodePath);
-                                    });
-                                    //end for Maks
 									var jsdocPath = app_path + 'node_modules' + path.sep + '.bin' + path.sep + 'jsdoc';
 									var jscfgPath = app_path + 'jsdoc' + path.sep + 'conf.json';
 
