@@ -184,7 +184,18 @@ var runJava = function (projectPath) {
                                                 function(update) {
                                                     gui.Shell.openExternal(update);
                                                 }
-                                            )
+                                            );
+                                            break;
+                                        case "demoCountWithSerialNumber":
+                                            $scope.showContinueWithDemoDialog(json.message).then(
+                                                $scope.sendToJava,
+                                                function() {
+                                                    $scope.sendToJava("continue");
+                                                },
+                                                function(update) {
+                                                    gui.Shell.openExternal(update);
+                                                }
+                                            );
                                             break;
                                     }
 									break;
