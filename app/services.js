@@ -32,6 +32,7 @@ var path = require('path');
 var app_path;
 var demo_path;
 
+var jarPath
 if(os.platform() == "darwin") {
     app_path = path.dirname(process.execPath)
     while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'colt.app') {
@@ -39,20 +40,23 @@ if(os.platform() == "darwin") {
     }
     if(path.basename(app_path) == 'colt.app') {
         demo_path = path.dirname(app_path) + path.sep + 'projects'
-        app_path = path.dirname(app_path) + path.sep + 'Contents' + path.sep + 'Resources' + path.sep + 'app.nw' + path.sep;
+        jarPath = path.dirname(app_path) + path.sep + "java" + path.sep + "colt.jar";
+        app_path = app_path + path.sep + "Contents" + path.sep + "Resources" + path.sep + "app.nw" + path.sep;
+        console.log("app_path", app_path)
     } else {
         app_path = path.dirname(app_path) + path.sep;
         demo_path = app_path + 'projects'
+        jarPath = app_path + "java" + path.sep + "colt.jar";
     }
 } else {
     app_path = path.dirname(process.execPath) + path.sep;
     demo_path = app_path + 'projects';
+    jarPath = app_path + "java" + path.sep + "colt.jar";
 }
 $scope.demoProjectsDir = demo_path;
 $scope.getAppPath = function(){
 	return app_path
 };
-var jarPath = app_path + "java" + path.sep + "colt.jar";
 
 var java;
 
@@ -429,11 +433,11 @@ var getModalSise = function(modal) {
 
 var lastSize = {width:0,height:0};
 var resizeModal = function(modal, w, h) {
-	if(lastSize.width != w || lastSize.height != h){
+	// if(lastSize.width != w || lastSize.height != h){
 		lastSize = {width:w,height:h}
 		modal.resizeTo(w, h);
 		console.log("set size");
-	}
+	// }
 }
 
 $scope.openPopup = function(html, title) {
