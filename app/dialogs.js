@@ -5,11 +5,16 @@ app.service("coltDialogs", function($q) {
 		$scope.showSerialNumberDialog = function() {
 			var popup = $scope.openPopup('popups.html#/enter-serial-number-dialog', "Close COLT");
 			var d = $q.defer();
-			popup.enterSerialNumber = function(serial){
-				console.log("serial number", serial);
-				d.resolve(serial);
-				popup.window.close();
-			}
+            $.extend(popup, {
+                enterSerialNumber: function(serial){
+                    console.log("serial number", serial);
+                    d.resolve(serial);
+                    popup.window.close();
+                },
+                close: function(){
+                    d.reject();
+                }
+            });
 			return d.promise;
 		}
 
