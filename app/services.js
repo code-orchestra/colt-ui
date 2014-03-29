@@ -376,7 +376,7 @@ var forceMinimizedFlag = false;
 var minimized = false;
 
 win.on('restore', function(){
-    minimized = true;
+    minimized = false;
     if(forceMinimizedFlag){
         forceMinimizedFlag = false;
         win.show();
