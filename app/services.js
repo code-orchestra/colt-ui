@@ -393,13 +393,6 @@ var forceMinimize = function(){
 	win.minimize();
 }
 
-$scope.$on("projectLoaded", function() {
-	console.log("project loaded event");
-	if($scope.model._isPlugin=="true"){
-		forceMinimize();
-	}
-});
-
 $scope.saveProject = function (filePath, data){
 	data = {xml:data};
 	var d = $q.defer();
@@ -585,5 +578,11 @@ if(projectFilePath) {
 	})
     $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
 }
+
+if(projectFilePath){
+    forceMinimize();
+}
 		
-}});  
+}});
+
+
