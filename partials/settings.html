@@ -9,8 +9,7 @@
 			<!-- Project Type -->
 			<form-part-header label="Launcher"></form-part-header>
 			<browse-path-radio id="radio" label="Browser" current-value="model.live.launch.launcher" expected-value="BROWSER" path="model.live.launch['browser-path']" placeholder="DEFAULT"></browse-path-radio>
-			<div></div>
-
+			
 			<browse-path-radio id="radio" label="node.js" current-value="model.live.launch.launcher" expected-value="NODE_JS" path="model.live.launch['nodejs-path']"></browse-path-radio>
 			
 			<browse-path-radio id="radio" label="node-webkit" current-value="model.live.launch.launcher" expected-value="NODE_WEBKIT" path="model.live.launch['node-webkit-path']" placeholder="DEFAULT"></browse-path-radio>
@@ -40,7 +39,7 @@
 			<checkbox checked="model.live.live['enable-debuger']" label="Don't Catch Runtime Exceptions (check for debugging)"></checkbox>
 
 			<checkbox checked="model.live.live['simple-reload']" label="Simple Reload Mode (Live Reload)"></checkbox>
-			
+
 
 			<!-- <checkbox checked="model.build['use-real-time-transformation']" label="Use realtime transformation"></checkbox> -->
 			
@@ -84,7 +83,7 @@
 
 			<form-part-header label="Other"></form-part-header>
 
-			<copy-value value="'&lt;script&gt;if(location.href != '+mainDocumentUrl+'){location.href = '+mainDocumentUrl+'}&lt;/script&gt;'" label="Redirection Snippet:"></copy-value>
+			<copy-value value="'&lt;script&gt;if(location.href!='+mainDocumentUrl+'){location.href = '+mainDocumentUrl+'}&lt;/script&gt;'" label="Redirection Snippet:"></copy-value>
 			<copy-value value="mainDocumentUrl" label="Main Document URL:"></copy-value>
 
 		</form>

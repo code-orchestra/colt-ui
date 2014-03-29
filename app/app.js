@@ -31,12 +31,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	});
 })
 
-/**
- * Repeat <tt>str</tt> several times.
- * @param {string} str The string to repeat.
- * @param {number} [times=1] How many times to repeat the string.
- * @returns {string}
- */
 function functionName (argument) {
-
+	_.forEach();
+	_.where();
+	
 }

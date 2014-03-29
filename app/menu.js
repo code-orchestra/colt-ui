@@ -81,9 +81,7 @@ app.service("appMenu", function($q) {
 					$scope.showWelcomeScreen(recentProjectsPaths)
 				}
 			}));
-			helpSubMenu.append(new gui.MenuItem({
-				type: 'separator'
-			}));
+			helpSubMenu.append(new gui.MenuItem({type:'separator'})); 
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Proxy Settings',
 				click: function () {
@@ -120,6 +118,7 @@ app.service("appMenu", function($q) {
 					$scope.openBrowserWindow("https://codeorchestra.zendesk.com/anonymous_requests/new") 
 				}
 			}));
+			helpSubMenu.append(new gui.MenuItem({type: 'separator'}));
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Enter Serial Number',
 				click: function () {
@@ -127,6 +126,14 @@ app.service("appMenu", function($q) {
 					.then(function(serial) {
 						$scope.sendToJava("serialNumber " + serial)
 					}) 
+				}
+			}));
+			helpSubMenu.append(new gui.MenuItem({type: 'separator'}));
+			helpSubMenu.append(new gui.MenuItem({
+				label: 'Show node-webkit Developers Tools',
+				click: function () {
+					var win = gui.Window.get(); 
+					win.showDevTools();
 				}
 			}));
 			help.submenu = helpSubMenu;

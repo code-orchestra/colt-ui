@@ -373,15 +373,20 @@ win.on('close', function() {
 });
 
 var forceMinimizedFlag = false;
-
+var minimized = false;
 
 win.on('restore', function(){
-	console.log("restore");
-	if(forceMinimizedFlag){
-		forceMinimizedFlag = false;
-		win.show();
-	}
+    minimized = true;
+    if(forceMinimizedFlag){
+        forceMinimizedFlag = false;
+        win.show();
+    }
 });
+
+win.on('minimize', function(){
+	minimized = true;
+});
+
 var forceMinimize = function(){
 	forceMinimizedFlag = true;
 	win.hide();
@@ -477,8 +482,12 @@ $scope.openPopup = function(html, title) {
 				win.close();
 			}
 		}
-		win.show();
-		win.focus();
+		if(minimized){
+            forceMinimize();
+        }else{
+            win.show();
+            win.focus();
+        }
 	});
 	popupObject.window = modal;
 	return popupObject;

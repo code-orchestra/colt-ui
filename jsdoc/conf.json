@@ -25,8 +25,10 @@
         "template": "./node_modules/ink-docstrap/template",
         "encoding": "utf8",
         "destination": "./jsdoc/out",
-        "recurse": true,
-        "private": true
+        "quiet": true,
+        "private": true,
+        "lenient": true,
+        "recurse": true
     },
     "markdown"  : {
         "parser"   : "gfm",
