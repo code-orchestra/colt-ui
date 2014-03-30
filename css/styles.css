@@ -1,13 +1,13 @@
 /*.ng-binding{
 	border: 1px solid blue;
-}*/
+}
 
-/*.ng-scope {
+.ng-scope {
 	border: 1px solid red;
-}*/
+}
 
-/*.ng-isolate-scope {
-	border: 1px solid blue;
+.ng-isolate-scope {
+	border: 1px solid green;
 }*/
 
 body{

@@ -30,9 +30,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		pageIndex: 2
 	});
 })
-
-function functionName (argument) {
-	_.forEach();
-	_.where();
-	
-}

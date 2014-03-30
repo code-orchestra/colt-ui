@@ -3,9 +3,7 @@
 	
 	<div class="container" style="padding-top:10px">
 		<form class="col-xs-12">
-			<browse-path label="Main Document:" path="model.build['main-document']" nwworkingdir="projectBaseDir"></browse-path>
-			<!-- <fileset label="Live Coding Pattern:" paths="model.paths['sources-set']"></fileset> -->
-
+			<browse-path label="Main Document :" path="model.build['main-document']" nwworkingdir="projectBaseDir"></browse-path>
 			<!-- Project Type -->
 			<form-part-header label="Launcher"></form-part-header>
 			<browse-path-radio id="radio" label="Browser" current-value="model.live.launch.launcher" expected-value="BROWSER" path="model.live.launch['browser-path']" placeholder="DEFAULT"></browse-path-radio>
@@ -58,11 +56,11 @@
 
 			<!-- Offline CMS -->
 
-			<!-- <form-part-header label="Offline CMS"></form-part-header>
+			<form-part-header label="Offline CMS"></form-part-header>
 
 			<checkbox checked="model.build['offline-cms']['integrate-mercury']" label="Integrate Mercury Editor into HTML Page"></checkbox>
 
-			<checkbox checked="model.build['offline-cms']['run-mercury']" enabled="model.build['offline-cms']['integrate-mercury']" label="Run Mercury Editor when Page Loaded"></checkbox> -->
+			<checkbox checked="model.build['offline-cms']['run-mercury']" enabled="model.build['offline-cms']['integrate-mercury']" label="Run Mercury Editor when Page Loaded"></checkbox>
 
 			<!-- Shared Access -->
 
