@@ -497,7 +497,6 @@ $scope.openJsDoc = function(html, title) {
 	  height: jsDocSize.height,
 	  frame: false,
       toolbar:false,
-      title: "JS Doc",
       focus: true,
       window: {
          "icon": "icons/colt_128.png"
