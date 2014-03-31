@@ -162,7 +162,7 @@ angular.module('colt.directives', [])
    link: function(scope, element){
      var input = $(element).find("input:text");
      scope.copy = function() {
-        if(window["requare"]){
+        if(top['require']){
           var gui = require('nw.gui');
           var clipboard = gui.Clipboard.get();
           clipboard.set($(input).val());

@@ -102,7 +102,6 @@ var runJava = function (projectPath) {
 		if(closeCallback) {
 			closeCallback()
 		}
-		win.close(true);
 	});
 
 	var trimMessage = function(message) {
