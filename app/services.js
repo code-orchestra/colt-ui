@@ -560,9 +560,13 @@ $scope.openJsDocFile = function(url) {
             jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
             jsDocPosition = {x:modal.x,y:modal.y};
             modal.close(true);
+            // window.close();
         };
 
         modal.on('blur', function() {
+            jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
+            jsDocPosition = {x:modal.x,y:modal.y};
+            modal.close(true);
         });
 	});
 
