@@ -557,12 +557,15 @@ $scope.openJsDocFile = function(url) {
 		modal.show();
 		modal.focus();
 		forceMinimize();
+
+        modal.window.onblur = function() {
+            console.log2("on-blur");
+            jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
+            jsDocPosition = {x:modal.x,y:modal.y};
+            modal.close(true);
+        };
 	});
-	modal.window.onblur = function() {
-		jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
-		jsDocPosition = {x:modal.x,y:modal.y};
-		modal.close(true);
-	};
+
 };
 
 $scope.getProjectPath = function(){
