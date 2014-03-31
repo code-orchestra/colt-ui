@@ -260,6 +260,7 @@ var runJava = function (projectPath) {
                                         case "saveError":
                                             break;
                                         case "updateDocumentUrl":
+                                            console.log("updateDocumentUrl" , json.message);
                                             $scope.mainDocumentUrl = json.message;
                                             break;
                                     }
@@ -444,6 +445,11 @@ $scope.openPopup = function(html, title) {
 		toolbar: false,
         icon: "icons/colt_128.png"
 	});
+    if(!isMac && minimized){
+        win.restore();
+    }
+	modal.hide();
+	win.hide();
 	var popupObject = {};
 	modal.on('loaded', function() {
 		console.log("popup opened");
@@ -464,6 +470,7 @@ $scope.openPopup = function(html, title) {
 		}else{
 			modal.window.setPopup(popupObject);
 		}
+		modal.show();
 		modal.focus();
 	});
 	modal.on('closed', function() {
@@ -472,6 +479,12 @@ $scope.openPopup = function(html, title) {
 				win.close();
 			}
 		}
+		if(minimized){
+            forceMinimize();
+        }else{
+            win.show();
+            win.focus();
+        }
 	});
 	popupObject.window = modal;
 	return popupObject;
