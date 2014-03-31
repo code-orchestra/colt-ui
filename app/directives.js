@@ -159,13 +159,23 @@ angular.module('colt.directives', [])
      disabled: "=",
      placeholder: "@"
    },
+   link: function(scope, element){
+     var input = $(element).find("input:text");
+     scope.copy = function() {
+        if(window["requare"]){
+          var gui = require('nw.gui');
+          var clipboard = gui.Clipboard.get();
+          clipboard.set($(input).val());
+        }
+     }
+   },
    template: 
    '<div class="form-group row">'+
    '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
    '  <div class="input-group input-group-sm">'+
    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="value" ng-disabled="disabled">'+
    '    <span class="input-group-btn"><button type="button" ' +
-   '    class="btn btn-default btn-add" ng-disabled="disabled">Copy</button></span>'+
+   '    class="btn btn-default btn-add" ng-click="copy()" ng-disabled="disabled">Copy</button></span>'+
    '  </div>'+
    '</div>'
  };

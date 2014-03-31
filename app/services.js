@@ -93,7 +93,7 @@ var runJava = function (projectPath) {
 
 	var pongInterval = setInterval(function() {
 		$scope.sendToJava("pong");
-	}, 5000);
+	}, 500);
 
 	java.on('close', function (code, signal) {
 		console.log('child process terminated due to receipt of signal ' + signal);
@@ -102,7 +102,7 @@ var runJava = function (projectPath) {
 		if(closeCallback) {
 			closeCallback()
 		}
-		//win.close(true);
+		win.close(true);
 	});
 
 	var trimMessage = function(message) {
