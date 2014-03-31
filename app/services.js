@@ -537,6 +537,7 @@ $scope.openJsDocFile = function(url) {
         win.hide();
     }else{
         win.focus();
+        win.hide();
     }
 	var modal = gui.Window.open('file://'+url, {
 	  position: 'mouse',
@@ -548,13 +549,17 @@ $scope.openJsDocFile = function(url) {
       focus: true,
       "icon": "icons/colt_128.png"
 	});
-	modal.hide();
+	if(isMac)modal.hide();
 	modal.on('loaded', function() {
 		modal.x = jsDocPosition.x;
 		modal.y = jsDocPosition.y;
 		modal.show();
 		modal.focus();
-		if(isMac)forceMinimize();
+		if(isMac){
+            forceMinimize();
+        }else{
+            win.show();
+        }
     });
     modal.on('blur', function() {
         modal.close();
