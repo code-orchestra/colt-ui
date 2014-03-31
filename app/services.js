@@ -31,6 +31,7 @@ var os = require('os');
 var path = require('path');
 var app_path;
 var demo_path;
+var projectFilePath;
 
 var isMac = false;
 var isWin = os.platform().indexOf("win" == 0);
@@ -78,7 +79,7 @@ $scope.restartJava = function (filePath) {
 	    })
 		projectFilePath = filePath
 		runJava(projectFilePath);
-		closeCallback = undefined 
+		closeCallback = undefined
 	}
 };
 
@@ -280,7 +281,7 @@ var runJava = function (projectPath) {
 									var fs = require('fs'), htmlFile = app_path + path.sep + 'jsdoc' + path.sep + 'out' + path.sep + 'global.html';
 									try { fs.unlinkSync(htmlFile); } catch (whatever) {}
 
-									/*var spawn = require('child_process').spawn, 
+									/*var spawn = require('child_process').spawn,
 									jsdoc = spawn(jsdocPath, ['-c', jscfgPath, '-t', 'readable'], { cwd : app_path });
 
 									jsdoc.on('error', function (err) {
@@ -349,12 +350,12 @@ var runJava = function (projectPath) {
 						console.error("error parse json: |" + messageText + "|", e);
 						return;
 					}
-					
+
 				}
 			}else if(!isPing(text) && text){
 				console.log("stdout:", text);
 			}
-			
+
 			if(isPing(text)){
 		    	$scope.sendToJava("pong");
 		    }
@@ -413,7 +414,7 @@ $scope.saveProject = function (filePath, data){
 			d.resolve();
             $scope.sendToJava("save " + new Date().getTime())
 		}
-	}); 
+	});
 	return d.promise;
 };
 
@@ -421,7 +422,7 @@ var serviceDefers = {};
 $scope.sendToJava = function(message, resolveType) {
 	if(!java)return;
 	var d = serviceDefers[resolveType] || $q.defer();
-	serviceDefers[resolveType] = d; 
+	serviceDefers[resolveType] = d;
 	java.stdin.write(message + "\n");
 	return d.promise;
 };
@@ -434,14 +435,11 @@ var getModalSise = function(modal) {
 }
 
 var lastSize = {width:0,height:0};
-var sizeOffset = {width:0,height:32};
-if(isWin){
-    sizeOffset = {width:15,height:60}
-}
+var sizeOffset = !isWin ? {width:0,height:32} : {width:15,height:60};
 var resizeModal = function(modal, w, h) {
 	lastSize = {width:w,height:h}
 	modal.resizeTo(w+sizeOffset.width, h+sizeOffset.height);
-
+}
 
 $scope.openPopup = function(html, title) {
 	var modal = gui.Window.open('app://./'+ html,{
@@ -555,14 +553,12 @@ $scope.openJsDocFile = function(url) {
 		modal.show();
 		modal.focus();
 		forceMinimize();
-        modal.showDevTools();
-
-        modal.on('blur', function() {
-            jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
-            jsDocPosition = {x:modal.x,y:modal.y};
-            modal.close(true);
-        });
-	});
+    });
+    modal.on('close', function() {
+        jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
+        jsDocPosition = {x:modal.x,y:modal.y};
+        modal.close(true);
+    });
 
 };
 
@@ -578,7 +574,7 @@ $scope.openBrowserWindow = function(url) {
 appMenu.buildMenu($scope, []);
 
 console.log("app args:", gui.App.argv);
-var projectFilePath = gui.App.argv[0];
+projectFilePath = gui.App.argv[0];
 if(projectFilePath) {
 	runJava(projectFilePath);
     $scope.sendToJava("getRecentProjectsPaths");
@@ -600,7 +596,7 @@ if(projectFilePath) {
 if(projectFilePath){
     forceMinimize();
 }
-		
+
 }});
 
 
