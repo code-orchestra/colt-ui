@@ -546,9 +546,7 @@ $scope.openJsDocFile = function(url) {
 	  frame: false,
       toolbar:false,
       focus: true,
-      window: {
-         "icon": "icons/colt_128.png"
-      }
+      "icon": "icons/colt_128.png"
 	});
 	modal.hide();
 	modal.on('loaded', function() {
@@ -559,11 +557,13 @@ $scope.openJsDocFile = function(url) {
 		forceMinimize();
 
         modal.window.onblur = function() {
-            console.log2("on-blur");
             jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
             jsDocPosition = {x:modal.x,y:modal.y};
             modal.close(true);
         };
+
+        modal.on('blur', function() {
+        });
 	});
 
 };
