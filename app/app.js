@@ -29,4 +29,4 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		pageName: "Log",
 		pageIndex: 2
 	});
-})
+});

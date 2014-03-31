@@ -26,9 +26,7 @@
         "encoding": "utf8",
         "destination": "./jsdoc/out",
         "quiet": true,
-        "private": true,
-        "lenient": true,
-        "recurse": true
+        "private": true
     },
     "markdown"  : {
         "parser"   : "gfm",
