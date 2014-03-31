@@ -497,7 +497,8 @@ $scope.openJsDoc = function(html, title) {
 	  height: jsDocSize.height,
 	  frame: false,
       toolbar:false,
-      title: "JS Doc"
+      title: "JS Doc",
+      focus: true,
       window: {
          "icon": "icons/colt_128.png"
       }
@@ -525,6 +526,7 @@ $scope.openJsDoc = function(html, title) {
 		}
 		jsDocPosition.x = modal.x;
 		jsDocPosition.y = modal.y;
+        console.log("blur");
 		modal.close(true);
 	});
 };
