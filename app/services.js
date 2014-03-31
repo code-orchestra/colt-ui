@@ -32,8 +32,11 @@ var path = require('path');
 var app_path;
 var demo_path;
 
+var isMac = false;
+
 var jarPath;
 if(os.platform() == "darwin") {
+    isMac = true;
     app_path = path.dirname(process.execPath)
     while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'colt.app') {
         app_path = path.dirname(app_path)
@@ -389,7 +392,7 @@ win.on('minimize', function(){
 
 var forceMinimize = function(){
 	forceMinimizedFlag = true;
-	win.hide();
+	if(isMac)win.hide();
 	win.minimize();
 }
 
@@ -525,19 +528,27 @@ $scope.openJsDoc = function(html, title) {
 		}
 		jsDocPosition.x = modal.x;
 		jsDocPosition.y = modal.y;
-        console.log("blur");
-		modal.close(true);
+        modal.close(true);
 	});
 };
 
 $scope.openJsDocFile = function(url) {
-	win.hide();
+	if(isMac){
+        win.hide();
+    }else{
+        win.minimize();
+    }
 	var modal = gui.Window.open('file://'+url, {
 	  position: 'mouse',
 	  show:false,
 	  width: jsDocSize.width,
 	  height: jsDocSize.height,
-	  frame: false
+	  frame: false,
+      toolbar:false,
+      focus: true,
+      window: {
+         "icon": "icons/colt_128.png"
+      }
 	});
 	modal.hide();
 	modal.on('loaded', function() {
