@@ -435,7 +435,7 @@ var getModalSise = function(modal) {
 }
 
 var lastSize = {width:0,height:0};
-var sizeOffset = !isWin ? {width:0,height:32} : {width:15,height:60};
+var sizeOffset = !isWin ? {width:0,height:32} : {width:10,height:50};
 var resizeModal = function(modal, w, h) {
 	lastSize = {width:w,height:h}
 	modal.resizeTo(w+sizeOffset.width, h+sizeOffset.height);
