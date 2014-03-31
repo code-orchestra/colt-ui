@@ -445,8 +445,6 @@ $scope.openPopup = function(html, title) {
 		toolbar: false,
         icon: "icons/colt_128.png"
 	});
-	modal.hide();
-	win.hide();
 	var popupObject = {};
 	modal.on('loaded', function() {
 		console.log("popup opened");
@@ -467,22 +465,14 @@ $scope.openPopup = function(html, title) {
 		}else{
 			modal.window.setPopup(popupObject);
 		}
-		modal.show();
 		modal.focus();
 	});
 	modal.on('closed', function() {
-		console.log("popup closed", popupObject);
 		if(popupObject && popupObject.hasOwnProperty("close")){
 			if(popupObject.close()){
 				win.close();
 			}
 		}
-		if(minimized){
-            forceMinimize();
-        }else{
-            win.show();
-            win.focus();
-        }
 	});
 	popupObject.window = modal;
 	return popupObject;
@@ -532,45 +522,26 @@ $scope.openJsDoc = function(html, title) {
 };
 
 $scope.openJsDocFile = function(url) {
-	// if(isMac){
- //        win.hide();
- //    }else{
- //        win.hide();
- //        win.minimize();
- //        win.focus();
- //    }
 	var modal = gui.Window.open('file://'+url, {
 	  position: 'mouse',
-	  width: jsDocSize.width,
-	  height: jsDocSize.height,
+      width: jsDocSize.width,
+      height: jsDocSize.height,
 	  frame: false,
-      show: false,
       toolbar:false,
       focus: true,
       "always-on-top":true,
       show_in_taskbar: false,
       "icon": "icons/colt_128.png"
 	});
-	modal.on('loaded', function() {
-		modal.x = jsDocPosition.x;
-		modal.y = jsDocPosition.y;
-		modal.show();
-		modal.focus();
-		// if(isMac){
-        //     forceMinimize();
-        // }
+    modal.on('loaded', function() {
+        modal.focus();
     });
-
     var closeWin = function() {
         jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
         jsDocPosition = {x:modal.x,y:modal.y};
         modal.close(true);
-        win.setShowInTaskbar(true)
-        // if(!isMac){
-        //     win.show();
-        // }
+        win.setShowInTaskbar(true);
     }
-
     modal.on('blur', function() {
         closeWin();
     });
