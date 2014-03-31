@@ -102,7 +102,6 @@ var runJava = function (projectPath) {
 		if(closeCallback) {
 			closeCallback()
 		}
-		win.close(true);
 	});
 
 	var trimMessage = function(message) {
@@ -549,7 +548,6 @@ $scope.openJsDocFile = function(url) {
       focus: true,
       "icon": "icons/colt_128.png"
 	});
-	if(isMac)modal.hide();
 	modal.on('loaded', function() {
 		modal.x = jsDocPosition.x;
 		modal.y = jsDocPosition.y;
@@ -559,14 +557,21 @@ $scope.openJsDocFile = function(url) {
             forceMinimize();
         }
     });
-    modal.on('blur', function() {
-        modal.close();
-    });
-    modal.on('close', function() {
+
+    var closeWin = function() {
         jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
         jsDocPosition = {x:modal.x,y:modal.y};
         modal.close(true);
-        win.show();
+        if(!isMac){
+            win.show();
+        }
+    }
+
+    modal.on('blur', function() {
+        closeWin();
+    });
+    modal.on('close', function() {
+        closeWin();
     });
 
 };
