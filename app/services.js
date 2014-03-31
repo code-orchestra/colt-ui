@@ -32,7 +32,7 @@ var path = require('path');
 var app_path;
 var demo_path;
 
-var jarPath
+var jarPath;
 if(os.platform() == "darwin") {
     app_path = path.dirname(process.execPath)
     while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'colt.app') {
@@ -495,7 +495,12 @@ $scope.openJsDoc = function(html, title) {
 	  title:title,
 	  width: jsDocSize.width,
 	  height: jsDocSize.height,
-	  frame: false
+	  frame: false,
+      toolbar:false,
+      title: "JS Doc"
+      window: {
+         "icon": "icons/colt_128.png"
+      }
 	});
 	modal.hide();
 	var popupObject = {
