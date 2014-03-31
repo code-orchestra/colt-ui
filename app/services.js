@@ -544,18 +544,18 @@ $scope.openJsDocFile = function(url) {
 	  width: jsDocSize.width,
 	  height: jsDocSize.height,
 	  frame: false,
+      show: false,
       toolbar:false,
       focus: true,
+      "always-on-top":true,
       show_in_taskbar: false,
       "icon": "icons/colt_128.png"
 	});
-    modal.hide();
-    modal.setAlwaysOnTop(true);
 	modal.on('loaded', function() {
 		modal.x = jsDocPosition.x;
 		modal.y = jsDocPosition.y;
 		modal.show();
-		// modal.focus();
+		modal.focus();
 		// if(isMac){
         //     forceMinimize();
         // }
@@ -565,6 +565,7 @@ $scope.openJsDocFile = function(url) {
         jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
         jsDocPosition = {x:modal.x,y:modal.y};
         modal.close(true);
+        win.setShowInTaskbar(true)
         // if(!isMac){
         //     win.show();
         // }
