@@ -33,6 +33,7 @@ var app_path;
 var demo_path;
 
 var isMac = false;
+var isWin = os.platform().indexOf("win" == 0);
 
 var jarPath;
 if(os.platform() == "darwin") {
@@ -433,13 +434,14 @@ var getModalSise = function(modal) {
 }
 
 var lastSize = {width:0,height:0};
-var resizeModal = function(modal, w, h) {
-	// if(lastSize.width != w || lastSize.height != h){
-		lastSize = {width:w,height:h}
-		modal.resizeTo(w, h);
-		console.log("set size");
-	// }
+var sizeOffset = {width:0,height:32};
+if(isWin){
+    sizeOffset = {width:15,height:60}
 }
+var resizeModal = function(modal, w, h) {
+	lastSize = {width:w,height:h}
+	modal.resizeTo(w+sizeOffset.width, h+sizeOffset.height);
+
 
 $scope.openPopup = function(html, title) {
 	var modal = gui.Window.open('app://./'+ html,{
@@ -459,7 +461,7 @@ $scope.openPopup = function(html, title) {
 		modal.window.onResize = function() {
 			var size = getModalSise(modal);
 			if(size){
-				resizeModal(modal, size[0], size[1]+32)
+				resizeModal(modal, size[0], size[1])
 			}
 		}
 		modal.window.onResize();
@@ -553,6 +555,7 @@ $scope.openJsDocFile = function(url) {
 		modal.show();
 		modal.focus();
 		forceMinimize();
+        modal.showDevTools();
 
         modal.on('blur', function() {
             jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
