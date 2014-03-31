@@ -260,7 +260,6 @@ var runJava = function (projectPath) {
                                         case "saveError":
                                             break;
                                         case "updateDocumentUrl":
-                                            console.log("updateDocumentUrl" , json.message);
                                             $scope.mainDocumentUrl = json.message;
                                             break;
                                     }
