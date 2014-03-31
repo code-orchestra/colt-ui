@@ -22,11 +22,11 @@ angular.module('colt.directives', [])
     });
     fileInput.change(function (e) {
       var fileVal = $(fileInput).val();
-      if(scope.nwworkingdir != undefined){
-        if(fileVal.indexOf(scope.nwworkingdir) == 0){
-          fileVal = fileVal.substr(scope.nwworkingdir.length);
-        }
-      }
+      // if(scope.nwworkingdir != undefined){
+      //   if(fileVal.indexOf(scope.nwworkingdir) == 0){
+      //     fileVal = fileVal.substr(scope.nwworkingdir.length);
+      //   }
+      // }
       scope.$apply(function () {
         scope.path = fileVal;
       });
