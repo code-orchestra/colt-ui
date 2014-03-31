@@ -552,7 +552,10 @@ $scope.openJsDocFile = function(url) {
 		modal.y = jsDocPosition.y;
 		modal.show();
 		modal.focus();
-		forceMinimize();
+		if(isMac)forceMinimize();
+    });
+    modal.on('blur', function() {
+        modal.close();
     });
     modal.on('close', function() {
         jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
