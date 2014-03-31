@@ -34,7 +34,7 @@ var demo_path;
 var projectFilePath;
 
 var isMac = false;
-var isWin = os.platform().indexOf("win" == 0);
+var isWin = os.platform().indexOf("win") == 0;
 
 var jarPath;
 if(os.platform() == "darwin") {
@@ -537,7 +537,6 @@ $scope.openJsDocFile = function(url) {
         win.hide();
     }else{
         win.focus();
-        win.hide();
     }
 	var modal = gui.Window.open('file://'+url, {
 	  position: 'mouse',
@@ -557,8 +556,6 @@ $scope.openJsDocFile = function(url) {
 		modal.focus();
 		if(isMac){
             forceMinimize();
-        }else{
-            win.show();
         }
     });
     modal.on('blur', function() {
