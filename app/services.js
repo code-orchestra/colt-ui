@@ -536,6 +536,8 @@ $scope.openJsDocFile = function(url) {
 	if(isMac){
         win.hide();
     }else{
+        win.hide();
+        win.minimize();
         win.focus();
     }
 	var modal = gui.Window.open('file://'+url, {
@@ -565,6 +567,7 @@ $scope.openJsDocFile = function(url) {
         jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
         jsDocPosition = {x:modal.x,y:modal.y};
         modal.close(true);
+        win.show();
     });
 
 };
