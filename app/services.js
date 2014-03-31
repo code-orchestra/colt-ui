@@ -531,21 +531,23 @@ $scope.openJsDoc = function(html, title) {
 };
 
 $scope.openJsDocFile = function(url) {
-	if(isMac){
-        win.hide();
-    }else{
-        win.hide();
-        win.minimize();
-        win.focus();
-    }
+	// if(isMac){
+ //        win.hide();
+ //    }else{
+ //        win.hide();
+ //        win.minimize();
+ //        win.focus();
+ //    }
 	var modal = gui.Window.open('file://'+url, {
 	  position: 'mouse',
-	  show:false,
 	  width: jsDocSize.width,
 	  height: jsDocSize.height,
 	  frame: false,
+      show: false,
       toolbar:false,
       focus: true,
+      "always-on-top":true,
+      show_in_taskbar: false,
       "icon": "icons/colt_128.png"
 	});
 	modal.on('loaded', function() {
@@ -553,18 +555,19 @@ $scope.openJsDocFile = function(url) {
 		modal.y = jsDocPosition.y;
 		modal.show();
 		modal.focus();
-		if(isMac){
-            forceMinimize();
-        }
+		// if(isMac){
+        //     forceMinimize();
+        // }
     });
 
     var closeWin = function() {
         jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
         jsDocPosition = {x:modal.x,y:modal.y};
         modal.close(true);
-        if(!isMac){
-            win.show();
-        }
+        win.setShowInTaskbar(true)
+        // if(!isMac){
+        //     win.show();
+        // }
     }
 
     modal.on('blur', function() {
