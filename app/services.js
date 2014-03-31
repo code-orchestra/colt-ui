@@ -558,11 +558,11 @@ $scope.openJsDocFile = function(url) {
 		modal.focus();
 		forceMinimize();
 	});
-	modal.on('blur', function() {
+	modal.window.onblur = function() {
 		jsDocSize = {width:Math.max(400, modal.width), height:Math.max(210, modal.height)};
 		jsDocPosition = {x:modal.x,y:modal.y};
 		modal.close(true);
-	});
+	};
 };
 
 $scope.getProjectPath = function(){
