@@ -70,6 +70,19 @@ app.service("appMenu", function($q) {
 			var help = new gui.MenuItem({ label: 'Help' });
 			var helpSubMenu = new gui.Menu();
 			helpSubMenu.append(new gui.MenuItem({
+				label: 'Documentation',
+				click: function () {
+                    $scope.openLink('http://colt.io/documentation.html');
+				}
+			}));
+			helpSubMenu.append(new gui.MenuItem({
+				label: 'Getting Started',
+				click: function () {
+                    $scope.openLink('http://colt.io/documentation.html#getting-started');
+				}
+			}));
+			helpSubMenu.append(new gui.MenuItem({type: 'separator'}));
+			helpSubMenu.append(new gui.MenuItem({
 				label: 'Open Demo Project',
 				click: function () {
                     $scope.showOpenDemoProjectDialog();
@@ -115,7 +128,7 @@ app.service("appMenu", function($q) {
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Support',
 				click: function () {
-					$scope.openBrowserWindow("https://codeorchestra.zendesk.com/anonymous_requests/new") 
+					$scope.openLink("https://codeorchestra.zendesk.com/anonymous_requests/new") 
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({type: 'separator'}));

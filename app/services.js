@@ -9,7 +9,7 @@ $scope.saveProject = function() {};
 $scope.sendToJava = function() {};
 $scope.openPopup = function() {};
 $scope.openJsDoc = function() {};
-$scope.openBrowserWindow = function(url) {window.open(url)};
+$scope.openLink = function(url) {window.open(url)};
 
 if(!top['require']){
 	setTimeout(function() {
@@ -568,7 +568,7 @@ $scope.getProjectPath = function(){
 	return projectFilePath;
 };
 
-$scope.openBrowserWindow = function(url) {
+$scope.openLink = function(url) {
 	gui.Shell.openExternal(url)
 }
 

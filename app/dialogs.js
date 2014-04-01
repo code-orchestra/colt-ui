@@ -81,9 +81,9 @@ app.service("coltDialogs", function($q) {
 					console.log("purchase COLT");
 					console.log("type", type);
 					if(type == 'mo'){
-						$scope.openBrowserWindow("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
+						$scope.openLink("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
 					}else if(type == 'year'){
-						$scope.openBrowserWindow("https://www.plimus.com/jsp/buynow.jsp?contractId=3193830");
+						$scope.openLink("https://www.plimus.com/jsp/buynow.jsp?contractId=3193830");
 					}
 					d.reject();
 					popup.window.close();
@@ -114,9 +114,9 @@ app.service("coltDialogs", function($q) {
 					console.log("purchase COLT");
 					console.log("type", type);
 					if(type == 'mo'){
-						$scope.openBrowserWindow("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
+						$scope.openLink("https://www.plimus.com/jsp/buynow.jsp?contractId=3190926");
 					}else if(type == 'year'){
-						$scope.openBrowserWindow("https://www.plimus.com/jsp/buynow.jsp?contractId=3193830");
+						$scope.openLink("https://www.plimus.com/jsp/buynow.jsp?contractId=3193830");
 					}
 					d.reject();
 					popup.window.close();
@@ -192,7 +192,7 @@ app.service("coltDialogs", function($q) {
 				recentProjects: recentProjects.map(function (it) {return {name : it} }),
                 openLink: function (url) {
                     console.log("url");
-                    $scope.openBrowserWindow(url);
+                    $scope.openLink(url);
                 }
 			});
 			console.log("recentProjects", popup.recentProjects);

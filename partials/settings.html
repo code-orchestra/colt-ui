@@ -6,7 +6,7 @@
 			<browse-path label="Main Document:" path="model.build['main-document']" nwworkingdir="projectBaseDir"></browse-path>
 			<!-- Project Type -->
 			<form-part-header label="Launcher"></form-part-header>
-			<browse-path-radio id="radio" label="Browser" current-value="model.live.launch.launcher" expected-value="BROWSER" path="model.live.launch['browser-path']" placeholder="DEFAULT"></browse-path-radio>
+			<browse-path-radio id="radio" label="Browser" current-value="model.live.launch.launcher" expected-value="BROWSER" path="model.live.launch['browser-path']" placeholder="Default system browser"></browse-path-radio>
 			
 			<browse-path-radio id="radio" label="node.js" current-value="model.live.launch.launcher" expected-value="NODE_JS" path="model.live.launch['nodejs-path']"></browse-path-radio>
 			
@@ -24,7 +24,7 @@
 
 			<!-- <fileset label="Live Reload Pattern:" paths="model.paths['reloads-set']"></fileset> -->
 
-			<value label="Exclude Pattern:" value="model.paths['excludes-set']"></value>
+			<value label="Ignore Files:" value="model.paths['excludes-set']"></value>
 
 			<!-- <checkbox checked="model.live.live['disable-in-minified']" label="Disable livecoding in minified scripts"></checkbox> -->
 
