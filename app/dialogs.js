@@ -30,6 +30,7 @@ app.service("coltDialogs", function($q) {
 				},
 				update: function(){
 					console.log("update!");
+                    $scope.openLink("http://codeorchestra.com/");
 					d.resolve();
 					popup.window.close();
 				}
