@@ -40,10 +40,10 @@ var jarPath;
 if(os.platform() == "darwin") {
     isMac = true;
     app_path = path.dirname(process.execPath)
-    while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'colt.app') {
+    while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'COLT.app') {
         app_path = path.dirname(app_path)
     }
-    if(path.basename(app_path) == 'colt.app') {
+    if(path.basename(app_path) == 'COLT.app') {
         demo_path = path.dirname(app_path) + path.sep + 'projects'
         jarPath = path.dirname(app_path) + path.sep + "java" + path.sep + "colt.jar";
         app_path = app_path + path.sep + "Contents" + path.sep + "Resources" + path.sep + "app.nw" + path.sep;
