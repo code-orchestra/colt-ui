@@ -3,28 +3,28 @@
 	
 	<div class="container" style="padding-top:10px">
 		<form class="col-xs-12">
-			<browse-path label="Main Document:" path="model.build['main-document']" nwworkingdir="projectBaseDir"></browse-path>
+			<browse-path label="Main Document:" path="model.build['main-document']" nwworkingdir="projectBaseDir" popover="#help-main-document"></browse-path>
 			<!-- Project Type -->
 			<form-part-header label="Launcher"></form-part-header>
-			<browse-path-radio id="radio" label="Browser" current-value="model.live.launch.launcher" expected-value="BROWSER" path="model.live.launch['browser-path']" placeholder="Default system browser"></browse-path-radio>
+			<browse-path-radio id="radio" label="Browser" current-value="model.live.launch.launcher" expected-value="BROWSER" path="model.live.launch['browser-path']" placeholder="Default system browser" popover="#help-browser"></browse-path-radio>
 			
-			<browse-path-radio id="radio" label="node.js" current-value="model.live.launch.launcher" expected-value="NODE_JS" path="model.live.launch['nodejs-path']"></browse-path-radio>
+			<browse-path-radio id="radio" label="node.js" current-value="model.live.launch.launcher" expected-value="NODE_JS" path="model.live.launch['nodejs-path']" popover="#help-node-js"></browse-path-radio>
 			
-			<browse-path-radio id="radio" label="node-webkit" current-value="model.live.launch.launcher" expected-value="NODE_WEBKIT" path="model.live.launch['node-webkit-path']" placeholder="DEFAULT"></browse-path-radio>
+			<browse-path-radio id="radio" label="node-webkit" current-value="model.live.launch.launcher" expected-value="NODE_WEBKIT" path="model.live.launch['node-webkit-path']" placeholder="DEFAULT" popover="#help-node-webkit"></browse-path-radio>
 
-			<input-radio id="radio" label="Console" current-value="model.live.launch.launcher" expected-value="CONSOLE" path="model.live.launch['console-value']"></input-radio>
+			<input-radio id="radio" label="Console" current-value="model.live.launch.launcher" expected-value="CONSOLE" path="model.live.launch['console-value']" popover="#help-console"></input-radio>
 
-			<radio label="Manual" current-value="model.live.launch.launcher" expected-value="MANUAL"></radio>
+			<radio label="Manual" current-value="model.live.launch.launcher" expected-value="MANUAL" popover="#help-manual"></radio>
 
 			<!-- Live Settings -->
 
 			<form-part-header label="Live Settings"></form-part-header>
 
-			<browse-path-checkbox label="Use Custom Output:" checked="model.build['use-custom-output-path']" path="model.build['out-path']"></browse-path-checkbox>		
+			<browse-path-checkbox label="Use Custom Output:" checked="model.build['use-custom-output-path']" path="model.build['out-path']" popover="#help-custom-output"></browse-path-checkbox>		
 
 			<!-- <fileset label="Live Reload Pattern:" paths="model.paths['reloads-set']"></fileset> -->
 
-			<value label="Exclude from Livecoding Pattern:" value="model.paths['excludes-set']"></value>
+			<value label="Exclude from Livecoding Pattern:" value="model.paths['excludes-set']" popover="#help-exclude-pattern"></value>
 
 			<!-- <checkbox checked="model.live.live['disable-in-minified']" label="Disable livecoding in minified scripts"></checkbox> -->
 
@@ -32,11 +32,11 @@
 
 			<!-- <checkbox checked="model.live.live.paused" label="Start session paused"></checkbox> -->
 
-			<value value="model.live.live['max-loop']" label="Max Loop Iterations:"></value>
+			<value value="model.live.live['max-loop']" label="Max Loop Iterations:" popover="#help-max-loops"></value>
 
-			<checkbox checked="model.live.live['enable-debuger']" label="Don't Catch Runtime Exceptions (check for debugging)"></checkbox>
+			<checkbox checked="model.live.live['enable-debuger']" label="Don't Catch Runtime Exceptions (check for debugging)" popover="#help-catch-exceptions"></checkbox>
 
-			<checkbox checked="model.live.live['simple-reload']" label="Simple Reload Mode (Live Reload)"></checkbox>
+			<checkbox checked="model.live.live['simple-reload']" label="Simple Reload Mode (Live Reload)" popover="#help-simple-reload"></checkbox>
 
 
 			<!-- <checkbox checked="model.build['use-real-time-transformation']" label="Use realtime transformation"></checkbox> -->
@@ -75,17 +75,109 @@
 			<form-part-header label="Live Session"></form-part-header>
 			<!-- <checkbox checked="model.live.settings['disconnect']" label="Disconnect on ping timeout"></checkbox> -->
 
-			<checkbox checked="model.live.settings['clear-log']" label="Clear Messages Log on Session Start"></checkbox>
+			<checkbox checked="model.live.settings['clear-log']" label="Clear Messages Log on Session Start" popover="#help-clear-messages"></checkbox>
 
 			<!-- Other -->
 
 			<form-part-header label="Other"></form-part-header>
 
-			<copy-value value="'&lt;script&gt;if(location.href!='+mainDocumentUrl+'){location.href = '+mainDocumentUrl+'}&lt;/script&gt;'" label="Redirection Snippet:"></copy-value>
-			<copy-value value="mainDocumentUrl" label="Main Document URL:"></copy-value>
+			<copy-value value="'&lt;script&gt;if(location.href!='+mainDocumentUrl+'){location.href = '+mainDocumentUrl+'}&lt;/script&gt;'" label="Redirection Snippet:" popover="#help-redirection-snippet"></copy-value>
+			<copy-value value="mainDocumentUrl" label="Main Document URL:" popover="#help-main-document-url"></copy-value>
 
 		</form>
 
+	</div>
+
+	<div id="help-main-document" class="popover-container">
+		<h3>Main Document</h3>
+		<div>
+			<p>Path to main document in the project. This is your app entry point. </p>
+			<p>Can be one of the following:</p>
+			<ol>
+				<p>1. Path to local HTML document. E.g. <strong>/projects/myProject/index.html</strong></p>
+				<p>2. Web server URL (pve-proxy mode) E.g. <strong>http://myserver.com/index.html</strong> </p>
+				<p>3. Path to JS file (node.js)</p>
+				<p>4. Path to main HTML document (node-webkit)</p>
+			</ol>
+		</div>
+	</div>
+	<div id="help-browser" class="popover-container">
+		<h3>Browser</h3>
+		<div>
+			<p>This is web application. You can specify which browser to open it with. System default browser is used, if you leave it blank.</p>
+		</div>
+	</div>
+	<div id="help-node-js" class="popover-container">
+		<h3>node.js</h3>
+		<div>
+			<p>Launch node.js server or any application using node.js. You need node.js to be installed in your system. (Note. Mac-OS users will need to specify the path to node.js) </p>
+		</div>
+	</div>
+	<div id="help-node-webkit" class="popover-container">	
+		<h3>node-webkit</h3>
+		<div>
+			<p>Launch node-webkit application. Please specify the path to node-webkit (node-webkit.app, node-webkit.exe etc) for best experience.</p>
+		</div>
+	</div>
+	<div id="help-console" class="popover-container">
+		<h3>Console</h3>
+		<div>
+			<p>If you are not happy with COLT launchers, you can run your custom command with any parameters. This can be used with phonegap apps.</p>
+		</div>
+	</div>
+	<div id="help-manual" class="popover-container">
+		<h3>Manual</h3>
+		<div>
+			<p>You will start the application manually. COLT will wait for client connection when you start the session. For example, you could build phonegap app with  <em>xcode</em> or <em>Android Studio</em> and upload to the device. Read more about "launching phonegap apps in live mode on the device". </p>
+		</div>
+	</div>
+	<div id="help-custom-output" class="popover-container">
+		<h3>Use Custom Output</h3>
+		<div>
+			<p>COLT keeps live session files in special folder by default (ссылка на  доку). You can override this with the folder of your choice (warning, do not create "out" folder inside your project folder to avoid infinite recursion) </p>
+		</div>
+	</div>
+	<div id="help-exclude-pattern" class="popover-container">
+		<h3>Exclude from Livecoding Pattern</h3>
+		<div>
+			<p>By default COLT will process all JS/HTML files, except minified scripts. You might want to exclude some files or folders from processing. For example, to improve session start time. You can specify comma-separated list of file and folder names. Paths that start with slash are interpreted as relative to project folder (e.g. <strong>/staticLibs</strong>) </p>
+		</div>
+	</div>
+	<div id="help-max-loops" class="popover-container">
+		<h3>Max Loop Iterations</h3>
+		<div>
+			<p>To avoid accidental endless loops, COLT injects max iterations count checking code in your loops. Default value is 10000, longer loops will throw exception. Adjust this value if your code needs longer loops.  </p>
+		</div>
+	</div>
+	<div id="help-catch-exceptions" class="popover-container">
+		<h3>Don't Catch Runtime Exceptions</h3>
+		<div>
+			<p>You can accidentally add bad code to running app during live session, that can throw runtime exceptions. To prevent this, COLT wraps every function into try/catch. If you rely on exception handling in your code, or you want error stack trace - turn this option off. </p>
+		</div>
+	</div>
+	<div id="help-simple-reload" class="popover-container">
+		<h3>Simple Reload Mode</h3>
+		<div>
+			<p>In some cases, e.g. if you work within framework that dynamically transforms DOM you will need to reload the page after every update. Use this option in those cases. </p>
+		</div>
+	</div>
+	<div id="help-clear-messages" class="popover-container">
+		<h3>Clear Messages Log on Session Start</h3>
+		<div>
+			<p>By default "Logs" tab in COLT UI retains messages from previous session (e.g., after the page was reloaded). You can turn this behavior off here.</p>
+		</div>
+	</div>
+	<div id="help-redirection-snippet" class="popover-container">
+		<h3>Redirection Snippet</h3>
+		<div>
+			<p>To launch phonegap app on the device, place this code in phonegap main HTML document, so that it will load processed code from COLT local web server.  </p>
+		</div>
+	</div>
+	<div id="help-main-document-url" class="popover-container">
+		<h3>Main Document URL</h3>
+		<div>
+			<p>If you need the link to your app that you can send to someone, you could copy it from browser window, or, if you launch the app manually, you could get it here.</p>
+		</div>
 	</div>
 </div>
 <iframe id="ga-page" src="http://codeorchestra.com/ga/settings.html" nwdisable nwfaketop></iframe>

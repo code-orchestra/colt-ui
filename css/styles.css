@@ -32,6 +32,7 @@ body{
 	width: 60px;
 	height: 100%;
 	background: #484a4d;
+	z-index: -1;
 }
 
 #content {
@@ -42,6 +43,7 @@ body{
 	bottom: 40px;
 	background-color: #f4f4f4;
 	/*background-color: #000;*/
+	z-index: 1000;
 }
 
 .page-info{
@@ -376,3 +378,12 @@ hr{
 	overflow: hidden; 
 }
 .log-visualizer > canvas { display: block; }
+
+.popover-container {
+	display: none;
+}
+
+.helpLink{
+	color: #bcbcbc;
+	cursor: help;
+}

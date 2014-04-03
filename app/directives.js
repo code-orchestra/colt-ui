@@ -12,7 +12,8 @@ angular.module('colt.directives', [])
      disabled: "=",
      checkbox: "=",
      placeholder: "@",
-     nwworkingdir:"="
+     nwworkingdir:"=",
+     popover: "@"
    },
    link: function (scope, element, attrs) {
     var fileInput = $(element).find("input:file");
@@ -35,7 +36,7 @@ angular.module('colt.directives', [])
   transclude: true,
   template: 
   '<div class="form-group row">'+
-  '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label>'+
+  '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
   '  <div class="input-group input-group-sm">'+
   '    <input type="file" class="hidden" ng-model="path" nwworkingdir="{{nwworkingdir}}">'+
   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="disabled">'+
@@ -55,7 +56,8 @@ angular.module('colt.directives', [])
       label: "@",
       path: "=",
       checked: "=",
-      placeholder: "@"
+      placeholder: "@",
+      popover: "@"
     },
     link: function (scope, element, attrs) {
       var fileInput = $(element).find("input:file");
@@ -74,7 +76,7 @@ angular.module('colt.directives', [])
     },
     template: 
     '<div class="form-group row">'+
-    '  <input type="checkbox" ng-model="checked"">&nbsp;<label>{{label}}</label>'+
+    '  <input type="checkbox" ng-model="checked"">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
     '  <div class="input-group input-group-sm">'+
     '    <input type="file" class="hidden" ng-model="path">'+
     '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="!checked">'+
@@ -94,7 +96,8 @@ angular.module('colt.directives', [])
       path: "=",
       currentValue: "=",
       expectedValue: "@",
-      placeholder: "@"
+      placeholder: "@",
+      popover: "@"
     },
     link: function (scope, element, attrs) {
       var fileInput = $(element).find("input:file");
@@ -114,7 +117,7 @@ angular.module('colt.directives', [])
     },
     template: 
     '<div class="form-group row">'+
-    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
+    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
     '  <div class="input-group input-group-sm">'+
     '    <input type="file" class="hidden" ng-model="path">'+
     '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
@@ -134,11 +137,12 @@ angular.module('colt.directives', [])
       label: "@",
       paths: "=",
       disabled: "=",
-      placeholder: "@"
+      placeholder: "@",
+      popover: "@"
     },
     template: 
     '<div class="form-group row">'+
-    '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
+    '  <label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
     '  <div class="input-group input-group-sm">'+
     '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="paths">'+
     '    <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span>'+
@@ -157,7 +161,8 @@ angular.module('colt.directives', [])
      label: "@",
      value: "=",
      disabled: "=",
-     placeholder: "@"
+     placeholder: "@",
+     popover: "@"
    },
    link: function(scope, element){
      var input = $(element).find("input:text");
@@ -171,7 +176,7 @@ angular.module('colt.directives', [])
    },
    template: 
    '<div class="form-group row">'+
-   '  <label ng-show={{label!=undefined}}>{{label}}</label>'+
+   '  <label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
    '  <div class="input-group input-group-sm">'+
    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="value" ng-disabled="disabled">'+
    '    <span class="input-group-btn"><button type="button" ' +
@@ -191,7 +196,8 @@ angular.module('colt.directives', [])
       paths: "=",
       currentValue: "=",
       expectedValue: "@",
-      placeholder: "@"
+      placeholder: "@",
+      popover: "@"
     },
     compile : function(element, attrs) {
       var id = "input" + Math.floor(Math.random() * 10000);
@@ -200,7 +206,7 @@ angular.module('colt.directives', [])
     },
     template: 
     '<div class="form-group row">'+
-    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
+    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
     '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
     '</div>'
   };
@@ -212,7 +218,8 @@ angular.module('colt.directives', [])
   return {
     restrict: 'E',
     scope: {
-      label: "@"
+      label: "@",
+      popover: "@"
     },
     template: 
     '<div class="row">'+
@@ -231,7 +238,8 @@ angular.module('colt.directives', [])
     scope: {
       label: "@",
       currentValue: "=",
-      expectedValue: "@"
+      expectedValue: "@",
+      popover: "@"
     },
     compile : function(element, attrs) {
       var id = "input" + Math.floor(Math.random() * 10000);
@@ -240,7 +248,7 @@ angular.module('colt.directives', [])
     },
     template: 
     '<div class="form-group row">'+
-    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label>'+
+    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
     '</div>'
   };
 
@@ -253,7 +261,8 @@ angular.module('colt.directives', [])
     scope: {
       label: "@",
       checked: "=",
-      enabled: "="
+      enabled: "=",
+      popover: "@"
     },
     compile : function(element, attrs) {
       if(attrs.enabled === undefined){
@@ -265,10 +274,9 @@ angular.module('colt.directives', [])
     },
     template: 
     '<div class="form-group row">'+
-    '  <input type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label>{{label}}</label>'+
+    '  <input type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
     '</div>'
   };
-
 })
 
 .directive('value', function() {
@@ -279,15 +287,46 @@ angular.module('colt.directives', [])
       label: "@",
       value: "=",
       placeholder: "@",
-      disabled:"="
+      disabled:"=",
+      popover: "@"
     },
     template: 
     '<div class="form-group row">'+
-    '  <label>{{label}}</label>'+
+    '  <label>{{label}}</label><help popover="{{popover}}"></help>'+
     '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-disabled="disabled" ng-model="value">'+
     '</div>'
   };
 
 })
+
+.directive('help', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+      popover: "@"
+    },
+    link: function(scope, element) {
+      if(scope.popover){
+        var a = $(element).find("img");
+        var title = $(scope.popover).find("h3").text();
+        var content = $(scope.popover).find("div").html();
+        a.popover({
+          title : '<h4>'+title+'</h4>',
+          content: content,
+          delay: 300,
+          html: true,
+          trigger: 'hover',
+          placement: 'auto',
+          container: '#content'
+        });  
+      }
+    },
+    template: 
+    '&nbsp;<img src="images/help-icon.png" class="helpLink">'
+  };
+})
+
+
 
 
