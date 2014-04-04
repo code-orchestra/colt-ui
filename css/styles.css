@@ -32,7 +32,6 @@ body{
 	width: 60px;
 	height: 100%;
 	background: #484a4d;
-	z-index: -1;
 }
 
 #content {
@@ -43,7 +42,6 @@ body{
 	bottom: 40px;
 	background-color: #f4f4f4;
 	/*background-color: #000;*/
-	z-index: 1000;
 }
 
 .page-info{
@@ -136,7 +134,7 @@ hr{
 	right: 5px;
 	border: 0;
 	background-color: rgba(0,0,0,0);
-	cursor: default;
+	cursor: pointer;
 }
 
 .btn-live:hover {
@@ -386,4 +384,8 @@ hr{
 .helpLink{
 	color: #bcbcbc;
 	cursor: help;
+}
+
+.help-containers{
+	display: none;
 }
