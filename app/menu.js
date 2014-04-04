@@ -128,7 +128,7 @@ app.service("appMenu", function($q) {
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Support',
 				click: function () {
-					$scope.openLink("https://codeorchestra.zendesk.com/anonymous_requests/new") 
+					$scope.openLink("https://github.com/code-orchestra/colt-ui/issues") 
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({type: 'separator'}));

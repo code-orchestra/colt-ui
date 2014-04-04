@@ -34,7 +34,7 @@
 
 			<value value="model.live.live['max-loop']" label="Max Loop Iterations:" popover="#help-max-loops"></value>
 
-			<checkbox checked="model.live.live['enable-debuger']" label="Don't Catch Runtime Exceptions (check for debugging)" popover="#help-catch-exceptions"></checkbox>
+			<checkbox checked="model.live.live['enable-debuger']" label="Don't Catch Runtime Exceptions" popover="#help-catch-exceptions"></checkbox>
 
 			<checkbox checked="model.live.live['simple-reload']" label="Simple Reload Mode (Live Reload)" popover="#help-simple-reload"></checkbox>
 
@@ -101,82 +101,84 @@
 			</ol>
 		</div>
 	</div>
-	<div id="help-browser" class="popover-container">
-		<h3>Browser</h3>
-		<div>
-			<p>This is web application. You can specify which browser to open it with. System default browser is used, if you leave it blank.</p>
+	<div class="help-containers">
+		<div id="help-browser" class="popover-container">
+			<h3>Browser</h3>
+			<div>
+				<p>This is web application. You can specify which browser to open it with. System default browser is used, if you leave it blank.</p>
+			</div>
 		</div>
-	</div>
-	<div id="help-node-js" class="popover-container">
-		<h3>node.js</h3>
-		<div>
-			<p>Launch node.js server or any application using node.js. You need node.js to be installed in your system. (Note. Mac-OS users will need to specify the path to node.js) </p>
+		<div id="help-node-js" class="popover-container">
+			<h3>node.js</h3>
+			<div>
+				<p>Launch node.js server or any application using node.js. You need node.js to be installed in your system. (Note. Mac-OS users will need to specify the path to node.js) </p>
+			</div>
 		</div>
-	</div>
-	<div id="help-node-webkit" class="popover-container">	
-		<h3>node-webkit</h3>
-		<div>
-			<p>Launch node-webkit application. Please specify the path to node-webkit (node-webkit.app, node-webkit.exe etc) for best experience.</p>
+		<div id="help-node-webkit" class="popover-container">	
+			<h3>node-webkit</h3>
+			<div>
+				<p>Launch node-webkit application. Please specify the path to node-webkit (node-webkit.app, node-webkit.exe etc) for best experience.</p>
+			</div>
 		</div>
-	</div>
-	<div id="help-console" class="popover-container">
-		<h3>Console</h3>
-		<div>
-			<p>If you are not happy with COLT launchers, you can run your custom command with any parameters. This can be used with phonegap apps.</p>
+		<div id="help-console" class="popover-container">
+			<h3>Console</h3>
+			<div>
+				<p>If you are not happy with COLT launchers, you can run your custom command with any parameters. This can be used with phonegap apps.</p>
+			</div>
 		</div>
-	</div>
-	<div id="help-manual" class="popover-container">
-		<h3>Manual</h3>
-		<div>
-			<p>You will start the application manually. COLT will wait for client connection when you start the session. For example, you could build phonegap app with  <em>xcode</em> or <em>Android Studio</em> and upload to the device. Read more about "launching phonegap apps in live mode on the device". </p>
+		<div id="help-manual" class="popover-container">
+			<h3>Manual</h3>
+			<div>
+				<p>You will start the application manually. COLT will wait for client connection when you start the session. For example, you could build phonegap app with  <em>xcode</em> or <em>Android Studio</em> and upload to the device. Read more about "launching phonegap apps in live mode on the device". </p>
+			</div>
 		</div>
-	</div>
-	<div id="help-custom-output" class="popover-container">
-		<h3>Use Custom Output</h3>
-		<div>
-			<p>COLT keeps live session files in special folder by default (ссылка на  доку). You can override this with the folder of your choice (warning, do not create "out" folder inside your project folder to avoid infinite recursion) </p>
+		<div id="help-custom-output" class="popover-container">
+			<h3>Use Custom Output</h3>
+			<div>
+				<p>COLT keeps live session files in special folder by default (ссылка на  доку). You can override this with the folder of your choice (warning, do not create "out" folder inside your project folder to avoid infinite recursion) </p>
+			</div>
 		</div>
-	</div>
-	<div id="help-exclude-pattern" class="popover-container">
-		<h3>Exclude from Livecoding Pattern</h3>
-		<div>
-			<p>By default COLT will process all JS/HTML files, except minified scripts. You might want to exclude some files or folders from processing. For example, to improve session start time. You can specify comma-separated list of file and folder names. Paths that start with slash are interpreted as relative to project folder (e.g. <strong>/staticLibs</strong>) </p>
+		<div id="help-exclude-pattern" class="popover-container">
+			<h3>Exclude from Livecoding Pattern</h3>
+			<div>
+				<p>By default COLT will process all JS/HTML files, except minified scripts. You might want to exclude some files or folders from processing. For example, to improve session start time. You can specify comma-separated list of file and folder names. Paths that start with slash are interpreted as relative to project folder (e.g. <strong>/staticLibs</strong>) </p>
+			</div>
 		</div>
-	</div>
-	<div id="help-max-loops" class="popover-container">
-		<h3>Max Loop Iterations</h3>
-		<div>
-			<p>To avoid accidental endless loops, COLT injects max iterations count checking code in your loops. Default value is 10000, longer loops will throw exception. Adjust this value if your code needs longer loops.  </p>
+		<div id="help-max-loops" class="popover-container">
+			<h3>Max Loop Iterations</h3>
+			<div>
+				<p>To avoid accidental endless loops, COLT injects max iterations count checking code in your loops. Default value is 10000, longer loops will throw exception. Adjust this value if your code needs longer loops.  </p>
+			</div>
 		</div>
-	</div>
-	<div id="help-catch-exceptions" class="popover-container">
-		<h3>Don't Catch Runtime Exceptions</h3>
-		<div>
-			<p>You can accidentally add bad code to running app during live session, that can throw runtime exceptions. To prevent this, COLT wraps every function into try/catch. If you rely on exception handling in your code, or you want error stack trace - turn this option off. </p>
+		<div id="help-catch-exceptions" class="popover-container">
+			<h3>Don't Catch Runtime Exceptions</h3>
+			<div>
+				<p>You can accidentally add bad code to running app during live session, that can throw runtime exceptions. To prevent this, COLT wraps every function into try/catch. If you rely on exception handling in your code, or you want error stack trace - turn this option off. </p>
+			</div>
 		</div>
-	</div>
-	<div id="help-simple-reload" class="popover-container">
-		<h3>Simple Reload Mode</h3>
-		<div>
-			<p>In some cases, e.g. if you work within framework that dynamically transforms DOM you will need to reload the page after every update. Use this option in those cases. </p>
+		<div id="help-simple-reload" class="popover-container">
+			<h3>Simple Reload Mode</h3>
+			<div>
+				<p>In some cases, e.g. if you work within framework that dynamically transforms DOM you will need to reload the page after every update. Use this option in those cases. </p>
+			</div>
 		</div>
-	</div>
-	<div id="help-clear-messages" class="popover-container">
-		<h3>Clear Messages Log on Session Start</h3>
-		<div>
-			<p>By default "Logs" tab in COLT UI retains messages from previous session (e.g., after the page was reloaded). You can turn this behavior off here.</p>
+		<div id="help-clear-messages" class="popover-container">
+			<h3>Clear Messages Log on Session Start</h3>
+			<div>
+				<p>By default "Logs" tab in COLT UI retains messages from previous session (e.g., after the page was reloaded). You can turn this behavior off here.</p>
+			</div>
 		</div>
-	</div>
-	<div id="help-redirection-snippet" class="popover-container">
-		<h3>Redirection Snippet</h3>
-		<div>
-			<p>To launch phonegap app on the device, place this code in phonegap main HTML document, so that it will load processed code from COLT local web server.  </p>
+		<div id="help-redirection-snippet" class="popover-container">
+			<h3>Redirection Snippet</h3>
+			<div>
+				<p>To launch phonegap app on the device, place this code in phonegap main HTML document, so that it will load processed code from COLT local web server.  </p>
+			</div>
 		</div>
-	</div>
-	<div id="help-main-document-url" class="popover-container">
-		<h3>Main Document URL</h3>
-		<div>
-			<p>If you need the link to your app that you can send to someone, you could copy it from browser window, or, if you launch the app manually, you could get it here.</p>
+		<div id="help-main-document-url" class="popover-container">
+			<h3>Main Document URL</h3>
+			<div>
+				<p>If you need the link to your app that you can send to someone, you could copy it from browser window, or, if you launch the app manually, you could get it here.</p>
+			</div>
 		</div>
 	</div>
 </div>

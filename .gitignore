@@ -11,3 +11,5 @@ projects/*
 jsdoc/out
 
 jsdoc/in/1.js
+
+jsdoc/in/1.jsdoc
