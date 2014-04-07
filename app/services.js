@@ -576,6 +576,7 @@ appMenu.buildMenu($scope, []);
 
 console.log("app args:", gui.App.argv);
 projectFilePath = gui.App.argv[0];
+var plugin = gui.App.argv[1];
 if(projectFilePath) {
 	runJava(projectFilePath);
     $scope.sendToJava("getRecentProjectsPaths");
@@ -594,7 +595,7 @@ if(projectFilePath) {
     $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
 }
 
-if(projectFilePath){
+if(plugin){
     forceMinimize();
 }
 
