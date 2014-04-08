@@ -86,9 +86,9 @@ $scope.restartJava = function (filePath) {
 var runJava = function (projectPath, plugin) {
 	var spawn = require('child_process').spawn;
 	if (projectPath) {
-		java  = spawn('java', ['-jar', jarPath, projectPath, '-ui', plugin]);
+		java  = spawn('java', ['-Dfile.encoding=UTF-8', '-jar', jarPath, projectPath, '-ui', plugin]);
 	} else {
-		java  = spawn('java', ['-jar', jarPath, '-ui', plugin]);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
+		java  = spawn('java', ['-Dfile.encoding=UTF-8', '-jar', jarPath, '-ui', plugin]);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
 	}
 
 	var pongInterval = setInterval(function() {
