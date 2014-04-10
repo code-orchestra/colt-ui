@@ -252,8 +252,16 @@ var runJava = function (projectPath, plugin) {
                                         case "createError":
                                             break;
                                         case "loaded":
+                                            if (serviceDefers[json.type] != null) {
+                                                serviceDefers[json.type].resolve(json.message);
+                                                serviceDefers[json.type] = null;
+                                            }
                                             break;
                                         case "loadError":
+                                            if (serviceDefers[json.type] != null) {
+                                                serviceDefers[json.type].reject(json.message);
+                                                serviceDefers[json.type] = null;
+                                            }
                                             break;
                                         case "saved":
                                             break;
@@ -587,7 +595,9 @@ if(projectFilePath) {
 	.then(function (array) {
 		if (array.length > 0) {
 			projectFilePath = array[0];
-			$scope.sendToJava("load -file:" + projectFilePath)
+			$scope.sendToJava("load -file:" + projectFilePath, "project").then(null, function() {
+                $scope.showWelcomeScreen([], true)
+            })
 		} else {
 			$scope.showWelcomeScreen([], true)
 		}
