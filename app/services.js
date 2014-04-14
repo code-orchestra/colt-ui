@@ -92,7 +92,9 @@ var runJava = function (projectPath, plugin) {
 	}
 
 	var pongInterval = setInterval(function() {
-		$scope.sendToJava("pong");
+		try{
+            $scope.sendToJava("pong");
+        }catch(e){}
 	}, 500);
 
 	java.on('close', function (code, signal) {
@@ -607,6 +609,7 @@ if(projectFilePath) {
 
 if(plugin){
     forceMinimize();
+    $scope.openLogTab();
 }
 
 }});

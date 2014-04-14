@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
+app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, $state, $timeout) {
 	
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
@@ -26,13 +26,6 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 	$scope.logMessages = [];
 	$scope.filter = {};
 
-	/**
-	 * show log
-	 * @param  {string} level   log level
-	 * @param  {string} message message body
-	 * @param  {source} source  js or class
-	 * @return {nothing}         
-	 */
 	$scope.log = function(level, message, source) {
 		var m = {level:level, message: message, source: source || "COLT"};
 		$scope.logMessages.push(m);
@@ -74,12 +67,23 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 			}
 			$scope.sessionStateSwitching = true;
 			$scope.sessionInProgress = false;
+			$scope.openLogTab();
 		}
 	};
+
+	$scope.openLogTab = function() {
+		$timeout(function() {
+			$state.go("log");
+		});
+	}
 
 	$scope.$on('$stateChangeSuccess', function(event, toState){ 
 		$scope.pageName = toState.pageName;
 		$scope.pageIndex = toState.pageIndex;
+	});
+
+	$scope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){ 
+		console.log("state not found", unfoundState); 
 	});
 
 	var autoSave = false;
@@ -95,7 +99,7 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q) {
 			return true;
 		}
 		return false;
-	}
+	}	
 
 	$scope.loadProject = function(projectPath) {
         autoSave = false;
