@@ -586,7 +586,7 @@ appMenu.buildMenu($scope, []);
 
 console.log("app args:", gui.App.argv);
 projectFilePath = gui.App.argv[0];
-if(projectFilePath.indexOf("-plugin") != -1) {
+if(projectFilePath && projectFilePath.indexOf("-plugin") != -1) {
     projectFilePath = undefined;
 }
 var plugin = gui.App.argv[1];
