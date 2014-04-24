@@ -9,6 +9,7 @@ $scope.saveProject = function() {};
 $scope.sendToJava = function() {};
 $scope.openPopup = function() {};
 $scope.openJsDoc = function() {};
+$scope.showDevConsole = function() {};
 $scope.openLink = function(url) {window.open(url)};
 
 if(!top['require']){
@@ -32,6 +33,10 @@ var path = require('path');
 var app_path;
 var demo_path;
 var projectFilePath;
+
+$scope.showDevConsole = function() {
+    win.showDevTools();
+};
 
 var isMac = false;
 var isWin = os.platform().indexOf("win") == 0;
@@ -64,9 +69,7 @@ $scope.getAppPath = function(){
 };
 
 var java;
-
 var closeCallback;
-
 var isRestart = false
 
 $scope.restartJava = function (filePath) {
@@ -103,13 +106,13 @@ var runJava = function (projectPath, plugin) {
 
 	java.on('close', function (code, signal) {
         if(!isRestart) {
-            //$scope.showMessageDialog("error", " ");
+            $scope.showMessageDialog("error", "Java VM was terminated abnormally. Please restart the application, or open developer console for more information about the error.");
         }
 		console.log('child process terminated due to receipt of signal ' + signal);
 		java = undefined;
 		clearInterval(pongInterval);
 		if(closeCallback) {
-			closeCallback()
+			closeCallback();
 		}
 	});
 

@@ -128,7 +128,7 @@ app.service("appMenu", function($q) {
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Support',
 				click: function () {
-					$scope.openLink("https://github.com/code-orchestra/colt-ui/issues") 
+					$scope.openLink("http://forum.codeorchestra.com/category/6/bug-reports");
 				}
 			}));
 			helpSubMenu.append(new gui.MenuItem({type: 'separator'}));
@@ -145,8 +145,7 @@ app.service("appMenu", function($q) {
 			helpSubMenu.append(new gui.MenuItem({
 				label: 'Show node-webkit Developers Tools',
 				click: function () {
-					var win = gui.Window.get(); 
-					win.showDevTools();
+					$scope.showDevConsole();
 				}
 			}));
 			help.submenu = helpSubMenu;

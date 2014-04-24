@@ -53,18 +53,29 @@ app.service("coltDialogs", function($q) {
 		}
 
 		/* type - error, info, warning, app */
+		var alertIsOpened = false;
 		$scope.showMessageDialog = function(type, message, stacktrase) {
 			var popup = $scope.openPopup('popups.html#/alert-dialog', "COLT");
 			var d = $q.defer();
-			$.extend(popup, {
-				close: function(){
-					console.log("close alert");
-					d.resolve();
-					popup.window.close();
-				},
-				type: type,
-				message: message
-			});
+			if(!alertIsOpened){
+				alertIsOpened = true;
+				$.extend(popup, {
+					close: function(){
+						console.log("close alert");
+						alertIsOpened = false;
+						d.resolve();
+						popup.window.close();
+					},
+					sendBug: function(){
+						$scope.openLink("http://forum.codeorchestra.com/category/6/bug-reports");
+					},
+					showDevConsole: function(){
+						$scope.showDevConsole();
+					},
+					type: type,
+					message: message
+				});
+			}
 			console.log("type", type)
 			return d.promise;
 		}

@@ -219,6 +219,12 @@ app.controller("AlertController", function($scope, $rootScope) {
 		$scope.popup.message = "No message";
 	}
 	console.log($scope.popup.type)
+	$scope.showDevConsole = function() {
+		$scope.callToOwnerWindow("showDevConsole");
+	}
+	$scope.sendBug = function() {
+		$scope.callToOwnerWindow("sendBug");
+	}
 	$scope.close = function() {
 		$scope.callToOwnerWindow("close");
 	}
