@@ -67,8 +67,11 @@ var java;
 
 var closeCallback;
 
+var isRestart = false
+
 $scope.restartJava = function (filePath) {
-	if(java) {
+    isRestart = true;
+    if(java) {
 		java.kill();
 		java = undefined;
 	}
@@ -80,6 +83,7 @@ $scope.restartJava = function (filePath) {
 		projectFilePath = filePath
 		runJava(projectFilePath);
 		closeCallback = undefined
+        isRestart = false;
 	}
 };
 
@@ -98,6 +102,9 @@ var runJava = function (projectPath, plugin) {
 	}, 500);
 
 	java.on('close', function (code, signal) {
+        if(!isRestart) {
+            //$scope.showMessageDialog("error", " ");
+        }
 		console.log('child process terminated due to receipt of signal ' + signal);
 		java = undefined;
 		clearInterval(pongInterval);
