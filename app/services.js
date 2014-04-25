@@ -92,11 +92,17 @@ $scope.restartJava = function (filePath) {
 
 var runJava = function (projectPath, plugin) {
 	var spawn = require('child_process').spawn;
-	if (projectPath) {
-		java  = spawn('java', ['-Dfile.encoding=UTF-8', '-jar', jarPath, projectPath, '-ui', plugin]);
-	} else {
-		java  = spawn('java', ['-Dfile.encoding=UTF-8', '-jar', jarPath, '-ui', plugin]);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
-	}
+	try {
+        if (projectPath) {
+            java  = spawn('java', ['-Dfile.encoding=UTF-8', '-jar', jarPath, projectPath, '-ui', plugin]);
+        } else {
+            java  = spawn('java', ['-Dfile.encoding=UTF-8', '-jar', jarPath, '-ui', plugin]);//for debug '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005'
+        }
+    } catch(e){
+        console.log(e);
+        $scope.showMessageDialog("error", "Java VM was terminated abnormally. Please open developer console for more information about the error.");
+        return;
+    }
 
 	var pongInterval = setInterval(function() {
 		try{
