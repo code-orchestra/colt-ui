@@ -482,8 +482,8 @@ $scope.openPopup = function(html, title) {
 		// modal.showDevTools();
 		modal.focus();
 		modal.title = title;
-		modal.x = win.x - 40;
-		modal.y = win.y - 40;
+		// modal.x = win.x - 40;
+		// modal.y = win.y - 40;
 		modal.window.onResize = function() {
 			var size = getModalSise(modal);
 			if(size){
