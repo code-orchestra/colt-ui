@@ -6,6 +6,7 @@ var app = angular.module("COLT", [
 	'log.visualizer.directive', 
 	'ui.router', 
 	'pasvaz.bindonce',
+	'angulartics.google.analytics'
 	]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -29,4 +30,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		pageName: "Log",
 		pageIndex: 2
 	});
+});
+
+app.config(function ($analyticsProvider) {
+  // turn off automatic tracking
+  $analyticsProvider.virtualPageviews(false);
 });

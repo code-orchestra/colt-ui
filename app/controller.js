@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, $state, $timeout) {
+app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, $state, $timeout, $analytics) {
 	
 	var initValues = function(point, path, properties, value) {
 		for (var i = 0; i < path.length; i++) {
@@ -80,6 +80,8 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, $sta
 	$scope.$on('$stateChangeSuccess', function(event, toState){ 
 		$scope.pageName = toState.pageName;
 		$scope.pageIndex = toState.pageIndex;
+		$analytics.pageTrack(toState.pageName);
+		console.log("ga: " + toState.pageName)
 	});
 
 	$scope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){ 

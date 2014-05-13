@@ -70,7 +70,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 	})
 });
 
-app.run(function($rootScope, analyticsService) {
+app.run(function($rootScope) {
 	$rootScope.$on('$stateChangeSuccess', function(event, toState){ 
 		$rootScope.pageName = toState.pageName;
 		$rootScope.pageIndex = toState.pageIndex;
