@@ -31,6 +31,7 @@ var win = gui.Window.get(); //win.showDevTools();
 var os = require('os');
 var path = require('path');
 var app_path;
+var exec_path;
 var demo_path;
 var projectFilePath;
 
@@ -44,10 +45,11 @@ var isWin = os.platform().indexOf("win") == 0;
 var jarPath;
 if(os.platform() == "darwin") {
     isMac = true;
-    app_path = path.dirname(process.execPath)
+    app_path = path.dirname(process.execPath);
     while(path.basename(app_path) != 'node-webkit.app' && path.basename(app_path) != 'COLT.app') {
         app_path = path.dirname(app_path)
     }
+    exec_path = app_path;
     if(path.basename(app_path) == 'COLT.app') {
         demo_path = path.dirname(app_path) + path.sep + 'projects'
         jarPath = path.dirname(app_path) + path.sep + "java" + path.sep + "colt.jar";
@@ -59,6 +61,7 @@ if(os.platform() == "darwin") {
         jarPath = app_path + "java" + path.sep + "colt.jar";
     }
 } else {
+    exec_path = process.execPath;
     app_path = path.dirname(process.execPath) + path.sep;
     demo_path = app_path + 'projects';
     jarPath = app_path + "java" + path.sep + "colt.jar";
@@ -66,6 +69,33 @@ if(os.platform() == "darwin") {
 $scope.demoProjectsDir = demo_path;
 $scope.getAppPath = function(){
 	return app_path
+};
+
+$scope.newWindow = function() {
+    var exec = require('child_process').spawn;
+    if(os.platform() == "darwin") {
+        exec("open", ["-n", "-a", exec_path], function(error,stdout,stderr) {
+            if (error) {
+                console.log(error.stack);
+                console.log('Error code: '+ error.code);
+                console.log('Signal received: '+
+                    error.signal);
+            }
+            console.log('Child Process stdout: '+ stdout);
+            console.log('Child Process stderr: '+ stderr);
+        });
+    } else {
+        exec(exec_path, function(error,stdout,stderr) {
+                if (error) {
+                    console.log(error.stack);
+                    console.log('Error code: '+ error.code);
+                    console.log('Signal received: '+
+                        error.signal);
+                    }
+                    console.log('Child Process stdout: '+ stdout);
+                    console.log('Child Process stderr: '+ stderr);
+            });
+    }
 };
 
 var java;

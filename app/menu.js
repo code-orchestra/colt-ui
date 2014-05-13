@@ -20,6 +20,12 @@ app.service("appMenu", function($q) {
 					$scope.showNewProjectDialog();
 				}
 			}));
+            fileSubMenu.append(new gui.MenuItem({
+                label: 'New Window',
+                click: function () {
+                    $scope.newWindow()
+                }
+            }));
 			fileSubMenu.append(new gui.MenuItem({ type: 'separator' }));
 			fileSubMenu.append(new gui.MenuItem({
 				label: 'Open Project',
