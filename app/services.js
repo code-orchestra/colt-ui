@@ -85,7 +85,7 @@ $scope.newWindow = function() {
             console.log('Child Process stderr: '+ stderr);
         });
     } else {
-        exec(exec_path, function(error,stdout,stderr) {
+        exec(exec_path, [], function(error,stdout,stderr) {
                 if (error) {
                     console.log(error.stack);
                     console.log('Error code: '+ error.code);
