@@ -132,6 +132,8 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, $sta
 			initValues(model,['live','launch'],[]);
 			initValues(model,['live','settings'],['disconnect','clear-log'],false);
 
+			model.live.live['max-loop'] *= 1;
+
 			if(/(^\w[:].+)|(^\/)/.exec(projectPath)){
 				$scope.projectBaseDir = projectPath.replace(/([^\/\\]+)\.colt$/, "");
 			}

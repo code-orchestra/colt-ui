@@ -1,5 +1,10 @@
 'use strict';
 
+(function() {
+
+var logViewElement;
+var isMaxScroll = true;
+
 angular.module('log.view.directive', [])
 
 .directive('logView', function() {
@@ -7,6 +12,8 @@ angular.module('log.view.directive', [])
   return {
     restrict: 'E',
     controller: function($scope, $element) {
+     logViewElement = $element;
+
      var selected;
 
      $scope.toggleOpen = function(e) {
@@ -50,16 +57,19 @@ angular.module('log.view.directive', [])
   // '  </ul>'+
   // '</div>'
   template:
-  '<div class="logContainer">'+
-  '  <ul class="log" scroll-if>'+
-  '    <li bindonce ng-repeat="message in logMessages | limitTo:200 | filter:{level:logFilter}" '+
-  '      ng-click="toggleOpen($event)" scroll-item '+
-  '      bo-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARNING\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}">'+
-  '      <p bo-text="message.message"></p>'+
-  '      <a ng-click="openTarget(message.source)" bo-title="message.source" bo-text="((message.source.length <= 13)?message.source:(message.source.substr(0, 12)+\'~\'))"></a>'+
-  '    </li>'+
-  '  </ul>'+
-  '</div>'
+  function() {
+      return (
+      '<div class="logContainer" scroll-if>'+
+      '  <ul class="log">'+
+      '    <li bindonce ng-repeat="message in logMessages | limitTo:200 | filter:{level:logFilter}" '+
+      '      ng-click="toggleOpen($event)" scroll-item '+
+      '      bo-class="{info:(message.level==\'INFO\'),warning:(message.level==\'WARNING\'),error:(message.level==\'ERROR\'||message.level==\'FATAL\'||message.level==\'SYNTAX\'),odd:$odd}">'+
+      '      <p bo-text="message.message"></p>'+
+      '      <a ng-click="openTarget(message.source)" bo-title="message.source" bo-text="((message.source.length <= 13)?message.source:(message.source.substr(0, 12)+\'~\'))"></a>'+
+      '    </li>'+
+      '  </ul>'+
+      '</div>');
+    }
   } 
 })
 
@@ -68,13 +78,18 @@ angular.module('log.view.directive', [])
     restrict: "A",
     link: function(scope, element, attributes) {
       if (scope.$last){
-        scope.$emit("Finished");
+        setTimeout(function() {
+          scope.$emit("Finished");
+        },1);
+      }else{
+        console.log("Not Finished");
       }
     },
     controller: function($scope){
       $scope.$on("logMessage", function(message) {
-          // autoscroll
-        })
+          var maxScrollTop = logViewElement[0].scrollHeight - logViewElement.outerHeight();
+          isMaxScroll = logViewElement.scrollTop() >= maxScrollTop;
+      });
     },
   }
 })
@@ -85,9 +100,13 @@ angular.module('log.view.directive', [])
     link: function(scope, element, attributes) {
       scope.$on("Finished",function(){
         var chatHeight = element.outerHeight();
-        // console.log(chatHeight);
-        element.scrollTop(chatHeight); 
+        var maxScrollTop = element[0].scrollHeight - element.outerHeight();
+        if(isMaxScroll){
+          element.scrollTop(maxScrollTop); 
+        }
       });
     }
   }
 })
+
+})();

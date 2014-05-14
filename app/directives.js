@@ -35,15 +35,18 @@ angular.module('colt.directives', [])
   },
   transclude: true,
   template: 
-  '<div class="form-group row">'+
-  '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
-  '  <div class="input-group input-group-sm">'+
-  '    <input type="file" class="hidden" ng-model="path" nwworkingdir="{{nwworkingdir}}">'+
-  '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="disabled">'+
-  '    <span class="input-group-btn"><button type="button" '+
-  '    class="btn btn-default btn-add" ng-disabled="disabled">Browse</button></span>'+
-  '  </div>'+
-  '</div>'
+  function() {
+    return (
+    '<div class="form-group row">'+
+    '  <div ng-transclude></div><label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
+    '  <div class="input-group input-group-sm">'+
+    '    <input type="file" class="hidden" ng-model="path" nwworkingdir="{{nwworkingdir}}">'+
+    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="disabled">'+
+    '    <span class="input-group-btn"><button type="button" '+
+    '    class="btn btn-default btn-add" ng-disabled="disabled">Browse</button></span>'+
+    '  </div>'+
+    '</div>');
+  }
 };
 
 })
@@ -75,15 +78,18 @@ angular.module('colt.directives', [])
       $(element).find("label").attr("for", id);
     },
     template: 
-    '<div class="form-group row">'+
-    '  <input type="checkbox" ng-model="checked"">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
-    '  <div class="input-group input-group-sm">'+
-    '    <input type="file" class="hidden" ng-model="path">'+
-    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="!checked">'+
-    '    <span class="input-group-btn"><button type="button" ' +
-    '    class="btn btn-default btn-add" ng-disabled="!checked">Browse</button></span>'+
-    '  </div>'+
-    '</div>'
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <input type="checkbox" ng-model="checked"">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
+      '  <div class="input-group input-group-sm">'+
+      '    <input type="file" class="hidden" ng-model="path">'+
+      '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="!checked">'+
+      '    <span class="input-group-btn"><button type="button" ' +
+      '    class="btn btn-default btn-add" ng-disabled="!checked">Browse</button></span>'+
+      '  </div>'+
+      '</div>');
+    }
   };
 })
 
@@ -116,15 +122,18 @@ angular.module('colt.directives', [])
       $(element).find("label").attr("for", id);
     },
     template: 
-    '<div class="form-group row">'+
-    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
-    '  <div class="input-group input-group-sm">'+
-    '    <input type="file" class="hidden" ng-model="path">'+
-    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
-    '    <span class="input-group-btn"><button type="button" ' +
-    '    class="btn btn-default btn-add" ng-disabled="currentValue!=expectedValue">Browse</button></span>'+
-    '  </div>'+
-    '</div>'
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
+      '  <div class="input-group input-group-sm">'+
+      '    <input type="file" class="hidden" ng-model="path">'+
+      '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
+      '    <span class="input-group-btn"><button type="button" ' +
+      '    class="btn btn-default btn-add" ng-disabled="currentValue!=expectedValue">Browse</button></span>'+
+      '  </div>'+
+      '</div>');
+    }
   };
 
 })
@@ -141,13 +150,16 @@ angular.module('colt.directives', [])
       popover: "@"
     },
     template: 
-    '<div class="form-group row">'+
-    '  <label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
-    '  <div class="input-group input-group-sm">'+
-    '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="paths">'+
-    '    <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span>'+
-    '  </div>'+
-    '</div>'
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
+      '  <div class="input-group input-group-sm">'+
+      '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="paths">'+
+      '    <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span>'+
+      '  </div>'+
+      '</div>');
+    }
   };
 
 })
@@ -175,14 +187,17 @@ angular.module('colt.directives', [])
      }
    },
    template: 
-   '<div class="form-group row">'+
-   '  <label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
-   '  <div class="input-group input-group-sm">'+
-   '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="value" ng-disabled="disabled">'+
-   '    <span class="input-group-btn"><button type="button" ' +
-   '    class="btn btn-default btn-add" ng-click="copy()" ng-disabled="disabled">Copy</button></span>'+
-   '  </div>'+
-   '</div>'
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <label ng-show={{label!=undefined}}>{{label}}</label><help popover="{{popover}}"></help>'+
+      '  <div class="input-group input-group-sm">'+
+      '    <input type="text" placeholder="{{placeholder}}" class="form-control" ng-model="value" ng-disabled="disabled">'+
+      '    <span class="input-group-btn"><button type="button" ' +
+      '    class="btn btn-default btn-add" ng-click="copy()" ng-disabled="disabled">Copy</button></span>'+
+      '  </div>'+
+      '</div>');
+    }
  };
 
 })
@@ -205,12 +220,14 @@ angular.module('colt.directives', [])
       $(element).find("label").attr("for", id);
     },
     template: 
-    '<div class="form-group row">'+
-    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
-    '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
-    '</div>'
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
+      '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-model="path" ng-disabled="currentValue!=expectedValue">'+
+      '</div>');
+    }
   };
-
 })
 
 .directive('formPartHeader', function() {
@@ -222,13 +239,15 @@ angular.module('colt.directives', [])
       popover: "@"
     },
     template: 
-    '<div class="row">'+
-    '  <hr>'+
-    '  <h4>{{label}}</h4>'+
-    '  <br>'+
-    '</div>'
+    function() {
+      return (
+      '<div class="row">'+
+      '  <hr>'+
+      '  <h4>{{label}}</h4>'+
+      '  <br>'+
+      '</div>');
+    }
   };
-
 })
 
 .directive('radio', function() {
@@ -247,9 +266,12 @@ angular.module('colt.directives', [])
       $(element).find("label").attr("for", id);
     },
     template: 
-    '<div class="form-group row">'+
-    '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
-    '</div>'
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <input type="radio" ng-model="currentValue" ng-value="expectedValue">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
+      '</div>');
+    }
   };
 
 })
@@ -273,9 +295,12 @@ angular.module('colt.directives', [])
       $(element).find("label").attr("for", id);
     },
     template: 
-    '<div class="form-group row">'+
-    '  <input type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
-    '</div>'
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <input type="checkbox" ng-model="checked" ng-disabled="!enabled">&nbsp;<label>{{label}}</label><help popover="{{popover}}"></help>'+
+      '</div>');
+    }
   };
 })
 
@@ -291,10 +316,38 @@ angular.module('colt.directives', [])
       popover: "@"
     },
     template: 
-    '<div class="form-group row">'+
-    '  <label>{{label}}</label><help popover="{{popover}}"></help>'+
-    '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-disabled="disabled" ng-model="value">'+
-    '</div>'
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <label>{{label}}</label><help popover="{{popover}}"></help>'+
+      '  <input type="text" placeholder="{{placeholder}}" class="form-control input-sm" ng-disabled="disabled" ng-model="value">'+
+      '</div>');
+    }
+  };
+
+})
+
+.directive('number', function() {
+
+  return {
+    restrict: 'E',
+    scope: {
+      label: "@",
+      value: "=",
+      placeholder: "@",
+      disabled:"=",
+      min:"@",
+      max:"@",
+      popover: "@"
+    },
+    template: 
+    function() {
+      return (
+      '<div class="form-group row">'+
+      '  <label>{{label}}</label><help popover="{{popover}}"></help>'+
+      '  <input type="number" min="{{min||0}}}" placeholder="{{placeholder}}" class="form-control input-sm" ng-disabled="disabled" ng-model="value">'+
+      '</div>');
+    }
   };
 
 })
@@ -323,7 +376,10 @@ angular.module('colt.directives', [])
       }
     },
     template: 
-    '&nbsp;<img src="images/help-icon.png" class="helpLink">'
+    function() {
+      return (
+      '&nbsp;<img src="images/help-icon.png" class="helpLink">');
+    }
   };
 })
 
