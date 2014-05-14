@@ -51,11 +51,13 @@
 	</div>
 	<div ui-view id="content"></div>
 	<div class="navigation-bar">
-		<div class="logFilterButton" ng-class="{selected:logFilter==undefined}" ng-click="selectLogFilter(undefined)" ng-show="pageIndex==2">All</div>
+		<div class="logFilterButton all" ng-class="{selected:logFilter==undefined}" ng-click="selectLogFilter(undefined)" ng-show="pageIndex==2">All</div>
 		<div class="logFilterButton" ng-class="{selected:logFilter=='ERROR'}" ng-click="selectLogFilter('ERROR')" ng-show="pageIndex==2">Errors({{filter.errorsCount}})</div>
 		<div class="logFilterButton" ng-class="{selected:logFilter=='WARNING'}" ng-click="selectLogFilter('WARNING')" ng-show="pageIndex==2">Warnings({{filter.warningCount}})</div>
 		<div class="logFilterButton" ng-class="{selected:logFilter=='INFO'}" ng-click="selectLogFilter('INFO')" ng-show="pageIndex==2">Info({{filter.infoCount}})</div>
 		<div class="logFilterButton" ng-class="{selected:logFilter=='LIVE'}" ng-click="selectLogFilter('LIVE')" ng-show="pageIndex==2">Live({{filter.liveCount}})</div>
+		<div class="logFilterButton" ng-class="{selected:logFilter=='DEBUG'}" ng-click="selectLogFilter('DEBUG')" ng-show="pageIndex==2">System({{filter.debugCount||0}})</div>
+		<a class="logClearButton" ng-show="pageIndex==2" ng-click="clearLog()">Clear</a>
 		<button class="btn-live" ng-disabled="sessionStateSwitching" ng-class="{selected:sessionInProgress}" ng-click="startSession()"></button>
 	</div>
 	<input id="newProjectInput" style="display:none;" nwsaveas="project.colt" type="file" accept=".colt" nwworkingdir="{{projectBaseDir}}"> 

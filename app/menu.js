@@ -54,7 +54,7 @@ app.service("appMenu", function($q) {
 			fileSubMenu.append(new gui.MenuItem({
 				label: 'Close Project',
 				click: function () {
-                    $scope.showWelcomeScreen(recentProjectsPaths, true)
+               $scope.showWelcomeScreen(recentProjectsPaths, true)
 				}
 			}));
 			
@@ -64,10 +64,19 @@ app.service("appMenu", function($q) {
 			var run = new gui.MenuItem({ label: 'Build' });
 			var runSubMenu = new gui.Menu();
 			runSubMenu.append(new gui.MenuItem({ 
-				label: 'Production Buil',
+				label: 'Production Build',
 				enabled: false,
 				click: function () {
 					//todo: implement 
+				}
+			}));
+			runSubMenu.append(new gui.MenuItem({ 
+				label: 'Clear Log',
+				enabled: true,
+				click: function () {
+					$scope.$apply(function() {
+						$scope.clearLog();
+					});
 				}
 			}));
 			run.submenu = runSubMenu;

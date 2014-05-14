@@ -112,8 +112,17 @@ hr{
 	border-radius: 8px;
 	color: #83868a;
 	/*background-color: #dbdee2;*/
-	padding: 2px 5px 2px 5px;
+	padding: 2px 3px 2px 3px;
 	margin: 0px 2px 2px 0px;
+}
+.logFilterButton.all{
+	padding: 2px 5px 2px 5px;
+}
+.logClearButton{
+	display: inline;
+	font-size: 13px;
+	padding-left: 10px;
+	cursor: pointer;
 }
 
 .logFilterButton:hover, .logFilterButton.selected{

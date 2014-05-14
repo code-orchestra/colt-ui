@@ -32,6 +32,10 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, $sta
 		$scope.$broadcast("logMessage", m);
 	};
 
+	$scope.clearLog = function(){
+		$scope.logMessages = [];
+	}
+
 	$scope.log("error", "hello world", "index.js")
 
 	window.onerror = function(msg, url, line) {
@@ -45,6 +49,7 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, $sta
 		$scope.filter.warningCount = messages.filter(function(e) {return e.level=="WARNING"}).length;
 		$scope.filter.infoCount = messages.filter(function(e) {return e.level=="INFO"}).length;
 		$scope.filter.liveCount = messages.filter(function(e) {return e.level=="LIVE"}).length;
+		$scope.filter.debugCount = messages.filter(function(e) {return e.level=="DEBUG"}).length;
 	};
 
 	$scope.updateFilters();
