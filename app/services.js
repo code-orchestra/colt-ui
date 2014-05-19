@@ -192,6 +192,9 @@ var runJava = function (projectPath, plugin) {
                                     $scope.logMessages.push(json);
                                     $scope.updateFilters();
 									break;
+                                case "clearLog":
+                                    $scope.clearLog();
+                                    break;
                                 case "error":
                                     $scope.showMessageDialog("error", json.message, json.stacktrase);
                                     break;
