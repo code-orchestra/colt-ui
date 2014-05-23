@@ -119,8 +119,7 @@ app.controller("WelcomeController", function($scope, $rootScope) {
 	console.log("welcome screen");
 
 	$scope.openLink = function(url) {
-		//$window.open(url);
-        $scope.callToOwnerWindow("openLink", url);
+		$scope.callToOwnerWindow("openLink", url);
 	}
 
 	$scope.newProject = function() {
@@ -212,6 +211,13 @@ app.controller("CloseSaveController", function($scope, $rootScope) {
 
 app.controller("AlertController", function($scope, $rootScope) {
 	console.log("alert dialog");	
+	
+	// $scope.popup.type = "error";
+	// $scope.popup.message = "my message";
+	// $scope.popup.stacktrace = "stacktrace";
+	// $scope.popup.showEmailDialog = true;
+	// $scope.popup.email = "my@email.com";
+
 	if($scope.popup.type == undefined){
 		$scope.popup.type = "warning";
 	}
@@ -247,7 +253,7 @@ app.controller("JsDocsController", function($scope) {
 });
 
 app.filter('unsafe', function($sce) {
-    return function(val) {
-        return $sce.trustAsHtml(val);
-    };
+	return function(val) {
+		return $sce.trustAsHtml(val);
+	};
 });

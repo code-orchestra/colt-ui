@@ -12,9 +12,9 @@
 		<div class="stacktrace" ng-show="popup.stacktrace">
 			<h5 class="message">{{popup.stacktrace}}</h5>
 		</div>
-		<div  class="row">
-			
-			
+		<div class="form-group row" ng-show="popup.showEmailDialog">
+			<p>Please help us imrove COLT. Submit your email below so that we can contact you about the problems you encounter.</p>
+			<input type="email" placeholder="Your email address (optional)" ng-model="popup.email" class="form-control" value="" required="required" title="">
 		</div>
 		<div class="form-group row">
 			<button ng-show="popup.type=='error'" type="submit" ng-click="showDevConsole()" class="btn btn-default pull-left">Show Dev Console</button>
