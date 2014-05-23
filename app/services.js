@@ -629,7 +629,7 @@ $scope.getProjectPath = function(){
 
 $scope.openLink = function(url) {
 	gui.Shell.openExternal(url)
-}
+};
 
 appMenu.buildMenu($scope, []);
 
@@ -641,22 +641,26 @@ if(projectFilePath && projectFilePath.indexOf("-plugin") != -1) {
 var plugin = gui.App.argv[1];
 if(projectFilePath) {
 	runJava(projectFilePath, plugin);
-    $scope.sendToJava("getRecentProjectsPaths");
-    $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
+    if (java) {
+        $scope.sendToJava("getRecentProjectsPaths");
+        $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
+    }
 } else {
 	runJava(undefined, plugin);
-	$scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths")
-	.then(function (array) {
-		if (array.length > 0) {
-			projectFilePath = array[0];
-			$scope.sendToJava("load -file:" + projectFilePath, "project").then(null, function() {
+    if(java) {
+        $scope.sendToJava("getRecentProjectsPaths", "recentProjectsPaths")
+        .then(function (array) {
+            if (array.length > 0) {
+                projectFilePath = array[0];
+                $scope.sendToJava("load -file:" + projectFilePath, "project").then(null, function() {
+                    $scope.showWelcomeScreen([], true)
+                })
+            } else {
                 $scope.showWelcomeScreen([], true)
-            })
-		} else {
-			$scope.showWelcomeScreen([], true)
-		}
-	})
-    $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
+            }
+        });
+        $scope.sendToJava("checkUpdate", "checkUpdate").then($scope.showUpdateDialog)
+    }
 }
 
 if(plugin){
