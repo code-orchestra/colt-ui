@@ -500,14 +500,14 @@ var resizeModal = function(modal, w, h) {
 }
 
 $scope.openPopup = function(html, title) {
-	var modal = gui.Window.open('app://./'+ html,{
+	if(!isMac && minimized){
+        win.restore();
+    }
+    var modal = gui.Window.open('app://./'+ html,{
 		toolbar: false,
         icon: "icons/colt_128.png"
 	});
-    if(!isMac && minimized){
-        win.restore();
-    }
-	modal.hide();
+    modal.hide();
 	win.hide();
 	var popupObject = {};
 	modal.on('loaded', function() {

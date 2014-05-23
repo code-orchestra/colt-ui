@@ -30,10 +30,12 @@ app.controller("AppCtrl", function($scope, nodeApp, coltDialogs, $http, $q, $sta
 		var m = {level:level, message: message, source: source || "COLT"};
 		$scope.logMessages.push(m);
 		$scope.$broadcast("logMessage", m);
+		$scope.updateFilters();
 	};
 
 	$scope.clearLog = function(){
 		$scope.logMessages = [];
+		$scope.updateFilters();
 	}
 
 	window.onerror = function(msg, url, line) {
